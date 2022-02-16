@@ -7,7 +7,7 @@
 /dataSources/
 /dataSources.local.xml
 /.idea/*
-.iml
+*.iml
 /out/
 /.gitignore
 /src/Test.java
