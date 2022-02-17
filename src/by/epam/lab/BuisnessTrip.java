@@ -1,16 +1,16 @@
 package by.epam.lab;
 
-public class BusinessTrip {
-    private static final int DAILY_ALLOWANCE = 9800;
+public class BuisnessTrip {
+    private static final int DAILY_ALLOWANCE = 98002;
     private String account;
     private int transportExpenses;
     private int numOfDays;
 
-    public BusinessTrip() {
+    public BuisnessTrip() {
 
     }
 
-    public BusinessTrip(String account, int transportExpenses, int numOfDays) {
+    public BuisnessTrip(String account, int transportExpenses, int numOfDays) {
         this.account = account;
         this.transportExpenses = transportExpenses;
         this.numOfDays = numOfDays;
@@ -45,7 +45,7 @@ public class BusinessTrip {
     }
 
     private static String currencyConvention(int coins) {
-        return coins / 100 + "." + String.format("%2d", coins % 100);
+        return coins / 100 + "." + String.format("%02d", coins % 100);
     }
 
     public void show() {

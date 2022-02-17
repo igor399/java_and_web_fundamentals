@@ -1,4 +1,4 @@
-import by.epam.lab.BusinessTrip;
+import by.epam.lab.BuisnessTrip;
 
 public class Runner {
     public static void main(String[] args) {
