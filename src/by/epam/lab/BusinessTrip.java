@@ -1,33 +1,26 @@
 package by.epam.lab;
 
-public class BusinessTrip {
-    private static int dailyAllowance;
-    private Account account;
+public class BuisnessTrip {
+    private static final int dailyAllowance = 9800; // 1BYN = 100coins
+    private String account;
     private int transportExpenses;
     private int numOfDays;
 
-    public BusinessTrip() {
+    public BuisnessTrip() {
+
     }
 
-    public BusinessTrip(Account account, int transportExpenses, int numOfDays) {
+    public BuisnessTrip(String account, int transportExpenses, int numOfDays) {
         this.account = account;
         this.transportExpenses = transportExpenses;
         this.numOfDays = numOfDays;
     }
 
-    public static int getDailyAllowance() {
-        return dailyAllowance;
-    }
-
-    public static void setDailyAllowance(int dailyAllowance) {
-        BusinessTrip.dailyAllowance = dailyAllowance;
-    }
-
-    public Account getAccount() {
+    public String getAccount() {
         return account;
     }
 
-    public void setAccount(Account account) {
+    public void setAccount(String account) {
         this.account = account;
     }
 
@@ -48,24 +41,23 @@ public class BusinessTrip {
     }
 
     public int getTotal() {
-        return getTransportExpenses() + getDailyAllowance() * getNumOfDays();
+        return getTransportExpenses() + dailyAllowance * getNumOfDays();
     }
 
-    public String show() {
-        String info = "";
-        for (Account account : accounts){
-            info += String.format("account = %s",getAccount().getFirstName(),getAccount().getLastName());
-        }
-        return "account = " + getAccount().getFirstName() + " " + getAccount().getLastName() + "\n" +
-                "transport = " + getTransportExpenses() + "\n" +
-                "days = " + getNumOfDays() + "\n" +
-                "total = " + getTotal();
+    private static String currencyConvention(int coins) {
+        return coins / 100 + "." + String.format("%2d", coins % 100);
+    }
+
+    public void show() {
+        System.out.println("rate = " + currencyConvention(dailyAllowance));
+        System.out.println("account = " + account);
+        System.out.println("transport = " + currencyConvention(transportExpenses));
+        System.out.println("days = " + numOfDays);
+        System.out.println("total = " + currencyConvention(getTotal()));
     }
 
     @Override
     public String toString() {
-        return getAccount().getFirstName() + getAccount().getLastName() + ";" + transportExpenses + ";" + numOfDays + ";" + getTotal();
+        return account + "; " + currencyConvention(this.transportExpenses) + "; " + numOfDays + "; " + currencyConvention(getTotal());
     }
-
-
 }
