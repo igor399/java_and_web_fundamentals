@@ -34,7 +34,7 @@ public class Runner {
         System.out.println();
 
 //4. Output the total duration of two initial business trips by the single operator
-        System.out.println("total deration of 2 trips: " + buisnessTrips[0].getNumOfDays() + buisnessTrips[1].getNumOfDays());
+        System.out.println("total deration of 2 trips: " + (buisnessTrips[0].getNumOfDays() + buisnessTrips[1].getNumOfDays()));
         System.out.println();
 
 //5. Output the array content to the console (one element per line), using toString( ) method implicitly

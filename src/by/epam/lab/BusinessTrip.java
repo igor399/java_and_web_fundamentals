@@ -58,6 +58,6 @@ public class BuisnessTrip {
 
     @Override
     public String toString() {
-        return account + "; " + currencyConvention(this.transportExpenses) + "; " + numOfDays + "; " + currencyConvention(getTotal());
+        return account + "; " + currencyConvention(transportExpenses) + "; " + numOfDays + "; " + currencyConvention(getTotal());
     }
 }
