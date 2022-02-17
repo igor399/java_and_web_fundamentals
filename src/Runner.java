@@ -12,26 +12,20 @@ public class Runner {
         };
 
         BuisnessTrip maxBuisnessTrip = buisnessTrips[0];
-
         for (BuisnessTrip buisnessTrip : buisnessTrips) {
-
             if (buisnessTrip == null) {
                 continue;
             }
-
             if (buisnessTrip.getTotal() > maxBuisnessTrip.getTotal()) {
                 maxBuisnessTrip = buisnessTrip;
             }
             buisnessTrip.show();
-            System.out.println();
         }
-        System.out.println("the most expencive trip is " + maxBuisnessTrip);
+        System.out.println("\nthe most expensive trip is " + maxBuisnessTrip);
 
         buisnessTrips[buisnessTrips.length - 1].setTransportExpenses(451234);
-        System.out.println();
 
-        System.out.println("total deration of 2 trips: " + (buisnessTrips[0].getNumOfDays() + buisnessTrips[1].getNumOfDays()));
-        System.out.println();
+        System.out.println("total duration of 2 trips: " + (buisnessTrips[0].getNumOfDays() + buisnessTrips[1].getNumOfDays()));
 
         for (BuisnessTrip buisnessTrip : buisnessTrips) {
             System.out.println(buisnessTrip);

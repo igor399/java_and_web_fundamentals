@@ -45,15 +45,15 @@ public class BuisnessTrip {
     }
 
     private static String currencyConvention(int coins) {
-        return coins / 100 + "." + String.format("%02d", coins % 100);
+        return String.format("%d.%02d", coins / 100, coins % 100);
     }
 
     public void show() {
-        System.out.println("rate = " + currencyConvention(DAILY_ALLOWANCE));
-        System.out.println("account = " + account);
-        System.out.println("transport = " + currencyConvention(transportExpenses));
-        System.out.println("days = " + numOfDays);
-        System.out.println("total = " + currencyConvention(getTotal()));
+        System.out.println("rate = " + currencyConvention(DAILY_ALLOWANCE) +
+                "\naccount = " + account +
+                "\ntransport = " + currencyConvention(transportExpenses) +
+                "\ndays = " + numOfDays +
+                "\ntotal = " + currencyConvention(getTotal()));
     }
 
     @Override
