@@ -1,16 +1,16 @@
 package by.epam.lab;
 
-public class BuisnessTrip {
-    private static final int dailyAllowance = 9800; // 1BYN = 100coins
+public class BusinessTrip {
+    private static final int DAILY_ALLOWANCE = 9800;
     private String account;
     private int transportExpenses;
     private int numOfDays;
 
-    public BuisnessTrip() {
+    public BusinessTrip() {
 
     }
 
-    public BuisnessTrip(String account, int transportExpenses, int numOfDays) {
+    public BusinessTrip(String account, int transportExpenses, int numOfDays) {
         this.account = account;
         this.transportExpenses = transportExpenses;
         this.numOfDays = numOfDays;
@@ -41,7 +41,7 @@ public class BuisnessTrip {
     }
 
     public int getTotal() {
-        return getTransportExpenses() + dailyAllowance * getNumOfDays();
+        return transportExpenses + DAILY_ALLOWANCE * numOfDays;
     }
 
     private static String currencyConvention(int coins) {
@@ -49,7 +49,7 @@ public class BuisnessTrip {
     }
 
     public void show() {
-        System.out.println("rate = " + currencyConvention(dailyAllowance));
+        System.out.println("rate = " + currencyConvention(DAILY_ALLOWANCE));
         System.out.println("account = " + account);
         System.out.println("transport = " + currencyConvention(transportExpenses));
         System.out.println("days = " + numOfDays);
