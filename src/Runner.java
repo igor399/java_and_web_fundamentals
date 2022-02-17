@@ -1,4 +1,4 @@
-package by.epam.lab;
+import by.epam.lab.BuisnessTrip;
 
 //1. Create an array of minimum 5 objects (the element with the index 2 should be empty;
 //the last element of the array should be created by the no-arg constructor
