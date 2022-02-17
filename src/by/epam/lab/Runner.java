@@ -4,11 +4,13 @@ package by.epam.lab;
 //the last element of the array should be created by the no-arg constructor
 public class Runner {
     public static void main(String[] args) {
-        BuisnessTrip[] buisnessTrips = { new BuisnessTrip("Ivan Petrov", 120568, 5),
+        BuisnessTrip[] buisnessTrips = {
+                new BuisnessTrip("Ivan Petrov", 120568, 5),
                 new BuisnessTrip("Andrey Losev", 500555, 7),
                 null,
                 new BuisnessTrip("Sergey Vitkov", 312345, 9),
-                new BuisnessTrip() };
+                new BuisnessTrip()
+        };
 
 //2. Output the array content to the console, using show( ) method, and the business trip with maximum cost
         BuisnessTrip maxBuisnessTrip = buisnessTrips[0];
