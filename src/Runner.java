@@ -2,7 +2,7 @@ import by.epam.lab.BuisnessTrip;
 
 public class Runner {
     public static void main(String[] args) {
-        BuisnessTrip[] buisnessTrips  = new BuisnessTrip[]{
+        BuisnessTrip[] buisnessTrips  = {
                 new BuisnessTrip("Ivan Petrov", 120568, 5),
                 new BuisnessTrip("Andrey Losev", 500555, 7),
                 null,
