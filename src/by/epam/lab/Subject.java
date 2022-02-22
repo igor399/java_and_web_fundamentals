@@ -6,7 +6,6 @@ public class Subject {
     private double volume;
 
     public Subject() {
-
     }
 
     public Subject(String name, Material material, double volume) {
