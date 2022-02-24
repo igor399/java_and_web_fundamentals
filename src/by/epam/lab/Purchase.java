@@ -1,8 +1,8 @@
 package by.epam.lab;
 
 public class Purchase implements Comparable<Purchase> {
-    private final String PRODUCT_NAME = "apple";
-    private final int PRICE = 250;
+    public static final String PRODUCT_NAME = "apple";
+    public static final int PRICE = 250;
     private int unitNumber;
     private double discount;
     private WeekDay weekDay;
@@ -14,6 +14,10 @@ public class Purchase implements Comparable<Purchase> {
         this.unitNumber = unitNumber;
         this.discount = discount;
         this.weekDay = weekDay;
+    }
+
+    public Purchase(int unitNumber,double discount, int weekDay){
+        this(unitNumber, discount,WeekDay.values()[weekDay]);
     }
 
     public int getUnitNumber() {
@@ -44,7 +48,7 @@ public class Purchase implements Comparable<Purchase> {
         return (int) Math.round(PRICE * unitNumber * (100 - discount) / 100 / 100) * 100;
     }
 
-    private static String currencyConvention(int coins) {
+    public static String currencyConvention(int coins) {
         return String.format("%d.%02d", coins / 100, coins % 100);
     }
 
