@@ -1,4 +1,5 @@
 import by.epam.lab.*;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Arrays;
@@ -39,9 +40,10 @@ public class Runner {
             if (purchases.length > 0) {
                 meanCost = (double) totalCost / purchases.length / 100;
             }
-            System.out.printf("Mean cost = " + String.format("%.3f", meanCost));
-            System.out.println("Total cost on Mondays = " + Purchase.currencyConvention(totalCostMonday));
-            System.out.println("The day with the max purchace is " + maxPurchaceWeekday);
+            System.out.println("Mean cost = " + String.format("%.3f", meanCost) + "\n"
+                    + "Total cost on Mondays = " + Purchase.currencyConvention(totalCostMonday) + "\n"
+                    + "The day with the max purchace is " + maxPurchaceWeekday);
+
 
             Arrays.sort(purchases);
             printArrayContent(purchases);
@@ -49,7 +51,7 @@ public class Runner {
             Purchase equalledPurchace = new Purchase(5, 0, null);
             int equalledPurchaceIndex = Arrays.binarySearch(purchases, equalledPurchace);
             if (equalledPurchaceIndex >= 0) {
-                System.out.println("Equalled purchace :" + purchases[equalledPurchaceIndex]);
+                System.out.println("Equalled purchace: " + purchases[equalledPurchaceIndex]);
             } else {
                 System.out.println("Equalled purchace is't found.");
             }

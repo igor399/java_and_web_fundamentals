@@ -16,8 +16,8 @@ public class Purchase implements Comparable<Purchase> {
         this.weekDay = weekDay;
     }
 
-    public Purchase(int unitNumber,double discount, int weekDay){
-        this(unitNumber, discount,WeekDay.values()[weekDay]);
+    public Purchase(int unitNumber, double discount, int weekDay) {
+        this(unitNumber, discount, WeekDay.values()[weekDay]);
     }
 
     public int getUnitNumber() {
@@ -45,7 +45,7 @@ public class Purchase implements Comparable<Purchase> {
     }
 
     public int getCost() {
-        return (int) Math.round(PRICE * unitNumber * (100 - discount) / 100 / 100) * 100;
+        return (int) Math.round(PRICE * unitNumber * ((100 - discount) / 100) / 100) * 100;
     }
 
     public static String currencyConvention(int coins) {
