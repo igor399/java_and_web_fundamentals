@@ -1,3 +1,4 @@
+package src;
 import src.by.epam.lab.*;
 
 import java.io.FileNotFoundException;
@@ -52,10 +53,10 @@ public class Runner {
             if (equalledPurchaceIndex >= 0) {
                 System.out.println("Equalled purchace: " + purchases[equalledPurchaceIndex]);
             } else {
-                System.out.println("Equalled purchace is't found.");
+                System.out.println("Equalled purchace isn't found.");
             }
         } catch (FileNotFoundException e) {
-            System.err.println("Input file is not found");
+            System.err.println("Input file isn't found");
         }
     }
 
