@@ -48,13 +48,9 @@ public class Purchase implements Comparable<Purchase> {
         return (int) Math.round(PRICE * unitNumber * ((100 - discount) / 100) / 100) * 100;
     }
 
-    public static String currencyConvention(int coins) {
-        return String.format("%d.%02d", coins / 100, coins % 100);
-    }
-
     @Override
     public String toString() {
-        return unitNumber + "; " + discount + "; " + weekDay + "; " + currencyConvention(getCost());
+        return unitNumber + "; " + discount + "; " + weekDay + "; " + Util.currencyConvention(getCost());
     }
 
     @Override

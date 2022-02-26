@@ -40,16 +40,15 @@ public class Runner {
             if (purchases.length > 0) {
                 meanCost = (double) totalCost / purchases.length / 100;
             }
-            System.out.println("Mean cost = " + String.format("%.3f", meanCost) + "\n"
-                    + "Total cost on Mondays = " + Purchase.currencyConvention(totalCostMonday) + "\n"
-                    + "The day with the max purchace is " + maxPurchaceWeekday);
+            System.out.println("Mean cost = " + String.format("%.3f", meanCost) +
+                    "\nTotal cost on Mondays = " + Util.currencyConvention(totalCostMonday) +
+                    "\nThe day with the max purchace is " + maxPurchaceWeekday);
 
 
             Arrays.sort(purchases);
             printArrayContent(purchases);
 
-            Purchase equalledPurchace = new Purchase(5, 0, null);
-            int equalledPurchaceIndex = Arrays.binarySearch(purchases, equalledPurchace);
+            int equalledPurchaceIndex = Arrays.binarySearch(purchases, new Purchase(5, 0, null));
             if (equalledPurchaceIndex >= 0) {
                 System.out.println("Equalled purchace: " + purchases[equalledPurchaceIndex]);
             } else {
@@ -61,8 +60,8 @@ public class Runner {
     }
 
     private static void printArrayContent(Purchase[] purchases) {
-        System.out.println("product name " + Purchase.PRODUCT_NAME);
-        System.out.println("price = " + Purchase.currencyConvention(Purchase.PRICE));
+        System.out.println("product name " + Purchase.PRODUCT_NAME +
+                "\nprice = " + Util.currencyConvention(Purchase.PRICE));
         for (Purchase purchase : purchases) {
             System.out.println(purchase);
         }
