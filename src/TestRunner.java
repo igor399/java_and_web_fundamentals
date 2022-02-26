@@ -3,6 +3,13 @@ import org.junit.Test;
 import src.by.epam.lab.Purchase;
 
 public class TestRunner {
+
+    @Test
+    public void testPurchaceInit(){
+        Purchase p1 = new Purchase(0,0.0 ,0);
+        Assert.assertEquals(0, p1.getCost());
+    }
+
     @Test
     public void testGetCost() {
         Purchase p1 = new Purchase(1,10.3 ,0);
