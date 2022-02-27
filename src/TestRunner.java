@@ -1,7 +1,7 @@
+import by.epam.lab.*;
+
 import org.junit.Assert;
 import org.junit.Test;
-import src.by.epam.lab.Purchase;
-import src.by.epam.lab.Util;
 
 public class TestRunner {
 

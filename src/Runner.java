@@ -1,4 +1,4 @@
-import src.by.epam.lab.*;
+import by.epam.lab.*;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

@@ -1,4 +1,4 @@
-package src.by.epam.lab;
+package by.epam.lab;
 
 public class Purchase implements Comparable<Purchase> {
     public static final String PRODUCT_NAME = "apple";
