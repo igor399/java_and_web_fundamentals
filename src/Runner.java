@@ -1,4 +1,3 @@
-package src;
 import src.by.epam.lab.*;
 
 import java.io.FileNotFoundException;

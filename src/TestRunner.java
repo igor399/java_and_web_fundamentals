@@ -1,5 +1,3 @@
-package src;
-
 import org.junit.Assert;
 import org.junit.Test;
 import src.by.epam.lab.Purchase;
