@@ -1,4 +1,4 @@
-package by.epa.lab;
+package by.epam.lab;
 
 public class Util {
     public static String currencyConvention(int coins) {

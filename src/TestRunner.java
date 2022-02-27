@@ -1,4 +1,4 @@
-import by.epa.lab.*;
+import by.epam.lab.*;
 import org.junit.Assert;
 import org.junit.Test;
 
