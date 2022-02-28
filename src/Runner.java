@@ -13,7 +13,6 @@ public class Runner {
 
             final int PURCHASES_NUMBER = sc.nextInt();
             Purchase[] purchases = new Purchase[PURCHASES_NUMBER];
-
             for (int i = 0; i < purchases.length; i++) {
                 purchases[i] = new Purchase(sc.nextInt(), sc.nextDouble(), sc.nextInt());
             }
@@ -38,12 +37,11 @@ public class Runner {
                 }
             }
             if (purchases.length > 0) {
-                meanCost = (double) totalCost / purchases.length / 100;
+                meanCost = ((double) totalCost) / purchases.length / 100;
             }
             System.out.println("Mean cost = " + String.format("%.3f", meanCost) +
                     "\nTotal cost on Mondays = " + Util.currencyConvention(totalCostMonday) +
                     "\nThe day with the max purchace is " + maxPurchaceWeekday);
-
 
             Arrays.sort(purchases);
             printArrayContent(purchases);
@@ -52,7 +50,7 @@ public class Runner {
             if (equalledPurchaceIndex >= 0) {
                 System.out.println("Equalled purchace: " + purchases[equalledPurchaceIndex]);
             } else {
-                System.out.println("Equalled purchace isn't found.");
+                System.out.println("Equalled purchace isn't found");
             }
         } catch (FileNotFoundException e) {
             System.err.println("Input file isn't found");
@@ -60,7 +58,7 @@ public class Runner {
     }
 
     private static void printArrayContent(Purchase[] purchases) {
-        System.out.println("product name " + Purchase.PRODUCT_NAME +
+        System.out.println("Product name " + Purchase.PRODUCT_NAME +
                 "\nprice = " + Util.currencyConvention(Purchase.PRICE));
         for (Purchase purchase : purchases) {
             System.out.println(purchase);
