@@ -1,5 +1,7 @@
 package by.epam.lab;
 
+import java.util.Objects;
+
 public class Purchase implements Comparable<Purchase> {
     public static final String PRODUCT_NAME = "apple";
     public static final int PRICE = 250;
@@ -56,5 +58,13 @@ public class Purchase implements Comparable<Purchase> {
     @Override
     public int compareTo(Purchase purchase) {
         return unitNumber - purchase.unitNumber;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Purchase purchase = (Purchase) o;
+        return unitNumber == purchase.unitNumber && Double.compare(purchase.discount, discount) == 0 && weekDay == purchase.weekDay;
     }
 }

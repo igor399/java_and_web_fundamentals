@@ -6,10 +6,9 @@ public class TestRunner {
 
     @Test
     public void testPurchaseInit() {
-        Purchase p1 = new Purchase(0, 0.0, 0);
+        Purchase p1 = new Purchase();
         Assert.assertEquals(0, p1.getCost());
-        Purchase p2 = new Purchase(0, 0.0, -1);
-        Assert.assertEquals(0, p2.getCost());
+        Assert.assertEquals(new Purchase(0, 0.0, WeekDay.SUNDAY), new Purchase(0, 0.0, 0));
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
