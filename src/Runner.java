@@ -23,7 +23,7 @@ public class Runner {
             double meanCost = 0.0;
             int totalCostMonday = 0;
             int maxCost = 0;
-            WeekDay maxPurchaceWeekday = null;
+            WeekDay maxPurchaseWeekday = null;
 
             for (Purchase purchase : purchases) {
                 int cost = purchase.getCost();
@@ -33,7 +33,7 @@ public class Runner {
                 }
                 if (cost > maxCost) {
                     maxCost = cost;
-                    maxPurchaceWeekday = purchase.getWeekDay();
+                    maxPurchaseWeekday = purchase.getWeekDay();
                 }
             }
             if (purchases.length > 0) {
@@ -41,16 +41,16 @@ public class Runner {
             }
             System.out.println("Mean cost = " + String.format("%.3f", meanCost) +
                     "\nTotal cost on Mondays = " + Util.currencyConvention(totalCostMonday) +
-                    "\nThe day with the max purchace is " + maxPurchaceWeekday);
+                    "\nThe day with the max purchase is " + maxPurchaseWeekday);
 
             Arrays.sort(purchases);
             printArrayContent(purchases);
 
             int equalledPurchaceIndex = Arrays.binarySearch(purchases, new Purchase(5, 0, null));
             if (equalledPurchaceIndex >= 0) {
-                System.out.println("Equalled purchace: " + purchases[equalledPurchaceIndex]);
+                System.out.println("Equalled purchase: " + purchases[equalledPurchaceIndex]);
             } else {
-                System.out.println("Equalled purchace isn't found");
+                System.out.println("Equalled purchase isn't found");
             }
         } catch (FileNotFoundException e) {
             System.err.println("Input file isn't found");

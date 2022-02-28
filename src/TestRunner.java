@@ -5,10 +5,18 @@ import org.junit.Test;
 public class TestRunner {
 
     @Test
-    public void testPurchaceInit() {
+    public void testPurchaseInit() {
         Purchase p1 = new Purchase(0, 0.0, 0);
         Assert.assertEquals(0, p1.getCost());
-        Purchase p2 = new Purchase(0, 0.0, 7);
+        Purchase p2 = new Purchase(0, 0.0, -1);
+        Assert.assertEquals(0, p2.getCost());
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testIndexOutOfBoundsException() {
+        Purchase p1 = new Purchase(0, 0.0, -1);
+        Assert.assertEquals(0, p1.getCost());
+        Purchase p2 = new Purchase(0, 0.0, 8);
         Assert.assertEquals(0, p2.getCost());
     }
 
