@@ -42,4 +42,3 @@ public class TestRunner {
         Assert.assertEquals("1005.00", Util.currencyConvention(100500));
     }
 }
-
