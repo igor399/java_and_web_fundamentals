@@ -67,4 +67,9 @@ public class Purchase implements Comparable<Purchase> {
         Purchase purchase = (Purchase) o;
         return unitNumber == purchase.unitNumber && Double.compare(purchase.discount, discount) == 0 && weekDay == purchase.weekDay;
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(unitNumber, discount, weekDay);
+    }
 }
