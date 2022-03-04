@@ -190,17 +190,27 @@ System.out.println(new Name());
 **Ответ.**  
 Метод `makeRandomName()` принадлежит объекту 'Name' а не классу и поэтому конструктор не может инициализировать данный метод.
 Поэтому одно из решений сделать метод `makeRandomName()` статическим, который будет доступен всем экземплярам класса.   
-Второй вариант:
+Третий вариант: метод `toString()` возвращает метод `makeRandomName()`.
 ```
-public class Name {
+class Name {
 String name;
-static String makeRandomName() {
+Name() {
+this(makeRandomName());
+}
+Name(String name) {
+super();
+this.name = name;
+}
+String makeRandomName() {
 int k = (int) (Math.random() * 3);
-String name = new String[] { "Alpha", "Beta", "Gamma" }[k];
+String name = new String[] {"Alpha", "Beta", "Gamma"}[k];
 return name;
 }
+public String toString() {
+return makeRandomName();
+}
 public static void main(String[] args) {
-System.out.println(makeRandomName());
+System.out.println(new Name());
 }
 }
 ```
@@ -232,7 +242,8 @@ System.out.println(obj.i);
 
 ###23 Можно ли присвоить `null` ссылочной переменной `this`?
 
-**Ответ.**
+**Ответ.**  
+Нельзя. Если используется `this`, то это означает что, мы находимся в экземпляре и объект существует.
 **Источник.**<>
 
 ###24 Перечислите случаи, когда используется статический блок? В каких случаях можно обойтись без него. Если можно, то каким образом?
@@ -252,8 +263,11 @@ System.out.println(obj.i);
 
 ###27 Что значит ключевое слово `native`?
 
-**Ответ.**
-**Источник.**<>
+**Ответ.**  
+Модификатор native указывает на то, что метод написан не на Java. Методы,
+помеченные native, можно переопределять обычными методами в подклассах.
+Тело нативного метода должно заканчиваться на `;` как в абстрактных методах,
+идентифицируя то, что реализация опущена.
 
 ###28 Дан код.
 ```
