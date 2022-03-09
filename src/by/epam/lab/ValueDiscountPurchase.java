@@ -8,7 +8,7 @@ public class ValueDiscountPurchase extends Purchase {
 
     public ValueDiscountPurchase(String productName, Byn price, int numUnits, int discount) {
         super(productName, price, numUnits);
-        discount = discount;
+        this.discount = new Byn(discount);
     }
 
     public ValueDiscountPurchase(String productName, int price, int numUnits, int discount) {
@@ -20,7 +20,7 @@ public class ValueDiscountPurchase extends Purchase {
     }
 
     public void setDiscount(int discount) {
-        discount = discount;
+        this.discount = new Byn(discount);
     }
 
     @Override
@@ -30,6 +30,6 @@ public class ValueDiscountPurchase extends Purchase {
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + ";" + getProductName() + ";" + getPrice() + ";" + getNumUnits() + ";" + discount + ";" + getCost();
+        return getClass().getSimpleName() + "; " + getProductName() + "; " + getPrice() + "; " + getNumUnits() + "; " + discount + "; " + getCost();
     }
 }
