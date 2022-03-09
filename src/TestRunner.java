@@ -31,9 +31,6 @@ public class TestRunner {
 
     @Test
     public void testBynCompareTo() {
-        Byn byn1 = new Byn(800);
-        Byn byn2 = new Byn(300);
-        Byn byn3 = new Byn(800);
         Assert.assertEquals(500, new Byn(800).compareTo(new Byn(300)));
         Assert.assertEquals(-500, new Byn(300).compareTo(new Byn(800)));
         Assert.assertEquals(0, new Byn(800).compareTo(new Byn(800)));
