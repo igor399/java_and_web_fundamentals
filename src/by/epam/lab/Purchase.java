@@ -1,7 +1,6 @@
 package by.epam.lab;
 
 import java.util.Objects;
-import java.util.Scanner;
 
 public class Purchase implements Comparable<Purchase> {
     private String productName;
@@ -17,8 +16,8 @@ public class Purchase implements Comparable<Purchase> {
         this.numUnits = numUnits;
     }
 
-    public Purchase(Scanner sc) {
-        this(sc.next(), new Byn(sc.nextInt()), sc.nextInt());
+    public Purchase(String productName, int price, int numUnits) {
+        this(productName, new Byn(price), numUnits);
     }
 
     public String getProductName() {
@@ -50,13 +49,13 @@ public class Purchase implements Comparable<Purchase> {
         return copy.multiply(numUnits);
     }
 
-    private String purchaseInString() {
-        return productName + ";" + price + ";" + numUnits;
+    public String purchaseInString() {
+        return productName + "; " + price + "; " + numUnits;
     }
 
     @Override
     public String toString() {
-        return purchaseInString() + ";" + getCost();
+        return purchaseInString() + "; " + getCost();
     }
 
     @Override
