@@ -1,35 +1,35 @@
 package by.epam.lab;
 
 public class ValueDiscountPurchase extends Purchase {
-    private int discount;
+    private Byn discount;
 
     public ValueDiscountPurchase() {
     }
 
     public ValueDiscountPurchase(String productName, Byn price, int numUnits, int discount) {
         super(productName, price, numUnits);
-        this.discount = discount;
+        discount = discount;
     }
 
     public ValueDiscountPurchase(String productName, int price, int numUnits, int discount) {
         this(productName, new Byn(price), numUnits, discount);
     }
 
-    public int getDiscount() {
+    public Byn getDiscount() {
         return discount;
     }
 
     public void setDiscount(int discount) {
-        this.discount = discount;
+        discount = discount;
     }
 
+    @Override
     public Byn getCost() {
-        Byn copy = new Byn(getPrice());
-        return (copy.subtract(discount).multiply(getNumUnits()));
+        return getPrice().clone().subtract(discount).multiply(getNumUnits());
     }
 
     @Override
     public String toString() {
-        return purchaseInString() + ";" + discount + ";" + getCost();
+        return getClass().getSimpleName() + ";" + getProductName() + ";" + getPrice() + ";" + getNumUnits() + ";" + discount + ";" + getCost();
     }
 }

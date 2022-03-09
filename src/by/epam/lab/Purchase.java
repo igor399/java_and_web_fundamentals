@@ -45,8 +45,7 @@ public class Purchase implements Comparable<Purchase> {
     }
 
     public Byn getCost() {
-        Byn copy = new Byn(price);
-        return copy.multiply(numUnits);
+        return price.clone().multiply(numUnits);
     }
 
     public String purchaseInString() {
@@ -55,7 +54,7 @@ public class Purchase implements Comparable<Purchase> {
 
     @Override
     public String toString() {
-        return purchaseInString() + "; " + getCost();
+        return getClass().getSimpleName() + ";" + productName + ";" + price + ";" + numUnits + ";" + getCost();
     }
 
     @Override

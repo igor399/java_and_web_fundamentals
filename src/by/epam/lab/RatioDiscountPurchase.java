@@ -35,7 +35,7 @@ public class RatioDiscountPurchase extends Purchase {
 
     @Override
     public String toString() {
-        return purchaseInString() + ";" + discount + ";" + getCost();
-    }
+        return getClass().getSimpleName() + ";" + getProductName() + ";" + getPrice() + ";" + getNumUnits() + ";" + discount + ";" + getCost();
 
+    }
 }

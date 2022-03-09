@@ -1,5 +1,4 @@
-import by.epam.lab.Purchase;
-import by.epam.lab.PurchaseFactory;
+import by.epam.lab.*;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

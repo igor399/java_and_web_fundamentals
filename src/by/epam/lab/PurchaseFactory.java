@@ -22,5 +22,4 @@ public class PurchaseFactory {
                 throw new IllegalArgumentException();
         }
     }
-
 }

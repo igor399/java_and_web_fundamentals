@@ -7,37 +7,38 @@ public class Byn implements Comparable<Byn> {
     }
 
     public Byn(int value) {
-        this.kopecks = value;
+        kopecks = value;
     }
 
     public Byn(Byn byn) {
-        this.kopecks = byn.kopecks;
+        kopecks = byn.kopecks;
     }
 
-    public Byn add(int value) {
-        this.kopecks += value;
+    @Override
+    public Byn clone() {
+        return new Byn(kopecks);
+    }
+
+    public Byn add(Byn byn) {
+        kopecks += byn.kopecks;
         return this;
     }
 
-    public Byn subtract(int value) {
-        this.kopecks -= value;
+    public Byn subtract(Byn byn) {
+        kopecks -= byn.kopecks;
         return this;
     }
 
     public Byn multiply(int value) {
-        this.kopecks *= value;
+        kopecks *= value;
         return this;
     }
 
     public Byn multiply(double value) {
-        this.kopecks = (int) Math.round(this.kopecks * value);
+        kopecks = (int) Math.round(this.kopecks * value);
         return this;
     }
 
-    public Byn divide(int value) {
-        this.kopecks /= value;
-        return this;
-    }
 
     @Override
     public String toString() {
@@ -48,9 +49,7 @@ public class Byn implements Comparable<Byn> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Byn byn = (Byn) o;
-
         return kopecks == byn.kopecks;
     }
 
