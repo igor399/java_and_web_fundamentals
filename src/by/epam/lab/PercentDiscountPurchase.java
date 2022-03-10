@@ -7,6 +7,7 @@ public class PercentDiscountPurchase extends Purchase {
     private double discount;
 
     public PercentDiscountPurchase() {
+        this("", new Byn(0), 0,0.0);
     }
 
     public PercentDiscountPurchase(String productName, Byn price, int numUnits, double discount) {
@@ -16,7 +17,7 @@ public class PercentDiscountPurchase extends Purchase {
 
     public PercentDiscountPurchase(Scanner sc) {
         super(sc);
-        this.discount = sc.nextDouble();
+        discount = sc.nextDouble();
     }
 
     public double getDiscount() {

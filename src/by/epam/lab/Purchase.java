@@ -57,7 +57,7 @@ public class Purchase implements Comparable<Purchase> {
 
     @Override
     public String toString() {
-        return purchaseString() + ";" + getCost();
+        return getClass().getSimpleName() + "; " + purchaseString() + ";" + getCost();
     }
 
     @Override

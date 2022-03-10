@@ -6,6 +6,7 @@ public class PriceDiscountPurchase extends Purchase {
     private Byn discount;
 
     public PriceDiscountPurchase() {
+        this("", new Byn(0), 0, new Byn(0));
     }
 
     public PriceDiscountPurchase(String productName, Byn price, int numUnits, Byn discount) {

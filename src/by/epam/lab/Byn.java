@@ -21,7 +21,7 @@ public class Byn implements Comparable<Byn> {
     }
 
     public Byn(Scanner sc) {
-        this.value = sc.nextInt();
+        value = sc.nextInt();
     }
 
     public Byn add(Byn byn) {
