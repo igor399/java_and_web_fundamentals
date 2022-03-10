@@ -25,7 +25,7 @@ public class Byn implements Comparable<Byn> {
     }
 
     public Byn add(Byn byn) {
-        this.value += byn.value;
+        value += byn.value;
         return this;
     }
 
@@ -38,7 +38,7 @@ public class Byn implements Comparable<Byn> {
     }
 
     public Byn subtract(Byn byn) {
-        this.value -= byn.value;
+        value -= byn.value;
         return this;
     }
 
@@ -59,7 +59,7 @@ public class Byn implements Comparable<Byn> {
 
     @Override
     public String toString() {
-        return String.format("%d.%02d", value / 100, value % 100);
+        return String.format("%d.%02d", getRubs(),getCoins());
     }
 
     @Override

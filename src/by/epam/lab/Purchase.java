@@ -8,6 +8,7 @@ public class Purchase implements Comparable<Purchase> {
     private int numUnits;
 
     public Purchase() {
+        this("", new Byn(0), 0);
     }
 
     public Purchase(String productName, Byn price, int numUnits) {
