@@ -74,5 +74,4 @@ public class Byn implements Comparable<Byn> {
     public int compareTo(Byn o) {
         return value - o.value;
     }
-
 }

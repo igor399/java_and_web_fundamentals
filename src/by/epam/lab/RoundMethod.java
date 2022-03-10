@@ -33,5 +33,4 @@ public enum RoundMethod {
         int result = (int) roundFunction(roundedValue / tenPow) * tenPow;
         return result;
     }
-
 }
