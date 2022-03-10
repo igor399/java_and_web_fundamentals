@@ -3,7 +3,6 @@ package by.epam.lab;
 import java.util.Scanner;
 
 public class Purchase implements Comparable<Purchase> {
-
     private String productName;
     private Byn price;
     private int numUnits;
@@ -18,9 +17,9 @@ public class Purchase implements Comparable<Purchase> {
     }
 
     public Purchase(Scanner sc) {
-        this.productName = sc.next();
-        this.price = new Byn(sc);
-        this.numUnits = sc.nextInt();
+        productName = sc.next();
+        price = new Byn(sc);
+        numUnits = sc.nextInt();
     }
 
     public String getProductName() {
@@ -51,22 +50,20 @@ public class Purchase implements Comparable<Purchase> {
         return new Byn(price).multiply(numUnits);
     }
 
-    protected String fieldsToString() {
-        return productName + ";" + price + ";" + numUnits;
+    protected String purchaseString() {
+        return productName + "; " + price + "; " + numUnits;
     }
 
     @Override
     public String toString() {
-        return fieldsToString() + ";" + getCost();
+        return purchaseString() + ";" + getCost();
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || !(this instanceof Purchase)) return false;
-
         Purchase purchase = (Purchase) o;
-
         if (productName != null ? !productName.equals(purchase.productName) : purchase.productName != null)
             return false;
         return price != null ? price.equals(purchase.price) : purchase.price == null;

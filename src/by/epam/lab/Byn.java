@@ -3,7 +3,6 @@ package by.epam.lab;
 import java.util.Scanner;
 
 public class Byn implements Comparable<Byn> {
-
     private int value;
 
     public Byn() {
@@ -67,9 +66,7 @@ public class Byn implements Comparable<Byn> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Byn byn = (Byn) o;
-
         return value == byn.value;
     }
 

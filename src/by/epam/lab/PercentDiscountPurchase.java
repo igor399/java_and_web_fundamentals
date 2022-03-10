@@ -3,7 +3,6 @@ package by.epam.lab;
 import java.util.Scanner;
 
 public class PercentDiscountPurchase extends Purchase {
-
     private static final int COUNT_UNITS_FOR_DISCOUNT = 5;
     private double discount;
 
@@ -36,7 +35,7 @@ public class PercentDiscountPurchase extends Purchase {
         return result;
     }
 
-    protected String fieldsToString() {
-        return super.fieldsToString() + ";" + discount;
+    protected String purchaseString() {
+        return super.purchaseString() + ";" + discount;
     }
 }

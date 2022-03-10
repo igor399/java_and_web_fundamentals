@@ -3,7 +3,6 @@ package by.epam.lab;
 import java.util.Scanner;
 
 public class PriceDiscountPurchase extends Purchase {
-
     private Byn discount;
 
     public PriceDiscountPurchase() {
@@ -31,8 +30,7 @@ public class PriceDiscountPurchase extends Purchase {
         return new Byn(getPrice()).subtract(discount).multiply(getNumUnits());
     }
 
-    protected String fieldsToString() {
-        return super.fieldsToString() + ";" + discount;
+    protected String purchaseString() {
+        return super.purchaseString() + ";" + discount;
     }
-
 }
