@@ -1,7 +1,6 @@
 package by.epam.lab;
 
 public enum RoundMethod {
-
     FLOOR {
         double roundFunction(double d) {
             return Math.floor(d);
