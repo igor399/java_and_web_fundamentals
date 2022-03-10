@@ -62,11 +62,11 @@ public class TestRunner {
         Assert.assertEquals("Apple", purchase1.getProductName());
         Assert.assertEquals(new Byn(253), purchase1.getPrice());
         Assert.assertEquals(42, purchase1.getNumUnits());
-        ValueDiscountPurchase purchase2 = new ValueDiscountPurchase("Meat", new Byn(250), 5,3);
+        ValueDiscountPurchase purchase2 = new ValueDiscountPurchase("Meat", new Byn(250), 5, 3);
         Assert.assertEquals("Meat", purchase2.getProductName());
         Assert.assertEquals(new Byn(250), purchase2.getPrice());
         Assert.assertEquals(5, purchase2.getNumUnits());
-        Assert.assertEquals(null, purchase2.getDiscount());
+        Assert.assertEquals(0.03, purchase2.getDiscount());
         RatioDiscountPurchase purchase3 = new RatioDiscountPurchase("Mango", new Byn(250), 10, 10);
         Assert.assertEquals("Mango", purchase3.getProductName());
         Assert.assertEquals(new Byn(250), purchase3.getPrice());
