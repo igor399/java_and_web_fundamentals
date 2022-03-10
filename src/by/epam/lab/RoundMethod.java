@@ -29,7 +29,6 @@ public enum RoundMethod {
 
     public int round(double roundedValue, int d) {
         int tenPow = pow10(d);
-        int result = (int) roundFunction(roundedValue / tenPow) * tenPow;
-        return result;
+        return (int) roundFunction(roundedValue / tenPow) * tenPow;
     }
 }
