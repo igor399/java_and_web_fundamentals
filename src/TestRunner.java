@@ -8,7 +8,6 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class TestRunner {
-
     @Test
     public void testAdd() {
         Assert.assertEquals(new Byn(440), new Byn(300).add(new Byn(140)));
@@ -21,14 +20,20 @@ public class TestRunner {
 
     @Test
     public void testBynMultiply() {
-        Assert.assertEquals(new Byn(1410), new Byn(97).multiply(14.54,RoundMethod.ROUND,0));
-        Assert.assertEquals(new Byn(1400), new Byn(97).multiply(14.54,RoundMethod.ROUND,2));
-
+        Assert.assertEquals(new Byn(800), new Byn(400).multiply(2));
     }
 
     @Test
     public void testBynMultiplyDouble() {
-        Assert.assertEquals(new Byn(300), new Byn(400).multiply(2));
+        Assert.assertEquals(new Byn(1410), new Byn(97).multiply(14.54,RoundMethod.ROUND,0));
+        Assert.assertEquals(new Byn(1400), new Byn(97).multiply(14.54,RoundMethod.ROUND,2));
+        Assert.assertEquals(new Byn(1400), new Byn(100).multiply(14.54,RoundMethod.FLOOR,2));
+        Assert.assertEquals(new Byn(1500), new Byn(100).multiply(14.54,RoundMethod.CEIL,2));
+    }
+
+    @Test
+    public void testBynRound() {
+        Assert.assertEquals(new Byn(100), new Byn(95).round(RoundMethod.ROUND,2));
     }
 
     @Test
@@ -50,8 +55,8 @@ public class TestRunner {
 
     @Test
     public void testBynEquals() {
-        Assert.assertTrue(new Byn(100).equals(new Byn(100)));
-        Assert.assertFalse(new Byn(100).equals(new Byn(140)));
+        Assert.assertTrue(new Byn(133).equals(new Byn(133)));
+        Assert.assertFalse(new Byn(55).equals(new Byn(99)));
     }
 
     @Test
