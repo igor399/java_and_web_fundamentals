@@ -34,7 +34,7 @@ public class Byn implements Comparable<Byn> {
     }
 
     public int getCoins() {
-        return value;
+        return value % 100;
     }
 
     public Byn subtract(Byn byn) {
@@ -59,7 +59,7 @@ public class Byn implements Comparable<Byn> {
 
     @Override
     public String toString() {
-        return String.format("%d.%02d", getRubs(),getCoins());
+        return String.format("%d.%02d", getRubs(), getCoins());
     }
 
     @Override
