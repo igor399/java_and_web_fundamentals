@@ -13,7 +13,7 @@
 ### 3 Что еще можно определить в классе кроме членов?
 
 **Ответ.**   
-Конструкторы, инициализаторы,  необходимые импорты и пакеты, которые используются в классе.
+Конструкторы, инициализаторы, необходимые импорты и пакеты, которые используются в классе.  
 **Источник.**<https://java-online.ru/java-class.xhtml>
 
 ### 4 Какие уровни доступа есть у членов класса?
@@ -21,30 +21,30 @@
 **Ответ.**  
 Существует три модификатора доступа: public, private и protected и четыре уровня доступа:
 
-1) `public` (открытый) - когда член объявляется с модификатором доступа public, он становится доступным из любого другого
-   кода.
-2) `private` (закрытый) - когда член класса объявляется с модификатором доступа private, он доступен только другим членам
-   этого же класса.
+1) `public` (открытый) - когда член объявляется с модификатором доступа public, он становится доступным из любого
+   другого кода.
+2) `private` (закрытый) - когда член класса объявляется с модификатором доступа private, он доступен только другим
+   членам этого же класса.
 3) `protected` (защищенный) - применяется только при наследовании.
 4) Уровень доступа, предоставляемый по умолчанию - в отсутствие модификатора доступа по умолчанию член класса считается
    открытым в своем пакете, но недоступным для кода, находящегося за пределами этого пакета.  
-   **Источник.**<https://www.examclouds.com/ru/java/java-core-russian/upravlenie-dostupom>
+**Источник.**<https://www.examclouds.com/ru/java/java-core-russian/upravlenie-dostupom>
 
 ### 5 Какие модификаторы необходимы для определения константы: класса, экземпляра класса?
 
 **Ответ.**
 1) `public final int MIN_TAX = 8` (пример константы экземпляра класса);
 2) `public final static int PURCHASE_TAX = 6` (пример константы класса).  
-   **Источник.** Java. Методы программирования (авт: Валерий Романчик и Игорь Блинов; год издания: 2015). Стр 55
+**Источник.** Java. Методы программирования (авт: Валерий Романчик и Игорь Блинов; год издания: 2015). Стр 55
 
 ### 6 Обратный вопрос. Допустим, у некоторого класса есть 4 следующих поля:
 
 ```java
 class SomeClass {
-private int a;
-private final int b;
-private static int c;
-private static final int D;
+    private int a;
+    private final int b;
+    private static int c;
+    private static final int D;
 }
 ```
 
@@ -74,15 +74,22 @@ private static final int D;
 ### 8 Перечислите отличия конструктора от метода.
 
 **Ответ.**  
-Конструктор должен создавать экземпляр класса. Вместо этого функция метода заключается в выполнении кода Java.
-У конструкторов и методов есть три удобных отличия: модификаторы, возвращаемые значения и именование. Как и методы,
-конструкторы можно оформить любым доступом: `public`, `protected`, `private` или по умолчанию. В отличие от метода, конструктор
-не может иметь следующие свойства, не связанные с доступом: `abstract`, `final`, `native`, `static`, или же `synchronized`.
-Тип возвращаемые значения также очень важен. Методы могут возвращать любой тип значения или не возвращать значение (`void`),
-конструктор же не имеет возвращаемого значения и не нуждается в `void`。
-Конструктор использует то же имя, что и класс, но метод другой. По соглашению, методы обычно начинаются со строчных букв,
-а конструкторы - с прописных. Конструктор обычно является существительным, потому что он совпадает с именем класса; и
-метод обычно ближе к глаголу, потому что он описывает операцию.
+Конструктор должен создавать экземпляр класса. Вместо этого функция метода заключается в выполнении кода Java. У
+конструкторов и методов есть три удобных отличия: модификаторы, возвращаемые значения и именование. Как и методы,
+конструкторы можно оформить любым доступом: `public`, `protected`, `private` или по умолчанию. В отличие от метода,
+конструктор не может иметь следующие свойства, не связанные с доступом: `abstract`, `final`, `native`, `static`, или
+же `synchronized`. Тип возвращаемые значения также очень важен. Методы могут возвращать любой тип значения или не
+возвращать значение (`void`), конструктор же не имеет возвращаемого значения и не нуждается в `void`.  
+Конструктор использует то же имя, что и класс, но метод другой. По соглашению, методы обычно начинаются со строчных
+букв, а конструкторы - с прописных. Конструктор обычно является существительным, потому что он совпадает с именем
+класса; и метод обычно ближе к глаголу, потому что он описывает операцию.
+
+* Имя конструктора должно совпадать с именем класса
+* Конструктор имеется в любом классе. Даже если вы его не написали, компилятор Java сам создаст конструктор по
+  умолчанию (default constructor), который будет пустым и не делает ничего, кроме вызова конструктора суперкласса
+* Конструктор нельзя наследовать или переопределить в подклассе
+* Конструктор не имеет возвращаемого типа
+* В конструкторе допускается оператор return, но только пустой, без всякого возвращаемого значения
 
 **Источник.**<https://russianblogs.com/article/51341430106/>
 
@@ -95,7 +102,7 @@ private static final int D;
 
 1) вызов this() должен быть первой операцией;
 2) второй раз вызывать в конструкторе this() запрещено  
-   **Источник.**<http://javaway.info/kak-vyzvat-odin-konstruktor-iz-drugogo/>
+**Источник.**<http://javaway.info/kak-vyzvat-odin-konstruktor-iz-drugogo/>
 
 ### 10 Как и в каком месте можно вызвать конструктор суперкласса?
 
@@ -109,14 +116,16 @@ private static final int D;
 
 **Ответ.**  
 Такая конструкция называется конструктором без параметров, который инициализирует все элементы. Конструктор без
-параметров может объявляться в классе явным образом или генерироваться автоматически.  
+параметров может объявляться в классе явным образом или генерироваться автоматически. Если super() не используется, то
+сначала будет выполнен конструктор по умолчанию (без параметров) каждого суперкласса, начиная с базового класса.  
 **Источник.**<https://www.bestprog.net/ru/2018/09/07/constructors-default-constructors-calling-class-constructors-from-other-constructors_ru/>
 
 ### 12 Можно ли одновременно использовать конструкции `this()` и `super()` в одном и том же конструкторе? Обоснуйте ответ.
 
 **Ответ.**  
 Внутри конструктора `this()` и `super()` должны стоять выше всех других выражений, в самом начале, иначе компилятор
-выдаст сообщение об ошибке. Из чего следует, что в одном конструкторе не может быть одновременно и `this()`, и `super()`.  
+выдаст сообщение об ошибке. Из чего следует, что в одном конструкторе не может быть одновременно и `this()`, и `super()`
+.  
 **Источник.**<https://javarush.ru/groups/posts/1187-raznica-mezhdu-kljuchevihmi-slovami-this-i-super-v-java>
 
 ### 13 Может ли быть приватный уровень доступа у конструктора? Если да, то для каких целей он необходим?
@@ -158,16 +167,18 @@ Singleton (Одиночка).
 **Источник.**<https://www.examclouds.com/ru/java/java-core-russian/konstruktori>
 
 ### 18 Дан класс.
+
 ```java
 class Null {
-//фрагмент 1
-Null Null() {
-return null;
-}
-//фрагмент 2
-Null() {
-return null;
-}
+    //фрагмент 1
+    Null Null() {
+        return null;
+    }
+
+    //фрагмент 2
+    Null() {
+        return null;
+    }
 }
 ```
 
@@ -176,15 +187,17 @@ return null;
 **Ответ.**  
 Ошибка во втором фрагменте, т.к. конструкторы не имеют возвращаемого типа. В первом фрагменте определен метод, но с
 большой буквы, что не соответствует `code convection`.
+
 ```java
 class Null {
-// фрагмент 1
-Null Null() {
-return null;
-}
-// фрагмент 2
-	Null() {
-	}
+    // фрагмент 1
+    Null Null() {
+        return null;
+    }
+
+    // фрагмент 2
+    Null() {
+    }
 }
 ```
 
@@ -197,27 +210,33 @@ return null;
 **Источник.**<https://www.examclouds.com/ru/java/java-core-russian/konstruktori>
 
 ### 20 Дан класс.
+
 ```java
 class Name {
-String name;
-Name() {
-this(makeRandomName());
-}
-Name(String name) {
-super();
-this.name = name;
-}
-String makeRandomName() {
-int k = (int) (Math.random() * 3);
-String name = new String[] {"Alpha", "Beta", "Gamma"}[k];
-return name;
-}
-public String toString() {
-return name;
-}
-public static void main(String[] args) {
-System.out.println(new Name());
-}
+    String name;
+
+    Name() {
+        this(makeRandomName());
+    }
+
+    Name(String name) {
+        super();
+        this.name = name;
+    }
+
+    String makeRandomName() {
+        int k = (int) (Math.random() * 3);
+        String name = new String[]{"Alpha", "Beta", "Gamma"}[k];
+        return name;
+    }
+
+    public String toString() {
+        return name;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new Name());
+    }
 }
 ```
 
@@ -232,18 +251,21 @@ System.out.println(new Name());
 Третий вариант: метод `toString()` возвращает метод `makeRandomName()`.
 
 ### 21 Дан класс.
+
 ```java
 class Int {
-int i;
-void inc(Int param) {
+    int i;
+
+    void inc(Int param) {
 //param = new Int();
-param.i++;
-}
-public static void main(String[] args) {
-Int obj = new Int();
-obj.inc(obj);
-System.out.println(obj.i);
-}
+        param.i++;
+    }
+
+    public static void main(String[] args) {
+        Int obj = new Int();
+        obj.inc(obj);
+        System.out.println(obj.i);
+    }
 }
 ```
 
@@ -268,8 +290,8 @@ JDK 8 ссылку можно явно передавать в качестве 
 2) Используется для вызова конструктора одного типа (параметризованного конструктора либо конструктора по умолчанию) из
    другого в составе класса. Данный процесс также носит название явного вызова конструктора.
 3) Если локальные переменные будут иметь отличное от поля название, то this можно опустить
-   (name = localName или писать this.name = name).  
-   **Источник.**<http://proglang.su/java/methods>
+   (name = localName или писать this.name = name).    
+**Источник.**<http://proglang.su/java/methods>
 
 ### 23 Можно ли присвоить `null` ссылочной переменной `this`?
 
@@ -295,13 +317,15 @@ JDK 8 ссылку можно явно передавать в качестве 
 представляющую собой ссылку на текущий объект.    
 Также можно инициализировать поля анонимных классов, которые не имеют конструкторов, с помощью логических блоков можно
 инициализировать коллекцию:
+
 ```java
-Map<String, String> map = new HashMap<String, String>() {{
-put("паук",  "арахнид");
-put("птица", "архозавр");
-put("кит",   "зверь");
-}};
+Map<String, String> map=new HashMap<String, String>(){{
+        put("паук","арахнид");
+        put("птица","архозавр");
+        put("кит","зверь");
+        }};
 ```
+
 **Источник.**<https://habr.com/ru/post/133237/>
 
 ### 26 Что входит в сигнатуру метода?
@@ -317,47 +341,58 @@ put("кит",   "зверь");
 Модификатор native указывает на то, что метод написан не на Java. Методы, помеченные native, можно переопределять
 обычными методами в подклассах. Тело нативного метода должно заканчиваться на `;` как в абстрактных методах,
 идентифицируя то, что реализация опущена.
+
 ```java
 package java.lang;
+
 public class Object {
 …
-protected native Object clone() throws CloneNotSupportedException;
+
+    protected native Object clone() throws CloneNotSupportedException;
 …
 }
 ```
 
 ### 28 Дан код.
+
 ```java
 public class BusinessTrip {
 …
-public String bynToStr(int value) {
-return (value / 100) + "." + (value / 10 % 10) + (value % 10);
-}
+
+    public String bynToStr(int value) {
+        return (value / 100) + "." + (value / 10 % 10) + (value % 10);
+    }
 }
 ```
 
 ### Есть ли в нем семантическая ошибка? Если да, то обоснуйте.
 
 **Ответ.**  
-Наименование метода корректно изменить на toByn. К тому же возвращаемое значение можно упростить до
-`(value / 100) + "." + (value % 100)`;
+Возвращаемое значение можно упростить до:
+`return return String.format("%d.%02d", getRubs(), getCoins());`
 
 ### 29 Дан код.
+
 ```java
 public class Utility {
-private Utility() {
-}
-public String bynToStr(int value) {
-return (value / 100) + "." + (value / 10 % 10) + (value % 10);
-}
+    private Utility() {
+    }
+
+    public String bynToStr(int value) {
+        return (value / 100) + "." + (value / 10 % 10) + (value % 10);
+    }
 }
 ```
+
 ### Есть ли в нем семантическая ошибка? Если да, то предложите альтернативные варианты.
 
 **Ответ.**  
 Наименование метода корректно изменить на toByn. К тому же возвращаемое значение можно упростить до
 `(value / 100) + "." + (value % 100)`. Для создания объекта также дополнительно нужно создать статический метод, который
 должен вернуть экземпляр данного класса. По другому объект не будет создан.
+
+Метод bynToStr(int value) необходимо сделать статическим, т.к. конструктор определен с модификатором доступа private ,
+что не дает возможности создать обьект класса Utility для вызова нестатического метода.
 
 ### 30 К каким данным можно обратиться в статическом методе?
 
@@ -404,6 +439,7 @@ Cтатические методы могут ссылаться только н
 ### 34 Назовите три этапа создания экземпляра класса.
 
 **Ответ.**
+
 * Декларация. Декларирование переменной типа класса с уникальным именем.
 * Инстанциация. Создание нового объекта с использованием ключевого слова 'new'.
 * Инициализация. Вызов конструкторов, который идёт после ключевого слова 'new'.  
@@ -426,11 +462,11 @@ Cтатические методы могут ссылаться только н
 
 ```java
 double[]getCoordinatesArr(){
-double[]coordinates = new double[2];
-coordinates[0] = 10;
-coorinates[1] = 12;
-return coordinates;
-}
+        double[]coordinates=new double[2];
+        coordinates[0]=10;
+        coorinates[1]=12;
+        return coordinates;
+        }
 ```
 
 ### 37 Допустим, необходимо, чтобы метод возвращал два значения разных примитивных типов. Предложите способы и подтвердите примерами.
@@ -439,12 +475,12 @@ return coordinates;
 Также использовать массив, но использовать общий родительский тип в качестве типа массива:
 
 ```java
-Number[] getCoordinatesNumberArray() {
-    Number[] coordinates = new Number[2];
-    coordinates[0] = 10;   // Integer
-    coordinates[1] = 12.5; // Double
-    return coordinates;
-}
+Number[]getCoordinatesNumberArray(){
+        Number[]coordinates=new Number[2];
+        coordinates[0]=10;   // Integer
+        coordinates[1]=12.5; // Double
+        return coordinates;
+        }
 ```
 
 Использование классов контейнеров:
@@ -453,34 +489,69 @@ Number[] getCoordinatesNumberArray() {
 public class Struct {
     private int a;
     private double b;
-    public Struct(int a, double b){
+
+    public Struct(int a, double b) {
         this.setA(a);
         this.setB(b);
     }
+
     public int getA() {
         return a;
     }
+
     public void setA(int a) {
         this.a = a;
     }
+
     public int getB() {
         return b;
     }
+
     public void setB(int b) {
         this.b = b;
     }
 }
-return new Struct(x1, x2);
+return new Struct(x1,x2);
 ```
-
 Использование коллекций:
 
 ```java
-List getCoordinatesList() {
-    List coordinates = new ArrayList<>();
-    coordinates.add(10);  // Integer
-    coordinates.add(12.5);  // Double
-    return coordinates;
+List getCoordinatesList(){
+        List coordinates=new ArrayList<>();
+        coordinates.add(10);  // Integer
+        coordinates.add(12.5);  // Double
+        return coordinates;
+        }
+```
+C помощью использования параметра метода (массива или коллекции) для получения результата. Пусть метод должен вычислить и
+возвратить число разрядов, передаваемого целого числа, и возвратить массив или список, состоящий из цифр этого числа.
+Метод, решающий обе проблемы, может быть записан в виде:
+
+```java
+  public class MethodAction {
+    public int numberParser(int number, int[] numbers) {
+        String str = String.valueOf(number);
+        int length = str.length();
+        for (int i = 0; i < length; ++i) {
+            char code = str.charAt(i);
+            int n = Character.digit(code, 10);
+            numbers[i] = n;
+        }
+        return length;
+    }
+}
+
+public class MethodReturnMain {
+    public static void main(String[] args) {
+        MethodAction method = new MethodAction();
+        int num = 739_015_428;
+        int[] result = new int[10];
+        int length = method.numberParser(num, result);
+        System.out.println(length);
+        for (int j = 0; j < length; j++) {
+            System.out.printf("%d, ", result[j]);
+        }
+    }
 }
 ```
 
@@ -496,22 +567,26 @@ final.
 **Источник.**<https://vertex-academy.com/tutorials/ru/stateless-i-immutable-java/>
 
 ### 39 Даны 2 класса.
+
 ```java
 final class Material {
-private final String name;
-private final double density;
+    private final String name;
+    private final double density;
 ...
 }
+
 class Runner {
-private static void printMaterial(final Material material) {
-System.out.println(material);
-}
-public static void main(String[] args) {
-Material steel = new Material("steel",7850);
-printMaterial(steel);
-}
+    private static void printMaterial(final Material material) {
+        System.out.println(material);
+    }
+
+    public static void main(String[] args) {
+        Material steel = new Material("steel", 7850);
+        printMaterial(steel);
+    }
 }
 ```
+
 ### В методе `printMaterial()` по ссылке `material` создается новый объект или имеется доступ к объекту `new Material("steel",7850)`? Какой пример можно использовать для обоснования ответа?
 
 **Ответ.**    
@@ -522,39 +597,35 @@ printMaterial(steel);
 
 ```java
 class Complex {
-private double re;
-private double im;
+    private double re;
+    private double im;
 …
 }
 ```
 
 ### Реализуйте в данном классе методы: `plus()` для операции + и `add()` для `+=`. Приведите пример использования каждого метода. Реализуйте эти же методы при условии, что класс Complex является иммутабельным.
 
-**Ответ.**  
-```java
-public class Complex {
-private double re;
-private double im;
+**Ответ.**
 
-    public Complex() {
-    }
+```java
+class Complex {
+    private double re;
+    private double im;
 
     public Complex(double re, double im) {
         this.re = re;
         this.im = im;
     }
-    
-    public double plus(){
-        return re+im;
-    }
-    public void addToRe(double value){
-       re+=value;
-    }
-    public void addToIm(double value){
-        im+=value;
+
+    public Complex plus(Complex complexNum) {
+        return new Complex(complexNum.re + re, complexNum.im + im);
     }
 
-}
+    public void add(Complex complexNum) {
+        re += complexNum.re;
+        im += complexNum.im;
+    }
+} 
 ```
 
 ### 41 Для чего предназначен метод `toString()`? В каких случаях он вызывается?
@@ -574,24 +645,24 @@ private double im;
 ### 43 Для чего предназначен метод `equals()`? В каких случаях он вызывается?
 
 **Ответ.**  
-Метод `equals()` — сравнивает строку с указанным объектом. Результатом является значение `true` только в том случае,
-если аргумент не равен `null` и является строковым объектом `(String)`, который представляет ту же последовательность
-символов как и этот объект.
-`equals()` также используется для обеспечения хранения только уникальных объектов в HashSet и других Set реализациях, а
-также в любых других случаях, когда нужно сравнивать объекты.    
-**Источник.**<https://javarush.ru/quests/lectures/questmultithreading.level01.lecture03>
+Символ “==” имеет смысл использовать только с примитивами. Что касается объектов, “==” в Java сравнивает только ссылки,
+то есть проверяет, равен ли объект самому себе, а это не всегда может быть полезно. Для сравнения объектов в
+классе `Object` присутствует метод `equals()`, именно он и должен выполнять сравнение объектов. По умолчанию этот метод
+выполняет внутри себя операцию “==”, однако, идея этого метода состоит в том, что он должен быть переопределён для
+создаваемых классов.  
+**Источник.** <https://training.by/#!/News/339?lang=ru>
 
 ### 44 Как реализован метод `equals()` в классе `Object`?
 
 **Ответ.**  
-Реализация по умолчанию метода `equals()` в классе `java.lang.Object` сравнивает ссылки на адреса в памяти,
-которые хранят переменные, и возвращает `true` только в том случае, если адреса совпадают, другими
-словами переменные ссылаются на один и тот же объект.
+Реализация по умолчанию метода `equals()` в классе `java.lang.Object` сравнивает ссылки на адреса в памяти, которые
+хранят переменные, и возвращает `true` только в том случае, если адреса совпадают, другими словами переменные ссылаются
+на один и тот же объект.
 
 ```java
-public boolean equals(Object obj) {
-        return (this == obj);
-}
+public boolean equals(Object obj){
+        return(this==obj);
+        }
 ```
 
 **Источник.**<https://habr.com/ru/company/otus/blog/443710/>
@@ -599,18 +670,21 @@ public boolean equals(Object obj) {
 ### 45 В чем различие между методом `equals()` и операции `==`? В каких случаях применение метода `equals()` и операции `==` эквивалентно?
 
 **Ответ.**  
-Метод `equals` сравнивает символы из объекта типа `String`, а операция `==`  две ссылки на объекты, определяя ссылаются ли
-они на один и тот же экземпляр. Метод `equals()` и операция `==` дают одинаковый результат в том случае, если
-метод `equals()` не переопределен, то обе операции будут сравнивать ссылки на объект.
+В Java сравнение объектов производится с помощью метода equals() класса Object. Этот метод сравнивает содержимое объектов и
+выводит значение типа boolean. Значение true - если содержимое эквивалентно, и false — если нет.
+Операция == не рекомендуется для сравнения объектов в Java. Дело в том, что при сравнении объектов, операция == вернет true
+лишь в одном случае — когда ссылки указывают на один и тот же объект. В данном случае не учитывается содержимое переменных класса.
+При создании пользовательского класса, принято переопределять метод equals() таким образом, что бы учитывались переменные объекта.  
+***Источник**<https://www.examclouds.com/java/java-core-russian/method-equals>
 
 ### 46 `Eclipse` в стандартной конфигурации генерирует начало метода `equals()` следующим образом:
 
 ```java
-public boolean equals(Object obj) {
-if (this == obj)
-return true;
-if (obj == null)
-return false;
+public boolean equals(Object obj){
+        if(this==obj)
+        return true;
+        if(obj==null)
+        return false;
 ```
 
 ### С чем связаны данные проверки, которые кажутся лишними?
@@ -635,14 +709,12 @@ Java-программы запускаются на JVM, объекты созд
 ### 48 Перечислите случаи, когда `JVM` отдает управление на `garbage collector`.
 
 **Ответ.**  
-Автоматическое освобождение памяти, занимаемой объектом, выполняется с помощью механизма «сборки мусора».
-Когда никаких ссылок на объект не существует, т.е. все ссылки на него вышли из области видимости
-программы, предполагается, что объект больше не нужен, и память, занятая объектом, может быть
-освобождена. Сборка мусора» происходит нерегулярно во время выполнения программы. Форсировать «сборку
-мусора» невозможно, можно лишь «рекомендовать» выполнить ее вызовом метода System.gc() или
-Runtime.getRuntime().gc(), но виртуальная машина выполнит очистку памяти тогда, когда сама посчитает
-это удобным. Если память под приложение заканчивается, то вероятность запуска garbage collector
-возрастает.  
+Автоматическое освобождение памяти, занимаемой объектом, выполняется с помощью механизма «сборки мусора». Когда никаких
+ссылок на объект не существует, т.е. все ссылки на него вышли из области видимости программы, предполагается, что объект
+больше не нужен, и память, занятая объектом, может быть освобождена. Сборка мусора» происходит нерегулярно во время
+выполнения программы. Форсировать «сборку мусора» невозможно, можно лишь «рекомендовать» выполнить ее вызовом метода
+System.gc() или Runtime.getRuntime().gc(), но виртуальная машина выполнит очистку памяти тогда, когда сама посчитает это
+удобным. Если память под приложение заканчивается, то вероятность запуска garbage collector возрастает.  
 **Источник.** Java From EPAM (авт: Валерий Романчик и Игорь Блинов; год издания: 2020). Стр 145)
 
 ### 49 Как сделать так, чтобы `JVM` сразу перешла в режим сборки мусора?
@@ -661,9 +733,9 @@ Runtime.getRuntime().gc(), но виртуальная машина выполн
 ### 50 Гарантирует ли garbage `collector`, что приложение в любом случае не будет иметь проблемы с недостатком памяти? Обоснуйте ответ.
 
 **Ответ.**  
-Нет, не гарантирует. В приложение может быть утечка памяти из-за незакрытых потоков, перекрестные
-ссылки, которые трудно отследить gc, изначально недостаток памяти в heap. Все это может сказаться
-на нашем приложении и garbage collector не поможет.
+Нет, не гарантирует. В приложение может быть утечка памяти из-за незакрытых потоков, перекрестные ссылки, которые трудно
+отследить gc, изначально недостаток памяти в heap. Все это может сказаться на нашем приложении и garbage collector не
+поможет.
 
 ### 51 Для чего предназначен метод `finalize()`? Какой недостаток у метода?
 
@@ -714,9 +786,10 @@ Runtime.getRuntime().gc(), но виртуальная машина выполн
 ### 55 Дан код:
 
 ```java
-Integer a = 3, b =7;
-Long c = a + b;
+Integer a=3,b=7;
+        Long c=a+b;
 ```
+
 Перечислите все операции, где задействованы `autoboxing` и `unboxing`.  
 **Ответ.**  
 Autoboxing - `Integer a = 3, b = 7; Long c = a + b;`
@@ -725,16 +798,16 @@ Unboxing - `a + b;`
 ### 56 Дан корректный раннер-класс. Будет ли ошибка компиляции, если удалить модификатор `static` из сигнатуры метода `main()`? Обоснуйте ответ. Что произойдет, если отправить на выполнение измененный класс?
 
 **Ответ.**  
-Данный метод перестанет быть точкой входа в программу и станем просто нестатическим методом класса
-Runner с именем main. Запустить Runner в таком случае мы не сможем.
+Данный метод перестанет быть точкой входа в программу и станем просто нестатическим методом класса Runner с именем main.
+Запустить Runner в таком случае мы не сможем.
 
 ### 57 Дан класс.
 
 ```java
 class Runner {
-public static void main(String[] args) {
-System.out.println("Hello, world!");
-}
+    public static void main(String[] args) {
+        System.out.println("Hello, world!");
+    }
 }
 ```
 
@@ -746,26 +819,29 @@ Hello, world!
 ```
 
 **Ответ.**
+
 ```java
 class Runner {
-static{
-System.out.println("I am java.");
-}
+    static {
+        System.out.println("I am java.");
+    }
 
     public static void main(String[] args) {
-    System.out.println("Hello, world!");
+        System.out.println("Hello, world!");
     }
 }
 ```
 
 ### 58 Бонусное задание 1 (необязательное) В задаче classes3 имеются два константных поля в классе покупки. Им сразу присваиваются значения по умолчанию. Например.
+
 ```java
 public class Purchase {
-public final static String PRODUCT_NAME = "milk";
-public final static int PRICE = 120;
+    public final static String PRODUCT_NAME = "milk";
+    public final static int PRICE = 120;
 ...
 }
 ```
+
 Измените реализацию так, чтобы константы инициализировались значениями из текстового файла, находящемся в том же пакете,
 что и класс покупки. Имя файла - константа в классе покупки. Если будет сбой с файлом или в нем будут недопустимые
 значения, то присвойте константам `PRODUCT_NAME` и `PRICE` значения по умолчанию. Для этого же примера начало класса
@@ -773,14 +849,15 @@ public final static int PRICE = 120;
 
 ```java
 public class Purchase {
-private static final String PRODUCT_NAME;
-private static final int PRICE;
-public static final String FILE_NAME = "src/by/gsu/epamlab/constants.txt";
-private static final String DEFAULT_PRODUCT_NAME = "milk";
-private static final int DEFAULT_PRICE = 120;
+    private static final String PRODUCT_NAME;
+    private static final int PRICE;
+    public static final String FILE_NAME = "src/by/gsu/epamlab/constants.txt";
+    private static final String DEFAULT_PRODUCT_NAME = "milk";
+    private static final int DEFAULT_PRICE = 120;
 ```
 
 **Ответ.**
+
 ```java
 public class Purchase {
     public static final String PRODUCT_NAME;
@@ -789,6 +866,7 @@ public class Purchase {
     final String FILE_NAME = "src/com/example/test02/in.txt";
     private static final String DEFAULT_PRODUCT_NAME = "milk";
     private static final int DEFAULT_PRICE = 120;
+
     static {
         String name = "";
         int price = 0;
