@@ -1,33 +1,40 @@
 import by.epam.lab.*;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.Arrays;
 
 public class Runner {
     public static void main(String[] args) {
-        final int PURCHASES_NUMBER = 6;
-        try (Scanner sc = new Scanner(new FileReader("src/in.txt"))) {
-            sc.useLocale(Locale.ENGLISH);
-            Product[] purchases = new Product[PURCHASES_NUMBER];
+        final Product PRODUCT = new Product("mango", new Byn(500));
 
-            Product maxPurchase = new Product();
-            boolean areEqual = true;
-            for (int i = 0; i < purchases.length; i++) {
-                purchases[i] = PurchaseFactory.getPurchaseFromFactory(sc);
-                System.out.println(purchases[i]);
-                if (purchases[i].getCost().compareTo(maxPurchase.getCost()) > 0) {
-                    maxPurchase = purchases[i];
-                }
-                if (areEqual) {
-                    areEqual = purchases[i].equals(purchases[0]);
-                }
-            }
-            System.out.println("The most expensive purchase: " + maxPurchase);
-            System.out.println("Equalled purchase: " + areEqual);
-        } catch (FileNotFoundException e) {
-            System.err.println("Input file is not found");
+        AbstractPurchase[] purchases = {new PriceDiscountPurchase(PRODUCT, 1, new Byn(0)),
+                new PriceDiscountPurchase(PRODUCT, 3, new Byn(50)),
+                new PercentDiscountPurchase(PRODUCT, 20, 5.825),
+                new PercentDiscountPurchase(PRODUCT, 6, 5.5),
+                new TransportExpensesPurchase(PRODUCT, 2, new Byn(90)),
+                new TransportExpensesPurchase(PRODUCT, 5, new Byn(90))
+        };
+
+        printPurchasesContent(purchases);
+
+        Arrays.sort(purchases);
+
+        printPurchasesContent(purchases);
+
+        System.out.println("Minimum cost = " + purchases[0].getCost());
+
+        AbstractPurchase requiredPurchase = new PriceDiscountPurchase(new Product("", new Byn(500)), 1, new Byn(0));
+        int requiredPurchaseIndex = Arrays.binarySearch(purchases, requiredPurchase);
+        if (requiredPurchaseIndex >= 0) {
+            System.out.println("\n" + "Required purchase is " + purchases[requiredPurchaseIndex]);
+        } else {
+            System.out.println("\n" + "Required purchase is not found");
         }
+    }
+
+    public static void printPurchasesContent(AbstractPurchase[] purchases){
+        for(AbstractPurchase purchase : purchases){
+            System.out.println(purchase);
+        }
+        System.out.println();
     }
 }

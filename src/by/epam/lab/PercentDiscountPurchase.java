@@ -5,9 +5,7 @@ public class PercentDiscountPurchase extends AbstractPurchase {
     private double discount;
 
     public PercentDiscountPurchase() {
-        super();
     }
-
 
     public PercentDiscountPurchase(Product product, int numUnits, double discount) {
         super(product, numUnits);
@@ -23,14 +21,15 @@ public class PercentDiscountPurchase extends AbstractPurchase {
     }
 
     @Override
-    protected Byn getNotRoundCost(Byn byn) {
+    public Byn getNotRoundCost(Byn byn) {
         if (getNumUnits() > COUNT_UNITS_FOR_DISCOUNT) {
-            byn = byn.multiply(1 - discount / 100, RoundMethod.ROUND, 0)
+            byn = byn.multiply(1 - discount / 100, RoundMethod.ROUND, 0);
         }
         return byn;
     }
 
-    protected String purchaseString() {
+    @Override
+    public String toString() {
         return super.toString() + "; " + discount;
     }
 }

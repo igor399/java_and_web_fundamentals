@@ -1,12 +1,9 @@
 package by.epam.lab;
 
-import java.util.Scanner;
-
 public class Byn implements Comparable<Byn> {
-    private final int kopecks;
+    private int kopecks;
 
     public Byn() {
-        kopecks = 0;
     }
 
     public Byn(int kopecks) {
@@ -21,20 +18,12 @@ public class Byn implements Comparable<Byn> {
         this(byn.kopecks);
     }
 
-    public Byn(Scanner sc) {
-        kopecks = sc.nextInt();
-    }
-
-    public Byn add(Byn byn) {
-        return new Byn(kopecks + byn.kopecks)
-    }
-
     public int getRubs() {
         return kopecks / 100;
     }
 
-    public int getCoins() {
-        return kopecks % 100;
+    public Byn add(Byn byn) {
+        return new Byn(kopecks + byn.kopecks);
     }
 
     public Byn subtract(Byn byn) {
@@ -50,6 +39,11 @@ public class Byn implements Comparable<Byn> {
         return this;
     }
 
+    public int getCoins() {
+        return kopecks % 100;
+    }
+
+
     public Byn round(RoundMethod roundMethod, int d) {
         kopecks = roundMethod.round(kopecks, d);
         return this;
@@ -57,7 +51,7 @@ public class Byn implements Comparable<Byn> {
 
     @Override
     public String toString() {
-        return String.format("%d.%02d", getRubs(), getCoins());
+        return String.format("%d.%02d", kopecks / 100, kopecks % 100);
     }
 
     @Override

@@ -4,7 +4,6 @@ public class PriceDiscountPurchase extends AbstractPurchase {
     private Byn discount;
 
     public PriceDiscountPurchase() {
-        super();
     }
 
     public PriceDiscountPurchase(Product product, int numUnits, Byn discount) {
@@ -21,10 +20,11 @@ public class PriceDiscountPurchase extends AbstractPurchase {
     }
 
     @Override
-    protected Byn getNotRoundCost(Byn byn) {
+    public Byn getNotRoundCost(Byn byn) {
         return byn.subtract(discount.multiply(getNumUnits()));
     }
 
+    @Override
     public String toString() {
         return super.toString() + "; " + discount;
     }

@@ -29,9 +29,9 @@ public abstract class AbstractPurchase implements Comparable<AbstractPurchase> {
         this.numUnits = numUnits;
     }
 
-    protected abstract Byn getNotRoundCost(Byn byn);
+    public abstract Byn getNotRoundCost(Byn byn);
 
-    public void getCost() {
+    public Byn getCost() {
         Byn baseCost = product.getPrice().multiply(numUnits);
         Byn finalCost = getNotRoundCost(baseCost);
         return finalCost.round(RoundMethod.FLOOR, 2);
