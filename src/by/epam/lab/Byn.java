@@ -52,7 +52,7 @@ public class Byn implements Comparable<Byn> {
 
     @Override
     public String toString() {
-        return String.format("%d.%02d", kopecks / 100, kopecks % 100);
+        return String.format("%d.%02d", getRubs(), getCoins());
     }
 
     @Override
