@@ -38,7 +38,7 @@ public class Runner {
         System.out.println();
     }
 
-    private static int search(AbstractPurchase[] purchases, Byn cost) {
-        return Arrays.binarySearch(purchases, new PercentDiscountPurchase(new Product("", cost), 0, 0));
+    private static int search(AbstractPurchase[] purchases, Byn byn) {
+        return Arrays.binarySearch(purchases, new PriceDiscountPurchase(new Product("", new Byn(500)), 1, new Byn(0)));
     }
 }
