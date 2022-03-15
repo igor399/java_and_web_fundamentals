@@ -4,6 +4,7 @@ public class Byn implements Comparable<Byn> {
     private int kopecks;
 
     public Byn() {
+        this(0);
     }
 
     public Byn(int kopecks) {

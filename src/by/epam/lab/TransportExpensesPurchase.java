@@ -4,6 +4,7 @@ public class TransportExpensesPurchase extends AbstractPurchase {
     private Byn expenses;
 
     public TransportExpensesPurchase() {
+        this(new Product(), 0, new Byn());
     }
 
     public TransportExpensesPurchase(Product product, int numUnits, Byn expenses) {

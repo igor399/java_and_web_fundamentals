@@ -4,6 +4,7 @@ public class PriceDiscountPurchase extends AbstractPurchase {
     private Byn discount;
 
     public PriceDiscountPurchase() {
+        this(new Product(), 0, new Byn());
     }
 
     public PriceDiscountPurchase(Product product, int numUnits, Byn discount) {

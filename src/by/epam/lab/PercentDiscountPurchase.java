@@ -5,6 +5,7 @@ public class PercentDiscountPurchase extends AbstractPurchase {
     private double discount;
 
     public PercentDiscountPurchase() {
+        this(new Product(), 0, 0.0);
     }
 
     public PercentDiscountPurchase(Product product, int numUnits, double discount) {
