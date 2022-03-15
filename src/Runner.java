@@ -9,7 +9,7 @@ public class Runner {
         AbstractPurchase[] purchases = {
                 new PriceDiscountPurchase(PRODUCT, 1, new Byn(0)),
                 new PriceDiscountPurchase(PRODUCT, 3, new Byn(50)),
-                new PercentDiscountPurchase(PRODUCT, 20, 5.825),
+                new PercentDiscountPurchase(PRODUCT, 20, 9.3),
                 new PercentDiscountPurchase(PRODUCT, 6, 5.5),
                 new TransportExpensesPurchase(PRODUCT, 2, new Byn(13)),
                 new TransportExpensesPurchase(PRODUCT, 5, new Byn(325))
@@ -39,6 +39,6 @@ public class Runner {
     }
 
     private static int search(AbstractPurchase[] purchases, Byn cost) {
-        return Arrays.binarySearch(purchases, new PercentDiscountPurchase(new Product("", cost), 1, 0));
+        return Arrays.binarySearch(purchases, new PercentDiscountPurchase(new Product("", cost), 0, 0));
     }
 }

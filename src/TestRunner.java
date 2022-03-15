@@ -77,28 +77,29 @@ public class TestRunner {
         Assert.assertEquals("105.00", new Byn(10500).toString());
     }
 
-    private static int search(AbstractPurchase[] purchases, Byn cost) {
-        return Arrays.binarySearch(purchases, new PercentDiscountPurchase(new Product("", cost), 1, 0));
+    private static int search(AbstractPurchase[] purchases, Byn byn) {
+        return Arrays.binarySearch(purchases, new PercentDiscountPurchase(new Product("", byn), 0, 0));
     }
 
     @Test
     public void testBinarySearch() {
-        final Product PRODUCT = new Product("Tea", new Byn(125));
-        AbstractPurchase[] purchases1 = {
-                new PercentDiscountPurchase(PRODUCT, 22, 20.5),
-                new PriceDiscountPurchase(PRODUCT, 10, new Byn(30)),
-                new TransportExpensesPurchase(PRODUCT, 4, new Byn(100)),
-                new TransportExpensesPurchase(PRODUCT, 6, new Byn(100)),
-                new PriceDiscountPurchase(PRODUCT, 5, new Byn(25)),
-                new PercentDiscountPurchase(PRODUCT, 3, 20)
+        final Product PRODUCT = new Product("Mango", new Byn(500));
+        AbstractPurchase[] purchases = {
+                new PriceDiscountPurchase(PRODUCT, 1, new Byn(0)),
+                new PriceDiscountPurchase(PRODUCT, 3, new Byn(50)),
+                new PercentDiscountPurchase(PRODUCT, 20, 9.3),
+                new PercentDiscountPurchase(PRODUCT, 6, 5.5),
+                new TransportExpensesPurchase(PRODUCT, 2, new Byn(13)),
+                new TransportExpensesPurchase(PRODUCT, 5, new Byn(325)),
+
         };
-        Arrays.sort(purchases1);
-        Assert.assertEquals(4, search(purchases1, new Byn(500)));
-        Assert.assertEquals(0, search(purchases1, new Byn(2100)));
-        Assert.assertEquals(5, search(purchases1, new Byn(300)));
-        int index = search(purchases1, new Byn(200));
+        Arrays.sort(purchases);
+        Assert.assertEquals(0, search(purchases, new Byn(500)));
+        Assert.assertEquals(3, search(purchases, new Byn(2835)));
+        Assert.assertEquals(5, search(purchases, new Byn(2825)));
+        int index = search(purchases, new Byn(10));
         Assert.assertTrue(index < 0);
-        index = search(purchases1, new Byn(2200));
+        index = search(purchases, new Byn(22));
         Assert.assertTrue(index < 0);
     }
 }

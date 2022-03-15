@@ -31,6 +31,6 @@ public class PercentDiscountPurchase extends AbstractPurchase {
 
     @Override
     public String fieldsToString() {
-        return super.fieldsToString() + "; " + discount;
+        return super.fieldsToString() + ";" + discount;
     }
 }
