@@ -32,18 +32,20 @@ public abstract class AbstractPurchase implements Comparable<AbstractPurchase> {
     public abstract Byn getNotRoundCost(Byn byn);
 
     public Byn getCost() {
-        Byn baseCost = product.getPrice().multiply(numUnits);
-        Byn finalCost = getNotRoundCost(baseCost);
-        return finalCost.round(RoundMethod.FLOOR, 2);
-    }
-
-    @Override
-    public String toString() {
-        return getClass().getSimpleName() + "; " + numUnits + "; " + getCost();
+        return getNotRoundCost(product.getPrice().multiply(numUnits)).round(RoundMethod.FLOOR, 2);
     }
 
     @Override
     public int compareTo(AbstractPurchase o) {
-        return getCost().compareTo(o.getCost());
+        return o.getCost().compareTo(getCost());
+    }
+
+    protected String fieldsToString() {
+        return getClass().getSimpleName() + ";" + product + ";" + numUnits;
+    }
+
+    @Override
+    public String toString() {
+        return fieldsToString() + ";" + getCost();
     }
 }

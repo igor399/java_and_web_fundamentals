@@ -4,7 +4,7 @@ public class PercentDiscountPurchase extends AbstractPurchase {
     private static final int COUNT_UNITS_FOR_DISCOUNT = 5;
     private double discount;
 
-    public PercentDiscountPurchase() {
+    public PercentDiscountPurchase(Product PRODUCT, int numUnits, Byn byn) {
         this(new Product(), 0, 0.0);
     }
 
@@ -24,13 +24,13 @@ public class PercentDiscountPurchase extends AbstractPurchase {
     @Override
     public Byn getNotRoundCost(Byn byn) {
         if (getNumUnits() > COUNT_UNITS_FOR_DISCOUNT) {
-            byn = byn.multiply(1 - discount / 100, RoundMethod.ROUND, 0);
+            byn = byn.multiply(1 - discount / 100, RoundMethod.FLOOR, 0);
         }
         return byn;
     }
 
     @Override
-    public String toString() {
-        return super.toString() + "; " + discount;
+    public String fieldsToString() {
+        return super.fieldsToString() + "; " + discount;
     }
 }

@@ -1,7 +1,7 @@
 package by.epam.lab;
 
 public class Byn implements Comparable<Byn> {
-    private int kopecks;
+    private final int kopecks;
 
     public Byn() {
         this(0);
@@ -36,18 +36,15 @@ public class Byn implements Comparable<Byn> {
     }
 
     public Byn multiply(double k, RoundMethod roundMethod, int d) {
-        kopecks = roundMethod.round(kopecks * k, d);
-        return this;
+        return new Byn(roundMethod.round(kopecks * k, d));
     }
 
     public int getCoins() {
         return kopecks % 100;
     }
 
-
     public Byn round(RoundMethod roundMethod, int d) {
-        kopecks = roundMethod.round(kopecks, d);
-        return this;
+        return new Byn(roundMethod.round(kopecks, d));
     }
 
     @Override

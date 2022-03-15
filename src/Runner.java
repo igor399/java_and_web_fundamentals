@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Runner {
     public static void main(String[] args) {
-        final Product PRODUCT = new Product("Mango", new Byn(300));
+        final Product PRODUCT = new Product("Mango", new Byn(500));
 
         AbstractPurchase[] purchases = {
                 new PriceDiscountPurchase(PRODUCT, 1, new Byn(0)),
@@ -14,13 +14,14 @@ public class Runner {
                 new TransportExpensesPurchase(PRODUCT, 2, new Byn(90)),
                 new TransportExpensesPurchase(PRODUCT, 5, new Byn(90))
         };
+
         printPurchasesContent(purchases);
 
         Arrays.sort(purchases);
 
         printPurchasesContent(purchases);
 
-        System.out.println("Minimum cost = " + purchases[0].getCost());
+        System.out.println("Minimum cost = " + purchases[purchases.length - 1].getCost());
 
         int index = search(purchases, new Byn(500));
         if (index >= 0) {

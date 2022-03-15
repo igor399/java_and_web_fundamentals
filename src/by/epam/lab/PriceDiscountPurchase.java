@@ -26,7 +26,7 @@ public class PriceDiscountPurchase extends AbstractPurchase {
     }
 
     @Override
-    public String toString() {
-        return super.toString() + "; " + discount;
+    protected String fieldsToString() {
+        return super.fieldsToString() + ";" + discount;
     }
 }

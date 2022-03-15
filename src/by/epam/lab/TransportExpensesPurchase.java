@@ -27,7 +27,7 @@ public class TransportExpensesPurchase extends AbstractPurchase {
 
     @Override
     public String toString() {
-        return super.toString() + "; " + expenses;
+        return super.fieldsToString() + "; " + expenses;
     }
 }
 
