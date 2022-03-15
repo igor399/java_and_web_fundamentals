@@ -6,6 +6,7 @@ import org.junit.Test;
 import java.util.Arrays;
 
 public class TestRunner {
+
     @Test
     public void add() {
         Assert.assertEquals(new Byn(500), new Byn(300).add(new Byn(200)));
@@ -65,16 +66,6 @@ public class TestRunner {
         Assert.assertEquals(new Byn(500), new PriceDiscountPurchase(new Product("Apple", new Byn(55)), 10, new Byn(0)).getCost());
         Assert.assertEquals(new Byn(800), new TransportExpensesPurchase(new Product("Pen", new Byn(45)), 19, new Byn(20)).getCost());
         Assert.assertEquals(new Byn(700), new TransportExpensesPurchase(new Product("Pen", new Byn(40)), 19, new Byn(0)).getCost());
-    }
-
-    @Test
-    public void testBynToString() {
-        Assert.assertEquals("3.50", new Byn(350).toString());
-        Assert.assertEquals("3.05", new Byn(305).toString());
-        Assert.assertEquals("0.00", new Byn(0).toString());
-        Assert.assertEquals("3.00", new Byn(300).toString());
-        Assert.assertEquals("0.05", new Byn(5).toString());
-        Assert.assertEquals("105.00", new Byn(10500).toString());
     }
 
     private static int search(AbstractPurchase[] purchases, Byn byn) {
