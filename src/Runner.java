@@ -11,8 +11,8 @@ public class Runner {
                 new PriceDiscountPurchase(PRODUCT, 3, new Byn(50)),
                 new PercentDiscountPurchase(PRODUCT, 20, 5.825),
                 new PercentDiscountPurchase(PRODUCT, 6, 5.5),
-                new TransportExpensesPurchase(PRODUCT, 2, new Byn(90)),
-                new TransportExpensesPurchase(PRODUCT, 5, new Byn(90))
+                new TransportExpensesPurchase(PRODUCT, 2, new Byn(13)),
+                new TransportExpensesPurchase(PRODUCT, 5, new Byn(325))
         };
 
         printPurchasesContent(purchases);

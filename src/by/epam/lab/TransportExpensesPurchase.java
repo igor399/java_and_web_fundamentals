@@ -22,12 +22,12 @@ public class TransportExpensesPurchase extends AbstractPurchase {
 
     @Override
     public Byn getNotRoundCost(Byn byn) {
-        return byn.add(expenses);
+        return new Byn(getProduct().getPrice()).multiply(getNumUnits()).add(expenses);
     }
 
     @Override
     public String toString() {
-        return super.fieldsToString() + "; " + expenses;
+        return super.toString() + ";" + expenses;
     }
 }
 
