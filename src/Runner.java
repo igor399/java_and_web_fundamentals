@@ -20,14 +20,14 @@ public class Runner {
 
         printPurchasesContent(purchases);
 
-        System.out.println("Minimum cost = " + purchases[0].getCost());
+        System.out.println("Minimum cost = " + purchases[purchases.length - 1].getCost());
 
         AbstractPurchase requiredPurchase = new PriceDiscountPurchase(new Product("", new Byn(500)), 1, new Byn(0));
-        int requiredPurchaseIndex = Arrays.binarySearch(purchases, requiredPurchase);
-        if (requiredPurchaseIndex >= 0) {
-            System.out.println("\n" + "Required purchase is " + purchases[requiredPurchaseIndex]);
+        int index = search(purchases, new Byn(500));
+        if (index >= 0) {
+            System.out.println("\nRequired purchase is " + purchases[requiredPurchaseIndex].getCost());
         } else {
-            System.out.println("\n" + "Required purchase is not found");
+            System.out.println("\nRequired purchase is not found");
         }
     }
 
@@ -36,5 +36,8 @@ public class Runner {
             System.out.println(purchase);
         }
         System.out.println();
+    }
+    private static int search(AbstractMethodError[] purchases, Byn cost{
+        return Arrays.binarySearch(purchases, new PriceDiscountPurchase(new Product("", cost), 1, 0));
     }
 }
