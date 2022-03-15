@@ -78,7 +78,7 @@ public class TestRunner {
     }
 
     private static int search(AbstractPurchase[] purchases, Byn byn) {
-        return Arrays.binarySearch(purchases, new PercentDiscountPurchase(new Product("", byn), 0, 0));
+        return Arrays.binarySearch(purchases, new PercentDiscountPurchase(new Product("", byn), 1, 0));
     }
 
     @Test
@@ -90,13 +90,13 @@ public class TestRunner {
                 new PercentDiscountPurchase(PRODUCT, 20, 9.3),
                 new PercentDiscountPurchase(PRODUCT, 6, 5.5),
                 new TransportExpensesPurchase(PRODUCT, 2, new Byn(13)),
-                new TransportExpensesPurchase(PRODUCT, 5, new Byn(325)),
+                new TransportExpensesPurchase(PRODUCT, 5, new Byn(100)),
 
         };
         Arrays.sort(purchases);
-        Assert.assertEquals(0, search(purchases, new Byn(500)));
-        Assert.assertEquals(3, search(purchases, new Byn(2835)));
-        Assert.assertEquals(5, search(purchases, new Byn(2825)));
+        Assert.assertEquals(5, search(purchases, new Byn(500)));
+        Assert.assertEquals(3, search(purchases, new Byn(1350)));
+        Assert.assertEquals(2, search(purchases, new Byn(2600)));
         int index = search(purchases, new Byn(10));
         Assert.assertTrue(index < 0);
         index = search(purchases, new Byn(22));
