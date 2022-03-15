@@ -56,11 +56,6 @@ public class TestRunner {
     }
 
     @Test
-    public void getNotRoundCost() {
-
-    }
-
-    @Test
     public void getCost() {
         Assert.assertEquals(new Byn(300), new PercentDiscountPurchase(new Product("Mango", new Byn(20)), 20, 10).getCost());
         Assert.assertEquals(new Byn(500), new PriceDiscountPurchase(new Product("Apple", new Byn(55)), 10, new Byn(1)).getCost());
