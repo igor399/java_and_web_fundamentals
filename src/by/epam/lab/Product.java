@@ -8,8 +8,8 @@ public class Product {
         this("", new Byn(0));
     }
 
-    public Product(String productName, Byn price) {
-        this.name = productName;
+    public Product(String name, Byn price) {
+        this.name = name;
         this.price = price;
     }
 
