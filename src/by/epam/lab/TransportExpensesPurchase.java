@@ -21,7 +21,7 @@ public class TransportExpensesPurchase extends AbstractPurchase {
     }
 
     @Override
-    public Byn getNotRoundCost(Byn byn) {
+    public Byn getFinalCost(Byn byn) {
         return byn.add(expenses);
     }
 

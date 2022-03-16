@@ -22,7 +22,7 @@ public class PercentDiscountPurchase extends AbstractPurchase {
     }
 
     @Override
-    public Byn getNotRoundCost(Byn byn) {
+    public Byn getFinalCost(Byn byn) {
         if (getNumUnits() > COUNT_UNITS_FOR_DISCOUNT) {
             byn = byn.multiply(1 - discount / 100, RoundMethod.FLOOR, 0);
         }

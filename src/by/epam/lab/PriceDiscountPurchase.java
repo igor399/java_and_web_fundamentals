@@ -21,7 +21,7 @@ public class PriceDiscountPurchase extends AbstractPurchase {
     }
 
     @Override
-    public Byn getNotRoundCost(Byn byn) {
+    public Byn getFinalCost(Byn byn) {
         return byn.subtract(discount.multiply(getNumUnits()));
     }
 

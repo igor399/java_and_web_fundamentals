@@ -31,7 +31,7 @@ public class Runner {
         }
     }
 
-    public static void printPurchasesContent(AbstractPurchase[] purchases) {
+    private static void printPurchasesContent(AbstractPurchase[] purchases) {
         for (AbstractPurchase purchase : purchases) {
             System.out.println(purchase);
         }

@@ -1,7 +1,7 @@
 package by.epam.lab;
 
 public abstract class AbstractPurchase implements Comparable<AbstractPurchase> {
-    private Product product;
+    private final Product product;
     private int numUnits;
 
     public AbstractPurchase() {
@@ -17,10 +17,6 @@ public abstract class AbstractPurchase implements Comparable<AbstractPurchase> {
         return product;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
     public int getNumUnits() {
         return numUnits;
     }
@@ -29,15 +25,15 @@ public abstract class AbstractPurchase implements Comparable<AbstractPurchase> {
         this.numUnits = numUnits;
     }
 
-    public abstract Byn getNotRoundCost(Byn byn);
+    protected abstract Byn getFinalCost(Byn baseCost);
 
     public Byn getCost() {
-        return getNotRoundCost(product.getPrice().multiply(numUnits)).round(RoundMethod.FLOOR, 2);
+        return getFinalCost(product.getPrice().multiply(numUnits)).round(RoundMethod.FLOOR, 2);
     }
 
     @Override
-    public int compareTo(AbstractPurchase o) {
-        return o.getCost().compareTo(getCost());
+    public int compareTo(AbstractPurchase purchase) {
+        return purchase.getCost().compareTo(getCost());
     }
 
     protected String fieldsToString() {

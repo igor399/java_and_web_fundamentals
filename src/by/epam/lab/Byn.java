@@ -61,7 +61,7 @@ public class Byn implements Comparable<Byn> {
     }
 
     @Override
-    public int compareTo(Byn o) {
-        return kopecks - o.kopecks;
+    public int compareTo(Byn byn) {
+        return kopecks - byn.kopecks;
     }
 }
