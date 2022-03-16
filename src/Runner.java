@@ -25,7 +25,7 @@ public class Runner {
 
         int index = search(purchases, new Byn(500));
         if (index >= 0) {
-            System.out.println("Required purchase is " + purchases[index].getCost());
+            System.out.println("Required purchase is " + purchases[index]);
         } else {
             System.out.println("Required purchase is not found");
         }
