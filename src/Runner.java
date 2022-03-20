@@ -1,17 +1,36 @@
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Runner {
-    public static void main(String[] args) {
+
+    public static void main(String[] args) throws FileNotFoundException {
+        final String CSV_NAME = "src/in1.csv";
+        StringBuilder result = new StringBuilder();
+        try {
+            int errorLines = getResult(CSV_NAME, result);
+            System.out.println(result);
+            System.out.println(errorLines);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static int getResult(String csvName, StringBuilder strResult) throws FileNotFoundException {
+        StringBuilder result = new StringBuilder();
+        final String PLUS = " + ";
+        final String MINUS = " - ";
         final String DELIMITER = ";";
         final String EQUAL = " = ";
-        double sum = 0.0;
+        final String SPACE = " ";
+        final String RESULT_HEAD = "";
+        final String RESULT_TAIL = "" + SPACE + EQUAL + SPACE;
+        final String ERROR_LINES = "error-lines" + EQUAL;
+
+        double numResult = 0.0;
         int errorsNumb = 0;
-
-        StringBuilder result = new StringBuilder("result()");
-
         try (Scanner sc = new Scanner(new FileReader("src/in1.csv"))) {
             while (sc.hasNext()) {
                 String line = sc.nextLine();
@@ -19,8 +38,7 @@ public class Runner {
                 try {
                     if (strings[0].length() != 0) {
                         double parseDoubleDigit = Double.parseDouble(strings[Integer.parseInt(strings[0])]);
-                        sum += parseDoubleDigit;
-                        getResult(parseDoubleDigit, result);
+                        numResult += parseDoubleDigit;
                     } else {
                         throw new NoSuchElementException();
                     }
@@ -28,28 +46,23 @@ public class Runner {
                     errorsNumb++;
                 }
             }
-            result.append(EQUAL);
-            result.append(sum);
-            result.append("\n" + "error-lines=");
+            result.insert(0, RESULT_HEAD).append(RESULT_TAIL).append(numResult);
+            result.append("\n" + ERROR_LINES);
             result.append(errorsNumb);
-            System.out.println(result);
+
         } catch (FileNotFoundException e) {
             System.err.println("File not found.");
         }
-    }
 
-    private static void getResult(double number, StringBuilder builder) {
-        final int INITIAL_LENGTH = "result()".length();
-        final int CURRENT_LENGTH = builder.length();
-        final String PLUS = " + ";
-        final String MINUS = " - ";
-
-        if (number < 0 && CURRENT_LENGTH != INITIAL_LENGTH) {
-            builder.insert(CURRENT_LENGTH - 1, MINUS + number * (-1));
-        } else if (CURRENT_LENGTH == INITIAL_LENGTH) {
-            builder.insert(CURRENT_LENGTH - 1, number);
-        } else {
-            builder.insert(CURRENT_LENGTH - 1, PLUS + number);
+        if (result.length() > 0) {
+            final int MINUS_LENGTH = MINUS.length();
+            final char CHAR_MINUS = '-';
+            String sign = result.substring(0, MINUS_LENGTH);
+            result.delete(0, MINUS_LENGTH);
+            if (sign.equals(MINUS)) {
+                result.insert(0, CHAR_MINUS);
+            }
         }
+        return errorsNumb;
     }
 }
