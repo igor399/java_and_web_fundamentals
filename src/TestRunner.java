@@ -65,7 +65,7 @@ public class TestRunner {
     @Test
     public void getResultFirst() throws FileNotFoundException {
         StringBuilder strResult = new StringBuilder();
-        int errorLine = getResult("src/in1.csv", new StringBuilder());
+        int errorLine = getResult("src/in1.csv", strResult);
         Assert.assertEquals(3, errorLine);
         Assert.assertEquals("result(5.2 - 3.14 + 0.0) = 2.06", strResult.toString());
     }
