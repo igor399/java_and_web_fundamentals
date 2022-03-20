@@ -8,18 +8,14 @@ public class Runner {
 
     public static void main(String[] args) throws FileNotFoundException {
         final String CSV_NAME = "src/in1.csv";
-        StringBuilder result = new StringBuilder();
-        try {
-            int errorLines = getResult(CSV_NAME, result);
-            System.out.println(result);
-            System.out.println(errorLines);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        StringBuilder strResult = new StringBuilder();
+        int errorLines = getResult(CSV_NAME, strResult);
+        System.out.println(strResult);
+        System.out.println(errorLines);
     }
 
     private static int getResult(String csvName, StringBuilder strResult) throws FileNotFoundException {
-        StringBuilder result = new StringBuilder();
+
         final String PLUS = " + ";
         final String MINUS = " - ";
         final String DELIMITER = ";";
@@ -31,7 +27,7 @@ public class Runner {
 
         double numResult = 0.0;
         int errorsNumb = 0;
-        try (Scanner sc = new Scanner(new FileReader("src/in1.csv"))) {
+        try (Scanner sc = new Scanner(new FileReader(csvName))) {
             while (sc.hasNext()) {
                 String line = sc.nextLine();
                 String[] strings = line.split(DELIMITER);
@@ -39,30 +35,28 @@ public class Runner {
                     if (strings[0].length() != 0) {
                         double parseDoubleDigit = Double.parseDouble(strings[Integer.parseInt(strings[0])]);
                         numResult += parseDoubleDigit;
-                    } else {
-                        throw new NoSuchElementException();
+
+
+                        if (strResult.length() == RESULT_HEAD.length()) {
+                            strResult.append(numResult);
+                        } else if (numResult < 0) {
+                            strResult.append(MINUS).append(Math.abs(numResult));
+                        } else {
+                            strResult.append(PLUS).append(numResult);
+                        }
                     }
+
                 } catch (NumberFormatException | NoSuchElementException | ArrayIndexOutOfBoundsException e) {
                     errorsNumb++;
                 }
             }
-            result.insert(0, RESULT_HEAD).append(RESULT_TAIL).append(numResult);
-            result.append("\n" + ERROR_LINES);
-            result.append(errorsNumb);
-
-        } catch (FileNotFoundException e) {
-            System.err.println("File not found.");
         }
 
-        if (result.length() > 0) {
-            final int MINUS_LENGTH = MINUS.length();
-            final char CHAR_MINUS = '-';
-            String sign = result.substring(0, MINUS_LENGTH);
-            result.delete(0, MINUS_LENGTH);
-            if (sign.equals(MINUS)) {
-                result.insert(0, CHAR_MINUS);
-            }
-        }
+
+        strResult.insert(0, RESULT_HEAD).append(RESULT_TAIL).append(numResult);
+        strResult.append("\n" + ERROR_LINES);
+        strResult.append(errorsNumb);
+
         return errorsNumb;
     }
 }
