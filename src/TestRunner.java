@@ -6,23 +6,16 @@ import java.io.FileReader;
 import java.util.Scanner;
 
 public class TestRunner {
-    final String BEFORE_SIGN = " ";
-    final String AFTER_SIGN = " ";
-    final String PLUS = BEFORE_SIGN + "+" + AFTER_SIGN;
-    final String MINUS = BEFORE_SIGN + "-" + AFTER_SIGN;
-    final String RESULT_HEAD = "result(";
-    final String RESULT_TAIL = ") = ";
+    final static String BEFORE_SIGN = " ";
+    final static String AFTER_SIGN = " ";
+    final static String PLUS = BEFORE_SIGN + "+" + AFTER_SIGN;
+    final static String MINUS = BEFORE_SIGN + "-" + AFTER_SIGN;
+    final static String RESULT_HEAD = "result(";
+    final static String RESULT_TAIL = ") = ";
 
     private static int getResult(String csvName, StringBuilder strResult) throws FileNotFoundException {
         try (Scanner sc = new Scanner(new FileReader(csvName))) {
             final String DELIMITER = ";";
-            final String BEFORE_SIGN = " ";
-            final String AFTER_SIGN = " ";
-            final String PLUS = BEFORE_SIGN + "+" + AFTER_SIGN;
-            final String MINUS = BEFORE_SIGN + "-" + AFTER_SIGN;
-            final String RESULT_HEAD = "result(";
-            final String RESULT_TAIL = ") = ";
-
             int errorLines = 0;
             double numResult = 0.0;
             while (sc.hasNextLine()) {
@@ -40,9 +33,9 @@ public class TestRunner {
                 }
             }
             if (strResult.length() > 0) {
-                boolean isMINUS = strResult.toString().startsWith(MINUS);
+                final boolean isMinus = strResult.toString().startsWith(MINUS);
                 final char CHAR_MINUS = '-';
-                int charIn = isMINUS ? MINUS.length() : PLUS.length();
+                int charIn = isMinus ? MINUS.length() : PLUS.length();
                 String sign = strResult.substring(0, charIn);
                 strResult.delete(0, charIn);
                 if (sign.equals(MINUS)) {
