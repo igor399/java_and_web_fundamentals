@@ -1,15 +1,19 @@
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
 
 public class TestRunner {
+    final String BEFORE_SIGN = " ";
+    final String AFTER_SIGN = " ";
+    final String PLUS = BEFORE_SIGN + "+" + AFTER_SIGN;
+    final String MINUS = BEFORE_SIGN + "-" + AFTER_SIGN;
+    final String RESULT_HEAD = "result(";
+    final String RESULT_TAIL = ") = ";
 
     private static int getResult(String csvName, StringBuilder strResult) throws FileNotFoundException {
-
         try (Scanner sc = new Scanner(new FileReader(csvName))) {
             final String DELIMITER = ";";
             final String BEFORE_SIGN = " ";
@@ -23,7 +27,6 @@ public class TestRunner {
             double numResult = 0.0;
             while (sc.hasNextLine()) {
                 String[] words = sc.nextLine().split(DELIMITER);
-
                 try {
                     double number = Double.parseDouble(words[Integer.parseInt(words[0])]);
                     numResult += number;
@@ -37,10 +40,11 @@ public class TestRunner {
                 }
             }
             if (strResult.length() > 0) {
-                final int MINUS_LENGTH = MINUS.length();
+                boolean isMINUS = strResult.toString().startsWith(MINUS);
                 final char CHAR_MINUS = '-';
-                String sign = strResult.substring(0, MINUS_LENGTH);
-                strResult.delete(0, MINUS_LENGTH);
+                int charIn = isMINUS ? MINUS.length() : PLUS.length();
+                String sign = strResult.substring(0, charIn);
+                strResult.delete(0, charIn);
                 if (sign.equals(MINUS)) {
                     strResult.insert(0, CHAR_MINUS);
                 }
@@ -50,7 +54,6 @@ public class TestRunner {
         }
     }
 
-
     @Test(expected = FileNotFoundException.class)
     public void testNoFile() throws FileNotFoundException {
         int errorLine = getResult("src/in9.csv", new StringBuilder());
@@ -58,12 +61,6 @@ public class TestRunner {
 
     @Test
     public void getResultFirst() throws FileNotFoundException {
-        final String BEFORE_SIGN = " ";
-        final String AFTER_SIGN = " ";
-        final String PLUS = BEFORE_SIGN + "+" + AFTER_SIGN;
-        final String MINUS = BEFORE_SIGN + "-" + AFTER_SIGN;
-        final String RESULT_HEAD = "result(";
-        final String RESULT_TAIL = ") = ";
         final String EXP_RES1 = RESULT_HEAD + "5.2" + MINUS + "3.14" + PLUS + "0.0" + RESULT_TAIL + "2.06";
         StringBuilder strResult = new StringBuilder();
         int errorLine = getResult("src/in1.csv", strResult);
@@ -73,11 +70,6 @@ public class TestRunner {
 
     @Test
     public void getResultSecond() throws FileNotFoundException {
-        final String BEFORE_SIGN = " ";
-        final String AFTER_SIGN = " ";
-        final String MINUS = BEFORE_SIGN + "-" + AFTER_SIGN;
-        final String RESULT_HEAD = "result(";
-        final String RESULT_TAIL = ") = ";
         final String EXP_RES2 = RESULT_HEAD + "-3.1" + MINUS + "1.0" + RESULT_TAIL + "-4.1";
         StringBuilder strResult = new StringBuilder();
         int errorLine = getResult("src/in2.csv", strResult);
@@ -87,8 +79,7 @@ public class TestRunner {
 
     @Test
     public void getResultThird() throws FileNotFoundException {
-        final String RESULT_HEAD = "result(";
-        final String RESULT_TAIL = ") = ";
+
         final String EXP_RES3 = RESULT_HEAD + "0.75" + RESULT_TAIL + "0.75";
         StringBuilder strResult = new StringBuilder();
         int errorLine = getResult("src/in3.csv", strResult);
@@ -98,8 +89,6 @@ public class TestRunner {
 
     @Test
     public void getResultFour() throws FileNotFoundException {
-        final String RESULT_HEAD = "result(";
-        final String RESULT_TAIL = ") = ";
         final String EXP_RES4 = RESULT_HEAD + "0.0" + RESULT_TAIL + "0.0";
         StringBuilder strResult = new StringBuilder();
         int errorLine = getResult("src/in4.csv", strResult);
@@ -109,8 +98,6 @@ public class TestRunner {
 
     @Test
     public void getResultFive() throws FileNotFoundException {
-        final String RESULT_HEAD = "result(";
-        final String RESULT_TAIL = ") = ";
         final String EXP_RES5 = RESULT_HEAD + RESULT_TAIL + "0.0";
         StringBuilder strResult = new StringBuilder();
         int errorLine = getResult("src/in5.csv", strResult);
