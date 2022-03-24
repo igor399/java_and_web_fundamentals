@@ -106,3 +106,4 @@ public class TestRunner {
         Assert.assertEquals("result() = 0.0", strResult.toString());
     }
 }
+
