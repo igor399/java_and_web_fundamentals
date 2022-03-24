@@ -72,7 +72,6 @@ public class TestRunner {
 
     @Test
     public void getResultThird() throws FileNotFoundException {
-
         final String EXP_RES3 = RESULT_HEAD + "0.75" + RESULT_TAIL + "0.75";
         StringBuilder strResult = new StringBuilder();
         int errorLine = getResult("src/in3.csv", strResult);
