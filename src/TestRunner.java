@@ -11,15 +11,10 @@ public class TestRunner {
     final static String RESULT = "sum = ";
 
     private static int getResult(String propName, StringBuilder strResult) {
-        final String SPACE = " ";
-        final String EQUAL = "=";
-        final String RESULT = "sum" + SPACE + EQUAL + SPACE;
-
         double numResult = 0.0;
         int errorLines = 0;
         ResourceBundle rb = ResourceBundle.getBundle(propName);
         Enumeration<String> keys = rb.getKeys();
-
         while (keys.hasMoreElements()) {
             String key = keys.nextElement();
             try {
