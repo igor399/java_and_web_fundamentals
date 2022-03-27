@@ -2,52 +2,46 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Enumeration;
-import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TestRunner {
-    final static String NUM_REG_EXP = "[1-9]\\d*";
+    final static String RESULT = "sum = ";
 
-    private static int getResult(String fileName, StringBuilder stringResult) {
-        final String KEY_REG_EXP = "index(.*)";
-        final String RESULT = "sum = ";
-        final String ERROR_LINE = "error-lines = ";
+    private static int getResult(String propName, StringBuilder strResult) {
+        final String SPACE = " ";
+        final String EQUAL = "=";
+        final String RESULT = "sum" + SPACE + EQUAL + SPACE;
+
         double numResult = 0.0;
         int errorLines = 0;
-
-        ResourceBundle rb = ResourceBundle.getBundle(fileName);
+        ResourceBundle rb = ResourceBundle.getBundle(propName);
         Enumeration<String> keys = rb.getKeys();
-        String element;
-        String indexKey;
-        String indexKeyNum;
-        String indexValue;
-        String valueNum;
 
         while (keys.hasMoreElements()) {
-            element = keys.nextElement();
+            String key = keys.nextElement();
             try {
-                Pattern patter = Pattern.compile(KEY_REG_EXP);
-                Matcher matcher = patter.matcher(element);
+                Pattern patter = Pattern.compile("index.*");
+                Matcher matcher = patter.matcher(key);
                 if (matcher.matches()) {
-                    indexKey = matcher.group();
-                    indexKeyNum = getIndexKeyNum(indexKey);
-                    indexValue = getIndexValue(rb.getString(indexKey).trim());
-                    valueNum = rb.getString("value" + indexKeyNum + indexValue);
+                    String indexKey = matcher.group();
+                    String indexKeyNum = getIndexKeyNum(indexKey);
+                    String indexValue = getIndexValue(rb.getString(indexKey).trim());
+                    String valueNum = rb.getString("value" + indexKeyNum + indexValue);
                     numResult += Double.parseDouble(valueNum);
                 }
             } catch (IllegalArgumentException | MissingResourceException e) {
                 errorLines++;
             }
         }
-        stringResult.append(RESULT).append(numResult);
+        strResult.append(RESULT).append(numResult);
         return errorLines;
     }
 
     private static String getIndexKeyNum(String key) {
-        Pattern patter = Pattern.compile(NUM_REG_EXP);
+        Pattern patter = Pattern.compile("index([1-9]\\d*)");
         Matcher matcher = patter.matcher(key);
         if (matcher.matches()) {
             return matcher.group(1);
@@ -56,11 +50,43 @@ public class TestRunner {
     }
 
     private static String getIndexValue(String indexValue) {
-        Pattern patter = Pattern.compile(NUM_REG_EXP);
+        Pattern patter = Pattern.compile("[1-9]\\d*");
         Matcher matcher = patter.matcher(indexValue);
         if (matcher.matches()) {
             return matcher.group();
         }
         throw new IllegalArgumentException();
+    }
+
+    @Test(expected = MissingResourceException.class)
+    public void testNoFile() {
+        int errorLine = getResult("in9", new StringBuilder());
+    }
+
+    @Test
+    public void getResultFirst() {
+        final String EXP_RES1 = RESULT + "8.24";
+        StringBuilder strResult = new StringBuilder();
+        int errorLine = getResult("in1", strResult);
+        Assert.assertEquals(3, errorLine);
+        Assert.assertEquals(EXP_RES1, strResult.toString());
+    }
+
+    @Test
+    public void getResultSecond() {
+        final String EXP_RES2 = RESULT + "30.242";
+        StringBuilder strResult = new StringBuilder();
+        int errorLine = getResult("in2", strResult);
+        Assert.assertEquals(9, errorLine);
+        Assert.assertEquals(EXP_RES2, strResult.toString());
+    }
+
+    @Test
+    public void getResultThird() {
+        final String EXP_RES3 = RESULT + "1.9000000000000001";
+        StringBuilder strResult = new StringBuilder();
+        int errorLine = getResult("in3", strResult);
+        Assert.assertEquals(0, errorLine);
+        Assert.assertEquals(EXP_RES3, strResult.toString());
     }
 }
