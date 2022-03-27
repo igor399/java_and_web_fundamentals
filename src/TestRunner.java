@@ -31,6 +31,8 @@ public class TestRunner {
                 errorLines++;
             }
         }
+        numResult = Math.round(numResult * 1000000);
+        numResult /= 1000000;
         strResult.append(RESULT).append(numResult);
         return errorLines;
     }
@@ -78,7 +80,7 @@ public class TestRunner {
 
     @Test
     public void getResultThird() {
-        final String EXP_RES3 = RESULT + "1.9000000000000001";
+        final String EXP_RES3 = RESULT + "1.9";
         StringBuilder strResult = new StringBuilder();
         int errorLine = getResult("in3", strResult);
         Assert.assertEquals(0, errorLine);
