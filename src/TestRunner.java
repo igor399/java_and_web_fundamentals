@@ -51,8 +51,7 @@ public class TestRunner {
     }
 
     @Test
-    public void getResultFirst() {
-
+    public void getResultMainScenario() {
         final String EXP_RES1 = RESULT + "8.24";
         StringBuilder strResult = new StringBuilder();
         int errorLine = getResult("in1", strResult);
@@ -70,10 +69,40 @@ public class TestRunner {
         int errorLine2 = getResult("in3", strResult2);
         Assert.assertEquals(0, errorLine2);
         Assert.assertEquals(EXP_RES3, strResult2.toString());
-
-
-
     }
+
+    private class TestCase {
+        private int errorLines;
+        private double numResult;
+
+        public TestCase() {
+        }
+
+        public TestCase(int errorLines, double numResult) {
+            this.errorLines = errorLines;
+            this.numResult = numResult;
+        }
+
+        public int getErrorLines() {
+            return errorLines;
+        }
+
+        public double getNumResult() {
+            return numResult;
+        }
+    }
+
+    TestCase[] testCases = {
+            new TestCase(3, 8.24),
+            new TestCase(9, 30.242),
+            new TestCase(0, 1.9)
+    };
+
+
+
+
+
+
 }
 
 
