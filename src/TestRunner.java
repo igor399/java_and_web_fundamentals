@@ -74,15 +74,16 @@ public class TestRunner {
 
     @Test(expected = FileNotFoundException.class)
     public void testNoFileName() throws FileNotFoundException {
-        getResult("in9");
+        final String PROP_NAME = "in9";
+        getResult(PROP_NAME);
     }
 
     @Test
     public void testGetResult() throws FileNotFoundException {
         class TestCase {
-            private String propName;
-            private int errorLines;
-            private double numResult;
+            private final String propName;
+            private final int errorLines;
+            private final double numResult;
 
             public TestCase(String propName, int errorLines, double numResult) {
                 this.propName = propName;
