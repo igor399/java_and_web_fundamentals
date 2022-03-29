@@ -21,8 +21,8 @@ public class TestRunner {
             return numResult;
         }
 
-        public void addSum(double value) {
-            numResult += value;
+        public void addSum(double numResult) {
+            this.numResult += numResult;
         }
 
         public void incrementErrCount() {
