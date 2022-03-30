@@ -31,7 +31,6 @@ public class TestRunner {
     }
 
     private static FinalValue getResult(String propName) throws FileNotFoundException {
-        final String FILE_NOT_FOUND = "File not found";
         try {
             FinalValue finalValue = new FinalValue();
             final String KEY_REG_EXP = "index(.*)";
@@ -68,7 +67,7 @@ public class TestRunner {
             }
             return finalValue;
         } catch (MissingResourceException e) {
-            throw new FileNotFoundException(FILE_NOT_FOUND);
+            throw new FileNotFoundException("File not found");
         }
     }
 
