@@ -14,7 +14,7 @@ public class TestRunner {
         private double numResult;
 
         public FinalValue() {
-
+            this(0, 0.0);
         }
 
         public FinalValue(int errorLines, double numResult) {
@@ -107,7 +107,7 @@ public class TestRunner {
         for (TestCase testCase : testCases) {
             FinalValue finalValue = getResult(testCase.propName);
             Assert.assertEquals(testCase.finalValue.getErrorLines(), finalValue.getErrorLines());
-            Assert.assertEquals(testCase.finalValue.getNumResult(), finalValue.getNumResult(),0.000000000000001);
+            Assert.assertEquals(testCase.finalValue.getNumResult(), finalValue.getNumResult(), 0.000000000000001);
         }
     }
 }
