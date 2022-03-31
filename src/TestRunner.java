@@ -13,6 +13,15 @@ public class TestRunner {
         private int errorLines;
         private double numResult;
 
+        public FinalValue() {
+
+        }
+
+        public FinalValue(int errorLines, double numResult) {
+            this.errorLines = errorLines;
+            this.numResult = numResult;
+        }
+
         public int getErrorLines() {
             return errorLines;
         }
@@ -81,26 +90,24 @@ public class TestRunner {
     public void testGetResult() throws FileNotFoundException {
         class TestCase {
             private final String propName;
-            private final int expErrors;
-            private final double expResult;
+            private final FinalValue finalValue;
 
-            public TestCase(String propName, int expErrors, double expResult) {
+            public TestCase(String propName, FinalValue finalValue) {
                 this.propName = propName;
-                this.expErrors = expErrors;
-                this.expResult = expResult;
+                this.finalValue = finalValue;
             }
         }
 
         TestCase[] testCases = {
-                new TestCase("in1", 3, 8.24),
-                new TestCase("in2", 9, 30.242),
-                new TestCase("in3", 0, 1.9)
+                new TestCase("in1", new FinalValue(3, 8.24)),
+                new TestCase("in2", new FinalValue(9, 30.242)),
+                new TestCase("in3", new FinalValue(0, 1.9))
         };
 
         for (TestCase testCase : testCases) {
             FinalValue finalValue = getResult(testCase.propName);
-            Assert.assertEquals(testCase.expErrors, finalValue.getErrorLines());
-            Assert.assertEquals(testCase.expResult, finalValue.getNumResult(), 0.000000000000001);
+            Assert.assertEquals(testCase.finalValue.getErrorLines(), finalValue.getErrorLines());
+            Assert.assertEquals(testCase.finalValue.getNumResult(), finalValue.getNumResult(),0.000000000000001);
         }
     }
 }
