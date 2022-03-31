@@ -81,8 +81,7 @@ public class TestRunner {
     public void testGetResult() throws FileNotFoundException {
         class TestCase {
             private final String propName;
-            private final int expErrors;
-            private final double expResult;
+            private final FinalValue value;
 
             public TestCase(String propName, int expErrors, double expResult) {
                 this.propName = propName;
