@@ -48,12 +48,12 @@ Outer.InnerPublic innerPublic=new Outer().new InnerPublic();
 ### б) извне класса Outer?  
 
 **Ответ.**  
-а) внутри класса Outer:
+а) внутри класса Outer:  
 NestedPublic nestedPublic=new NestedPublic();
 InnerPublic innerPublic=new InnerPublic();
 
 б) извне класса Outer:  
-Внутренние private-классы используюься для сокрытия реализации как таковой.  
+Внутренние private-классы используются для сокрытия реализации как таковой.  
 **Источник.** <https://elearn.epam.com/courses/course-v1:EPAM+JC+ext1/courseware/>
 
 ### 7. Пусть объявлен класс Outer, а внутри него внутренний класс Inner. Как обратиться внутри класса Inner:
@@ -103,7 +103,7 @@ public class Owner {
         
     }
 
-    public static class Inner {
+    public class Inner {
         private int param = value;
         private int finalValue = statValue;
         public void innerMethod(){
@@ -322,7 +322,6 @@ class Something {
 ```  
 
 ### 1. Замените многоточия в строках 1 и 2 на такой код, чтобы приложение после запуска с помощью экземпляра анонимного класса, порожденного от интерфейса Smthable, вывело на консоль текст Hello, World.
-
 ### 2. Получите тот же результат, переместив:  
 ### а) интерфейс Smthable внутрь класса Something,  
 ### б) класс Something внутрь интерфейса Smthable.  
