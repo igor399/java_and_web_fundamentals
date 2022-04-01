@@ -543,14 +543,14 @@ class Runner {
 
 **Ответ.**  
 ```java
-public class Owne{
+public class Owner{
     public class Inner{
         
     }
 }
 ```
-Результатом компиляции будут являтся объктные модули: Owner.class и Owner$Inner.class.
-Java создает каждому классу конкретный объктный модуль.  
+Результатом компиляции будут являться объектные модули: Owner.class и Owner$Inner.class.
+Java создает каждому классу конкретный объектный модуль.  
 **Источник.** <https://elearn.epam.com/courses/course-v1:EPAM+JC+ext1/>
 
 ### 23. Может ли вложенный класс быть раннер-классом? Если да, то приведите пример, иначе поясните, почему нет.
