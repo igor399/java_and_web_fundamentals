@@ -1,8 +1,8 @@
 package by.epam.lab;
 
 public class Purchase {
-    private String productName;
-    private int price;
+    private final String productName;
+    private final int price;
     private int numUnits;
     private final static String SEMICOLON = ";";
 
