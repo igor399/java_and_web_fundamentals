@@ -49,7 +49,7 @@ public class PurchaseList {
 
     }
 
-    public void addMassive(Purchase[] purchaseArray) {
+    public void addArray(Purchase[] purchaseArray) {
         for (Purchase purchase : purchaseArray) {
             purchases.add(purchase);
         }
