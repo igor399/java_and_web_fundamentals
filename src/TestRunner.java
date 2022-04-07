@@ -8,7 +8,8 @@ public class TestRunner {
     @Test
     public void testConstructorPurchList() {
         PurchaseList purchaseList = new PurchaseList(FILE_NAME, new PurchaseComparator());
-        String stringPurchase = "bread;1.55;1;0.02;1.53\n" +
+        String stringPurchase =
+                "bread;1.55;1;0.02;1.53\n" +
                 "milk;1.31;2;2.62\n" +
                 "bread;1.54;3;4.62\n" +
                 "bread;1.45;5;7.25\n" +
@@ -68,7 +69,8 @@ public class TestRunner {
         purchaseList.addMassive(purchaseArr);
         Purchase testPurchase = new Purchase("water", new Byn(1111), 2);
         purchaseList.insert(INDEX, testPurchase);
-        String strPurchaseList = "bread;1.45;5;7.25\n" +
+        String strPurchaseList =
+                "bread;1.45;5;7.25\n" +
                 "bread;1.54;3;4.62\n" +
                 "bread;1.55;1;0.02;1.53\n" +
                 "water;11.11;2;22.22\n" +
@@ -97,7 +99,8 @@ public class TestRunner {
         purchaseList.addMassive(purchaseArr);
         Purchase testPurchase = new Purchase("water", new Byn(1111), 2);
         purchaseList.insert(INDEX, testPurchase);
-        String strPurchaseList = "water;11.11;2;22.22\n" +
+        String strPurchaseList =
+                "water;11.11;2;22.22\n" +
                 "bread;1.45;5;7.25\n" +
                 "bread;1.54;3;4.62\n" +
                 "bread;1.55;1;0.02;1.53\n" +
@@ -126,7 +129,8 @@ public class TestRunner {
         purchaseList.addMassive(purchaseArr);
         Purchase testPurchase = new Purchase("water", new Byn(1111), 2);
         purchaseList.insert(INDEX, testPurchase);
-        String strPurchaseList = "bread;1.45;5;7.25\n" +
+        String strPurchaseList =
+                "bread;1.45;5;7.25\n" +
                 "bread;1.54;3;4.62\n" +
                 "bread;1.55;1;0.02;1.53\n" +
                 "butter;3.41;1;0.01;3.40\n" +
