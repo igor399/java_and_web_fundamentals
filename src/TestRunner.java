@@ -4,12 +4,21 @@ import org.junit.Test;
 
 public class TestRunner {
     private static final String FILE_NAME = "src/in.csv";
+    Purchase[] purchaseArr = {
+            new Purchase("bread", new Byn(145), 5),
+            new Purchase("bread", new Byn(154), 3),
+            new PriceDiscountPurchase("bread", new Byn(155), 1, new Byn(2)),
+            new PriceDiscountPurchase("butter", new Byn(341), 1, new Byn(1)),
+            new Purchase("butter", new Byn(370), 1),
+            new PriceDiscountPurchase("meat", new Byn(1100), 2, new Byn(80)),
+            new Purchase("milk", new Byn(131), 2),
+            new PriceDiscountPurchase("potato", new Byn(180), 2, new Byn(10))
+    };
 
     @Test
-    public void testConstructorPurchList() {
+    public void testConstructorPurchaseList() {
         PurchaseList purchaseList = new PurchaseList(FILE_NAME, new PurchaseComparator());
-        String stringPurchase =
-                "bread;1.55;1;0.02;1.53\n" +
+        String stringPurchase = "bread;1.55;1;0.02;1.53\n" +
                         "milk;1.31;2;2.62\n" +
                         "bread;1.54;3;4.62\n" +
                         "bread;1.45;5;7.25\n" +
@@ -21,24 +30,13 @@ public class TestRunner {
     }
 
     @Test
-    public void testInsert() {
+    public void testInsertIndex() {
         final int INDEX = 3;
-        Purchase[] purchaseArr = {
-                new Purchase("bread", new Byn(145), 5),
-                new Purchase("bread", new Byn(154), 3),
-                new PriceDiscountPurchase("bread", new Byn(155), 1, new Byn(2)),
-                new PriceDiscountPurchase("butter", new Byn(341), 1, new Byn(1)),
-                new Purchase("butter", new Byn(370), 1),
-                new PriceDiscountPurchase("meat", new Byn(1100), 2, new Byn(80)),
-                new Purchase("milk", new Byn(131), 2),
-                new PriceDiscountPurchase("potato", new Byn(180), 2, new Byn(10))
-        };
         PurchaseList purchaseList = new PurchaseList();
         purchaseList.addArray(purchaseArr);
         Purchase testPurchase = new Purchase("water", new Byn(1111), 2);
         purchaseList.insert(INDEX, testPurchase);
-        String strPurchaseList =
-                "bread;1.45;5;7.25\n" +
+        String strPurchaseList = "bread;1.45;5;7.25\n" +
                         "bread;1.54;3;4.62\n" +
                         "bread;1.55;1;0.02;1.53\n" +
                         "water;11.11;2;22.22\n" +
@@ -51,24 +49,13 @@ public class TestRunner {
     }
 
     @Test
-    public void testInsertInd() {
+    public void testInsertInvalidIndex() {
         final int INDEX = -1000;
-        Purchase[] purchaseArr = {
-                new Purchase("bread", new Byn(145), 5),
-                new Purchase("bread", new Byn(154), 3),
-                new PriceDiscountPurchase("bread", new Byn(155), 1, new Byn(2)),
-                new PriceDiscountPurchase("butter", new Byn(341), 1, new Byn(1)),
-                new Purchase("butter", new Byn(370), 1),
-                new PriceDiscountPurchase("meat", new Byn(1100), 2, new Byn(80)),
-                new Purchase("milk", new Byn(131), 2),
-                new PriceDiscountPurchase("potato", new Byn(180), 2, new Byn(10))
-        };
         PurchaseList purchaseList = new PurchaseList();
         purchaseList.addArray(purchaseArr);
         Purchase testPurchase = new Purchase("water", new Byn(1111), 2);
         purchaseList.insert(INDEX, testPurchase);
-        String strPurchaseList =
-                "water;11.11;2;22.22\n" +
+        String strPurchaseList = "water;11.11;2;22.22\n" +
                         "bread;1.45;5;7.25\n" +
                         "bread;1.54;3;4.62\n" +
                         "bread;1.55;1;0.02;1.53\n" +
@@ -81,24 +68,13 @@ public class TestRunner {
     }
 
     @Test
-    public void testInsertInd1() {
+    public void testInsertInvalidIndex1() {
         final int INDEX = 1000;
-        Purchase[] purchaseArr = {
-                new Purchase("bread", new Byn(145), 5),
-                new Purchase("bread", new Byn(154), 3),
-                new PriceDiscountPurchase("bread", new Byn(155), 1, new Byn(2)),
-                new PriceDiscountPurchase("butter", new Byn(341), 1, new Byn(1)),
-                new Purchase("butter", new Byn(370), 1),
-                new PriceDiscountPurchase("meat", new Byn(1100), 2, new Byn(80)),
-                new Purchase("milk", new Byn(131), 2),
-                new PriceDiscountPurchase("potato", new Byn(180), 2, new Byn(10))
-        };
         PurchaseList purchaseList = new PurchaseList();
         purchaseList.addArray(purchaseArr);
         Purchase testPurchase = new Purchase("water", new Byn(1111), 2);
         purchaseList.insert(INDEX, testPurchase);
-        String strPurchaseList =
-                "bread;1.45;5;7.25\n" +
+        String strPurchaseList = "bread;1.45;5;7.25\n" +
                         "bread;1.54;3;4.62\n" +
                         "bread;1.55;1;0.02;1.53\n" +
                         "butter;3.41;1;0.01;3.40\n" +
@@ -112,18 +88,8 @@ public class TestRunner {
 
     @Test
     public void testGetTotalCost() {
-        Purchase[] sortPurchaseArr = {
-                new Purchase("bread", new Byn(145), 5),
-                new Purchase("bread", new Byn(154), 3),
-                new PriceDiscountPurchase("bread", new Byn(155), 1, new Byn(2)),
-                new PriceDiscountPurchase("butter", new Byn(341), 1, new Byn(1)),
-                new Purchase("butter", new Byn(370), 1),
-                new PriceDiscountPurchase("meat", new Byn(1100), 2, new Byn(80)),
-                new Purchase("milk", new Byn(131), 2),
-                new PriceDiscountPurchase("potato", new Byn(180), 2, new Byn(10))
-        };
         PurchaseList purchaseList = new PurchaseList();
-        purchaseList.addArray(sortPurchaseArr);
+        purchaseList.addArray(purchaseArr);
         Assert.assertEquals(new Byn(4692), purchaseList.getTotalCost());
     }
 
@@ -135,7 +101,7 @@ public class TestRunner {
     }
 
     @Test
-    public void testPurchaseSearch1() throws LineException {
+    public void testWrongNamePurchaseSearch() throws LineException {
         PurchaseList purchaseList = new PurchaseList(FILE_NAME, new PurchaseComparator());
         Assert.assertEquals(null, purchaseList.binarySearch("meat;999999;2;80"));
     }
@@ -143,16 +109,6 @@ public class TestRunner {
     @Test
     public void testPurchaseSort() {
         PurchaseList purchaseList = new PurchaseList(FILE_NAME, new PurchaseComparator());
-        Purchase[] purchaseArr = {
-                new Purchase("bread", new Byn(145), 5),
-                new Purchase("bread", new Byn(154), 3),
-                new PriceDiscountPurchase("bread", new Byn(155), 1, new Byn(2)),
-                new PriceDiscountPurchase("butter", new Byn(341), 1, new Byn(1)),
-                new Purchase("butter", new Byn(370), 1),
-                new PriceDiscountPurchase("meat", new Byn(1100), 2, new Byn(80)),
-                new Purchase("milk", new Byn(131), 2),
-                new PriceDiscountPurchase("potato", new Byn(180), 2, new Byn(10))
-        };
         PurchaseList expPurchaseList = new PurchaseList();
         expPurchaseList.addArray(purchaseArr);
         purchaseList.sort();
@@ -163,16 +119,6 @@ public class TestRunner {
     public void testRemove() {
         final int START_IND = 3;
         final int END_IND = 7;
-        Purchase[] purchaseArr = {
-                new Purchase("bread", new Byn(145), 5),
-                new Purchase("bread", new Byn(154), 3),
-                new PriceDiscountPurchase("bread", new Byn(155), 1, new Byn(2)),
-                new PriceDiscountPurchase("butter", new Byn(341), 1, new Byn(1)),
-                new Purchase("butter", new Byn(370), 1),
-                new PriceDiscountPurchase("meat", new Byn(1100), 2, new Byn(80)),
-                new Purchase("milk", new Byn(131), 2),
-                new PriceDiscountPurchase("potato", new Byn(180), 2, new Byn(10))
-        };
         PurchaseList purchaseList = new PurchaseList();
         purchaseList.addArray(purchaseArr);
         Purchase[] expPurchaseArr = {
@@ -188,19 +134,9 @@ public class TestRunner {
     }
 
     @Test
-    public void testRemove1() {
-        final int FROM_INDEX = 4;
-        final int TO_INDEX = 20;
-        Purchase[] purchaseArr = {
-                new Purchase("bread", new Byn(145), 5),
-                new Purchase("bread", new Byn(154), 3),
-                new PriceDiscountPurchase("bread", new Byn(155), 1, new Byn(2)),
-                new PriceDiscountPurchase("butter", new Byn(341), 1, new Byn(1)),
-                new Purchase("butter", new Byn(370), 1),
-                new PriceDiscountPurchase("meat", new Byn(1100), 2, new Byn(80)),
-                new Purchase("milk", new Byn(131), 2),
-                new PriceDiscountPurchase("potato", new Byn(180), 2, new Byn(10))
-        };
+    public void testRemoveWrongIndex() {
+        final int START_IND = 4;
+        final int END_IND = 20;
         PurchaseList purchaseList = new PurchaseList();
         purchaseList.addArray(purchaseArr);
         Purchase[] expPurchaseArr = {
@@ -209,26 +145,16 @@ public class TestRunner {
                 new PriceDiscountPurchase("bread", new Byn(155), 1, new Byn(2)),
                 new PriceDiscountPurchase("butter", new Byn(341), 1, new Byn(1))
         };
-        PurchaseList expPurchList = new PurchaseList();
-        expPurchList.addArray(expPurchaseArr);
-        purchaseList.remove(FROM_INDEX, TO_INDEX);
-        Assert.assertEquals(expPurchList.toString(), purchaseList.toString());
+        PurchaseList expPurchaseList = new PurchaseList();
+        expPurchaseList.addArray(expPurchaseArr);
+        purchaseList.remove(START_IND, END_IND);
+        Assert.assertEquals(expPurchaseList.toString(), purchaseList.toString());
     }
 
     @Test
-    public void testRemove2() {
-        final int FROM_INDEX = -5;
-        final int TO_INDEX = 2;
-        Purchase[] purchaseArr = {
-                new Purchase("bread", new Byn(145), 5),
-                new Purchase("bread", new Byn(154), 3),
-                new PriceDiscountPurchase("bread", new Byn(155), 1, new Byn(2)),
-                new PriceDiscountPurchase("butter", new Byn(341), 1, new Byn(1)),
-                new Purchase("butter", new Byn(370), 1),
-                new PriceDiscountPurchase("meat", new Byn(1100), 2, new Byn(80)),
-                new Purchase("milk", new Byn(131), 2),
-                new PriceDiscountPurchase("potato", new Byn(180), 2, new Byn(10))
-        };
+    public void testRemoveWrongIndex1() {
+        final int START_IND = -5;
+        final int END_IND = 2;
         PurchaseList purchaseList = new PurchaseList();
         purchaseList.addArray(purchaseArr);
         Purchase[] expectedPurchaseArray = {
@@ -239,10 +165,29 @@ public class TestRunner {
                 new Purchase("milk", new Byn(131), 2),
                 new PriceDiscountPurchase("potato", new Byn(180), 2, new Byn(10))
         };
-        PurchaseList expPurchList = new PurchaseList();
-        expPurchList.addArray(expectedPurchaseArray);
-        purchaseList.remove(FROM_INDEX, TO_INDEX);
-        Assert.assertEquals(expPurchList.toString(), purchaseList.toString());
+        PurchaseList expPurchaseList = new PurchaseList();
+        expPurchaseList.addArray(expectedPurchaseArray);
+        purchaseList.remove(START_IND, END_IND);
+        Assert.assertEquals(expPurchaseList.toString(), purchaseList.toString());
+    }
+
+    @Test
+    public void testRemoveWrongIndex2() {
+        final int START_IND = 5;
+        final int END_IND = 2;
+        PurchaseList purchaseList = new PurchaseList();
+        purchaseList.addArray(purchaseArr);
+        Purchase[] expectedPurchaseArray = {
+                new Purchase("bread", new Byn(145), 5),
+                new Purchase("bread", new Byn(154), 3),
+                new PriceDiscountPurchase("meat", new Byn(1100), 2, new Byn(80)),
+                new Purchase("milk", new Byn(131), 2),
+                new PriceDiscountPurchase("potato", new Byn(180), 2, new Byn(10))
+        };
+        PurchaseList expPurchaseList = new PurchaseList();
+        expPurchaseList.addArray(expectedPurchaseArray);
+        purchaseList.remove(START_IND, END_IND);
+        Assert.assertEquals(expPurchaseList.toString(), purchaseList.toString());
     }
 
     @Test

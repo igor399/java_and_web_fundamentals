@@ -2,10 +2,10 @@ package by.epam.lab;
 
 public class Purchase {
     protected static final String SEMICOLON = ";";
-    protected static final int PRODUCT_NAME = 0;
-    protected static final int PRICE = 1;
-    protected static final int NUMBER = 2;
-    private String  productName;
+    protected static final int PRODUCT_PARAM = 0;
+    protected static final int PRICE_PARAM = 1;
+    protected static final int NUMBER_PARAM = 2;
+    private String productName;
     private Byn price;
     private int number;
 
@@ -19,6 +19,10 @@ public class Purchase {
         this(purchase.getProductName(), purchase.getPrice(), purchase.getNumber());
     }
 
+    public Purchase(String[] values) {
+        this(getPurchase(values));
+    }
+
     public String getProductName() {
         return productName;
     }
@@ -30,17 +34,15 @@ public class Purchase {
     public int getNumber() {
         return number;
     }
+
     public final void setProductName(String productName) {
-        if (productName.length() == 0 ){
+        if (productName.isEmpty() || productName.trim().isEmpty()) {
             throw new IllegalArgumentException();
         }
         this.productName = productName;
     }
 
     public final void setPrice(Byn price) {
-        if (price == null) {
-            throw new NullPointerException();
-        }
         if (price.compareTo(new Byn()) == 0) {
             throw new NonPositiveArgumentException();
         }
@@ -54,13 +56,10 @@ public class Purchase {
         this.number = number;
     }
 
-    public Purchase(String[] values) {
-        this(getPurchase(values));
+    private static Purchase getPurchase(String[] values) {
+        return new Purchase(values[PRODUCT_PARAM], new Byn(Integer.parseInt(values[PRICE_PARAM])), Integer.parseInt(values[NUMBER_PARAM]));
     }
 
-    private static Purchase getPurchase(String[] values) {
-        return new Purchase(values[PRODUCT_NAME], new Byn(Integer.parseInt(values[PRICE])), Integer.parseInt(values[NUMBER]));
-    }
     public Byn getCost() {
         return price.multiply(number);
     }

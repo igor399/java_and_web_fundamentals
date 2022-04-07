@@ -11,7 +11,7 @@ public class PurchaseList {
     private final static String NEXT_LINE = "\n";
 
     private final List<Purchase> purchases = new ArrayList<>();
-    Comparator<Purchase> comparator;
+    private final Comparator<Purchase> comparator;
 
     public PurchaseList() {
         this("", new PurchaseComparator());
@@ -50,9 +50,7 @@ public class PurchaseList {
     }
 
     public void addArray(Purchase[] purchaseArray) {
-        for (Purchase purchase : purchaseArray) {
-            purchases.add(purchase);
-        }
+        purchases.addAll(Arrays.asList(purchaseArray));
     }
 
     public void insert(int index, Purchase purchase) {
