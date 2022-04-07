@@ -1,47 +1,75 @@
 package by.epam.lab;
 
 public class Purchase {
-    private final String productName;
-    private final int price;
-    private int numUnits;
-    private final static String SEMICOLON = ";";
+    protected static final String SEMICOLON = ";";
+    protected static final int PRODUCT_PARAM = 0;
+    protected static final int PRICE_PARAM = 1;
+    protected static final int NUMBER_PARAM = 2;
+    private String productName;
+    private Byn price;
+    private int number;
 
-    public Purchase() {
-        this("", 0, 0);
+    public Purchase(String productName, Byn price, int number) {
+        setProductName(productName);
+        setPrice(price);
+        setNumber(number);
     }
 
-    public Purchase(String productName, int price, int numUnits) {
-        this.productName = productName;
-        this.price = price;
-        this.numUnits = numUnits;
+    public Purchase(Purchase purchase) {
+        this(purchase.getProductName(), purchase.getPrice(), purchase.getNumber());
+    }
+
+    public Purchase(String[] values) {
+        this(getPurchase(values));
     }
 
     public String getProductName() {
         return productName;
     }
 
-    public int getPrice() {
+    public Byn getPrice() {
         return price;
     }
 
-    public void setNumUnits(int numUnits) {
-        this.numUnits = numUnits;
+    public int getNumber() {
+        return number;
     }
 
-    public int getNumUnits() {
-        return numUnits;
+    public final void setProductName(String productName) {
+        if (productName.trim().isEmpty()) {
+            throw new IllegalArgumentException();
+        }
+        this.productName = productName;
     }
 
-    public int getCost() {
-        return price * numUnits;
+    public final void setPrice(Byn price) {
+        if (price.compareTo(new Byn()) == 0) {
+            throw new NonPositiveArgumentException();
+        }
+        this.price = price;
     }
 
-    protected String fieldToString() {
-        return productName + SEMICOLON + Util.getRightFormat(price) + SEMICOLON + numUnits;
+    public final void setNumber(int number) {
+        if (number <= 0) {
+            throw new NonPositiveArgumentException();
+        }
+        this.number = number;
+    }
+
+    private static Purchase getPurchase(String[] values) {
+        return new Purchase(values[PRODUCT_PARAM], new Byn(Integer.parseInt(values[PRICE_PARAM])), Integer.parseInt(values[NUMBER_PARAM]));
+    }
+
+    public Byn getCost() {
+        return price.multiply(number);
+    }
+
+    protected String fieldsToString() {
+        return productName + SEMICOLON + price + SEMICOLON + number;
     }
 
     @Override
     public String toString() {
-        return fieldToString() + SEMICOLON + Util.getRightFormat(getCost());
+        return fieldsToString() + SEMICOLON + getCost();
     }
 }
