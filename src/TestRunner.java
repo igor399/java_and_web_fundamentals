@@ -4,7 +4,7 @@ import org.junit.Test;
 
 public class TestRunner {
     private static final String FILE_NAME = "src/in.csv";
-    private final  Purchase[] PURCHASE_ARRAY = {
+    Purchase[] purchaseArr = {
             new Purchase("bread", new Byn(145), 5),
             new Purchase("bread", new Byn(154), 3),
             new PriceDiscountPurchase("bread", new Byn(155), 1, new Byn(2)),
@@ -19,13 +19,13 @@ public class TestRunner {
     public void testConstructorPurchaseList() {
         PurchaseList purchaseList = new PurchaseList(FILE_NAME, new PurchaseComparator());
         String stringPurchase = "bread;1.55;1;0.02;1.53\n" +
-                "milk;1.31;2;2.62\n" +
-                "bread;1.54;3;4.62\n" +
-                "bread;1.45;5;7.25\n" +
-                "potato;1.80;2;0.10;3.40\n" +
-                "butter;3.70;1;3.70\n" +
-                "butter;3.41;1;0.01;3.40\n" +
-                "meat;11.00;2;0.80;20.40\n";
+                        "milk;1.31;2;2.62\n" +
+                        "bread;1.54;3;4.62\n" +
+                        "bread;1.45;5;7.25\n" +
+                        "potato;1.80;2;0.10;3.40\n" +
+                        "butter;3.70;1;3.70\n" +
+                        "butter;3.41;1;0.01;3.40\n" +
+                        "meat;11.00;2;0.80;20.40\n";
         Assert.assertEquals(stringPurchase, purchaseList.toString());
     }
 
@@ -33,18 +33,18 @@ public class TestRunner {
     public void testInsertIndex() {
         final int INDEX = 3;
         PurchaseList purchaseList = new PurchaseList();
-        purchaseList.addArray(PURCHASE_ARRAY);
+        purchaseList.addArray(purchaseArr);
         Purchase testPurchase = new Purchase("water", new Byn(1111), 2);
         purchaseList.insert(INDEX, testPurchase);
         String strPurchaseList = "bread;1.45;5;7.25\n" +
-                "bread;1.54;3;4.62\n" +
-                "bread;1.55;1;0.02;1.53\n" +
-                "water;11.11;2;22.22\n" +
-                "butter;3.41;1;0.01;3.40\n" +
-                "butter;3.70;1;3.70\n" +
-                "meat;11.00;2;0.80;20.40\n" +
-                "milk;1.31;2;2.62\n" +
-                "potato;1.80;2;0.10;3.40\n";
+                        "bread;1.54;3;4.62\n" +
+                        "bread;1.55;1;0.02;1.53\n" +
+                        "water;11.11;2;22.22\n" +
+                        "butter;3.41;1;0.01;3.40\n" +
+                        "butter;3.70;1;3.70\n" +
+                        "meat;11.00;2;0.80;20.40\n" +
+                        "milk;1.31;2;2.62\n" +
+                        "potato;1.80;2;0.10;3.40\n";
         Assert.assertEquals(strPurchaseList, purchaseList.toString());
     }
 
@@ -52,18 +52,18 @@ public class TestRunner {
     public void testInsertInvalidIndex() {
         final int INDEX = -1000;
         PurchaseList purchaseList = new PurchaseList();
-        purchaseList.addArray(PURCHASE_ARRAY);
+        purchaseList.addArray(purchaseArr);
         Purchase testPurchase = new Purchase("water", new Byn(1111), 2);
         purchaseList.insert(INDEX, testPurchase);
         String strPurchaseList = "water;11.11;2;22.22\n" +
-                "bread;1.45;5;7.25\n" +
-                "bread;1.54;3;4.62\n" +
-                "bread;1.55;1;0.02;1.53\n" +
-                "butter;3.41;1;0.01;3.40\n" +
-                "butter;3.70;1;3.70\n" +
-                "meat;11.00;2;0.80;20.40\n" +
-                "milk;1.31;2;2.62\n" +
-                "potato;1.80;2;0.10;3.40\n";
+                        "bread;1.45;5;7.25\n" +
+                        "bread;1.54;3;4.62\n" +
+                        "bread;1.55;1;0.02;1.53\n" +
+                        "butter;3.41;1;0.01;3.40\n" +
+                        "butter;3.70;1;3.70\n" +
+                        "meat;11.00;2;0.80;20.40\n" +
+                        "milk;1.31;2;2.62\n" +
+                        "potato;1.80;2;0.10;3.40\n";
         Assert.assertEquals(strPurchaseList, purchaseList.toString());
     }
 
@@ -71,25 +71,25 @@ public class TestRunner {
     public void testInsertInvalidIndex1() {
         final int INDEX = 1000;
         PurchaseList purchaseList = new PurchaseList();
-        purchaseList.addArray(PURCHASE_ARRAY);
+        purchaseList.addArray(purchaseArr);
         Purchase testPurchase = new Purchase("water", new Byn(1111), 2);
         purchaseList.insert(INDEX, testPurchase);
         String strPurchaseList = "bread;1.45;5;7.25\n" +
-                "bread;1.54;3;4.62\n" +
-                "bread;1.55;1;0.02;1.53\n" +
-                "butter;3.41;1;0.01;3.40\n" +
-                "butter;3.70;1;3.70\n" +
-                "meat;11.00;2;0.80;20.40\n" +
-                "milk;1.31;2;2.62\n" +
-                "potato;1.80;2;0.10;3.40\n" +
-                "water;11.11;2;22.22\n";
+                        "bread;1.54;3;4.62\n" +
+                        "bread;1.55;1;0.02;1.53\n" +
+                        "butter;3.41;1;0.01;3.40\n" +
+                        "butter;3.70;1;3.70\n" +
+                        "meat;11.00;2;0.80;20.40\n" +
+                        "milk;1.31;2;2.62\n" +
+                        "potato;1.80;2;0.10;3.40\n" +
+                        "water;11.11;2;22.22\n";
         Assert.assertEquals(strPurchaseList, purchaseList.toString());
     }
 
     @Test
     public void testGetTotalCost() {
         PurchaseList purchaseList = new PurchaseList();
-        purchaseList.addArray(PURCHASE_ARRAY);
+        purchaseList.addArray(purchaseArr);
         Assert.assertEquals(new Byn(4692), purchaseList.getTotalCost());
     }
 
@@ -110,7 +110,7 @@ public class TestRunner {
     public void testPurchaseSort() {
         PurchaseList purchaseList = new PurchaseList(FILE_NAME, new PurchaseComparator());
         PurchaseList expPurchaseList = new PurchaseList();
-        expPurchaseList.addArray(PURCHASE_ARRAY);
+        expPurchaseList.addArray(purchaseArr);
         purchaseList.sort();
         Assert.assertEquals(expPurchaseList.toString(), purchaseList.toString());
     }
@@ -120,7 +120,7 @@ public class TestRunner {
         final int START_IND = 3;
         final int END_IND = 7;
         PurchaseList purchaseList = new PurchaseList();
-        purchaseList.addArray(PURCHASE_ARRAY);
+        purchaseList.addArray(purchaseArr);
         Purchase[] expPurchaseArr = {
                 new Purchase("bread", new Byn(145), 5),
                 new Purchase("bread", new Byn(154), 3),
@@ -138,7 +138,7 @@ public class TestRunner {
         final int START_IND = 4;
         final int END_IND = 20;
         PurchaseList purchaseList = new PurchaseList();
-        purchaseList.addArray(PURCHASE_ARRAY);
+        purchaseList.addArray(purchaseArr);
         Purchase[] expPurchaseArr = {
                 new Purchase("bread", new Byn(145), 5),
                 new Purchase("bread", new Byn(154), 3),
@@ -156,7 +156,7 @@ public class TestRunner {
         final int START_IND = -5;
         final int END_IND = 2;
         PurchaseList purchaseList = new PurchaseList();
-        purchaseList.addArray(PURCHASE_ARRAY);
+        purchaseList.addArray(purchaseArr);
         Purchase[] expectedPurchaseArray = {
                 new PriceDiscountPurchase("bread", new Byn(155), 1, new Byn(2)),
                 new PriceDiscountPurchase("butter", new Byn(341), 1, new Byn(1)),
@@ -176,7 +176,7 @@ public class TestRunner {
         final int START_IND = 5;
         final int END_IND = 2;
         PurchaseList purchaseList = new PurchaseList();
-        purchaseList.addArray(PURCHASE_ARRAY);
+        purchaseList.addArray(purchaseArr);
         Purchase[] expectedPurchaseArray = {
                 new Purchase("bread", new Byn(145), 5),
                 new Purchase("bread", new Byn(154), 3),

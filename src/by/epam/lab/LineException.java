@@ -1,6 +1,7 @@
 package by.epam.lab;
 
-public class LineException extends Exception{
+public class LineException extends Exception {
+
     public LineException() {
     }
 

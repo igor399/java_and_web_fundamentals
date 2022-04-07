@@ -36,7 +36,7 @@ public class Purchase {
     }
 
     public final void setProductName(String productName) {
-        if (productName.trim().isEmpty()) {
+        if (productName.isEmpty() || productName.trim().isEmpty()) {
             throw new IllegalArgumentException();
         }
         this.productName = productName;
