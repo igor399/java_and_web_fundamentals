@@ -36,7 +36,7 @@ public class Purchase {
     }
 
     public final void setProductName(String productName) {
-        if (productName.isEmpty() || productName.trim().isEmpty()) {
+        if (productName.trim().isEmpty()) {
             throw new IllegalArgumentException();
         }
         this.productName = productName;
@@ -57,7 +57,8 @@ public class Purchase {
     }
 
     private static Purchase getPurchase(String[] values) {
-        return new Purchase(values[PRODUCT_PARAM], new Byn(Integer.parseInt(values[PRICE_PARAM])), Integer.parseInt(values[NUMBER_PARAM]));
+        return new Purchase(values[PRODUCT_PARAM], new Byn(Integer.parseInt(values[PRICE_PARAM])),
+                Integer.parseInt(values[NUMBER_PARAM]));
     }
 
     public Byn getCost() {

@@ -10,7 +10,8 @@ public class PriceDiscountPurchase extends Purchase {
     }
 
     public PriceDiscountPurchase(PriceDiscountPurchase priceDiscountPurchase) {
-        this(priceDiscountPurchase.getProductName(), priceDiscountPurchase.getPrice(), priceDiscountPurchase.getNumber(), priceDiscountPurchase.discount);
+        this(priceDiscountPurchase.getProductName(), priceDiscountPurchase.getPrice(),
+                priceDiscountPurchase.getNumber(), priceDiscountPurchase.discount);
     }
 
     public PriceDiscountPurchase(String[] fields) {
@@ -28,7 +29,8 @@ public class PriceDiscountPurchase extends Purchase {
     }
 
     private static PriceDiscountPurchase getPriceDiscountPurchase(String[] fields) {
-        return new PriceDiscountPurchase(fields[PRODUCT_PARAM], new Byn(Integer.parseInt(fields[PRICE_PARAM])), Integer.parseInt(fields[NUMBER_PARAM]), new Byn(Integer.parseInt(fields[DISCOUNT_PARAM])));
+        return new PriceDiscountPurchase(fields[PRODUCT_PARAM], new Byn(Integer.parseInt(fields[PRICE_PARAM])),
+                Integer.parseInt(fields[NUMBER_PARAM]), new Byn(Integer.parseInt(fields[DISCOUNT_PARAM])));
     }
 
     @Override
