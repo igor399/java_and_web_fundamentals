@@ -64,7 +64,8 @@ public class PurchaseList {
     }
 
     public void remove(int startInd, int endInd) {
-        if ((startInd < 0 && endInd < 0) || (startInd > purchases.size() && endInd > purchases.size()) || startInd == endInd) {
+        if ((startInd < 0 && endInd < 0) || (startInd > purchases.size() && endInd > purchases.size())
+                || startInd == endInd) {
             throw new IllegalArgumentException();
         }
         if (startInd < 0) {

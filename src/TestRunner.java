@@ -19,13 +19,13 @@ public class TestRunner {
     public void testConstructorPurchaseList() {
         PurchaseList purchaseList = new PurchaseList(FILE_NAME, new PurchaseComparator());
         String stringPurchase = "bread;1.55;1;0.02;1.53\n" +
-                        "milk;1.31;2;2.62\n" +
-                        "bread;1.54;3;4.62\n" +
-                        "bread;1.45;5;7.25\n" +
-                        "potato;1.80;2;0.10;3.40\n" +
-                        "butter;3.70;1;3.70\n" +
-                        "butter;3.41;1;0.01;3.40\n" +
-                        "meat;11.00;2;0.80;20.40\n";
+                "milk;1.31;2;2.62\n" +
+                "bread;1.54;3;4.62\n" +
+                "bread;1.45;5;7.25\n" +
+                "potato;1.80;2;0.10;3.40\n" +
+                "butter;3.70;1;3.70\n" +
+                "butter;3.41;1;0.01;3.40\n" +
+                "meat;11.00;2;0.80;20.40\n";
         Assert.assertEquals(stringPurchase, purchaseList.toString());
     }
 
@@ -37,14 +37,14 @@ public class TestRunner {
         Purchase testPurchase = new Purchase("water", new Byn(1111), 2);
         purchaseList.insert(INDEX, testPurchase);
         String strPurchaseList = "bread;1.45;5;7.25\n" +
-                        "bread;1.54;3;4.62\n" +
-                        "bread;1.55;1;0.02;1.53\n" +
-                        "water;11.11;2;22.22\n" +
-                        "butter;3.41;1;0.01;3.40\n" +
-                        "butter;3.70;1;3.70\n" +
-                        "meat;11.00;2;0.80;20.40\n" +
-                        "milk;1.31;2;2.62\n" +
-                        "potato;1.80;2;0.10;3.40\n";
+                "bread;1.54;3;4.62\n" +
+                "bread;1.55;1;0.02;1.53\n" +
+                "water;11.11;2;22.22\n" +
+                "butter;3.41;1;0.01;3.40\n" +
+                "butter;3.70;1;3.70\n" +
+                "meat;11.00;2;0.80;20.40\n" +
+                "milk;1.31;2;2.62\n" +
+                "potato;1.80;2;0.10;3.40\n";
         Assert.assertEquals(strPurchaseList, purchaseList.toString());
     }
 
@@ -56,14 +56,14 @@ public class TestRunner {
         Purchase testPurchase = new Purchase("water", new Byn(1111), 2);
         purchaseList.insert(INDEX, testPurchase);
         String strPurchaseList = "water;11.11;2;22.22\n" +
-                        "bread;1.45;5;7.25\n" +
-                        "bread;1.54;3;4.62\n" +
-                        "bread;1.55;1;0.02;1.53\n" +
-                        "butter;3.41;1;0.01;3.40\n" +
-                        "butter;3.70;1;3.70\n" +
-                        "meat;11.00;2;0.80;20.40\n" +
-                        "milk;1.31;2;2.62\n" +
-                        "potato;1.80;2;0.10;3.40\n";
+                "bread;1.45;5;7.25\n" +
+                "bread;1.54;3;4.62\n" +
+                "bread;1.55;1;0.02;1.53\n" +
+                "butter;3.41;1;0.01;3.40\n" +
+                "butter;3.70;1;3.70\n" +
+                "meat;11.00;2;0.80;20.40\n" +
+                "milk;1.31;2;2.62\n" +
+                "potato;1.80;2;0.10;3.40\n";
         Assert.assertEquals(strPurchaseList, purchaseList.toString());
     }
 
@@ -75,14 +75,14 @@ public class TestRunner {
         Purchase testPurchase = new Purchase("water", new Byn(1111), 2);
         purchaseList.insert(INDEX, testPurchase);
         String strPurchaseList = "bread;1.45;5;7.25\n" +
-                        "bread;1.54;3;4.62\n" +
-                        "bread;1.55;1;0.02;1.53\n" +
-                        "butter;3.41;1;0.01;3.40\n" +
-                        "butter;3.70;1;3.70\n" +
-                        "meat;11.00;2;0.80;20.40\n" +
-                        "milk;1.31;2;2.62\n" +
-                        "potato;1.80;2;0.10;3.40\n" +
-                        "water;11.11;2;22.22\n";
+                "bread;1.54;3;4.62\n" +
+                "bread;1.55;1;0.02;1.53\n" +
+                "butter;3.41;1;0.01;3.40\n" +
+                "butter;3.70;1;3.70\n" +
+                "meat;11.00;2;0.80;20.40\n" +
+                "milk;1.31;2;2.62\n" +
+                "potato;1.80;2;0.10;3.40\n" +
+                "water;11.11;2;22.22\n";
         Assert.assertEquals(strPurchaseList, purchaseList.toString());
     }
 
@@ -96,8 +96,8 @@ public class TestRunner {
     @Test
     public void testPurchaseSearch() throws LineException {
         PurchaseList purchaseList = new PurchaseList(FILE_NAME, new PurchaseComparator());
-        Assert.assertEquals(new PriceDiscountPurchase("meat", new Byn(1100), 2, new Byn(80)).toString(),
-                purchaseList.binarySearch("meat;1100;2;80").toString());
+        Assert.assertEquals(new PriceDiscountPurchase("meat", new Byn(1100), 2,
+                new Byn(80)).toString(), purchaseList.binarySearch("meat;1100;2;80").toString());
     }
 
     @Test
