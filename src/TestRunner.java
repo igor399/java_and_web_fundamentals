@@ -31,8 +31,6 @@ public class TestRunner {
         Assert.assertEquals(stringPurchase, purchaseList.toString());
     }
 
-
-
     @Test
     public void testInsertIndex() {
         final int INDEX = 3;
