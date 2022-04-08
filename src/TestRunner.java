@@ -218,7 +218,6 @@ public class TestRunner {
         Purchase purchase = PurchaseFactory.getPurchaseFromFactory("potato");
     }
 
-
     @Test(expected = LineException.class)
     public void testFiveWrongField() throws LineException {
         Purchase purchase = PurchaseFactory.getPurchaseFromFactory("water;15;4;0.1;cold");
