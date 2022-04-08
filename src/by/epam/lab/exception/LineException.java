@@ -6,7 +6,7 @@ public class LineException extends Exception {
     }
 
     public LineException(String message) {
-        super("Invalid line >>" + message);
+        super("Invalid line >> " + message);
     }
 
     public LineException(String message, Throwable cause) {

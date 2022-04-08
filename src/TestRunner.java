@@ -50,6 +50,7 @@ public class TestRunner {
         Assert.assertEquals(strPurchaseList, purchaseList.toString());
     }
 
+
     @Test
     public void testInsertInvalidIndex() {
         final int INDEX = -1000;
