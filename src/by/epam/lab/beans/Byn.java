@@ -1,11 +1,17 @@
-package by.epam.lab.bean;
+package by.epam.lab.beans;
 
-import by.epam.lab.util.CurrencyConverter;
-import by.epam.lab.exception.NonPositiveArgumentException;
+import by.epam.lab.exceptions.NonPositiveArgumentException;
+
+import static by.epam.lab.beans.Purchase.*;
+import static by.epam.lab.services.PurchaseConstants.*;
+
 
 public class Byn implements Comparable<Byn> {
-    private static final String INV_VALUE = "Invalid value: ";
+    private final static String REG_EXP = "%d.%02d";
+    private final static String INV_VALUE = "Invalid value: ";
+    private static final int MAX_KOPECKS_VALUE = 100;
     private final int kopecks;
+
 
     public Byn() {
         this(0);
@@ -32,12 +38,12 @@ public class Byn implements Comparable<Byn> {
 
     private static int getValidValue(int rubs, int kopecks) {
         if (rubs < 0 || kopecks < 0) {
-            throw new NonPositiveArgumentException(INV_VALUE + CurrencyConverter.toByn(kopecks));
+            throw new NonPositiveArgumentException(INV_VALUE + rubs + SEMICOLON + kopecks);
         }
-        if (kopecks >= 100) {
-            throw new NonPositiveArgumentException(INV_VALUE + CurrencyConverter.toByn(kopecks));
+        if (kopecks >= MAX_KOPECKS_VALUE) {
+            throw new NonPositiveArgumentException(INV_VALUE + rubs + SEMICOLON + kopecks);
         }
-        return rubs * 100 + kopecks;
+        return rubs * MAX_KOPECKS_VALUE + kopecks;
     }
 
     public Byn add(Byn byn) {
@@ -67,6 +73,6 @@ public class Byn implements Comparable<Byn> {
 
     @Override
     public String toString() {
-        return CurrencyConverter.toByn(kopecks);
+        return String.format(REG_EXP, kopecks / 100, kopecks % 100);
     }
 }

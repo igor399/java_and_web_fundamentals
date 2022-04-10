@@ -1,12 +1,14 @@
-package by.epam.lab.bean;
+package by.epam.lab.beans;
 
-import by.epam.lab.exception.DiscountMoreOrEqualPriceException;
-import by.epam.lab.exception.NonPositiveArgumentException;
+import by.epam.lab.exceptions.DiscountMoreOrEqualPriceException;
+import by.epam.lab.exceptions.NonPositiveArgumentException;
+
+import static by.epam.lab.services.PurchaseConstants.*;
 
 public class PriceDiscountPurchase extends Purchase {
     private Byn discount;
     private static final int DISCOUNT_PARAM = 3;
-    protected static final int DISCOUNT_PURCHASE_FIELDS_NUMBER = 4;
+    private static final int DISCOUNT_PURCHASE_FIELDS_NUMBER = 4;
     private static final String WRONG_ARGS_NUM = "Wrong args number";
 
     public PriceDiscountPurchase(String productName, Byn price, int numUnits, Byn discount) {

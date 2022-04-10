@@ -1,4 +1,4 @@
-package by.epam.lab.exception;
+package by.epam.lab.exceptions;
 
 public class NonPositiveArgumentException extends IllegalArgumentException  {
     public NonPositiveArgumentException() {

@@ -1,6 +1,6 @@
-package by.epam.lab.comparator;
+package by.epam.lab.services;
 
-import by.epam.lab.bean.Purchase;
+import by.epam.lab.beans.Purchase;
 
 import java.util.Comparator;
 

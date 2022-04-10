@@ -1,9 +1,12 @@
-package by.epam.lab.bean;
+package by.epam.lab.services;
 
-import by.epam.lab.exception.LineException;
+import by.epam.lab.beans.PriceDiscountPurchase;
+import by.epam.lab.beans.Purchase;
+import by.epam.lab.exceptions.LineException;
+
+import static by.epam.lab.services.PurchaseConstants.*;
 
 public class PurchaseFactory {
-    private final static String SEMICOLON = ";";
     private final static int PARAM_NUMB = 3;
 
     private enum PurchaseKind {

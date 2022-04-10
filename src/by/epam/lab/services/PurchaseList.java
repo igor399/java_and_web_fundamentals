@@ -1,13 +1,15 @@
-package by.epam.lab.bean;
+package by.epam.lab.services;
 
-import by.epam.lab.exception.LineException;
-import by.epam.lab.comparator.PurchaseComparator;
+import by.epam.lab.beans.Byn;
+import by.epam.lab.beans.PriceDiscountPurchase;
+import by.epam.lab.beans.Purchase;
+import by.epam.lab.exceptions.LineException;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.*;
 
-import static by.epam.lab.bean.PurchaseFactory.getPurchaseFromFactory;
+import static by.epam.lab.services.PurchaseFactory.getPurchaseFromFactory;
 
 public class PurchaseList {
     private final static String NO_FILE = "File not found";
@@ -33,6 +35,7 @@ public class PurchaseList {
         } catch (FileNotFoundException e) {
             System.err.println(NO_FILE);
             purchases = new ArrayList<>();
+            isSorted = true;
         }
     }
 
@@ -53,6 +56,10 @@ public class PurchaseList {
         isSorted = false;
     }
 
+    public Purchase getIndPurchases(int index) {
+        return purchases.get(index);
+    }
+
     public void addArray(Purchase[] purchaseArray) {
         purchases.addAll(Arrays.asList(purchaseArray));
         isSorted = false;
@@ -69,24 +76,16 @@ public class PurchaseList {
         isSorted = false;
     }
 
-    public void remove(int startInd, int endInd) {
-        if ((startInd < 0 && endInd < 0) || (startInd > purchases.size() && endInd > purchases.size())
-                || startInd == endInd) {
-            throw new IllegalArgumentException();
-        }
-        if (startInd < 0) {
-            startInd = 0;
-        }
+    public int remove(int startInd, int endInd) {
+        int startSize = purchases.size();
         if (startInd > endInd) {
-            int temp = startInd;
-            startInd = endInd;
-            endInd = temp;
+            return 0;
         }
-        if (endInd > purchases.size()) {
-            endInd = purchases.size();
-        }
+        startInd = Math.max(startInd, 0);
+        endInd = Math.min(endInd, purchases.size());
         purchases.subList(startInd, endInd).clear();
         isSorted = false;
+        return startSize - purchases.size();
     }
 
     public Byn getTotalCost() {
@@ -98,19 +97,18 @@ public class PurchaseList {
     }
 
     public void sort() {
-        Collections.sort(purchases, comparator);
+        if (!isSorted) {
+            Collections.sort(purchases, comparator);
+        }
         isSorted = true;
     }
 
-    public Purchase binarySearch(String strPurchase) throws LineException {
-        Purchase initPurchase = null;
+    public int binarySearch(String strPurchase) throws LineException {
         Purchase tmpPurchase = PurchaseFactory.getPurchaseFromFactory(strPurchase);
-        this.sort();
-        int index = Collections.binarySearch(purchases, tmpPurchase, comparator);
-        if (index >= 0) {
-            initPurchase = purchases.get(index);
+        if (!isSorted) {
+            this.sort();
         }
-        return initPurchase;
+        return Collections.binarySearch(purchases, tmpPurchase, comparator);
     }
 
     @Override

@@ -1,13 +1,14 @@
-package by.epam.lab.bean;
+package by.epam.lab.beans;
 
-import by.epam.lab.exception.NonPositiveArgumentException;
+import by.epam.lab.exceptions.NonPositiveArgumentException;
+
+import static by.epam.lab.services.PurchaseConstants.*;
 
 public class Purchase {
-    protected static final String SEMICOLON = ";";
     protected static final int PRODUCT_PARAM = 0;
     protected static final int PRICE_PARAM = 1;
     protected static final int NUMBER_PARAM = 2;
-    protected static final int PURCHASE_FIELDS_NUMBER = 3;
+    private static final int PURCHASE_FIELDS_NUMBER = 3;
     private static final String WRONG_ARGS_NUM = "Wrong args number";
     private String productName;
     private Byn price;

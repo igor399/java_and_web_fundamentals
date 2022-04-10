@@ -1,6 +1,8 @@
-import by.epam.lab.bean.*;
-import by.epam.lab.comparator.PurchaseComparator;
-import by.epam.lab.exception.LineException;
+import by.epam.lab.beans.*;
+import by.epam.lab.services.PurchaseComparator;
+import by.epam.lab.exceptions.LineException;
+import by.epam.lab.services.PurchaseFactory;
+import by.epam.lab.services.PurchaseList;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -51,7 +53,7 @@ public class TestRunner {
     }
 
     @Test
-    public void testInsertInvalidIndex() {
+    public void testInsertWrongNegativeIndex() {
         final int INDEX = -1000;
         PurchaseList purchaseList = new PurchaseList();
         purchaseList.addArray(PURCHASE_ARRAY);
@@ -70,7 +72,7 @@ public class TestRunner {
     }
 
     @Test
-    public void testInsertInvalidIndex1() {
+    public void testInsertWrongPositiveIndex() {
         final int INDEX = 1000;
         PurchaseList purchaseList = new PurchaseList();
         purchaseList.addArray(PURCHASE_ARRAY);
@@ -96,16 +98,18 @@ public class TestRunner {
     }
 
     @Test
-    public void testPurchaseSearch() throws LineException {
-        PurchaseList purchaseList = new PurchaseList(FILE_NAME, new PurchaseComparator());
-        Assert.assertEquals(new PriceDiscountPurchase("meat", new Byn(1100), 2,
-                new Byn(80)).toString(), purchaseList.binarySearch("meat;1100;2;80").toString());
+    public void testSearchPurchase() throws LineException {
+        PurchaseList purchaseList = new PurchaseList();
+        purchaseList.addArray(PURCHASE_ARRAY);
+        Assert.assertEquals(new Purchase("butter", new Byn(370), 1).toString(),
+                purchaseList.getIndPurchases(purchaseList.binarySearch("butter;370;1")).toString());
     }
 
     @Test
-    public void testWrongNamePurchaseSearch() throws LineException {
-        PurchaseList purchaseList = new PurchaseList(FILE_NAME, new PurchaseComparator());
-        Assert.assertEquals(null, purchaseList.binarySearch("meat;999999;2;80"));
+    public void testSearchWrongPurchase() throws LineException {
+        PurchaseList purchaseList = new PurchaseList();
+        purchaseList.addArray(PURCHASE_ARRAY);
+        Assert.assertTrue(purchaseList.binarySearch("mango;99999;11111") < 0);
     }
 
     @Test
@@ -118,7 +122,7 @@ public class TestRunner {
     }
 
     @Test
-    public void testRemove() {
+    public void testRemoveValidIndex() {
         final int START_IND = 3;
         final int END_IND = 7;
         PurchaseList purchaseList = new PurchaseList();
@@ -136,7 +140,7 @@ public class TestRunner {
     }
 
     @Test
-    public void testRemoveWrongIndex() {
+    public void testRemoveWrongEndPositiveIndex() {
         final int START_IND = 4;
         final int END_IND = 20;
         PurchaseList purchaseList = new PurchaseList();
@@ -154,7 +158,7 @@ public class TestRunner {
     }
 
     @Test
-    public void testRemoveWrongIndex1() {
+    public void testRemoveWrongStartNegativeIndex() {
         final int START_IND = -5;
         final int END_IND = 2;
         PurchaseList purchaseList = new PurchaseList();
@@ -174,7 +178,7 @@ public class TestRunner {
     }
 
     @Test
-    public void testRemoveWrongIndex2() {
+    public void testRemoveWrongStartIndex() {
         final int START_IND = 5;
         final int END_IND = 2;
         PurchaseList purchaseList = new PurchaseList();
@@ -182,6 +186,9 @@ public class TestRunner {
         Purchase[] expectedPurchaseArray = {
                 new Purchase("bread", new Byn(145), 5),
                 new Purchase("bread", new Byn(154), 3),
+                new PriceDiscountPurchase("bread", new Byn(155), 1, new Byn(2)),
+                new PriceDiscountPurchase("butter", new Byn(341), 1, new Byn(1)),
+                new Purchase("butter", new Byn(370), 1),
                 new PriceDiscountPurchase("meat", new Byn(1100), 2, new Byn(80)),
                 new Purchase("milk", new Byn(131), 2),
                 new PriceDiscountPurchase("potato", new Byn(180), 2, new Byn(10))
@@ -201,27 +208,27 @@ public class TestRunner {
     }
 
     @Test(expected = LineException.class)
-    public void testFirstWrongField() throws LineException {
+    public void testPurchaseFactoryALlInvalidValues() throws LineException {
         Purchase purchase = PurchaseFactory.getPurchaseFromFactory(";;");
     }
 
     @Test(expected = LineException.class)
-    public void testSecondWrongField() throws LineException {
-        Purchase purchase = PurchaseFactory.getPurchaseFromFactory(";ok;ok");
+    public void testPurchaseFactoryFirstInvalidValues() throws LineException {
+        Purchase purchase = PurchaseFactory.getPurchaseFromFactory(";145;5");
     }
 
     @Test(expected = LineException.class)
-    public void testThirdWrongField() throws LineException {
+    public void testPurchaseFactoryFirstSecondInvalidValues() throws LineException {
         Purchase purchase = PurchaseFactory.getPurchaseFromFactory("potato;0;0");
     }
 
     @Test(expected = LineException.class)
-    public void testFourWrongField() throws LineException {
+    public void testPurchaseFactoryWrongFieldNum() throws LineException {
         Purchase purchase = PurchaseFactory.getPurchaseFromFactory("potato");
     }
 
     @Test(expected = LineException.class)
-    public void testFiveWrongField() throws LineException {
+    public void testPurchaseFactoryOutOfBoundsInvalidValues() throws LineException {
         Purchase purchase = PurchaseFactory.getPurchaseFromFactory("water;15;4;0.1;cold");
     }
 }
