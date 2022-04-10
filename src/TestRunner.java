@@ -101,15 +101,15 @@ public class TestRunner {
     public void testSearchPurchase() throws LineException {
         PurchaseList purchaseList = new PurchaseList();
         purchaseList.addArray(PURCHASE_ARRAY);
-        Assert.assertEquals(new Purchase("bread", new Byn(370), 1),
-                purchaseList.getIndPurchases(purchaseList.binarySearch(new Purchase("butter", new Byn(370),1))));
+        Assert.assertEquals(new Purchase("butter", new Byn(370), 1).toString(),
+                purchaseList.getIndPurchases(purchaseList.binarySearch(new Purchase("butter", new Byn(370), 1))).toString());
     }
 
     @Test
     public void testSearchWrongPurchase() throws LineException {
         PurchaseList purchaseList = new PurchaseList();
         purchaseList.addArray(PURCHASE_ARRAY);
-        Assert.assertTrue(purchaseList.binarySearch(new Purchase("mango", new Byn(999999),11111)) < 0);
+        Assert.assertTrue(purchaseList.binarySearch(new Purchase("mango", new Byn(999999),111))< 0);
     }
 
     @Test

@@ -104,13 +104,10 @@ public class PurchaseList {
     }
 
     public int binarySearch(Purchase purchase) {
-        int result = -1;
         if (!isSorted) {
             purchases.sort(comparator);
-        } else {
-            result = Collections.binarySearch(purchases, purchase, comparator);
         }
-        return result;
+        return Collections.binarySearch(purchases, purchase, comparator);
     }
 
     @Override
