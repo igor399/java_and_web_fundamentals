@@ -1,6 +1,7 @@
 package by.epam.lab.beans;
 
 import by.epam.lab.exceptions.DiscountMoreOrEqualPriceException;
+import by.epam.lab.exceptions.MoreThanMaxValueException;
 import by.epam.lab.exceptions.NonPositiveArgumentException;
 
 import static by.epam.lab.services.GlobalConstants.*;
@@ -9,6 +10,7 @@ import static by.epam.lab.services.GlobalConstants.*;
 public class Byn implements Comparable<Byn> {
     private final static String REG_EXP = "%d.%02d";
     private final static String INV_VALUE = "Invalid value: ";
+    private final static String INV_MAX_VALUE = "Maximum value of kopecks exceeded: ";
     private static final int MAX_KOPECKS_VALUE = 100;
     private final int kopecks;
 
@@ -41,7 +43,7 @@ public class Byn implements Comparable<Byn> {
             throw new NonPositiveArgumentException(INV_VALUE + rubs + SEMICOLON + kopecks);
         }
         if (kopecks >= MAX_KOPECKS_VALUE) {
-            throw new DiscountMoreOrEqualPriceException(INV_VALUE + rubs + SEMICOLON + kopecks);
+            throw new MoreThanMaxValueException(INV_MAX_VALUE + rubs + SEMICOLON + kopecks);
         }
         return rubs * MAX_KOPECKS_VALUE + kopecks;
     }
