@@ -3,7 +3,7 @@ package by.epam.lab.beans;
 import by.epam.lab.exceptions.DiscountMoreOrEqualPriceException;
 import by.epam.lab.exceptions.NonPositiveArgumentException;
 
-import static by.epam.lab.services.PurchaseConstants.*;
+import static by.epam.lab.services.GlobalConstants.*;
 
 public class PriceDiscountPurchase extends Purchase {
     private Byn discount;

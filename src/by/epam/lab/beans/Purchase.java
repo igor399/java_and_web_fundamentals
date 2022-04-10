@@ -2,7 +2,7 @@ package by.epam.lab.beans;
 
 import by.epam.lab.exceptions.NonPositiveArgumentException;
 
-import static by.epam.lab.services.PurchaseConstants.*;
+import static by.epam.lab.services.GlobalConstants.*;
 
 public class Purchase {
     protected static final int PRODUCT_PARAM = 0;

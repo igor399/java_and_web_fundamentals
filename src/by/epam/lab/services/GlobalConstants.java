@@ -1,5 +1,5 @@
 package by.epam.lab.services;
 
-public class PurchaseConstants {
+public class GlobalConstants {
     public static final String SEMICOLON = ";";
 }

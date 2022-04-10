@@ -1,9 +1,9 @@
 package by.epam.lab.beans;
 
+import by.epam.lab.exceptions.DiscountMoreOrEqualPriceException;
 import by.epam.lab.exceptions.NonPositiveArgumentException;
 
-import static by.epam.lab.beans.Purchase.*;
-import static by.epam.lab.services.PurchaseConstants.*;
+import static by.epam.lab.services.GlobalConstants.*;
 
 
 public class Byn implements Comparable<Byn> {
@@ -41,7 +41,7 @@ public class Byn implements Comparable<Byn> {
             throw new NonPositiveArgumentException(INV_VALUE + rubs + SEMICOLON + kopecks);
         }
         if (kopecks >= MAX_KOPECKS_VALUE) {
-            throw new NonPositiveArgumentException(INV_VALUE + rubs + SEMICOLON + kopecks);
+            throw new DiscountMoreOrEqualPriceException(INV_VALUE + rubs + SEMICOLON + kopecks);
         }
         return rubs * MAX_KOPECKS_VALUE + kopecks;
     }
@@ -73,6 +73,6 @@ public class Byn implements Comparable<Byn> {
 
     @Override
     public String toString() {
-        return String.format(REG_EXP, kopecks / 100, kopecks % 100);
+        return String.format(REG_EXP, kopecks / MAX_KOPECKS_VALUE, kopecks % MAX_KOPECKS_VALUE);
     }
 }

@@ -4,7 +4,7 @@ import by.epam.lab.beans.PriceDiscountPurchase;
 import by.epam.lab.beans.Purchase;
 import by.epam.lab.exceptions.LineException;
 
-import static by.epam.lab.services.PurchaseConstants.*;
+import static by.epam.lab.services.GlobalConstants.*;
 
 public class PurchaseFactory {
     private final static int PARAM_NUMB = 3;

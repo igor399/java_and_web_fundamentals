@@ -103,12 +103,14 @@ public class PurchaseList {
         isSorted = true;
     }
 
-    public int binarySearch(String strPurchase) throws LineException {
-        Purchase tmpPurchase = PurchaseFactory.getPurchaseFromFactory(strPurchase);
+    public int binarySearch(Purchase purchase) {
+        int result = -1;
         if (!isSorted) {
-            this.sort();
+            purchases.sort(comparator);
+        } else {
+            result = Collections.binarySearch(purchases, purchase, comparator);
         }
-        return Collections.binarySearch(purchases, tmpPurchase, comparator);
+        return result;
     }
 
     @Override
