@@ -6,7 +6,7 @@ import by.epam.lab.exceptions.NonPositiveArgumentException;
 import static by.epam.lab.services.GlobalConstants.*;
 
 public class PriceDiscountPurchase extends Purchase {
-    private Byn discount;
+    private final Byn discount;
     private static final int DISCOUNT_PARAM = 3;
     private static final int DISCOUNT_PURCHASE_FIELDS_NUMBER = 4;
     private static final String WRONG_ARGS_NUM = "Wrong args number";
