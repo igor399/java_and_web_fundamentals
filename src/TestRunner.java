@@ -1,8 +1,7 @@
 import by.epam.lab.beans.*;
-import by.epam.lab.services.PurchaseComparator;
+import by.epam.lab.services.*;
 import by.epam.lab.exceptions.LineException;
-import by.epam.lab.services.PurchaseFactory;
-import by.epam.lab.services.PurchaseList;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -196,6 +195,7 @@ public class TestRunner {
 
     @Test
     public void testRemoveValidIndex() {
+        final  int IND = 4;
         final int START_IND = 3;
         final int END_IND = 7;
         PurchaseList purchaseList = new PurchaseList();
@@ -208,12 +208,13 @@ public class TestRunner {
         };
         PurchaseList expPurchaseList = new PurchaseList();
         expPurchaseList.addArray(expPurchaseArr);
-        purchaseList.remove(START_IND, END_IND);
+        Assert.assertEquals(IND, purchaseList.remove(START_IND, END_IND));
         Assert.assertEquals(expPurchaseList.toString(), purchaseList.toString());
     }
 
     @Test
     public void testRemoveWrongEndPositiveIndex() {
+        final  int IND = 4;
         final int START_IND = 4;
         final int END_IND = 20;
         PurchaseList purchaseList = new PurchaseList();
@@ -226,17 +227,18 @@ public class TestRunner {
         };
         PurchaseList expPurchaseList = new PurchaseList();
         expPurchaseList.addArray(expPurchaseArr);
-        purchaseList.remove(START_IND, END_IND);
+        Assert.assertEquals(IND, purchaseList.remove(START_IND, END_IND));
         Assert.assertEquals(expPurchaseList.toString(), purchaseList.toString());
     }
 
     @Test
     public void testRemoveWrongStartNegativeIndex() {
-        final int START_IND = -5;
+        final int IND = 2;
+        final int START_IND = -3;
         final int END_IND = 2;
         PurchaseList purchaseList = new PurchaseList();
         purchaseList.addArray(PURCHASE_ARRAY);
-        Purchase[] expectedPurchaseArray = {
+        Purchase[] expPurchaseArr = {
                 new PriceDiscountPurchase("bread", new Byn(155), 1, new Byn(2)),
                 new PriceDiscountPurchase("butter", new Byn(341), 1, new Byn(1)),
                 new Purchase("butter", new Byn(370), 1),
@@ -245,18 +247,19 @@ public class TestRunner {
                 new PriceDiscountPurchase("potato", new Byn(180), 2, new Byn(10))
         };
         PurchaseList expPurchaseList = new PurchaseList();
-        expPurchaseList.addArray(expectedPurchaseArray);
-        purchaseList.remove(START_IND, END_IND);
+        expPurchaseList.addArray(expPurchaseArr);
+        Assert.assertEquals(IND, purchaseList.remove(START_IND, END_IND));
         Assert.assertEquals(expPurchaseList.toString(), purchaseList.toString());
     }
 
     @Test
     public void testRemoveWrongStartIndex() {
+        final int IND = 0;
         final int START_IND = 5;
         final int END_IND = 2;
         PurchaseList purchaseList = new PurchaseList();
         purchaseList.addArray(PURCHASE_ARRAY);
-        Purchase[] expectedPurchaseArray = {
+        Purchase[] expPurchaseArr = {
                 new Purchase("bread", new Byn(145), 5),
                 new Purchase("bread", new Byn(154), 3),
                 new PriceDiscountPurchase("bread", new Byn(155), 1, new Byn(2)),
@@ -267,8 +270,54 @@ public class TestRunner {
                 new PriceDiscountPurchase("potato", new Byn(180), 2, new Byn(10))
         };
         PurchaseList expPurchaseList = new PurchaseList();
-        expPurchaseList.addArray(expectedPurchaseArray);
-        purchaseList.remove(START_IND, END_IND);
+        expPurchaseList.addArray(expPurchaseArr);
+        Assert.assertEquals(IND, purchaseList.remove(START_IND, END_IND));
+        Assert.assertEquals(expPurchaseList.toString(), purchaseList.toString());
+    }
+
+    @Test
+    public void testRemoveWrongStartEndNegativeIndex() {
+        final int IND = 0;
+        final int START_IND = -2;
+        final int END_IND = -5;
+        PurchaseList purchaseList = new PurchaseList();
+        purchaseList.addArray(PURCHASE_ARRAY);
+        Purchase[] expPurchaseArr = {
+                new Purchase("bread", new Byn(145), 5),
+                new Purchase("bread", new Byn(154), 3),
+                new PriceDiscountPurchase("bread", new Byn(155), 1, new Byn(2)),
+                new PriceDiscountPurchase("butter", new Byn(341), 1, new Byn(1)),
+                new Purchase("butter", new Byn(370), 1),
+                new PriceDiscountPurchase("meat", new Byn(1100), 2, new Byn(80)),
+                new Purchase("milk", new Byn(131), 2),
+                new PriceDiscountPurchase("potato", new Byn(180), 2, new Byn(10))
+        };
+        PurchaseList expPurchaseList = new PurchaseList();
+        expPurchaseList.addArray(expPurchaseArr);
+        Assert.assertEquals(IND, purchaseList.remove(START_IND, END_IND));
+        Assert.assertEquals(expPurchaseList.toString(), purchaseList.toString());
+    }
+
+    @Test
+    public void testRemoveEqualStartEndIndex() {
+        final int IND = 0;
+        final int START_IND = 3;
+        final int END_IND = 3;
+        PurchaseList purchaseList = new PurchaseList();
+        purchaseList.addArray(PURCHASE_ARRAY);
+        Purchase[] expPurchaseArr = {
+                new Purchase("bread", new Byn(145), 5),
+                new Purchase("bread", new Byn(154), 3),
+                new PriceDiscountPurchase("bread", new Byn(155), 1, new Byn(2)),
+                new PriceDiscountPurchase("butter", new Byn(341), 1, new Byn(1)),
+                new Purchase("butter", new Byn(370), 1),
+                new PriceDiscountPurchase("meat", new Byn(1100), 2, new Byn(80)),
+                new Purchase("milk", new Byn(131), 2),
+                new PriceDiscountPurchase("potato", new Byn(180), 2, new Byn(10))
+        };
+        PurchaseList expPurchaseList = new PurchaseList();
+        expPurchaseList.addArray(expPurchaseArr);
+        Assert.assertEquals(IND, purchaseList.remove(START_IND, END_IND));
         Assert.assertEquals(expPurchaseList.toString(), purchaseList.toString());
     }
 }
