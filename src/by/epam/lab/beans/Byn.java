@@ -1,6 +1,5 @@
 package by.epam.lab.beans;
 
-import by.epam.lab.exceptions.DiscountMoreOrEqualPriceException;
 import by.epam.lab.exceptions.MoreThanMaxValueException;
 import by.epam.lab.exceptions.NonPositiveArgumentException;
 

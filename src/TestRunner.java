@@ -98,7 +98,7 @@ public class TestRunner {
     }
 
     @Test
-    public void testSearchPurchase() throws LineException {
+    public void testSearchPurchase() {
         PurchaseList purchaseList = new PurchaseList();
         purchaseList.addArray(PURCHASE_ARRAY);
         Assert.assertEquals(new Purchase("butter", new Byn(370), 1).toString(),
@@ -106,10 +106,10 @@ public class TestRunner {
     }
 
     @Test
-    public void testSearchWrongPurchase() throws LineException {
+    public void testSearchWrongPurchase() {
         PurchaseList purchaseList = new PurchaseList();
         purchaseList.addArray(PURCHASE_ARRAY);
-        Assert.assertTrue(purchaseList.binarySearch(new Purchase("mango", new Byn(999999),111))< 0);
+        Assert.assertTrue(purchaseList.binarySearch(new Purchase("mango", new Byn(999999), 111)) < 0);
     }
 
     @Test

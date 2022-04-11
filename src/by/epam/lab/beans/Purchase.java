@@ -10,9 +10,9 @@ public class Purchase {
     protected static final int NUMBER_PARAM = 2;
     private static final int PURCHASE_FIELDS_NUMBER = 3;
     private static final String WRONG_ARGS_NUM = "Wrong args number";
-    private String productName;
-    private Byn price;
-    private int number;
+    private final String productName;
+    private final Byn price;
+    private final int number;
 
     public Purchase(String productName, Byn price, int number) {
         if (productName.trim().isEmpty()) {

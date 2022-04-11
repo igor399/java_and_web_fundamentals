@@ -98,7 +98,7 @@ public class PurchaseList {
 
     public void sort() {
         if (!isSorted) {
-            Collections.sort(purchases, comparator);
+            purchases.sort(comparator);
         }
         isSorted = true;
     }
