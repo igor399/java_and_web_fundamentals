@@ -17,6 +17,7 @@ public class PriceDiscountPurchase extends Purchase {
             throw new DiscountMoreOrEqualPriceException(WRONG_ARGS_NUM);
         }
         this.discount = discount;
+        setDiscount(discount);
     }
 
     public PriceDiscountPurchase(PriceDiscountPurchase priceDiscountPurchase) {
@@ -26,6 +27,16 @@ public class PriceDiscountPurchase extends Purchase {
 
     public PriceDiscountPurchase(String[] fields) {
         this(getValidPriceDiscountPurchase(fields));
+    }
+
+    public final void setDiscount(Byn discount) {
+        if (discount.compareTo(new Byn()) == 0) {
+            throw new NonPositiveArgumentException(WRONG_ARGS_NUM);
+        }
+        if (getPrice().compareTo(discount) <= 0) {
+            throw new DiscountMoreOrEqualPriceException(WRONG_ARGS_NUM);
+        }
+        this.discount = discount;
     }
 
     private static PriceDiscountPurchase getValidPriceDiscountPurchase(String[] fields) {
