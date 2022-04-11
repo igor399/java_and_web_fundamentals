@@ -7,7 +7,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class TestRunner {
-    private static final String FILE_NAME = "src/in.csv";
+    private static final String FILE_NAME = "resources/in.csv";
     private final Purchase[] PURCHASE_ARRAY = {
             new Purchase("bread", new Byn(145), 5),
             new Purchase("bread", new Byn(154), 3),
