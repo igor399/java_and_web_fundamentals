@@ -85,6 +85,14 @@ public class TestRunner {
     }
 
     @Test
+    public void testPurchaseFactoryToString() throws LineException {
+        Assert.assertEquals(new Purchase("mango", new Byn(111), 1).toString(),
+                PurchaseFactory.getPurchaseFromFactory("mango;111;1").toString());
+        Assert.assertEquals(new PriceDiscountPurchase("apple", new Byn(222), 2,
+                new Byn(10)).toString(), PurchaseFactory.getPurchaseFromFactory("apple;222;2;10").toString());
+    }
+
+    @Test
     public void testConstructorPurchaseList() {
         PurchaseList purchaseList = new PurchaseList(FILE_NAME, new PurchaseComparator());
         String stringPurchase = "bread;1.55;1;0.02;1.53\n" +
@@ -262,13 +270,5 @@ public class TestRunner {
         expPurchaseList.addArray(expectedPurchaseArray);
         purchaseList.remove(START_IND, END_IND);
         Assert.assertEquals(expPurchaseList.toString(), purchaseList.toString());
-    }
-
-    @Test
-    public void testPurchaseFactory() throws LineException {
-        Assert.assertEquals(new Purchase("mango", new Byn(111), 1).toString(),
-                PurchaseFactory.getPurchaseFromFactory("mango;111;1").toString());
-        Assert.assertEquals(new PriceDiscountPurchase("apple", new Byn(222), 2,
-                new Byn(10)).toString(), PurchaseFactory.getPurchaseFromFactory("apple;222;2;10").toString());
     }
 }
