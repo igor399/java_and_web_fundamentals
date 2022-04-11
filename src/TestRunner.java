@@ -19,6 +19,71 @@ public class TestRunner {
             new PriceDiscountPurchase("potato", new Byn(180), 2, new Byn(10))
     };
 
+    @Test(expected = LineException.class)
+    public void testPurchaseFactoryWrongPriceValue() throws LineException {
+        Purchase purchase = PurchaseFactory.getPurchaseFromFactory("candy;0;2");
+    }
+
+    @Test(expected = LineException.class)
+    public void testPurchaseFactoryWrongPriceNumUnits() throws LineException {
+        Purchase purchase = PurchaseFactory.getPurchaseFromFactory("candy;-100;-2");
+    }
+
+    @Test(expected = LineException.class)
+    public void testPurchaseFactoryWrongDiscount() throws LineException {
+        Purchase purchase = PurchaseFactory.getPurchaseFromFactory("candy;100;2;0");
+    }
+
+    @Test(expected = LineException.class)
+    public void testPurchaseFactoryWrongParamPriceNumUnits() throws LineException {
+        Purchase purchase = PurchaseFactory.getPurchaseFromFactory("candy");
+    }
+
+    @Test(expected = LineException.class)
+    public void testPurchaseFactoryWrongProductName() throws LineException {
+        Purchase purchase = PurchaseFactory.getPurchaseFromFactory(";100;2");
+    }
+
+    @Test(expected = LineException.class)
+    public void testPurchaseFactoryWrongPrice() throws LineException {
+        Purchase purchase = PurchaseFactory.getPurchaseFromFactory("beer;;1");
+    }
+
+    @Test(expected = LineException.class)
+    public void testPurchaseFactoryWrongDiscountMorePrice() throws LineException {
+        Purchase purchase = PurchaseFactory.getPurchaseFromFactory("candy;100;2;500");
+    }
+
+    @Test(expected = LineException.class)
+    public void testPurchaseFactoryWrongDiscountEqualPrice() throws LineException {
+        Purchase purchase = PurchaseFactory.getPurchaseFromFactory("candy;100;2;100");
+    }
+
+    @Test(expected = LineException.class)
+    public void testPurchaseFactoryOutOfBoundsParam() throws LineException {
+        Purchase purchase = PurchaseFactory.getPurchaseFromFactory("water;15;4;0.1;cold");
+    }
+
+    @Test(expected = LineException.class)
+    public void testPurchaseFactoryWrongDiscountNegative() throws LineException {
+        Purchase purchase = PurchaseFactory.getPurchaseFromFactory("water;70;5;-1");
+    }
+
+    @Test(expected = LineException.class)
+    public void testPurchaseFactoryWrongPriceValueString() throws LineException {
+        Purchase purchase = PurchaseFactory.getPurchaseFromFactory("water;ok;4");
+    }
+
+    @Test(expected = LineException.class)
+    public void testPurchaseFactoryWrongDiscountValue() throws LineException {
+        Purchase purchase = PurchaseFactory.getPurchaseFromFactory("water;70;4;0.5");
+    }
+
+    @Test(expected = LineException.class)
+    public void testPurchaseFactoryWrongPriceValueFractional() throws LineException {
+        Purchase purchase = PurchaseFactory.getPurchaseFromFactory("water;70.5;5;1");
+    }
+
     @Test
     public void testConstructorPurchaseList() {
         PurchaseList purchaseList = new PurchaseList(FILE_NAME, new PurchaseComparator());
@@ -205,30 +270,5 @@ public class TestRunner {
                 PurchaseFactory.getPurchaseFromFactory("mango;111;1").toString());
         Assert.assertEquals(new PriceDiscountPurchase("apple", new Byn(222), 2,
                 new Byn(10)).toString(), PurchaseFactory.getPurchaseFromFactory("apple;222;2;10").toString());
-    }
-
-    @Test(expected = LineException.class)
-    public void testPurchaseFactoryALlInvalidValues() throws LineException {
-        Purchase purchase = PurchaseFactory.getPurchaseFromFactory(";;");
-    }
-
-    @Test(expected = LineException.class)
-    public void testPurchaseFactoryFirstInvalidValues() throws LineException {
-        Purchase purchase = PurchaseFactory.getPurchaseFromFactory(";145;5");
-    }
-
-    @Test(expected = LineException.class)
-    public void testPurchaseFactoryFirstSecondInvalidValues() throws LineException {
-        Purchase purchase = PurchaseFactory.getPurchaseFromFactory("potato;0;0");
-    }
-
-    @Test(expected = LineException.class)
-    public void testPurchaseFactoryWrongFieldNum() throws LineException {
-        Purchase purchase = PurchaseFactory.getPurchaseFromFactory("potato");
-    }
-
-    @Test(expected = LineException.class)
-    public void testPurchaseFactoryOutOfBoundsInvalidValues() throws LineException {
-        Purchase purchase = PurchaseFactory.getPurchaseFromFactory("water;15;4;0.1;cold");
     }
 }
