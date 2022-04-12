@@ -60,6 +60,10 @@ public class Purchase {
         return new Purchase(fields[PRODUCT_PARAM], new Byn(fields[PRICE_PARAM]), Integer.parseInt(fields[NUMBER_PARAM]));
     }
 
+    public Purchase getCopy(){
+        return new Purchase(this);
+    }
+
     protected String fieldsToString() {
         return productName + SEMICOLON + price + SEMICOLON + number;
     }

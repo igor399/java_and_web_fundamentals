@@ -1,7 +1,6 @@
 package by.epam.lab.services;
 
-import by.epam.lab.beans.PriceDiscountPurchase;
-import by.epam.lab.beans.Purchase;
+import by.epam.lab.beans.*;
 import by.epam.lab.exceptions.LineException;
 
 import static by.epam.lab.services.GlobalConstants.*;

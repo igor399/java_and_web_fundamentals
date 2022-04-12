@@ -1,7 +1,6 @@
 package by.epam.lab.beans;
 
-import by.epam.lab.exceptions.MoreThanMaxValueException;
-import by.epam.lab.exceptions.NonPositiveArgumentException;
+import by.epam.lab.exceptions.*;
 
 import static by.epam.lab.services.GlobalConstants.*;
 

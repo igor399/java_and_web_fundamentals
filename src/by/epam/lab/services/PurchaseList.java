@@ -1,8 +1,6 @@
 package by.epam.lab.services;
 
-import by.epam.lab.beans.Byn;
-import by.epam.lab.beans.PriceDiscountPurchase;
-import by.epam.lab.beans.Purchase;
+import by.epam.lab.beans.*;
 import by.epam.lab.exceptions.LineException;
 
 import java.io.FileNotFoundException;
@@ -42,7 +40,7 @@ public class PurchaseList {
     public List<Purchase> getPurchases() {
         List<Purchase> copyList = new ArrayList<>();
         for (Purchase purchase : purchases) {
-            copyList.add(new Purchase(purchase));
+            copyList.add(purchase.getCopy());
         }
         return copyList;
     }
