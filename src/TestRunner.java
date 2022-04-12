@@ -256,7 +256,7 @@ public class TestRunner {
     public void testGetTotalCost() {
         PurchaseList purchaseList = new PurchaseList();
         purchaseList.addArray(PURCHASE_ARRAY);
-        Assert.assertEquals(new Byn(4875), purchaseList.getTotalCost());
+        Assert.assertEquals(new Byn(4692), purchaseList.getTotalCost());
     }
 
     @Test

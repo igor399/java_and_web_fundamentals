@@ -39,6 +39,11 @@ public class PriceDiscountPurchase extends Purchase {
     }
 
     @Override
+    public PriceDiscountPurchase getCopy(){
+        return new PriceDiscountPurchase(this);
+    }
+
+    @Override
     public Byn getCost() {
         return getPrice().subtract(discount).multiply(getNumber());
     }
