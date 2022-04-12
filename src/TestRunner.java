@@ -133,7 +133,7 @@ public class TestRunner {
         Assert.assertEquals(new Purchase("mango", new Byn(111), 1).toString(),
                 PurchaseFactory.getPurchaseFromFactory("mango;111;1").toString());
         Assert.assertEquals(new PriceDiscountPurchase("apple", new Byn(222), 2,
-                new Byn(10)).toString(), PurchaseFactory.getPurchaseFromFactory("apple;222;2;10").toString());
+            new Byn(10)).toString(), PurchaseFactory.getPurchaseFromFactory("apple;222;2;10").toString());
     }
 
     @Test(expected = NonPositiveArgumentException.class)
@@ -144,6 +144,11 @@ public class TestRunner {
     @Test(expected = NonPositiveArgumentException.class)
     public void testBynWrongKopecksNegative() throws NonPositiveArgumentException {
         new Byn(10, -11);
+    }
+
+    @Test(expected = NonPositiveArgumentException.class)
+    public void testBynWrongRubsKopecksNegative() throws NonPositiveArgumentException {
+        new Byn(-10, -11);
     }
 
     @Test(expected = MoreThanMaxValueException.class)

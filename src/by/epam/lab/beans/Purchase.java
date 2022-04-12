@@ -55,7 +55,7 @@ public class Purchase {
 
     private static Purchase getValidPurchase(String[] fields) {
         if (fields.length != PURCHASE_FIELDS_NUMBER) {
-            throw new NonPositiveArgumentException(WRONG_ARGS_NUM);
+            throw new IllegalArgumentException(WRONG_ARGS_NUM);
         }
         return new Purchase(fields[PRODUCT_PARAM], new Byn(fields[PRICE_PARAM]), Integer.parseInt(fields[NUMBER_PARAM]));
     }

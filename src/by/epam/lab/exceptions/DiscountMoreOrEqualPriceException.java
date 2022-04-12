@@ -3,6 +3,7 @@ package by.epam.lab.exceptions;
 public class DiscountMoreOrEqualPriceException extends IllegalArgumentException  {
 
     public DiscountMoreOrEqualPriceException() {
+
     }
 
     public DiscountMoreOrEqualPriceException(String s) {
