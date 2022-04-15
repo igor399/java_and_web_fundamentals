@@ -1,17 +1,13 @@
 package by.epam.lab.beans;
 
 import by.epam.lab.services.RoundMethod;
+
 import static by.epam.lab.services.GlobalConstants.*;
 
 public class Service implements Item {
-    private final String name;
-    private final Byn totalCost;
+    private String name;
+    private Byn totalCost;
     private int numUsers;
-
-    public Service() {
-        name = null;
-        totalCost = null;
-    }
 
     public Service(String name, Byn totalCost, int numUsers) {
         this.name = name;
@@ -21,6 +17,18 @@ public class Service implements Item {
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Byn getTotalCost() {
+        return totalCost;
+    }
+
+    public void setTotalCost(Byn totalCost) {
+        this.totalCost = totalCost;
     }
 
     public int getNumUsers() {
@@ -33,7 +41,7 @@ public class Service implements Item {
 
     @Override
     public Byn getPrice() {
-        return totalCost.divide(numUsers, RoundMethod.CEIL, 0);
+        return totalCost.multiply(1.0 / numUsers, RoundMethod.CEIL, 0);
     }
 
     @Override

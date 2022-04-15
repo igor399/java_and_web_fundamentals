@@ -6,10 +6,6 @@ import static by.epam.lab.services.GlobalConstants.*;
 public class PurchaseUtils {
     private final Purchase purchase;
 
-    public PurchaseUtils() {
-        purchase = null;
-    }
-
     public PurchaseUtils(Purchase purchase) {
         this.purchase = purchase;
     }

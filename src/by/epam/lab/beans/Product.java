@@ -1,16 +1,12 @@
 package by.epam.lab.beans;
 
 import by.epam.lab.services.*;
+
 import static by.epam.lab.services.GlobalConstants.*;
 
 public class Product implements Item {
-    private final String name;
-    private final Byn price;
-
-    public Product() {
-        name = null;
-        price = null;
-    }
+    private String name;
+    private Byn price;
 
     public Product(String name, Byn price) {
         this.name = name;
@@ -21,6 +17,19 @@ public class Product implements Item {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPrice(Byn price) {
+        this.price = price;
+    }
+
+    @Override
+    public Byn getPrice() {
+        return price;
+    }
+
     protected String fieldToString() {
         return name + SEMICOLON + price;
     }
@@ -28,10 +37,5 @@ public class Product implements Item {
     @Override
     public String toString() {
         return fieldToString();
-    }
-
-    @Override
-    public Byn getPrice() {
-        return price;
     }
 }

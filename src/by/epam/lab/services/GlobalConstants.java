@@ -11,5 +11,5 @@ public class GlobalConstants {
     public final static String NEXT_LINE = "\n";
     public final static String COST = "cost = ";
     public final static String SAME_COST = "same cost purchase: ";
-    public final static String NO_SAME_COST = "no same cost purchase: ";
+    public final static String NO_SAME_COST = "no same cost purchase";
 }

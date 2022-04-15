@@ -6,10 +6,6 @@ import static by.epam.lab.services.GlobalConstants.*;
 public class Byn implements Comparable<Byn> {
     private final int kopecks;
 
-    public Byn() {
-        this(0);
-    }
-
     public Byn(Byn byn) {
         this(byn.kopecks);
     }
@@ -28,10 +24,6 @@ public class Byn implements Comparable<Byn> {
 
     public Byn multiply(int times) {
         return new Byn(kopecks * times);
-    }
-
-    public Byn divide(int a, RoundMethod roundMethod, int d) {
-        return new Byn(roundMethod.round((double) kopecks / a, d));
     }
 
     public Byn multiply(double k, RoundMethod roundMethod, int d) {
