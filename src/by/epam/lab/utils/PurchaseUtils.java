@@ -9,7 +9,8 @@ public class PurchaseUtils {
     private final static String BYN = "BYN";
     private final static String NEXT_LINE = "\n";
     private final static String COST = "cost = ";
-    private final static String SAME_COST = "cost = ";
+    private final static String SAME_COST = "same cost purchase: ";
+    private final static String NO_SAME_COST = "no same cost purchase: ";
     private final Purchase purchase;
 
     public PurchaseUtils() {
@@ -29,7 +30,7 @@ public class PurchaseUtils {
     }
 
     public void printCost() {
-        System.out.print(COST + purchase.getCost() + BYN +NEXT_LINE);
+        System.out.print(COST + purchase.getCost() + BYN + NEXT_LINE);
     }
 
     public void printCostDiff(Purchase purchase) {
@@ -47,11 +48,11 @@ public class PurchaseUtils {
     }
 
     public void printSameCost(Purchase[] purchases) {
-        System.out.println(SAME_COST + purchase);
-        for (Purchase p : purchases) {
-            if (purchase.getCost().equals(p.getCost())) {
-                System.out.println(p);
+        for (Purchase equalPurchase : purchases) {
+            if (purchase.getCost().equals(equalPurchase.getCost())) {
+                System.out.println(SAME_COST + purchase);
             }
         }
+        System.out.println(NO_SAME_COST);
     }
 }
