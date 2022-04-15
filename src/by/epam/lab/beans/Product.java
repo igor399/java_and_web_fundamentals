@@ -1,6 +1,5 @@
 package by.epam.lab.beans;
 
-import by.epam.lab.exceptions.*;
 import by.epam.lab.services.*;
 
 public class Product implements Item {
@@ -14,12 +13,6 @@ public class Product implements Item {
     }
 
     public Product(String name, Byn price) {
-        if (name.trim().isEmpty()) {
-            throw new IllegalArgumentException(WRONG_ARGS_NUM);
-        }
-        if (price.compareTo(new Byn()) == 0) {
-            throw new NonPositiveArgumentException(WRONG_ARGS_NUM);
-        }
         this.name = name;
         this.price = price;
     }

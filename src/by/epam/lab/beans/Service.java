@@ -33,7 +33,7 @@ public class Service implements Item {
 
     @Override
     public Byn getPrice() {
-        return totalCost.divide(numUsers, RoundMethod.CEIL, 0);
+        return totalCost.multiply(1.0 / numUsers, RoundMethod.CEIL, 0);
     }
 
     @Override

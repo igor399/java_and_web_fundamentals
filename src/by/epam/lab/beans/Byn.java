@@ -1,11 +1,9 @@
 package by.epam.lab.beans;
 
-import by.epam.lab.exceptions.*;
 import by.epam.lab.services.RoundMethod;
 
 public class Byn implements Comparable<Byn> {
     private final static String REG_EXP = "%d.%02d";
-    private final static String INV_VALUE = "Invalid value: ";
     private static final int MAX_KOPECKS_VALUE = 100;
     private final int kopecks;
 
@@ -18,9 +16,6 @@ public class Byn implements Comparable<Byn> {
     }
 
     public Byn(int kopecks) {
-        if (kopecks < 0) {
-            throw new NonPositiveArgumentException(INV_VALUE + kopecks);
-        }
         this.kopecks = kopecks;
     }
 
@@ -34,10 +29,6 @@ public class Byn implements Comparable<Byn> {
 
     public Byn multiply(int times) {
         return new Byn(kopecks * times);
-    }
-
-    public Byn divide(int times, RoundMethod roundMethod, int d) {
-        return new Byn(roundMethod.round((double) kopecks / times, d));
     }
 
     public Byn multiply(double k, RoundMethod roundMethod, int d) {

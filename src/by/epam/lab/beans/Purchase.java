@@ -29,19 +29,9 @@ public class Purchase implements Comparable<Purchase>{
         this.quantity = quantity;
     }
 
-    public Byn getCost(){
-        Byn itemCost = item.getPrice();
-        Byn cost = new Byn();
-        if (quantity.getClass() == Integer.class) {
-            cost = itemCost.multiply((int) quantity).round(RoundMethod.ROUND, 0);
-        }
-        if (quantity.getClass() == Double.class) {
-            cost = itemCost.multiply((double) quantity, RoundMethod.ROUND, 0);
-        }
-        return cost;
+    public Byn getCost() {
+        return item.getPrice().multiply(quantity.doubleValue(), RoundMethod.ROUND, 0);
     }
-
-
 
     @Override
     public int compareTo(Purchase o) {
