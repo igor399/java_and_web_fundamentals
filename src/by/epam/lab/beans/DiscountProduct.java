@@ -4,7 +4,6 @@ import static by.epam.lab.services.GlobalConstants.*;
 
 public class DiscountProduct extends Product {
     private Byn discount;
-    private static final String WRONG_ARGS_NUM = "Wrong args number";
 
     public DiscountProduct(String name, Byn price, Byn discount) {
         super(name, price);

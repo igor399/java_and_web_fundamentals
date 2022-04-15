@@ -1,7 +1,6 @@
 package by.epam.lab.beans;
 
-import static by.epam.lab.services.GlobalConstants.*;
-import by.epam.lab.services.RoundMethod;
+import by.epam.lab.services.*;
 
 public class Service implements Item {
     private final String name;
@@ -38,6 +37,6 @@ public class Service implements Item {
 
     @Override
     public String toString() {
-        return name + SEMICOLON + totalCost + SEMICOLON + numUsers;
+        return name + GlobalConstants.SEMICOLON + totalCost + GlobalConstants.SEMICOLON + numUsers;
     }
 }

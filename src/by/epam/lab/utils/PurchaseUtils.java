@@ -3,7 +3,14 @@ package by.epam.lab.utils;
 import by.epam.lab.beans.*;
 
 public class PurchaseUtils {
-    private Purchase purchase;
+    private final static String POS_DIF = "positive difference = ";
+    private final static String NEG_DIF = "negative difference = ";
+    private final static String DIF = "difference = ";
+    private final static String BYN = "BYN";
+    private final static String NEXT_LINE = "\n";
+    private final static String COST = "cost = ";
+    private final static String SAME_COST = "cost = ";
+    private final Purchase purchase;
 
     public PurchaseUtils() {
         purchase = null;
@@ -22,7 +29,7 @@ public class PurchaseUtils {
     }
 
     public void printCost() {
-        System.out.print("cost = " + purchase.getCost() + " BYN\n");
+        System.out.print(COST + purchase.getCost() + BYN +NEXT_LINE);
     }
 
     public void printCostDiff(Purchase purchase) {
@@ -30,17 +37,17 @@ public class PurchaseUtils {
         int result = this.purchase.getCost().compareTo(purchase.getCost());
         if (result > 0) {
             diff = this.purchase.getCost().subtract(purchase.getCost());
-            System.out.println("positive difference = " + diff + "BYN\n");
+            System.out.println(POS_DIF + diff + BYN);
         } else if (result < 0) {
             diff = purchase.getCost().subtract(this.purchase.getCost());
-            System.out.println("negative difference = " + diff + "BYN\n");
+            System.out.println(NEG_DIF + diff + BYN);
         } else {
-            System.out.println("difference = " + diff + "BYN\n");
+            System.out.println(DIF + diff + BYN);
         }
     }
 
     public void printSameCost(Purchase[] purchases) {
-        System.out.println("Same cost purchase" + purchase);
+        System.out.println(SAME_COST + purchase);
         for (Purchase p : purchases) {
             if (purchase.getCost().equals(p.getCost())) {
                 System.out.println(p);
@@ -48,5 +55,3 @@ public class PurchaseUtils {
         }
     }
 }
-
-

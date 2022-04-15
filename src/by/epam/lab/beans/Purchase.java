@@ -1,6 +1,6 @@
 package by.epam.lab.beans;
 
-import by.epam.lab.services.RoundMethod;
+import by.epam.lab.services.*;
 
 import static by.epam.lab.services.GlobalConstants.*;
 

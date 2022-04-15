@@ -5,7 +5,6 @@ import by.epam.lab.services.*;
 public class Product implements Item {
     private final String name;
     private final Byn price;
-    private static final String WRONG_ARGS_NUM = "Wrong args number";
 
     public Product() {
         name = null;
