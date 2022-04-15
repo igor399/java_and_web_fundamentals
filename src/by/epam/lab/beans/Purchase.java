@@ -9,6 +9,7 @@ public class Purchase implements Comparable<Purchase>{
 
     public Purchase() {
         item = null;
+        quantity = null;
     }
 
     public Purchase(Item item, Number quantity) {

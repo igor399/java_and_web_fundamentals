@@ -30,6 +30,10 @@ public class Byn implements Comparable<Byn> {
         return new Byn(kopecks * times);
     }
 
+    public Byn divide(int a, RoundMethod roundMethod, int d) {
+        return new Byn(roundMethod.round((double) kopecks / a, d));
+    }
+
     public Byn multiply(double k, RoundMethod roundMethod, int d) {
         return new Byn(roundMethod.round(kopecks * k, d));
     }
