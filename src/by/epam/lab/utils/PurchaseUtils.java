@@ -1,16 +1,9 @@
 package by.epam.lab.utils;
 
 import by.epam.lab.beans.*;
+import static by.epam.lab.services.GlobalConstants.*;
 
 public class PurchaseUtils {
-    private final static String POS_DIF = "positive difference = ";
-    private final static String NEG_DIF = "negative difference = ";
-    private final static String DIF = "difference = ";
-    private final static String BYN = "BYN";
-    private final static String NEXT_LINE = "\n";
-    private final static String COST = "cost = ";
-    private final static String SAME_COST = "same cost purchase: ";
-    private final static String NO_SAME_COST = "no same cost purchase: ";
     private final Purchase purchase;
 
     public PurchaseUtils() {

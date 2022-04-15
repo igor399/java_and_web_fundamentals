@@ -1,6 +1,7 @@
 package by.epam.lab.beans;
 
 import by.epam.lab.services.*;
+import static by.epam.lab.services.GlobalConstants.*;
 
 public class Product implements Item {
     private final String name;
@@ -21,7 +22,7 @@ public class Product implements Item {
     }
 
     protected String fieldToString() {
-        return name + GlobalConstants.SEMICOLON + price;
+        return name + SEMICOLON + price;
     }
 
     @Override

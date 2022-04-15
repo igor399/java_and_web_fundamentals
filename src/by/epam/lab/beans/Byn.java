@@ -1,10 +1,9 @@
 package by.epam.lab.beans;
 
 import by.epam.lab.services.RoundMethod;
+import static by.epam.lab.services.GlobalConstants.*;
 
 public class Byn implements Comparable<Byn> {
-    private final static String REG_EXP = "%d.%02d";
-    private final static int MAX_KOPECKS_VALUE = 100;
     private final int kopecks;
 
     public Byn() {
