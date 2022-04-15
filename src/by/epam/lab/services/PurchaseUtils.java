@@ -1,4 +1,4 @@
-package by.epam.lab.utils;
+package by.epam.lab.services;
 
 import by.epam.lab.beans.*;
 import static by.epam.lab.services.GlobalConstants.*;
