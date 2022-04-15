@@ -11,8 +11,10 @@ public class Runner {
         PurchaseUtils pu2 = new PurchaseUtils(p2);
         pu2.printCost();
         pu2.printCostDiff(p1);
-        Purchase p3 = new Purchase(new DiscountProduct("sugar", new Byn(260), new Byn(10)), 60);
-        PurchaseUtils pu4 = new PurchaseUtils(new Purchase(new Service("gym workout", new Byn(7560), 5), 2.25));
+        Purchase p3 = new Purchase(new DiscountProduct("sugar", new Byn(260),
+                new Byn(10)), 60);
+        PurchaseUtils pu4 = new PurchaseUtils(new Purchase(new Service("gym workout",
+                new Byn(7560), 5), 2.25));
         Item workoutGym = pu4.getPurchase().getItem();
         pu4.printPurchase();
         pu4.printCost();
