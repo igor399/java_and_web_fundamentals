@@ -1,5 +1,5 @@
 package by.epam.lab.beans;
 
-public interface Item {
+public interface Priceable {
     Byn getPrice();
 }

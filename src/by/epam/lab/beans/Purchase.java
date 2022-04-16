@@ -4,19 +4,19 @@ import by.epam.lab.services.*;
 import static by.epam.lab.services.GlobalConstants.*;
 
 public class Purchase implements Comparable<Purchase>{
-    private Item item;
+    private Priceable item;
     private Number quantity;
 
-    public Purchase(Item item, Number quantity) {
+    public Purchase(Priceable item, Number quantity) {
         this.item = item;
         this.quantity = quantity;
     }
 
-    public Item getItem() {
+    public Priceable getItem() {
         return item;
     }
 
-    public void setItem(Item item) {
+    public void setItem(Priceable item) {
         this.item = item;
     }
 

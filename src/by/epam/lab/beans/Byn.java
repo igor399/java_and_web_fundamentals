@@ -34,6 +34,10 @@ public class Byn implements Comparable<Byn> {
         return new Byn(roundMethod.round(kopecks, d));
     }
 
+    public int getIntValue(){
+        return kopecks;
+    }
+
     @Override
     public int compareTo(Byn o) {
         return kopecks - o.kopecks;

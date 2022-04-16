@@ -4,7 +4,7 @@ import by.epam.lab.services.RoundMethod;
 
 import static by.epam.lab.services.GlobalConstants.*;
 
-public class Service implements Item {
+public class Service implements Priceable {
     private String name;
     private Byn totalCost;
     private int numUsers;

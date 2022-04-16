@@ -1,10 +1,8 @@
 package by.epam.lab.beans;
 
-import by.epam.lab.services.*;
-
 import static by.epam.lab.services.GlobalConstants.*;
 
-public class Product implements Item {
+public class Product implements Priceable {
     private String name;
     private Byn price;
 

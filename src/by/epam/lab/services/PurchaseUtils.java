@@ -1,10 +1,11 @@
 package by.epam.lab.services;
 
 import by.epam.lab.beans.*;
+
 import static by.epam.lab.services.GlobalConstants.*;
 
 public class PurchaseUtils {
-    private final Purchase purchase;
+    private Purchase purchase;
 
     public PurchaseUtils(Purchase purchase) {
         this.purchase = purchase;
@@ -22,26 +23,34 @@ public class PurchaseUtils {
         System.out.print(COST + purchase.getCost() + BYN + NEXT_LINE);
     }
 
-    public void printCostDiff(Purchase purchase) {
-        Byn diff = new Byn(0);
-        int result = this.purchase.getCost().compareTo(purchase.getCost());
+    public void printCostDiff(Purchase p) {
+        Byn greaterCost = purchase.getCost();
+        Byn lesserCost = p.getCost();
+        Byn costDiff = greaterCost.subtract(lesserCost);
+        int result = greaterCost.getIntValue() - lesserCost.getIntValue();
         if (result > 0) {
-            diff = this.purchase.getCost().subtract(purchase.getCost());
-            System.out.println(POS_DIF + diff + BYN);
+            System.out.println(POS_DIF + costDiff + BYN);
         } else if (result < 0) {
-            diff = purchase.getCost().subtract(this.purchase.getCost());
-            System.out.println(NEG_DIF + diff + BYN);
+            System.out.println(NEG_DIF + costDiff + BYN);
         } else {
-            System.out.println(DIF + diff + BYN);
+            System.out.println(DIF + costDiff + BYN);
         }
     }
 
-    public void printSameCost(Purchase[] purchases) {
-        for (Purchase equalPurchase : purchases) {
-            if (purchase.getCost().equals(equalPurchase.getCost())) {
-                System.out.println(SAME_COST + purchase);
+    public void printSameCost(Purchase... purchases) {
+        Purchase equalPurchase = null;
+        boolean isSameCost = false;
+        for (Purchase p : purchases) {
+            if (purchase.getCost().equals(p.getCost())) {
+                isSameCost = true;
+                equalPurchase = p;
+                break;
             }
         }
-        System.out.println(NO_SAME_COST);
+        if (isSameCost) {
+            System.out.println(SAME_COST + equalPurchase);
+        } else {
+            System.out.println(NO_SAME_COST);
+        }
     }
 }
