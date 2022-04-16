@@ -34,7 +34,7 @@ public class Byn implements Comparable<Byn> {
         return new Byn(roundMethod.round(kopecks, d));
     }
 
-    public int getIntValue(){
+    public int getIntValue() {
         return kopecks;
     }
 
@@ -53,6 +53,7 @@ public class Byn implements Comparable<Byn> {
 
     @Override
     public String toString() {
-        return String.format(REG_EXP, kopecks / MAX_KOPECKS_VALUE, kopecks % MAX_KOPECKS_VALUE);
+        return String.format(REG_EXP, kopecks / MAX_KOPECKS_VALUE,
+                kopecks % MAX_KOPECKS_VALUE);
     }
 }

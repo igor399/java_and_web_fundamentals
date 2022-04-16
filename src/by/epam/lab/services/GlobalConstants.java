@@ -8,7 +8,6 @@ public class GlobalConstants {
     public final static String NEG_DIF = "negative difference = ";
     public final static String DIF = "difference = ";
     public final static String BYN = " BYN";
-    public final static String NEXT_LINE = "\n";
     public final static String COST = "cost = ";
     public final static String SAME_COST = "same cost purchase: ";
     public final static String NO_SAME_COST = "no same cost purchase";

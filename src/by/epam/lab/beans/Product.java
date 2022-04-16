@@ -29,7 +29,7 @@ public class Product implements Priceable {
     }
 
     protected String fieldToString() {
-        return name + SEMICOLON + price;
+        return getClass().getSimpleName() + SEMICOLON + name + SEMICOLON + price;
     }
 
     @Override

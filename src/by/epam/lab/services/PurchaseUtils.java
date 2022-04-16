@@ -19,7 +19,7 @@ public class PurchaseUtils {
     }
 
     public void printCost() {
-        System.out.print(COST + purchase.getCost() + BYN + NEXT_LINE);
+        System.out.println(COST + purchase.getCost() + BYN);
     }
 
     public void printCostDiff(Purchase p) {
