@@ -1,7 +1,6 @@
 package by.epam.lab.beans;
 
 import by.epam.lab.services.RoundMethod;
-
 import static by.epam.lab.services.GlobalConstants.*;
 
 public class Service implements Priceable {

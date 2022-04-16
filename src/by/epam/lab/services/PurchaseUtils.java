@@ -5,7 +5,7 @@ import by.epam.lab.beans.*;
 import static by.epam.lab.services.GlobalConstants.*;
 
 public class PurchaseUtils {
-    private Purchase purchase;
+    private final Purchase purchase;
 
     public PurchaseUtils(Purchase purchase) {
         this.purchase = purchase;
