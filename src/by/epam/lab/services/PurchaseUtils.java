@@ -27,8 +27,7 @@ public class PurchaseUtils<P extends Priceable, N extends Number> {
         System.out.println(COST + purchase.getCost() + BYN);
     }
 
-    public <E extends Purchase<? extends Priceable, ? extends Number>> void
-    printCostDiff(E p) {
+    public void printCostDiff(Purchase<? extends Priceable, ? extends Number> p) {
         Byn greaterCost = purchase.getCost();
         Byn lesserCost = p.getCost();
         Byn costDiff = greaterCost.subtract(lesserCost);
@@ -43,8 +42,8 @@ public class PurchaseUtils<P extends Priceable, N extends Number> {
     }
 
     @SafeVarargs
-    public final <E extends Purchase<? extends Priceable, ? extends Number>>
-    void printSameCost(E... purchases) {
+    public final void printSameCost(Purchase<? extends Priceable,
+            ? extends Number>... purchases) {
         Purchase<? extends Priceable, ? extends Number> equalPurchase = null;
         boolean isSameCost = false;
         for (Purchase<? extends Priceable, ? extends Number> p : purchases) {

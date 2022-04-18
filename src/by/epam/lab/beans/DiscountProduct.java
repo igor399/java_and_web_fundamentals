@@ -21,7 +21,7 @@ public class DiscountProduct extends Product {
 
     @Override
     protected String fieldToString() {
-        return super.fieldToString() + SEMICOLON + getDiscount();
+        return super.fieldToString() + SEMICOLON + discount;
     }
 
     @Override
