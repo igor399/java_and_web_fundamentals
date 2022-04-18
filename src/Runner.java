@@ -17,7 +17,6 @@ public class Runner {
                 ("sugar", new Byn(260), new Byn(10)), 60.0);
         PurchaseUtils<Service, Double> pu4 = new PurchaseUtils<>(new Purchase<>
                 (new Service("gym workout", new Byn(7560), 5), 2.25));
-
         Service service = pu4.getPurchase().getItem();
         System.out.println(service);
         pu4.printCost();
