@@ -45,6 +45,6 @@ public class Service implements Priceable {
 
     @Override
     public String toString() {
-        return name + SEMICOLON + totalCost + SEMICOLON + numUsers;
+        return name + SEMICOLON + totalCost + SEMICOLON + numUsers + getPrice();
     }
 }
