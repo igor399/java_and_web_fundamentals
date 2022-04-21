@@ -1,8 +1,6 @@
-import by.epam.lab.beans.DayOfWeek;
-import by.epam.lab.beans.PricePurchase;
-import by.epam.lab.beans.Purchase;
-import by.epam.lab.exceptions.LineException;
-import by.epam.lab.services.PurchaseFactory;
+import by.epam.lab.beans.*;
+import by.epam.lab.exceptions.*;
+import by.epam.lab.services.*;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
