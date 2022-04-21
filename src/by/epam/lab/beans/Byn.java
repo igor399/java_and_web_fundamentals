@@ -2,9 +2,11 @@ package by.epam.lab.beans;
 
 import by.epam.lab.exceptions.*;
 
+import java.util.Objects;
+
 import static by.epam.lab.services.GlobalConstants.*;
 
-public class Byn implements Comparable<Byn>{
+public class Byn implements Comparable<Byn> {
     private final int kopecks;
 
     public Byn() {
@@ -62,6 +64,11 @@ public class Byn implements Comparable<Byn>{
         if (o == null || getClass() != o.getClass()) return false;
         Byn byn = (Byn) o;
         return kopecks == byn.kopecks;
+    }
+
+    @Override
+    public int hashCode() {
+        return kopecks + 17;
     }
 
     @Override
