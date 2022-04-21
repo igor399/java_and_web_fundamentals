@@ -1,7 +1,7 @@
 package by.epam.lab.services;
 
 public class GlobalConstants {
-    public final static  String FILE_NAME = "resources/in.csv";
+    public final static  String FILE_NAME = "resourses/in.csv";
     public final static String REG_EXP = "%d.%02d";
     public final static String INV_MAX_VALUE = "Maximum value of kopecks exceeded: ";
     public final static String INV_VALUE = "Invalid value: ";

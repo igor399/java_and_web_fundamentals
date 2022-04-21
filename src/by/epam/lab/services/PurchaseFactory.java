@@ -23,13 +23,9 @@ public class PurchaseFactory {
         abstract Purchase getPurchase(String[] param);
     }
 
-    public static Purchase getPurchaseFromFactory(String csvLine) throws LineException {
+    public static Purchase getPurchaseFromFactory(String csvLine) {
         String[] param = csvLine.split(SEMICOLON);
-        try {
-            return getPurchaseKind(param.length).getPurchase(param);
-        } catch (ArrayIndexOutOfBoundsException | IllegalArgumentException e) {
-            throw new LineException(csvLine);
-        }
+        return getPurchaseKind(param.length).getPurchase(param);
     }
 
     private static PurchaseKind getPurchaseKind(int paramLength) {

@@ -53,26 +53,13 @@ public class Runner {
 
 
 
-
-
-
-        } catch (FileNotFoundException | LineException e) {
+        } catch (FileNotFoundException e) {
             System.err.println(NO_FILE);
         }
     }
 
 
-
-
-
-
     //some methods by gide
-
-
-
-
-
-
 
 
 }

@@ -65,11 +65,6 @@ public class Byn implements Comparable<Byn>{
     }
 
     @Override
-    public int hashCode() {
-        return kopecks;
-    }
-
-    @Override
     public int compareTo(Byn o) {
         return kopecks - o.kopecks;
     }
