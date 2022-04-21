@@ -1,10 +1,16 @@
+import by.epam.lab.beans.DayOfWeek;
+import by.epam.lab.beans.PricePurchase;
+import by.epam.lab.beans.Purchase;
+import by.epam.lab.exceptions.LineException;
+import by.epam.lab.services.PurchaseFactory;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.Scanner;
+import java.util.*;
 
 import static by.epam.lab.services.GlobalConstants.*;
 
-//        1.load the content of the file in.csv into the map where a purchase is a key and a weekday of last purchase is a value;
+//        1.    load the content of the file in.csv into the map where a purchase is a key and a weekday of last purchase is a value;
 //        2.	print the map by for–each cycle;
 //        3.	load the content of the file in.csv into the map where a purchase is a key and a weekday of first purchase is a value;
 //        4.	print the map by for–each cycle;
@@ -23,17 +29,52 @@ import static by.epam.lab.services.GlobalConstants.*;
 
 public class Runner {
     public static void main(String[] args) {
-
         try (Scanner sc = new Scanner(new FileReader(FILE_NAME))) {
-
-
+            Map<Purchase, DayOfWeek> purchaseByLastDayWeekDay = new HashMap<>();
+            Map<Purchase, DayOfWeek> purchaseByFirstByFirstDayWeekDay = new HashMap<>();
+            List<PricePurchase> pricePurchases = new ArrayList<>();
+            Map<DayOfWeek, List<Purchase>> dayOfWeekByPurchases = new EnumMap<>(DayOfWeek.class);
             while (sc.hasNext()) {
-
+                Purchase purchase = PurchaseFactory.getPurchaseFromFactory(sc.nextLine());
+                DayOfWeek dayOfWeek = DayOfWeek.valueOf(sc.nextLine());
+                if (purchase.getClass() == PricePurchase.class) {
+                    pricePurchases.add((PricePurchase) purchase);
+                }
+                purchaseByLastDayWeekDay.put(purchase, dayOfWeek);
+                if (!purchaseByFirstByFirstDayWeekDay.containsKey(purchase)) {
+                    purchaseByFirstByFirstDayWeekDay.put(purchase, dayOfWeek);
+                }
+                if (!dayOfWeekByPurchases.containsKey(dayOfWeek)) {
+                    dayOfWeekByPurchases.put(dayOfWeek, new ArrayList<>());
+                }
+                dayOfWeekByPurchases.get(dayOfWeek).add(purchase);
             }
 
 
-        } catch (FileNotFoundException e) {
+
+
+
+
+
+
+
+        } catch (FileNotFoundException | LineException e) {
             System.err.println(NO_FILE);
         }
     }
+
+
+
+
+
+
+    //some methods by gide
+
+
+
+
+
+
+
+
 }

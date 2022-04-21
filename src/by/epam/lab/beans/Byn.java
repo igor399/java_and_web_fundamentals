@@ -4,7 +4,7 @@ import by.epam.lab.exceptions.*;
 
 import static by.epam.lab.services.GlobalConstants.*;
 
-public class Byn implements Comparable<Byn> {
+public class Byn implements Comparable<Byn>{
     private final int kopecks;
 
     public Byn() {
@@ -52,9 +52,8 @@ public class Byn implements Comparable<Byn> {
         return new Byn(kopecks * times);
     }
 
-    @Override
-    public int compareTo(Byn o) {
-        return kopecks - o.kopecks;
+    public int getIntValue() {
+        return kopecks;
     }
 
     @Override
@@ -71,7 +70,13 @@ public class Byn implements Comparable<Byn> {
     }
 
     @Override
+    public int compareTo(Byn o) {
+        return kopecks - o.kopecks;
+    }
+
+    @Override
     public String toString() {
-        return String.format(REG_EXP, kopecks / MAX_KOPECKS_VALUE, kopecks % MAX_KOPECKS_VALUE);
+        return String.format(REG_EXP, kopecks / MAX_KOPECKS_VALUE, kopecks %
+                MAX_KOPECKS_VALUE);
     }
 }
