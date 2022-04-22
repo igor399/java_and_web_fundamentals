@@ -1,5 +1,4 @@
 import by.epam.lab.beans.*;
-import by.epam.lab.exceptions.*;
 import by.epam.lab.services.*;
 
 import java.io.FileNotFoundException;
@@ -8,58 +7,123 @@ import java.util.*;
 
 import static by.epam.lab.services.GlobalConstants.*;
 
-//        1.    load the content of the file in.csv into the map where a purchase is a key and a weekday of last purchase is a value;
-//        2.	print the map by for–each cycle;
-//        3.	load the content of the file in.csv into the map where a purchase is a key and a weekday of first purchase is a value;
-//        4.	print the map by for–each cycle;
-//        5.	find the first and the last weekdays for bread with price 1.55;
-//        6.	find the first weekday for bread with price 1.70;
-//        7.	remove all entries from the first map where the purchase name is meat;
-//        8.	remove all entries from the second map on FRIDAY;
-//        9.	print maps by for–each cycle;
-//        10.	load instances of the subclass PricePurchase from the file in.csv into the list (List<PricePurchase>);
-//        11.	print the total cost of these purchases;
-//        12.	load the content of the file in.csv into the enumerated map where a weekday is a key and purchases list for this weekday is a value;
-//        13.	print the map by for–each cycle;
-//        14.	print the total cost of all purchases for each weekday;
-//        15.	find all purchases on MONDAY.
-
-
 public class Runner {
     public static void main(String[] args) {
         try (Scanner sc = new Scanner(new FileReader(FILE_NAME))) {
+            Map<Purchase, DayOfWeek> purchaseByFirstDayWeekDay = new HashMap<>();
             Map<Purchase, DayOfWeek> purchaseByLastDayWeekDay = new HashMap<>();
-            Map<Purchase, DayOfWeek> purchaseByFirstByFirstDayWeekDay = new HashMap<>();
             List<PricePurchase> pricePurchases = new ArrayList<>();
-            Map<DayOfWeek, List<Purchase>> dayOfWeekByPurchases = new EnumMap<>(DayOfWeek.class);
+            Map<DayOfWeek, List<Purchase>> dayOfWeekByPurchases =
+                    new EnumMap<>(DayOfWeek.class);
             while (sc.hasNext()) {
-                Purchase purchase = PurchaseFactory.getPurchaseFromFactory(sc.nextLine());
+                Purchase purchase =
+                        PurchaseFactory.getPurchaseFromFactory(sc.nextLine());
                 DayOfWeek dayOfWeek = DayOfWeek.valueOf(sc.nextLine());
                 if (purchase.getClass() == PricePurchase.class) {
                     pricePurchases.add((PricePurchase) purchase);
                 }
                 purchaseByLastDayWeekDay.put(purchase, dayOfWeek);
-                if (!purchaseByFirstByFirstDayWeekDay.containsKey(purchase)) {
-                    purchaseByFirstByFirstDayWeekDay.put(purchase, dayOfWeek);
+                if (!purchaseByFirstDayWeekDay.containsKey(purchase)) {
+                    purchaseByFirstDayWeekDay.put(purchase, dayOfWeek);
                 }
                 if (!dayOfWeekByPurchases.containsKey(dayOfWeek)) {
                     dayOfWeekByPurchases.put(dayOfWeek, new ArrayList<>());
                 }
                 dayOfWeekByPurchases.get(dayOfWeek).add(purchase);
             }
+            System.out.println(FIRST_PURCHASE_MAP);
+            print(purchaseByFirstDayWeekDay);
 
+            System.out.println(LAST_PURCHASE_MAP);
+            print(purchaseByLastDayWeekDay);
 
+            Purchase expPurchase = new Purchase("bread", new Byn(155), 0);
+            findPurchase(expPurchase, null, purchaseByFirstDayWeekDay);
+            findPurchase(expPurchase, null, purchaseByLastDayWeekDay);
+            findPurchase(new Purchase("bread", new Byn(170), 0), null, purchaseByFirstDayWeekDay);
 
+            removeAllEntries(new Purchase("meat", null, 0), null, purchaseByLastDayWeekDay);
+            removeAllEntries(null, DayOfWeek.FRIDAY, purchaseByFirstDayWeekDay);
 
+            System.out.println(FIRST_PURCHASE_MAP);
+            print(purchaseByFirstDayWeekDay);
 
+            System.out.println(LAST_PURCHASE_MAP);
+            print(purchaseByLastDayWeekDay);
+
+            printTotalListCost(pricePurchases);
+
+            System.out.println(ENUM_MAP);
+            print(dayOfWeekByPurchases);
+
+            for (Map.Entry<DayOfWeek, List<Purchase>> entry :
+                    dayOfWeekByPurchases.entrySet()) {
+                System.out.print(entry.getKey() + TOTAL_COST);
+                printTotalListCost(entry.getValue());
+            }
+
+            findPurchase(null, DayOfWeek.MONDAY, dayOfWeekByPurchases);
 
         } catch (FileNotFoundException e) {
             System.err.println(NO_FILE);
         }
     }
 
+    private static void print(Map<?, ?> purchaseByDayOfWeek) {
+        for (Map.Entry<?, ?> entry : purchaseByDayOfWeek.entrySet()) {
+            System.out.println(entry.getKey() + IN_DELIMITER + entry.getValue());
 
-    //some methods by gide
+        }
+    }
 
+    private static void findPurchase(Purchase purchase, DayOfWeek dayOfWeek,
+                                     Map<?, ?> purchaseByDayOfWeek) {
+        if (purchase != null) {
+            if (purchaseByDayOfWeek.containsKey(purchase)) {
+                System.out.println(purchaseByDayOfWeek.get(purchase));
+            } else {
+                System.out.println(NOT_FOUND);
+            }
+        }
+        if (dayOfWeek != null) {
+            if (purchaseByDayOfWeek.containsKey(dayOfWeek)) {
+                System.out.println(purchaseByDayOfWeek.get(dayOfWeek));
+            } else {
+                System.out.println(NOT_FOUND);
+            }
+        }
+    }
 
+    private static void removeAllEntries(Purchase purchase, DayOfWeek dayOfWeek,
+                                         Map<Purchase, DayOfWeek> purchaseByDayOfWeek) {
+        Iterator<Map.Entry<Purchase, DayOfWeek>> iterator =
+                purchaseByDayOfWeek.entrySet().iterator();
+        if (purchase != null) {
+            while (iterator.hasNext()) {
+                if (iterator.next().getKey().getProductName().
+                        equals(purchase.getProductName())) {
+                    iterator.remove();
+                }
+            }
+        }
+        if (dayOfWeek != null) {
+            while (iterator.hasNext()) {
+                if (iterator.next().getValue() == dayOfWeek) {
+                    iterator.remove();
+                }
+            }
+        }
+    }
+
+    private static <P extends Purchase> void printTotalListCost
+            (List<P> pricePurchases) {
+        Byn totalCost = new Byn();
+        for (Purchase purchase : pricePurchases) {
+            totalCost = totalCost.add(purchase.getCost());
+        }
+        System.out.println(totalCost);
+    }
 }
+
+
+

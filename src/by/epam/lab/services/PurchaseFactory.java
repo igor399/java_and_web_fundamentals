@@ -1,7 +1,6 @@
 package by.epam.lab.services;
 
 import by.epam.lab.beans.*;
-import by.epam.lab.exceptions.*;
 
 import static by.epam.lab.services.GlobalConstants.*;
 

@@ -1,26 +1,15 @@
 package by.epam.lab.beans;
 
-import by.epam.lab.exceptions.*;
-
-import java.util.Objects;
-
 import static by.epam.lab.services.GlobalConstants.*;
 
 public class Byn implements Comparable<Byn> {
-    private final int kopecks;
+    private int kopecks;
 
     public Byn() {
         this(0);
     }
 
-    public Byn(Byn byn) {
-        this(byn.kopecks);
-    }
-
     public Byn(int kopecks) {
-        if (kopecks < 0) {
-            throw new NonPositiveArgumentException(INV_VALUE + kopecks);
-        }
         this.kopecks = kopecks;
     }
 
@@ -28,18 +17,12 @@ public class Byn implements Comparable<Byn> {
         this(Integer.parseInt(strCoins));
     }
 
-    public Byn(int rubs, int kopecks) {
-        this(getValidValue(rubs, kopecks));
+    public int getKopecks() {
+        return kopecks;
     }
 
-    private static int getValidValue(int rubs, int kopecks) {
-        if (rubs < 0 || kopecks < 0) {
-            throw new NonPositiveArgumentException(INV_VALUE + rubs + SEMICOLON + kopecks);
-        }
-        if (kopecks >= MAX_KOPECKS_VALUE) {
-            throw new MoreThanMaxValueException(INV_MAX_VALUE + rubs + SEMICOLON + kopecks);
-        }
-        return rubs * MAX_KOPECKS_VALUE + kopecks;
+    public void setKopecks(int kopecks) {
+        this.kopecks = kopecks;
     }
 
     public Byn add(Byn byn) {
@@ -52,10 +35,6 @@ public class Byn implements Comparable<Byn> {
 
     public Byn multiply(int times) {
         return new Byn(kopecks * times);
-    }
-
-    public int getIntValue() {
-        return kopecks;
     }
 
     @Override
