@@ -5,9 +5,9 @@ import java.util.Objects;
 import static by.epam.lab.services.GlobalConstants.*;
 
 public class Purchase {
-    private  String productName;
-    private  Byn price;
-    private  int number;
+    private String productName;
+    private Byn price;
+    private int number;
 
     public Purchase(String productName, Byn price, int number) {
         this.productName = productName;
@@ -65,8 +65,8 @@ public class Purchase {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Purchase purchase = (Purchase) o;
-        return number == purchase.number && Objects.equals(productName,
-                purchase.productName) && Objects.equals(price, purchase.price);
+        return number == purchase.number && productName.
+                equals(purchase.productName) && price.equals(purchase.price);
     }
 
     @Override
@@ -78,6 +78,7 @@ public class Purchase {
 
     @Override
     public String toString() {
-        return fieldsToString() + SEMICOLON + getCost();
+        return getClass().getSimpleName() + SEMICOLON + fieldsToString() +
+                SEMICOLON + getCost();
     }
 }

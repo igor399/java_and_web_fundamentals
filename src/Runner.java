@@ -19,23 +19,23 @@ public class Runner {
                 Purchase purchase =
                         PurchaseFactory.getPurchaseFromFactory(sc.nextLine());
                 DayOfWeek dayOfWeek = DayOfWeek.valueOf(sc.nextLine());
-                if (purchase.getClass() == PricePurchase.class) {
-                    pricePurchases.add((PricePurchase) purchase);
-                }
                 purchaseByLastDayWeekDay.put(purchase, dayOfWeek);
                 if (!purchaseByFirstDayWeekDay.containsKey(purchase)) {
                     purchaseByFirstDayWeekDay.put(purchase, dayOfWeek);
+                }
+                if (purchase.getClass() == PricePurchase.class) {
+                    pricePurchases.add((PricePurchase) purchase);
                 }
                 if (!dayOfWeekByPurchases.containsKey(dayOfWeek)) {
                     dayOfWeekByPurchases.put(dayOfWeek, new ArrayList<>());
                 }
                 dayOfWeekByPurchases.get(dayOfWeek).add(purchase);
             }
-            System.out.println(FIRST_PURCHASE_MAP);
-            print(purchaseByFirstDayWeekDay);
-
             System.out.println(LAST_PURCHASE_MAP);
             print(purchaseByLastDayWeekDay);
+
+            System.out.println(FIRST_PURCHASE_MAP);
+            print(purchaseByFirstDayWeekDay);
 
             Purchase expPurchase = new Purchase("bread", new Byn(155), 0);
             findPurchase(expPurchase, null, purchaseByFirstDayWeekDay);
@@ -69,9 +69,10 @@ public class Runner {
         }
     }
 
-    private static void print(Map<?, ?> purchaseByDayOfWeek) {
-        for (Map.Entry<?, ?> entry : purchaseByDayOfWeek.entrySet()) {
-            System.out.println(entry.getKey() + IN_DELIMITER + entry.getValue());
+    private static <K, V> void print(Map<K, V> map) {
+        Set<K> keySet = map.keySet();
+        for (K key : keySet) {
+            System.out.println(key + IN_DELIMITER + map.get(key));
 
         }
     }
