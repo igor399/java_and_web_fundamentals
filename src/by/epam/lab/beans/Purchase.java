@@ -52,7 +52,8 @@ public class Purchase {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Purchase purchase = (Purchase) o;
-        return productName.equals(purchase.productName) && price.equals(purchase.price);
+        return productName.equals(purchase.productName) &&
+                price.equals(purchase.price);
     }
 
     @Override
