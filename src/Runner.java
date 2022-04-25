@@ -13,9 +13,11 @@ public class Runner {
             Map<Purchase, DayOfWeek> purchaseByFirstWeekDay = new HashMap<>();
             Map<Purchase, DayOfWeek> purchaseByLastWeekDay = new HashMap<>();
             List<PricePurchase> pricePurchases = new ArrayList<>();
-            Map<DayOfWeek, List<Purchase>> dayOfWeekByPurchases = new EnumMap<>(DayOfWeek.class);
+            Map<DayOfWeek, List<Purchase>> dayOfWeekByPurchases = new EnumMap<>
+                    (DayOfWeek.class);
             while (sc.hasNext()) {
-                Purchase purchase = PurchaseFactory.getPurchaseFromFactory(sc.nextLine());
+                Purchase purchase = PurchaseFactory.
+                        getPurchaseFromFactory(sc.nextLine());
                 DayOfWeek dayOfWeek = DayOfWeek.valueOf(sc.nextLine());
 
                 purchaseByLastWeekDay.put(purchase, dayOfWeek);
@@ -23,11 +25,9 @@ public class Runner {
                     purchaseByFirstWeekDay.put(purchase, dayOfWeek);
                 }
 
-
                 if (purchase.getClass() == PricePurchase.class) {
                     pricePurchases.add((PricePurchase) purchase);
                 }
-
                 if (!dayOfWeekByPurchases.containsKey(dayOfWeek)) {
                     dayOfWeekByPurchases.put(dayOfWeek, new ArrayList<>());
                 }
@@ -58,7 +58,8 @@ public class Runner {
             System.out.println(ENUM_MAP);
             print(dayOfWeekByPurchases);
 
-            for (Map.Entry<DayOfWeek, List<Purchase>> entry : dayOfWeekByPurchases.entrySet()) {
+            for (Map.Entry<DayOfWeek, List<Purchase>> entry :
+                    dayOfWeekByPurchases.entrySet()) {
                 System.out.print(entry.getKey() + TOTAL_COST);
                 printTotalCost(entry.getValue());
             }
@@ -95,10 +96,12 @@ public class Runner {
 
     private static void removeAllEntries(Purchase purchase, DayOfWeek dayOfWeek
             , Map<Purchase, DayOfWeek> purchaseByDayOfWeek) {
-        Iterator<Map.Entry<Purchase, DayOfWeek>> it = purchaseByDayOfWeek.entrySet().iterator();
+        Iterator<Map.Entry<Purchase, DayOfWeek>> it =
+                purchaseByDayOfWeek.entrySet().iterator();
         if (purchase != null) {
             while (it.hasNext()) {
-                if (it.next().getKey().getProductName().equals(purchase.getProductName())) {
+                if (it.next().getKey().getProductName().
+                        equals(purchase.getProductName())) {
                     it.remove();
                 }
             }
@@ -112,7 +115,8 @@ public class Runner {
         }
     }
 
-    private static <T extends Purchase> void printTotalCost(List<T> priceDiscountPurchases) {
+    private static <T extends Purchase> void printTotalCost
+            (List<T> priceDiscountPurchases) {
         Byn totalCost = new Byn();
         for (Purchase purchase : priceDiscountPurchases) {
             totalCost = totalCost.add(purchase.getCost());
