@@ -50,7 +50,7 @@ public class Purchase {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null ) return false;
         Purchase purchase = (Purchase) o;
         return productName.equals(purchase.productName) &&
                 price.equals(purchase.price);
