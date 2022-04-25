@@ -82,14 +82,16 @@ public class Runner {
             , Map<?, ?> purchaseByDayOfWeek) {
         if (purchase != null) {
             if (purchaseByDayOfWeek.containsKey(purchase)) {
-                System.out.println(purchaseByDayOfWeek.get(purchase));
+                System.out.println("1st and the last weekdays for bread with price 1.55 " +
+                        purchaseByDayOfWeek.get(purchase));
             } else {
                 System.out.println(NOT_FOUND);
             }
         }
         if (dayOfWeek != null) {
             if (purchaseByDayOfWeek.containsKey(dayOfWeek)) {
-                System.out.println(purchaseByDayOfWeek.get(dayOfWeek));
+                System.out.println("weekday for bread with price 1.70" +
+                        purchaseByDayOfWeek.get(dayOfWeek));
             } else {
                 System.out.println(NOT_FOUND);
             }
