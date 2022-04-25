@@ -3,9 +3,9 @@ package by.epam.lab.beans;
 import static by.epam.lab.services.GlobalConstants.*;
 
 public class Purchase {
-    private String productName;
-    private Byn price;
-    private int number;
+    private final String productName;
+    private final Byn price;
+    private final int number;
 
     public Purchase(String productName, Byn price, int number) {
         this.productName = productName;
@@ -25,24 +25,12 @@ public class Purchase {
         return productName;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
     public Byn getPrice() {
         return price;
     }
 
-    public void setPrice(Byn price) {
-        this.price = price;
-    }
-
     public int getNumber() {
         return number;
-    }
-
-    public void setNumber(int number) {
-        this.number = number;
     }
 
     public Byn getCost() {

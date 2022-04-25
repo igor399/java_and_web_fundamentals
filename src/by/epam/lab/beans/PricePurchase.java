@@ -20,6 +20,10 @@ public class PricePurchase extends Purchase {
         this(getValidPriceDiscountPurchase(fields));
     }
 
+    public Byn getDiscount() {
+        return discount;
+    }
+
     private static PricePurchase getValidPriceDiscountPurchase(String[] fields) {
         return new PricePurchase(fields[PRODUCT_PARAM],
                 new Byn(fields[PRICE_PARAM]),

@@ -1,9 +1,11 @@
 package by.epam.lab.beans;
 
+import by.epam.lab.services.RoundMethod;
+
 import static by.epam.lab.services.GlobalConstants.*;
 
 public class Byn implements Comparable<Byn> {
-    private int kopecks;
+    private final int kopecks;
 
     public Byn() {
         this(0);
@@ -17,16 +19,12 @@ public class Byn implements Comparable<Byn> {
         this(Integer.parseInt(strCoins));
     }
 
-    public int getKopecks() {
-        return kopecks;
-    }
-
-    public void setKopecks(int kopecks) {
-        this.kopecks = kopecks;
-    }
-
     public Byn add(Byn byn) {
         return new Byn(kopecks + byn.kopecks);
+    }
+
+    public int getKopecks() {
+        return kopecks;
     }
 
     public Byn subtract(Byn byn) {
@@ -35,6 +33,14 @@ public class Byn implements Comparable<Byn> {
 
     public Byn multiply(int times) {
         return new Byn(kopecks * times);
+    }
+
+    public Byn multiply(double k, RoundMethod roundMethod, int d) {
+        return new Byn(roundMethod.round(kopecks * k, d));
+    }
+
+    public Byn round(RoundMethod roundMethod, int d) {
+        return new Byn(roundMethod.round(kopecks, d));
     }
 
     @Override

@@ -37,12 +37,15 @@ public class Runner {
             System.out.println(FIRST_PURCHASE_MAP);
             print(purchaseByFirstDayWeekDay);
 
-            Purchase expPurchase = new Purchase("bread", new Byn(155), 0);
+            Purchase expPurchase = new Purchase("bread",
+                    new Byn(155), 0);
             findPurchase(expPurchase, null, purchaseByFirstDayWeekDay);
             findPurchase(expPurchase, null, purchaseByLastDayWeekDay);
-            findPurchase(new Purchase("bread", new Byn(170), 0), null, purchaseByFirstDayWeekDay);
+            findPurchase(new Purchase("bread",
+                    new Byn(170), 0), null, purchaseByFirstDayWeekDay);
 
-            removeAllEntries(new Purchase("meat", null, 0), null, purchaseByLastDayWeekDay);
+            removeAllEntries(new Purchase("meat", null, 0),
+                    null, purchaseByLastDayWeekDay);
             removeAllEntries(null, DayOfWeek.FRIDAY, purchaseByFirstDayWeekDay);
 
             System.out.println(FIRST_PURCHASE_MAP);
