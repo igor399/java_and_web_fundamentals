@@ -69,16 +69,14 @@ public class Runner {
         }
     }
 
-    private static <K, V> void print(Map<K, V> map) {
-        Set<K> keySet = map.keySet();
-        for (K key : keySet) {
-            System.out.println(key + IN_DELIMITER + map.get(key));
-
+    private static void print(Map<?, ?> purchaseByDayOfWeek) {
+        for (Map.Entry<?, ?> entry : purchaseByDayOfWeek.entrySet()) {
+            System.out.println(entry.getKey() + IN_DELIMITER + entry.getValue());
         }
     }
 
-    private static void findPurchase(Purchase purchase, DayOfWeek dayOfWeek,
-                                     Map<?, ?> purchaseByDayOfWeek) {
+    private static void findPurchase(Purchase purchase, DayOfWeek dayOfWeek
+            , Map<?, ?> purchaseByDayOfWeek) {
         if (purchase != null) {
             if (purchaseByDayOfWeek.containsKey(purchase)) {
                 System.out.println(purchaseByDayOfWeek.get(purchase));
@@ -95,36 +93,30 @@ public class Runner {
         }
     }
 
-    private static void removeAllEntries(Purchase purchase, DayOfWeek dayOfWeek,
-                                         Map<Purchase, DayOfWeek> purchaseByDayOfWeek) {
-        Iterator<Map.Entry<Purchase, DayOfWeek>> iterator =
-                purchaseByDayOfWeek.entrySet().iterator();
+    private static void removeAllEntries(Purchase purchase, DayOfWeek dayOfWeek
+            , Map<Purchase, DayOfWeek> purchaseByDayOfWeek) {
+        Iterator<Map.Entry<Purchase, DayOfWeek>> it = purchaseByDayOfWeek.entrySet().iterator();
         if (purchase != null) {
-            while (iterator.hasNext()) {
-                if (iterator.next().getKey().getProductName().
-                        equals(purchase.getProductName())) {
-                    iterator.remove();
+            while (it.hasNext()) {
+                if (it.next().getKey().getProductName().equals(purchase.getProductName())) {
+                    it.remove();
                 }
             }
         }
         if (dayOfWeek != null) {
-            while (iterator.hasNext()) {
-                if (iterator.next().getValue() == dayOfWeek) {
-                    iterator.remove();
+            while (it.hasNext()) {
+                if (it.next().getValue() == dayOfWeek) {
+                    it.remove();
                 }
             }
         }
     }
 
-    private static <P extends Purchase> void printTotalListCost
-            (List<P> pricePurchases) {
+    private static <T extends Purchase> void printTotalListCost(List<T> priceDiscountPurchases) {
         Byn totalCost = new Byn();
-        for (Purchase purchase : pricePurchases) {
+        for (Purchase purchase : priceDiscountPurchases) {
             totalCost = totalCost.add(purchase.getCost());
         }
         System.out.println(totalCost);
     }
 }
-
-
-

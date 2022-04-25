@@ -1,7 +1,5 @@
 package by.epam.lab.beans;
 
-import java.util.Objects;
-
 import static by.epam.lab.services.GlobalConstants.*;
 
 public class Purchase {
@@ -63,10 +61,14 @@ public class Purchase {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null) return false;
         Purchase purchase = (Purchase) o;
-        return number == purchase.number && productName.
-                equals(purchase.productName) && price.equals(purchase.price);
+        if ((productName != null) ? !productName.equals(purchase.productName) :
+                (purchase.productName != null)) {
+            return false;
+        }
+        return (price != null) ? price.equals(purchase.price) :
+                (purchase.price == null);
     }
 
     @Override
