@@ -52,9 +52,9 @@ public class Purchase {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || !(this instanceof Purchase)) return false;
+        if (!(o instanceof Purchase)) return false;
         Purchase purchase = (Purchase) o;
-        return  productName.equals(purchase.productName) && price.equals(purchase.price);
+        return productName.equals(purchase.productName) && price.equals(purchase.price);
     }
 
     @Override
