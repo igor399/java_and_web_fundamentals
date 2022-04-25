@@ -7,14 +7,14 @@ public class Purchase {
     private final Byn price;
     private final int number;
 
-    public Purchase(String productName, Byn price, int number) {
-        this.productName = productName;
+    public Purchase(String name, Byn price, int number) {
+        this.productName = name;
         this.price = price;
         this.number = number;
     }
 
     public Purchase(Purchase purchase) {
-        this(purchase.getProductName(), purchase.getPrice(), purchase.getNumber());
+        this(purchase.productName, purchase.price, purchase.number);
     }
 
     public Purchase(String[] fields) {
@@ -43,7 +43,8 @@ public class Purchase {
     }
 
     protected String fieldsToString() {
-        return productName + SEMICOLON + price + SEMICOLON + number;
+        return getClass().getSimpleName() + SEMICOLON + productName
+                + SEMICOLON + price + SEMICOLON + number;
     }
 
     @Override
@@ -51,12 +52,7 @@ public class Purchase {
         if (this == o) return true;
         if (o == null) return false;
         Purchase purchase = (Purchase) o;
-        if ((productName != null) ? !productName.equals(purchase.productName) :
-                (purchase.productName != null)) {
-            return false;
-        }
-        return (price != null) ? price.equals(purchase.price) :
-                (purchase.price == null);
+        return productName.equals(purchase.productName) && price.equals(purchase.price);
     }
 
     @Override
@@ -68,7 +64,6 @@ public class Purchase {
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + SEMICOLON + fieldsToString() +
-                SEMICOLON + getCost();
+        return fieldsToString() + SEMICOLON + getCost();
     }
 }
