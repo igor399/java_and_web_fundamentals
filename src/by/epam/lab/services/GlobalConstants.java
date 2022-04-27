@@ -16,5 +16,5 @@ public class GlobalConstants {
     public final static String LAST_PURCHASE_MAP = "Last purchase map:";
     public final static String ENUM_MAP = "Enumerated map:";
     public final static String NOT_FOUND = "not found";
-    public static final String TOTAL_COST = " total cost => ";
+    public final static String TOTAL_COST = " total cost => ";
 }
