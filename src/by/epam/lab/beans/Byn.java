@@ -4,7 +4,7 @@ import by.epam.lab.services.RoundMethod;
 
 import static by.epam.lab.services.GlobalConstants.*;
 
-public class Byn implements Comparable<Byn> {
+public class Byn  {
     private final int kopecks;
 
     public Byn() {
@@ -54,11 +54,6 @@ public class Byn implements Comparable<Byn> {
     @Override
     public int hashCode() {
         return kopecks + 17;
-    }
-
-    @Override
-    public int compareTo(Byn o) {
-        return kopecks - o.kopecks;
     }
 
     @Override

@@ -19,44 +19,47 @@ public class Runner {
                 Purchase purchase = PurchaseFactory.
                         getPurchaseFromFactory(sc.nextLine());
                 DayOfWeek dayOfWeek = DayOfWeek.valueOf(sc.nextLine());
-
                 lastPurchaseMap.put(purchase, dayOfWeek);
                 if (!firstPurchaseMap.containsKey(purchase)) {
                     firstPurchaseMap.put(purchase, dayOfWeek);
                 }
-
+                List<Purchase> list = dayPurchaseMap.get(dayOfWeek);
+                if (list == null) {
+                    dayPurchaseMap.put(dayOfWeek, list = new ArrayList<>());
+                }
+                list.add(purchase);
                 if (purchase.getClass() == PricePurchase.class) {
                     priceDiscountPurchases.add((PricePurchase) purchase);
                 }
-                if (!dayPurchaseMap.containsKey(dayOfWeek)) {
-                    dayPurchaseMap.put(dayOfWeek, new ArrayList<>());
-                }
-                dayPurchaseMap.get(dayOfWeek).add(purchase);
             }
-            System.out.println(FIRST_PURCHASE_MAP);
-            print(firstPurchaseMap);
-            System.out.println(LAST_PURCHASE_MAP);
-            print(lastPurchaseMap);
+            printMap(lastPurchaseMap, LAST_PURCHASE_MAP);
+            printMap(firstPurchaseMap, FIRST_PURCHASE_MAP);
 
             Purchase reqPurchase = new Purchase("bread",
                     new Byn(155), 0);
-            findPurchase(reqPurchase, null, firstPurchaseMap);
-            findPurchase(reqPurchase, null, lastPurchaseMap);
-            findPurchase(new Purchase("bread",
-                    new Byn(170), 0), null, firstPurchaseMap);
-            removeAllEntries(new Purchase("meat", null, 0),
-                    null, lastPurchaseMap);
-            removeAllEntries(null, DayOfWeek.FRIDAY, firstPurchaseMap);
+            findAndShow(firstPurchaseMap, reqPurchase, FIRST_PURCHASE_MAP);
+            findAndShow(lastPurchaseMap, reqPurchase, LAST_PURCHASE_MAP);
+            findAndShow(firstPurchaseMap, new Purchase("bread",
+                    new Byn(170), 0), FIRST_PURCHASE_MAP);
 
-            System.out.println(FIRST_PURCHASE_MAP);
-            print(firstPurchaseMap);
-            System.out.println(LAST_PURCHASE_MAP);
-            print(lastPurchaseMap);
+            removeEntries(lastPurchaseMap, new EntryChecker<Purchase, DayOfWeek>() {
+                @Override
+                public boolean check(Map.Entry<Purchase, DayOfWeek> entry) {
+                    return MEAT.equals(entry.getKey().getProductName());
+                }
+            });
+            removeEntries(firstPurchaseMap, new EntryChecker<Purchase,
+                    DayOfWeek>() {
+                @Override
+                public boolean check(Map.Entry<Purchase, DayOfWeek> entry) {
+                    return entry.getValue() == DayOfWeek.FRIDAY;
+                }
+            });
 
+            printMap(firstPurchaseMap, FIRST_PURCHASE_MAP);
+            printMap(lastPurchaseMap, LAST_PURCHASE_MAP);
             printTotalCost(priceDiscountPurchases);
-
-            System.out.println(ENUM_MAP);
-            print(dayPurchaseMap);
+            printMap(dayPurchaseMap, ENUM_MAP);
 
             for (Map.Entry<DayOfWeek, List<Purchase>> entry :
                     dayPurchaseMap.entrySet()) {
@@ -64,63 +67,61 @@ public class Runner {
                 printTotalCost(entry.getValue());
             }
 
-            findPurchase(null, DayOfWeek.MONDAY, dayPurchaseMap);
+            removeEntries(dayPurchaseMap, new EntryChecker<DayOfWeek,
+                    List<Purchase>>() {
+                @Override
+                public boolean check(Map.Entry<DayOfWeek, List<Purchase>> entry) {
+                    boolean purchaseWithNameMilk = false;
+                    for (Purchase purchase : entry.getValue()) {
+                        if (MILK.equals(purchase.getProductName())) {
+                            purchaseWithNameMilk = true;
+                            break;
+                        }
+                    }
+                    return purchaseWithNameMilk;
+                }
+            });
+            printMap(dayPurchaseMap, ENUM_MAP);
         } catch (FileNotFoundException e) {
             System.out.println(NO_FILE);
         }
     }
 
-    private static void print(Map<?, ?> purchaseByDayOfWeek) {
-        for (Map.Entry<?, ?> entry : purchaseByDayOfWeek.entrySet()) {
+    private static <K, V> void printMap(Map<K, V> purchaseByDayOfWeek,
+                                        String message) {
+        System.out.println(message);
+        for (Map.Entry<K, V> entry : purchaseByDayOfWeek.entrySet()) {
             System.out.println(entry.getKey() + IN_DELIMITER + entry.getValue());
         }
     }
 
-    private static void findPurchase(Purchase purchase, DayOfWeek dayOfWeek
-            , Map<?, ?> purchaseByDayOfWeek) {
-        if (purchase != null) {
-            if (purchaseByDayOfWeek.containsKey(purchase)) {
-                System.out.println(purchaseByDayOfWeek.get(purchase));
-            } else {
-                System.out.println(NOT_FOUND);
-            }
-        }
-        if (dayOfWeek != null) {
-            if (purchaseByDayOfWeek.containsKey(dayOfWeek)) {
-                System.out.println(purchaseByDayOfWeek.get(dayOfWeek));
-            } else {
-                System.out.println(NOT_FOUND);
+    private static <K, V> void findAndShow(Map<K, V> purchaseByDayOfWeek, K searchKey
+            , String header) {
+        System.out.println(header);
+        V messageResult = purchaseByDayOfWeek.get(searchKey);
+        System.out.println(messageResult == null ? NOT_FOUND : messageResult);
+    }
+
+    private static <K, V> void removeEntries(Map<K, V> map,
+                                             EntryChecker<K, V> entryChecker) {
+        for (Iterator<Map.Entry<K, V>> it = map.entrySet().iterator(); it.hasNext(); ) {
+            if (entryChecker.check(it.next())) {
+                it.remove();
             }
         }
     }
 
-    private static void removeAllEntries(Purchase purchase, DayOfWeek dayOfWeek
-            , Map<Purchase, DayOfWeek> purchaseByDayOfWeek) {
-        Iterator<Map.Entry<Purchase, DayOfWeek>> it =
-                purchaseByDayOfWeek.entrySet().iterator();
-        if (purchase != null) {
-            while (it.hasNext()) {
-                if (it.next().getKey().getProductName().
-                        equals(purchase.getProductName())) {
-                    it.remove();
-                }
-            }
-        }
-        if (dayOfWeek != null) {
-            while (it.hasNext()) {
-                if (it.next().getValue() == dayOfWeek) {
-                    it.remove();
-                }
-            }
-        }
-    }
-
-    private static <T extends Purchase> void printTotalCost
-            (List<T> priceDiscountPurchases) {
+    private static void printTotalCost
+            (List<? extends Purchase> priceDiscountPurchases) {
         Byn totalCost = new Byn();
         for (Purchase purchase : priceDiscountPurchases) {
             totalCost = totalCost.add(purchase.getCost());
         }
         System.out.println(totalCost);
+    }
+
+    private interface EntryChecker<K, V> {
+        boolean check(Map.Entry<K, V> entry);
+
     }
 }
