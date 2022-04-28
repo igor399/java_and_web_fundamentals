@@ -20,9 +20,7 @@ public class Runner {
                         getPurchaseFromFactory(sc.nextLine());
                 DayOfWeek dayOfWeek = DayOfWeek.valueOf(sc.nextLine());
                 lastPurchaseMap.put(purchase, dayOfWeek);
-                if (!firstPurchaseMap.containsKey(purchase)) {
-                    firstPurchaseMap.put(purchase, dayOfWeek);
-                }
+                firstPurchaseMap.putIfAbsent(purchase, dayOfWeek);
                 List<Purchase> list = dayPurchaseMap.get(dayOfWeek);
                 if (list == null) {
                     dayPurchaseMap.put(dayOfWeek, list = new ArrayList<>());

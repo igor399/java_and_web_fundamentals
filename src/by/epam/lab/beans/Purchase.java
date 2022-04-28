@@ -1,7 +1,5 @@
 package by.epam.lab.beans;
 
-import java.util.Objects;
-
 import static by.epam.lab.services.GlobalConstants.*;
 
 public class Purchase {
