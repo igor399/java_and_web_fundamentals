@@ -3,7 +3,7 @@ package by.epam.lab.beans;
 import static by.epam.lab.services.GlobalConstants.*;
 
 public class PricePurchase extends Purchase {
-    private Byn discount;
+    private final Byn discount;
 
     public PricePurchase(String productName, Byn price, int numUnits,
                          Byn discount) {
@@ -22,10 +22,6 @@ public class PricePurchase extends Purchase {
 
     public Byn getDiscount() {
         return discount;
-    }
-
-    public void setDiscount(Byn discount) {
-        this.discount = discount;
     }
 
     private static PricePurchase getValidPriceDiscountPurchase(String[] fields) {
