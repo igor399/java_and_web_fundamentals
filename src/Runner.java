@@ -10,61 +10,61 @@ import static by.epam.lab.services.GlobalConstants.*;
 public class Runner {
     public static void main(String[] args) {
         try (Scanner sc = new Scanner(new FileReader(FILE_NAME))) {
-            Map<Purchase, DayOfWeek> purchaseByFirstWeekDay = new HashMap<>();
-            Map<Purchase, DayOfWeek> purchaseByLastWeekDay = new HashMap<>();
-            List<PricePurchase> pricePurchases = new ArrayList<>();
-            Map<DayOfWeek, List<Purchase>> dayOfWeekByPurchases = new EnumMap<>
+            Map<Purchase, DayOfWeek> firstPurchaseMap = new HashMap<>();
+            Map<Purchase, DayOfWeek> lastPurchaseMap = new HashMap<>();
+            Map<DayOfWeek, List<Purchase>> dayPurchaseMap = new EnumMap<>
                     (DayOfWeek.class);
+            List<PricePurchase> priceDiscountPurchases = new ArrayList<>();
             while (sc.hasNext()) {
                 Purchase purchase = PurchaseFactory.
                         getPurchaseFromFactory(sc.nextLine());
                 DayOfWeek dayOfWeek = DayOfWeek.valueOf(sc.nextLine());
 
-                purchaseByLastWeekDay.put(purchase, dayOfWeek);
-                if (!purchaseByFirstWeekDay.containsKey(purchase)) {
-                    purchaseByFirstWeekDay.put(purchase, dayOfWeek);
+                lastPurchaseMap.put(purchase, dayOfWeek);
+                if (!firstPurchaseMap.containsKey(purchase)) {
+                    firstPurchaseMap.put(purchase, dayOfWeek);
                 }
 
                 if (purchase.getClass() == PricePurchase.class) {
-                    pricePurchases.add((PricePurchase) purchase);
+                    priceDiscountPurchases.add((PricePurchase) purchase);
                 }
-                if (!dayOfWeekByPurchases.containsKey(dayOfWeek)) {
-                    dayOfWeekByPurchases.put(dayOfWeek, new ArrayList<>());
+                if (!dayPurchaseMap.containsKey(dayOfWeek)) {
+                    dayPurchaseMap.put(dayOfWeek, new ArrayList<>());
                 }
-                dayOfWeekByPurchases.get(dayOfWeek).add(purchase);
+                dayPurchaseMap.get(dayOfWeek).add(purchase);
             }
             System.out.println(FIRST_PURCHASE_MAP);
-            print(purchaseByFirstWeekDay);
+            print(firstPurchaseMap);
             System.out.println(LAST_PURCHASE_MAP);
-            print(purchaseByLastWeekDay);
+            print(lastPurchaseMap);
 
             Purchase reqPurchase = new Purchase("bread",
                     new Byn(155), 0);
-            findPurchase(reqPurchase, null, purchaseByFirstWeekDay);
-            findPurchase(reqPurchase, null, purchaseByLastWeekDay);
+            findPurchase(reqPurchase, null, firstPurchaseMap);
+            findPurchase(reqPurchase, null, lastPurchaseMap);
             findPurchase(new Purchase("bread",
-                    new Byn(170), 0), null, purchaseByFirstWeekDay);
+                    new Byn(170), 0), null, firstPurchaseMap);
             removeAllEntries(new Purchase("meat", null, 0),
-                    null, purchaseByLastWeekDay);
-            removeAllEntries(null, DayOfWeek.FRIDAY, purchaseByFirstWeekDay);
+                    null, lastPurchaseMap);
+            removeAllEntries(null, DayOfWeek.FRIDAY, firstPurchaseMap);
 
             System.out.println(FIRST_PURCHASE_MAP);
-            print(purchaseByFirstWeekDay);
+            print(firstPurchaseMap);
             System.out.println(LAST_PURCHASE_MAP);
-            print(purchaseByLastWeekDay);
+            print(lastPurchaseMap);
 
-            printTotalCost(pricePurchases);
+            printTotalCost(priceDiscountPurchases);
 
             System.out.println(ENUM_MAP);
-            print(dayOfWeekByPurchases);
+            print(dayPurchaseMap);
 
             for (Map.Entry<DayOfWeek, List<Purchase>> entry :
-                    dayOfWeekByPurchases.entrySet()) {
+                    dayPurchaseMap.entrySet()) {
                 System.out.print(entry.getKey() + TOTAL_COST);
                 printTotalCost(entry.getValue());
             }
 
-            findPurchase(null, DayOfWeek.MONDAY, dayOfWeekByPurchases);
+            findPurchase(null, DayOfWeek.MONDAY, dayPurchaseMap);
         } catch (FileNotFoundException e) {
             System.out.println(NO_FILE);
         }
