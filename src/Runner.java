@@ -29,6 +29,7 @@ public class Runner {
                     linesList.get(searchResult).increaseByOne();
                 }
             }
+            Collections.sort(linesList, new LineComparatorByNum());
             printList(linesList);
         } catch (FileNotFoundException e) {
             System.err.println(NO_FILE);
