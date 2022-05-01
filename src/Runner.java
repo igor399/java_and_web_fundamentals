@@ -22,7 +22,8 @@ public class Runner {
                         (x1 - x2) + (y1 - y2) * (y1 - y2)));
                 LineSegment lineSegment = new LineSegment(lineLength);
                 Collections.sort(linesList);
-                int searchResult = Collections.binarySearch(linesList, lineSegment);
+                int searchResult = Collections.binarySearch(linesList,
+                        lineSegment);
                 if (searchResult < 0) {
                     linesList.add(lineSegment);
                 } else {
