@@ -4,7 +4,7 @@ import java.util.Comparator;
 
 import static by.epam.lab.services.GlobalConstants.*;
 
-public class LineSegment {
+public class LineSegment implements Comparable<LineSegment>{
     private int len;
     private int num;
 
@@ -35,6 +35,11 @@ public class LineSegment {
 
     public void increaseByOne() {
         num++;
+    }
+
+    @Override
+    public int compareTo(LineSegment o) {
+        return o.len - len;
     }
 
     @Override

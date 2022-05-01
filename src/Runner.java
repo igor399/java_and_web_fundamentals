@@ -21,22 +21,22 @@ public class Runner {
                 int lineLength = (int) Math.round(Math.sqrt((x1 - x2) *
                         (x1 - x2) + (y1 - y2) * (y1 - y2)));
                 LineSegment lineSegment = new LineSegment(lineLength);
-                int searchResult = Collections.binarySearch(linesList,
-                        lineSegment, new LineComparatorByLength());
+                Collections.sort(linesList);
+                int searchResult = Collections.binarySearch(linesList, lineSegment);
                 if (searchResult < 0) {
                     linesList.add(lineSegment);
                 } else {
                     linesList.get(searchResult).increaseByOne();
                 }
             }
-            Collections.sort(linesList, new LineComparatorByNum());
+            linesList.sort(new LineComparatorByNum());
             printList(linesList);
         } catch (FileNotFoundException e) {
             System.err.println(NO_FILE);
         }
     }
 
-    private static <T extends Collection<LineSegment>> void printList(T lines) {
+    private static void printList(Collection<LineSegment> lines) {
         for (LineSegment line : lines) {
             System.out.println(line);
         }
