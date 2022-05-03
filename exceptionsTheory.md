@@ -252,8 +252,13 @@ Throwable или от его подкласса (чаще всего от кла
 
 ### 29. Приведите примеры наиболее известных подклассов класса Exception.
 **Ответ.**  
-Исключения типа RuntimeException автоматически генерируются при
-возникновении ошибок во время выполнения приложения.  
+* ClassNotFoundException: Класс не найден;  
+* CloneNotSupportedException: Попытка клонировать объект, который не реализует интерфейс Cloneable;  
+* IllegalAccessException: Доступ к классу отклонен;  
+* InstantiationException: Попытка создавать объект абстрактного класса или интерфейса;  
+* InterruptedException: Один поток был прерван другим потоком;  
+* NoSuchFieldException: Требуемое поле не существует;  
+* NoSuchMethodException: Требуемый метод не существует;   
 **Источник.** Java Web Development. Конспект тренинга. Ольга Смолякова. EPAM Systems, 2015.  
 
 ### 30. Приведите примеры наиболее известных подклассов класса RuntimeException.
@@ -298,8 +303,7 @@ Throwable или от его подкласса (чаще всего от кла
 **Источник.** <https://docs.oracle.com/javase/tutorial/essential/exceptions/chained.html>
 
 ### 32. Приведите пример кода со сцеплением исключений.
-**Ответ.**  
-The following example shows how to use a chained exception:
+**Ответ.**
 ```java
 try {
     
@@ -452,8 +456,6 @@ void methodThrowsSomeCheckedException() throws SomeCheckedException {
 ### 44. Приведите примеры кода с выбросом RuntimeException явным образом и в случае программной ошибки.  
 **Ответ.**  
 
-
-
 ### 45. Можно ли отрефакторить данный код? Если да, то выполните.  
 ```java
 void methodThrowsSomeRuntimeException() {
@@ -464,8 +466,13 @@ void methodThrowsSomeRuntimeException() {
 ```
 **Ответ.**  
 ```java
-void methodThrowsSomeRuntimeException() throws SomeRuntimeException{
-        	...
+void methodThrowsSomeRuntimeException() {
+        ...
+    try{
+        ...
+        }catch(SomeRuntimeException e){
+        System.err.print("Обработка uncheсked-исключения вне метода:" + e);
+        }
 }
 ```
 
@@ -478,13 +485,31 @@ void methodThrowsSomeRuntimeException() throws SomeRuntimeException {
 }
 ```
 **Ответ.**  
-
-**Источник.** <>
+Является. RuntimeException (unchecked) и используемых для отображения программных ошибок, 
+при выполнении приложения throws в объявлении может отсутствовать, так как играет только информационную роль.
+Не следует в общем случае в секцию throws помещать unchecked-исключения.
+Также обработка unchecked-исключения должна происходить в catch-блоке иначе генерация нового исключения приведет к остановке программы.
 
 ### 47. В какой версии Java появился оператор try-with-resources? Приведите пример кода с использованием указанного оператора.  
 **Ответ.**  
-
-**Источник.** <>
+В Java 7 реализована возможность автоматического закрытия ресурсов в
+блоке try с ресурсами (try-with-resources).
+```java
+public class TryWithResources {
+public static void main(String[] args) {
+String filePath = args[0];
+try (FileInputStream in = new FileInputStream(filePath)) {
+int data = 0;
+while ((data = in.read()) != -1) {
+System.out.print("Data: " + data);
+}
+} catch (IOException e) {
+System.out.println("Error: " + e.getMessage());
+}
+}
+}
+```
+**Источник.** Java Web Development. Конспект тренинга. Ольга Смолякова. EPAM Systems, 2015.
 
 ### 48. Является ли данный код антипаттерном? Обоснуйте ответ.  
 ```java
@@ -497,8 +522,7 @@ void methodWithAutocloseableInstance() {
 }
 ```
 **Ответ.**  
-
-**Источник.** <>
+Является, т.к. нет блока catch для обработки исключения, которое генерирует блок try.  
 
 ### 49. Является ли данный код антипаттерном? Обоснуйте ответ.  
 ```java
@@ -513,8 +537,7 @@ void methodWithAutocloseableInstance() {
 }
 ```
 **Ответ.**  
-
-**Источник.** <>
+Не является, т.к. ресурс реализует интерфейс java.lang.AutoCloseable.  
 
 ### 50. Является ли данный код антипаттерном? Обоснуйте ответ.  
 ```java
@@ -525,8 +548,8 @@ try {
 }
 ```
 **Ответ.**  
-
-**Источник.** <>
+Является, т.к. не стоит оставлять пустыми блоки catch. При генерации и перехвате исключения
+никто не узнает, что исключительная ситуация имела место, и не станет устранять ее причины.  
 
 ### 51. Является ли данный код антипаттерном? Обоснуйте ответ.  
 ```java 
@@ -537,8 +560,7 @@ try {
 }
 ```
 **Ответ.**  
-
-**Источник.** <>
+Не является. Блок catch обрабатывает исключение и сообщает об исключительной ситуации.  
 
 ### 52. Является ли данный код антипаттерном, если блок catch находится не в конце раннер-метода main()? Обоснуйте ответ.  
 ```java
