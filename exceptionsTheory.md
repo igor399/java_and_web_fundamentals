@@ -803,30 +803,32 @@ looser;30;48
 ### Является ли код, реализующий задание, антипаттерном? Обоснуйте ответ.  
 ```java
 public class Runner {
-        	public static void main(String[] args) {
-                    	List<Trial> trials = new ArrayList<Trial>();
-                    	try(Scanner sc = new Scanner(new FileReader("src/in.csv"))) {
-                               	while(sc.hasNext()) {
-                                           	Trial trial = getTrial(sc);
-                                           	trials.add(trial);
-                               	}
-                               	printTrials(trials);
-                    	} catch (FileNotFoundException e) {
-                               	System.out.println(Constants.ERROR_FILE_FOUND);
-                    	}
-        	}
-        	private static Trial getTrial(Scanner sc) {
-                    	String csvLine = sc.nextLine();
-                    	String[] values = csvLine.split(Constants.DELIMETER);   	
-                    	try {
-                               	String name = values[Constants.NAME_INDEX];
-                               	int mark1 = Integer.parseInt(values[Constants.MARK1_INDEX]);
-                               	int mark2 = Integer.parseInt(values[Constants.MARK2_INDEX]);
-                   		return new Trial(name, mark1, mark2);
-                    	} catch (CsvLineException e) {
-                               	System.out.println(Constants.ERROR_WRONG_DATA);
-                    	}
-        	}
+      public static void main(String[] args) {
+            List<Trial> trials = new ArrayList<Trial>();
+            try (Scanner sc = new Scanner(new FileReader("src/in.csv"))) {
+                  while (sc.hasNext()) {
+                        Trial trial = getTrial(sc);
+                        trials.add(trial);
+                  }
+                  printTrials(trials);
+            } catch (FileNotFoundException e) {
+                  System.out.println(Constants.ERROR_FILE_FOUND);
+            }
+      }
+
+      private static Trial getTrial(Scanner sc) {
+            String csvLine = sc.nextLine();
+            String[] values = csvLine.split(Constants.DELIMETER);
+            try {
+                  String name = values[Constants.NAME_INDEX];
+                  int mark1 = Integer.parseInt(values[Constants.MARK1_INDEX]);
+                  int mark2 = Integer.parseInt(values[Constants.MARK2_INDEX]);
+                  return new Trial(name, mark1, mark2);
+            } catch (CsvLineException e) {
+                  System.out.println(Constants.ERROR_WRONG_DATA);
+            }
+      }
+}
 ```
 **Ответ.**  
 
