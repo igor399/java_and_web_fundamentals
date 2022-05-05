@@ -959,18 +959,23 @@ public class LineException extends Exception {
     private String wrongLine;  //1
 
     public LineException() { //2
-    }
-
-    public LineException(String message) { //4
-        super("Invalid line >>  " + message);
+        super();
     }
 
     public LineException(String message, Throwable cause) { //3
         super(message, cause);
     }
 
-    public LineException(Throwable cause) { 
-        super(cause);
+    public LineException(String message) { //4
+        super("Invalid line >>  " + message);
+    }
+
+    public String getWrongLine() {  //5
+        return wrongLine;
+    }
+
+    public String toString() {               //6
+        return wrongLine + getWrongLine();
     }
 }
 ```
