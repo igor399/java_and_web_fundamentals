@@ -4,15 +4,15 @@ import static by.epam.lab.services.GlobalConstants.*;
 
 public class NumLen {
     private final int len;
-    private int num;
+    private final int num;
 
     public NumLen() {
-        this(0);
+        this(0, 0);
     }
 
-    public NumLen(int len) {
+    public NumLen(int len, int num) {
         this.len = len;
-        num = 1;
+        this.num = num;
     }
 
     public int getLen() {
@@ -21,32 +21,6 @@ public class NumLen {
 
     public int getNum() {
         return num;
-    }
-
-    public void setNum(int num) {
-        this.num = num;
-    }
-
-    public void incNum() {
-        num++;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        final NumLen other = (NumLen) o;
-        if (len != other.len) return false;
-        other.num++;
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        final int PRIME = 31;
-        int result = 1;
-        result = PRIME * result + len;
-        return result;
     }
 
     @Override
