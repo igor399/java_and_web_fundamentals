@@ -50,7 +50,7 @@ public class JdbcRunner {
                 }
             }
         } catch (SQLException e) {
-            System.err.println(e);
+            System.err.println(e.getMessage());
         }
     }
 }
