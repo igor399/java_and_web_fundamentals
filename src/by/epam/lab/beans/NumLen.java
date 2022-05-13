@@ -24,23 +24,6 @@ public class NumLen {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        final NumLen other = (NumLen) o;
-        if (len != other.len) return false;
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        final int PRIME = 31;
-        int result = 1;
-        result = PRIME * result + len;
-        return result;
-    }
-
-    @Override
     public String toString() {
         return len + SEMICOLON + num;
     }
