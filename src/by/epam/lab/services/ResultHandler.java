@@ -8,6 +8,8 @@ import org.xml.sax.helpers.DefaultHandler;
 import java.util.ArrayList;
 import java.util.List;
 
+import static by.epam.lab.services.GlobalConstants.*;
+
 public class ResultHandler extends DefaultHandler {
 
     private enum ResultEnum {
@@ -16,13 +18,22 @@ public class ResultHandler extends DefaultHandler {
 
     private List<Result> results = new ArrayList<Result>();
     private ResultEnum currentEnum;
-	...
+	private Result currentResult = null;
+	private String currentLogin = null;
 
-    public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+    public void startElement(String uri, String localName, String qName,
+                             Attributes attributes) throws SAXException {
         currentEnum = ResultEnum.valueOf(localName.toUpperCase());
         if (currentEnum == ResultEnum.TEST) {
-            //add to results the test result
-			...
+            currentResult = new Result();
+            currentResult.setLogin(currentLogin);
+            currentResult.setTest(attributes.getValue(NAME_IND));
+
+
+
+
+
+
         }
     }
 

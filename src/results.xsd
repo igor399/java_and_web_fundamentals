@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.example.org/students"
+        xmlns:tns="http://www.example.org/students">
+    <element name="results">
+        <complexType>
+            <sequence>
+                <element name="student" type="tns:Student"
+                         minOccurs="1" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+    <complexType name="Student">
+        <sequence>
+            <element name="login" type="tns:Login"/>
+            <element name="tests" type="tns:Tests"/>
+        </sequence>
+    </complexType>
+
+    <simpleType name="Login">
+        <restriction base="string">
+            <pattern value="[a-zA-Z]\S{2}"/>
+        </restriction>
+    </simpleType>
+
+    <complexType name="Tests">
+        <sequence>
+            <element name="tests" type="tns:Tests"
+                     minOccurs="1" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+    <complexType name="Test">
+        <attribute name="name" type="string" use="required"/>
+        <attribute name="date" type="tns:Date" use="required"/>
+        <attribute name="mark" type="tns:Mark" use="required"/>
+    </complexType>
+    <simpleType name = "Date">
+        <restriction base = "string">
+            <pattern value="[0-9]{4}-[0-9]{2}-[0-9]{2}"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="Mark">
+        <restriction base = "string">
+            <pattern value="[0-9]|10\.[0-9]]"/>
+        </restriction>
+    </simpleType>
+</schema>
+
