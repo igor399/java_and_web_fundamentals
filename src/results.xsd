@@ -16,13 +16,11 @@
             <element name="tests" type="tns:Tests"/>
         </sequence>
     </complexType>
-
     <simpleType name="Login">
         <restriction base="string">
             <pattern value="[a-zA-Z]\S{2}"/>
         </restriction>
     </simpleType>
-
     <complexType name="Tests">
         <sequence>
             <element name="tests" type="tns:Tests"
