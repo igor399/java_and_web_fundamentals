@@ -22,10 +22,6 @@ public class ResultHandler extends DefaultHandler {
     private Result currentResult = null;
     private String currentLogin = null;
 
-    public ResultHandler() {
-
-    }
-
     public List<Result> getResults(){
         return results;
     }

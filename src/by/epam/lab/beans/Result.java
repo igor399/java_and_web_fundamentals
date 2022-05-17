@@ -43,17 +43,17 @@ public class Result {
         this.date = date;
     }
 
-    private static String getRightDateFormat(Date date) {
+    private static String getValidDateFormat(Date date) {
         return new SimpleDateFormat(DATE_STRING_PATTERN).format(date);
     }
 
-    private static String getRightMarkFormat(int mark) {
+    private static String getValidMarkFormat(int mark) {
         return String.format(FORMAT_OF_MARK, mark / CONV_FACTOR, mark % CONV_FACTOR);
     }
 
     @Override
     public String toString() {
-        return login + SEMICOLON + test + SEMICOLON + getRightDateFormat(date) +
-                SEMICOLON + getRightMarkFormat(mark);
+        return login + SEMICOLON + test + SEMICOLON + getValidDateFormat(date) +
+                SEMICOLON + getValidMarkFormat(mark);
     }
 }

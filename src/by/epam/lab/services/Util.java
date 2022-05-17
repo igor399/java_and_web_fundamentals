@@ -13,7 +13,6 @@ public class Util {
     }
 
     public static int setMark(String mark){
-        double markDouble = Double.parseDouble(mark);
-        return (int) (markDouble * CONV_FACTOR);
+        return (int) (Double.parseDouble(mark) * CONV_FACTOR);
     }
 }

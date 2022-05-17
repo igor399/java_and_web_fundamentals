@@ -4,7 +4,6 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import static by.epam.lab.services.GlobalConstants.*;
@@ -20,9 +19,7 @@ public class Runner {
                 System.out.println(result);
             }
         } catch (SAXException e) {
-            System.out.println(SAX_EXCEPTION + e);
-        } catch (FileNotFoundException e) {
-            System.out.println(NO_FILE_EXCEPTION);
+            System.err.println(SAX_EXCEPTION + e);
         } catch (IOException e) {
             System.err.println(IO_EXCEPTION + e);
         }

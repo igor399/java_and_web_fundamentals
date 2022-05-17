@@ -11,7 +11,6 @@ public class GlobalConstants {
     public final static int DATE_IND = 1;
     public final static int MARK_IND = 2;
     public final static String PARSE_DATE_EXCEPTION = "Parse date exception";
-    public final static String NO_FILE_EXCEPTION = "File not found exception";
     public final static String SAX_EXCEPTION = "SAX parser error";
     public final static String IO_EXCEPTION = "I/O thread error";
 }
