@@ -1,6 +1,5 @@
 package by.epam.lab.beans;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static by.epam.lab.services.GlobalConstants.*;
@@ -8,8 +7,15 @@ import static by.epam.lab.services.GlobalConstants.*;
 public class Result {
     private String login;
     private String test;
-    private int mark;
     private Date date;
+    private int mark;
+
+    public Result(String login, String test, String date, String mark) {
+        this.login = login;
+        this.test = test;
+        this.date = java.sql.Date.valueOf(date);
+        this.mark = (int) (Double.parseDouble(mark) * CONV_FACTOR);
+    }
 
     public String getLogin() {
         return login;
@@ -27,14 +33,6 @@ public class Result {
         this.test = test;
     }
 
-    public int getMark() {
-        return mark;
-    }
-
-    public void setMark(int mark) {
-        this.mark = mark;
-    }
-
     public Date getDate() {
         return date;
     }
@@ -43,17 +41,25 @@ public class Result {
         this.date = date;
     }
 
-    private static String getValidDateFormat(Date date) {
-        return new SimpleDateFormat(DATE_STRING_PATTERN).format(date);
+    public int getMark() {
+        return mark;
     }
 
-    private static String getValidMarkFormat(int mark) {
-        return String.format(FORMAT_OF_MARK, mark / CONV_FACTOR, mark % CONV_FACTOR);
+    public void setMark(int mark) {
+        this.mark = mark;
+    }
+
+    private static String getStringDate(Date date) {
+        return OUTPUT_DATE_FORMAT.format(date);
+    }
+
+    private static String getStringMark(int mark) {
+        return mark / CONV_FACTOR + "." + mark % CONV_FACTOR;
     }
 
     @Override
     public String toString() {
-        return login + SEMICOLON + test + SEMICOLON + getValidDateFormat(date) +
-                SEMICOLON + getValidMarkFormat(mark);
+        return login + SEMICOLON + test + SEMICOLON + getStringDate(date) +
+                SEMICOLON + getStringMark(mark);
     }
 }

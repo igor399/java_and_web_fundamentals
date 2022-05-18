@@ -5,7 +5,6 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,10 +18,9 @@ public class ResultHandler extends DefaultHandler {
 
     private List<Result> results = new ArrayList<>();
     private ResultEnum currentEnum;
-    private Result currentResult = null;
-    private String currentLogin = null;
+    private String login = null;
 
-    public List<Result> getResults(){
+    public List<Result> getResults() {
         return results;
     }
 
@@ -30,31 +28,18 @@ public class ResultHandler extends DefaultHandler {
                              Attributes attrs) throws SAXException {
         currentEnum = ResultEnum.valueOf(localName.toUpperCase());
         if (currentEnum == ResultEnum.TEST) {
-            currentResult = new Result();
-            currentResult.setLogin(currentLogin);
-            currentResult.setTest(attrs.getValue(NAME_IND));
-            try {
-                currentResult.setDate(Util.setDate(attrs.getValue(DATE_IND)));
-            } catch (ParseException e) {
-                System.out.println(PARSE_DATE_EXCEPTION + e);
-            }
-            currentResult.setMark(Util.setMark(attrs.getValue(MARK_IND)));
-        }
-    }
-
-    public void endElement(String uri, String localName, String qName) {
-        currentEnum = ResultEnum.valueOf(localName.toUpperCase());
-        if (currentEnum == ResultEnum.TEST) {
+            Result currentResult = new Result(login, attrs.getValue(NAME_IND),
+                    attrs.getValue(DATE_IND), attrs.getValue(MARK_IND));
             results.add(currentResult);
-        }
-        if (currentEnum == ResultEnum.STUDENT) {
-            currentLogin = null;
         }
     }
 
     public void characters(char[] ch, int start, int length) {
-        if (currentEnum == ResultEnum.LOGIN && currentLogin == null) {
-            currentLogin = new String(ch, start, length).trim();
+        if (currentEnum == ResultEnum.LOGIN) {
+            String str = new String(ch, start, length).trim();
+            if(!str.isEmpty()){
+                login = str;
+            }
         }
     }
 }
