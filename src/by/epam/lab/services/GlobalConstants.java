@@ -5,8 +5,8 @@ import java.text.SimpleDateFormat;
 public class GlobalConstants {
     public final static String SEMICOLON = ";";
     public final static String DB_URL = "jdbc:mysql://localhost:3306/jse";
-    public final static String USER = "jse";
-    public final static String PASS = "root";
+    public final static String USER = "root";
+    public final static String PASS = "password";
     private static final String INSERT_RESULT = "INSERT INTO results VALUES(" +
             "(SELECT idLogin FROM logins WHERE name = ?)," +
             "(SELECT idTest FROM tests WHERE name = ?)," +
@@ -33,12 +33,9 @@ public class GlobalConstants {
     public final static SimpleDateFormat OUTPUT_DATE_FORMAT =
             new SimpleDateFormat("dd.MM.yyyy");
     public final static int CONV_FACTOR = 10;
-    private static final int LOGIN_IND = 1;
-    private static final int TEST_IND = 2;
-    private static final int DATE_IND = 3;
-    private static final int MARK_IND = 4;
-    private static final int MEAN_IND = 2;
-
+    public final static int NAME_IND = 0;
+    public final static int DATE_IND = 1;
+    public final static int MARK_IND = 2;
     public final static String SAX_EXCEPTION = "SAX parser error";
     public final static String IO_EXCEPTION = "I/O thread error";
 }

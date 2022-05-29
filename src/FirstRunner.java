@@ -4,7 +4,7 @@ import java.util.List;
 
 import static by.epam.lab.services.GlobalConstants.*;
 
-public class JdbcRunner {
+public class FirstRunner {
     public static void main(String[] args) {
         try (Connection cn = DriverManager.getConnection(DB_URL, USER, PASS);
              Statement st = cn.createStatement();
