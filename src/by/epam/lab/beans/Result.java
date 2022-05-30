@@ -10,11 +10,19 @@ public class Result {
     private Date date;
     private int mark;
 
+    public Result() {
+        this("", "", null, "");
+    }
+
     public Result(String login, String test, String date, String mark) {
         this.login = login;
         this.test = test;
         this.date = java.sql.Date.valueOf(date);
         this.mark = (int) (Double.parseDouble(mark) * CONV_FACTOR);
+    }
+
+    public Result(String[]param){
+        this(param[LOGIN_IND], param[TEST_IND], param[DATE_IND], param[MARK_IND]);
     }
 
     public String getLogin() {
