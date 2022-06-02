@@ -10,7 +10,7 @@ public class Result {
     private Date date;
     private int mark;
 
-    public Result() {
+    public Result(String string, String curMonthSetString, java.sql.Date date, int anInt) {
         this("", "", null, "");
     }
 
@@ -24,6 +24,7 @@ public class Result {
     public Result(String[]param){
         this(param[LOGIN_IND], param[TEST_IND], param[DATE_IND], param[MARK_IND]);
     }
+
 
     public String getLogin() {
         return login;
