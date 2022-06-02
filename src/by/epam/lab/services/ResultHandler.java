@@ -22,7 +22,6 @@ public class ResultHandler {
     private ResultEnum currentEnum;
     private String login;
 
-
     public List<Result> getResults() {
         return results;
     }
