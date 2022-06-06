@@ -10,13 +10,6 @@ public class Result {
     private Date date;
     private int mark;
 
-    public Result(String login, String test, Date date, int mark) {
-        this.login = login;
-        this.test = test;
-        this.date = date;
-        this.mark = mark;
-    }
-
     public Result(String login, String test, String date, String mark) {
         this.login = login;
         this.test = test;
