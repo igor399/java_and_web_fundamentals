@@ -7,18 +7,18 @@ public class GlobalConstants {
     public final static String DB_URL = "jdbc:mysql://localhost:3306/jse";
     public final static String USER = "root";
     public final static String PASS = "password";
-    public static final String INSERT_RESULT = "INSERT INTO results VALUES(" +
+    public final static String INSERT_RESULT = "INSERT INTO results VALUES(" +
             "(SELECT idLogin FROM logins WHERE name = ?)," +
             "(SELECT idTest FROM tests WHERE name = ?)," +
             "(?)," +
             "(?))";
-    public static final String INSERT_LOGIN =
+    public final static String INSERT_LOGIN =
             "INSERT INTO logins (name) SELECT ? WHERE NOT EXISTS (SELECT name FROM logins WHERE name = ?)";
-    public static final String INSERT_TEST =
+    public final static String INSERT_TEST =
             "INSERT INTO tests (name) SELECT ? WHERE NOT EXISTS (SELECT name FROM tests WHERE name = ?)";
-    public static final String GET_MEAN_MARKS =
+    public final static String GET_MEAN_MARKS =
             "SELECT logins.name, AVG(mark) FROM logins, results WHERE results.loginId = logins.idLogin GROUP BY loginId";
-    public static final String GET_CURR_MONTH_RESULTS =
+    public final static String GET_CURR_MONTH_RESULTS =
             "SELECT logins.name, tests.name, results.dat, results.mark FROM logins, tests, results " +
                     "WHERE results.loginId = logins.idLogin AND results.testId = tests.idTest AND " +
                     "YEAR(results.dat) = YEAR(CURRENT_DATE()) AND " +
@@ -27,7 +27,7 @@ public class GlobalConstants {
 
 
 
-    public final static String XML_PATH = "src/results.xml";
+    public final static String XML_PATH = "resources/results.xml";
     public final static SimpleDateFormat OUTPUT_DATE_FORMAT =
             new SimpleDateFormat("dd.MM.yyyy");
     public final static int CONV_FACTOR = 10;

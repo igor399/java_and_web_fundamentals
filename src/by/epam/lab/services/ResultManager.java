@@ -5,10 +5,8 @@ import by.epam.lab.beans.Result;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
+import java.util.*;
 import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Properties;
 
 import static by.epam.lab.services.GlobalConstants.*;
 
@@ -20,8 +18,7 @@ public class ResultManager {
     private final static int MEAN_IND = 2;
     protected String dbUrl;
     protected Properties properties;
-    private final List<Result> currentMonthRes = new LinkedList<>();
-
+    private final List<Result> currentMonthRes = new ArrayList<>();
 
     public ResultManager(String propPath) throws IOException {
         properties = new Properties();
@@ -96,6 +93,4 @@ public class ResultManager {
             inResult.executeUpdate();
         }
     }
-
-
 }
