@@ -9,11 +9,11 @@ import static by.epam.lab.services.GlobalConstants.*;
 public class SecondRunner {
     public static void main(String[] args) {
         try {
-            XmlResultManager resultsDao = new XmlResultManager(PROPERTIES_PATH, MarkRepresentation.DECIMAL);
-            resultsDao.importData(XML_PATH);
-            resultsDao.printMeanMarks();
-            resultsDao.printCurrentResult();
-            resultsDao.printLastOfMonthResult();
+            XmlResultManager xmlResultDecimal = new XmlResultManager(PROPERTIES_PATH, MarkRepresentation.DECIMAL);
+            xmlResultDecimal.importData(XML_PATH);
+            xmlResultDecimal.printMeanMarks();
+            xmlResultDecimal.printCurrentResult();
+            xmlResultDecimal.printLastOfMonthResult();
         } catch (IOException | SqlDbException e) {
             System.err.println(e.getMessage());
 

@@ -9,11 +9,11 @@ import static by.epam.lab.services.GlobalConstants.*;
 public class ThirdRunner {
     public static void main(String[] args) {
         try {
-            CsvResultManager resultsDao = new CsvResultManager(PROPERTIES_PATH, MarkRepresentation.DECIMAL_HALF);
-            resultsDao.importData(CSV2_PATH);
-            resultsDao.printMeanMarks();
-            resultsDao.printCurrentResult();
-            resultsDao.printLastOfMonthResult();
+            CsvResultManager csvResultDecimalHalf = new CsvResultManager(PROPERTIES_PATH, MarkRepresentation.DECIMAL_HALF);
+            csvResultDecimalHalf.importData(CSV2_PATH);
+            csvResultDecimalHalf.printMeanMarks();
+            csvResultDecimalHalf.printCurrentResult();
+            csvResultDecimalHalf.printLastOfMonthResult();
         } catch (IOException | SqlDbException e) {
             System.err.println(e.getMessage());
         }
