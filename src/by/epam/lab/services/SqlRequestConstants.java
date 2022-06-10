@@ -17,4 +17,3 @@ public final class SqlRequestConstants {
             "results.loginId = logins.idLogin AND results.testId = tests.idTest " +
             "AND YEAR(results.date) = YEAR(CURRENT_DATE()) ORDER BY results.date";
 }
-

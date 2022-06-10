@@ -11,7 +11,7 @@ public class FirstRunner {
     public static void main(String[] args) {
         try {
             ResultsDao resultsDao = new CsvResultManager(PROPERTIES_PATH, MarkRepresentation.INTEGER);
-            resultsDao.importDataInDB(CSV1_PATH);
+            resultsDao.importData(CSV1_PATH);
             resultsDao.printMeanMarks();
             resultsDao.printCurrentResult();
             resultsDao.printLastOfMonthResult();

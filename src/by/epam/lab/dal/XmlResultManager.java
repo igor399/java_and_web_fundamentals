@@ -23,7 +23,7 @@ public class XmlResultManager extends ResultManager {
     }
 
     @Override
-    public void importDataInDB(String filePath) throws SqlDbException {
+    public void importData(String filePath) throws SqlDbException {
         try (Connection cn = DriverManager.getConnection(dbUrl, properties)) {
             SAXParserFactory factory = SAXParserFactory.newInstance();
             SAXParser saxParser = factory.newSAXParser();

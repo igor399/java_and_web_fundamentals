@@ -11,12 +11,13 @@ public class SecondRunner {
     public static void main(String[] args) {
         try {
             ResultsDao resultsDao = new XmlResultManager(PROPERTIES_PATH, MarkRepresentation.DECIMAL);
-            resultsDao.importDataInDB(XML_PATH);
+            resultsDao.importData(XML_PATH);
             resultsDao.printMeanMarks();
             resultsDao.printCurrentResult();
             resultsDao.printLastOfMonthResult();
         } catch (IOException | SqlDbException e) {
             System.err.println(e.getMessage());
+
         }
     }
 }

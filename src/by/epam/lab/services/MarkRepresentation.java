@@ -13,8 +13,7 @@ public enum MarkRepresentation {
     DECIMAL {
         @Override
         String markToString(int mark) {
-            return String.format(PATTERN_FORMAT, mark / CONVECTION_FACTOR, mark %
-                    CONVECTION_FACTOR);
+            return String.format(FORMAT, mark / CONVECTION_FACTOR, mark % CONVECTION_FACTOR);
         }
     },
     DECIMAL_HALF {
@@ -24,8 +23,7 @@ public enum MarkRepresentation {
             if (mark % CONVECTION_FACTOR == 0) {
                 result = String.valueOf(mark / CONVECTION_FACTOR);
             } else {
-                result = String.format(PATTERN_FORMAT, mark / CONVECTION_FACTOR, mark %
-                        CONVECTION_FACTOR);
+                result = String.format(FORMAT, mark / CONVECTION_FACTOR, mark % CONVECTION_FACTOR);
             }
             return result;
         }
@@ -37,4 +35,3 @@ public enum MarkRepresentation {
         return markToString(mark);
     }
 }
-

@@ -11,7 +11,7 @@ public class ThirdRunner {
     public static void main(String[] args) {
         try {
             ResultsDao resultsDao = new CsvResultManager(PROPERTIES_PATH, MarkRepresentation.DECIMAL_HALF);
-            resultsDao.importDataInDB(CSV2_PATH);
+            resultsDao.importData(CSV2_PATH);
             resultsDao.printMeanMarks();
             resultsDao.printCurrentResult();
             resultsDao.printLastOfMonthResult();

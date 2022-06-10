@@ -21,7 +21,7 @@ public class CsvResultManager extends ResultManager {
     }
 
     @Override
-    public void importDataInDB(String filePath) throws SqlDbException {
+    public void importData(String filePath) throws SqlDbException {
         try (Scanner sc = new Scanner(new FileReader(filePath));
              Connection cn = DriverManager.getConnection(dbUrl, properties)) {
             while (sc.hasNextLine()) {
@@ -38,10 +38,7 @@ public class CsvResultManager extends ResultManager {
 
     private StudentData getStudentData(String[] params) {
         return new StudentData(
-                params[0],
-                params[1],
-                Date.valueOf(params[2]),
-                (int) Double.parseDouble(params[3])
-        );
+                params[0], params[1], Date.valueOf(params[2]),
+                (int) Double.parseDouble(params[3]));
     }
 }

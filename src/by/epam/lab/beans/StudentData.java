@@ -11,7 +11,6 @@ public class StudentData {
     private int mark;
 
     public StudentData() {
-
     }
 
     public StudentData(String login, String testName, Date date, int mark) {
@@ -19,26 +18,6 @@ public class StudentData {
         this.testName = testName;
         this.date = date;
         this.mark = mark;
-    }
-
-    public String getInteger() {
-        return String.valueOf(mark / CONVECTION_FACTOR);
-    }
-
-    public String getDecimal() {
-        return String.format(PATTERN_FORMAT, mark / CONVECTION_FACTOR,
-                mark % CONVECTION_FACTOR);
-    }
-
-    public String getDecimalHalf() {
-        String result;
-        if (mark % CONVECTION_FACTOR == 0) {
-            result = String.valueOf(mark / CONVECTION_FACTOR);
-        } else {
-            result = String.format(PATTERN_FORMAT, mark / CONVECTION_FACTOR,
-                    mark % CONVECTION_FACTOR);
-        }
-        return result;
     }
 
     public String getLogin() {
@@ -65,7 +44,7 @@ public class StudentData {
         this.date = date;
     }
 
-    public double getMark() {
+    public int getMark() {
         return mark;
     }
 
