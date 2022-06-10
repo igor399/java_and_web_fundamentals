@@ -29,7 +29,7 @@ public class ResultWrapper {
         return markRepresentation;
     }
 
-    public static void setStringMarkMethod(MarkRepresentation markRepresentation) {
+    public static void setStringMarkRepresentation(MarkRepresentation markRepresentation) {
         ResultWrapper.markRepresentation = markRepresentation;
     }
 

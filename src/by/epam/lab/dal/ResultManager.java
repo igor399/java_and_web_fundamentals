@@ -22,7 +22,7 @@ public abstract class ResultManager implements ResultsDao {
         properties = new Properties();
         properties.load(new FileReader(propertiesPath));
         dbUrl = properties.getProperty(KEY_URL);
-        ResultWrapper.setStringMarkMethod(markRepresentation);
+        ResultWrapper.setStringMarkRepresentation(markRepresentation);
     }
 
     protected static void insertResult(Connection cn, ResultWrapper result) throws SQLException {
