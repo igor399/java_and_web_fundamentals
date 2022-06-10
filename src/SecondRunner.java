@@ -17,7 +17,6 @@ public class SecondRunner {
             resultsDao.printLastOfMonthResult();
         } catch (IOException | SqlDbException e) {
             System.err.println(e.getMessage());
-
         }
     }
 }
