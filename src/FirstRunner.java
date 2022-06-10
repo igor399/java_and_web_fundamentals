@@ -1,4 +1,3 @@
-import by.epam.lab.dal.ResultsDao;
 import by.epam.lab.dal.CsvResultManager;
 import by.epam.lab.exceptions.SqlDbException;
 import by.epam.lab.services.MarkRepresentation;
@@ -10,7 +9,7 @@ import static by.epam.lab.services.GlobalConstants.*;
 public class FirstRunner {
     public static void main(String[] args) {
         try {
-            ResultsDao resultsDao = new CsvResultManager(PROPERTIES_PATH, MarkRepresentation.INTEGER);
+            CsvResultManager resultsDao = new CsvResultManager(PROPERTIES_PATH, MarkRepresentation.INTEGER);
             resultsDao.importData(CSV1_PATH);
             resultsDao.printMeanMarks();
             resultsDao.printCurrentResult();

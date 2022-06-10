@@ -1,4 +1,3 @@
-import by.epam.lab.dal.ResultsDao;
 import by.epam.lab.dal.XmlResultManager;
 import by.epam.lab.exceptions.SqlDbException;
 import by.epam.lab.services.MarkRepresentation;
@@ -10,7 +9,7 @@ import static by.epam.lab.services.GlobalConstants.*;
 public class SecondRunner {
     public static void main(String[] args) {
         try {
-            ResultsDao resultsDao = new XmlResultManager(PROPERTIES_PATH, MarkRepresentation.DECIMAL);
+            XmlResultManager resultsDao = new XmlResultManager(PROPERTIES_PATH, MarkRepresentation.DECIMAL);
             resultsDao.importData(XML_PATH);
             resultsDao.printMeanMarks();
             resultsDao.printCurrentResult();

@@ -22,7 +22,6 @@ public class XmlResultManager extends ResultManager {
         super(propertiesPath, markRepresentation);
     }
 
-    @Override
     public void importData(String filePath) throws SqlDbException {
         try (Connection cn = DriverManager.getConnection(dbUrl, properties)) {
             SAXParserFactory factory = SAXParserFactory.newInstance();

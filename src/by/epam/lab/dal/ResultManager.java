@@ -13,7 +13,7 @@ import static by.epam.lab.services.GlobalConstants.*;
 import static by.epam.lab.services.SqlRequestConstants.*;
 import static java.sql.Statement.RETURN_GENERATED_KEYS;
 
-public abstract class ResultManager implements ResultsDao {
+public abstract class ResultManager  {
     private final LinkedList<ResultWrapper> currentMonthResults = new LinkedList<>();
     protected String dbUrl;
     protected Properties properties;
@@ -68,7 +68,6 @@ public abstract class ResultManager implements ResultsDao {
         }
     }
 
-    @Override
     public void printMeanMarks() {
         try (Connection cn = DriverManager.getConnection(dbUrl, properties);
              Statement st = cn.createStatement();
@@ -83,7 +82,6 @@ public abstract class ResultManager implements ResultsDao {
         }
     }
 
-    @Override
     public void printCurrentResult() {
         try {
             loadCurrentMonthResult();
@@ -96,7 +94,6 @@ public abstract class ResultManager implements ResultsDao {
         }
     }
 
-    @Override
     public void printLastOfMonthResult() {
         if (currentMonthResults.size() > 0) {
             System.out.println(TITLE_LAST_DAY_RESULT);

@@ -20,7 +20,6 @@ public class CsvResultManager extends ResultManager {
         super(propDirectory, markRepresentation);
     }
 
-    @Override
     public void importData(String fileDirectory) throws SqlDbException {
         try (Scanner sc = new Scanner(new FileReader(fileDirectory));
              Connection cn = DriverManager.getConnection(dbUrl, properties)) {
