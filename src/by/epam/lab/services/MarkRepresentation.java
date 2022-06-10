@@ -35,4 +35,3 @@ public enum MarkRepresentation {
         return markToString(mark);
     }
 }
-
