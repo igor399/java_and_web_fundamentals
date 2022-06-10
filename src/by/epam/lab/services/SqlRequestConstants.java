@@ -7,11 +7,14 @@ public final class SqlRequestConstants {
     public static final String INSERT_TEST = "INSERT INTO tests (name) VALUES (?)";
     public static final String SELECT_ID_LOGIN = "SELECT idLogin FROM logins " +
             "WHERE name like '";
+
     public static final String SELECT_ID_TEST = "SELECT idTest FROM tests " +
             "WHERE name like '";
+
     public static final String MEAN_MARKS = "SELECT logins.name, AVG(results.mark) " +
             "FROM logins, results WHERE results.loginId = logins.idLogin GROUP " +
             "BY logins.idLogin";
+
     public static final String CURR_MONTH_RESULTS = "SELECT logins.name, tests.name, " +
             "results.date, results.mark FROM logins, tests, results WHERE " +
             "results.loginId = logins.idLogin AND results.testId = tests.idTest " +

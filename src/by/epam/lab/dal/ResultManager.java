@@ -14,9 +14,9 @@ import static by.epam.lab.services.SqlRequestConstants.*;
 import static java.sql.Statement.RETURN_GENERATED_KEYS;
 
 public abstract class ResultManager implements ResultsDao {
+    private final LinkedList<ResultWrapper> currentMonthResults = new LinkedList<>();
     protected String dbUrl;
     protected Properties properties;
-    private final LinkedList<ResultWrapper> currentMonthResults = new LinkedList<>();
 
     public ResultManager(String propertiesPath, MarkRepresentation markRepresentation) throws IOException {
         properties = new Properties();

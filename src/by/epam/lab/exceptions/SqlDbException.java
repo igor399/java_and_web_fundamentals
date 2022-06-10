@@ -3,6 +3,7 @@ package by.epam.lab.exceptions;
 import java.sql.SQLException;
 
 public class SqlDbException extends SQLException {
+
     public SqlDbException() {
         super();
     }

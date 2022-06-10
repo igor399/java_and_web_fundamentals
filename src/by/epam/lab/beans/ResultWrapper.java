@@ -37,7 +37,7 @@ public class ResultWrapper {
         return studentData.getDate();
     }
 
-    public int getMark() {
+    public double getMark() {
         return studentData.getMark();
     }
 

@@ -16,13 +16,13 @@ import static by.epam.lab.services.GlobalConstants.*;
 
 public class CsvResultManager extends ResultManager {
 
-    public CsvResultManager(String propertiesPath, MarkRepresentation markRepresentation) throws IOException {
-        super(propertiesPath, markRepresentation);
+    public CsvResultManager(String propDirectory, MarkRepresentation markRepresentation) throws IOException {
+        super(propDirectory, markRepresentation);
     }
 
     @Override
-    public void importData(String filePath) throws SqlDbException {
-        try (Scanner sc = new Scanner(new FileReader(filePath));
+    public void importData(String fileDirectory) throws SqlDbException {
+        try (Scanner sc = new Scanner(new FileReader(fileDirectory));
              Connection cn = DriverManager.getConnection(dbUrl, properties)) {
             while (sc.hasNextLine()) {
                 String[] params = sc.nextLine().split(SEMICOLON);

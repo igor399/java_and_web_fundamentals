@@ -40,3 +40,4 @@ public class XmlResultManager extends ResultManager {
         }
     }
 }
+

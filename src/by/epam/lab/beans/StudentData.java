@@ -8,12 +8,12 @@ public class StudentData {
     private String login;
     private String testName;
     private Date date;
-    private int mark;
+    private double mark;
 
     public StudentData() {
     }
 
-    public StudentData(String login, String testName, Date date, int mark) {
+    public StudentData(String login, String testName, Date date, double mark) {
         this.login = login;
         this.testName = testName;
         this.date = date;
@@ -44,7 +44,7 @@ public class StudentData {
         this.date = date;
     }
 
-    public int getMark() {
+    public double getMark() {
         return mark;
     }
 

@@ -21,4 +21,5 @@ public class GlobalConstants {
     public final static String TITLE_MEAN_MARK = "mean marks of students:";
     public final static String TITLE_MONTH_RESULT = "\nresults of the current month:";
     public final static String TITLE_LAST_DAY_RESULT = "\nlatest day results of current month:";
+
 }
