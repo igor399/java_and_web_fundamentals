@@ -30,7 +30,7 @@ public abstract class ResultManager {
         try {
             PreparedStatement insertLogin = cn.prepareStatement(INSERT_LOGIN,
                     RETURN_GENERATED_KEYS);
-            insertLogin.setString(1, result.getLogin());
+            insertLogin.setString(START_ID, result.getLogin());
             insertLogin.executeUpdate();
             loginId = getInsertedId(insertLogin);
         } catch (SQLIntegrityConstraintViolationException e) {
@@ -43,7 +43,7 @@ public abstract class ResultManager {
         try {
             PreparedStatement insertTest = cn.prepareStatement(INSERT_TEST,
                     RETURN_GENERATED_KEYS);
-            insertTest.setString(1, result.getTestName());
+            insertTest.setString(START_ID, result.getTestName());
             insertTest.executeUpdate();
             testId = getInsertedId(insertTest);
         } catch (SQLIntegrityConstraintViolationException e) {
