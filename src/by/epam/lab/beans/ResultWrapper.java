@@ -42,7 +42,7 @@ public class ResultWrapper {
     }
 
     private static String getStringDate(Date date) {
-        return DATE_FORMAT.format(date);
+        return OUTPUT_DATE_FORMAT.format(date);
     }
 
     public static MarkRepresentation getStringMarkRepresentation() {

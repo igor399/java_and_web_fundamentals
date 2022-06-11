@@ -16,7 +16,7 @@ public class GlobalConstants {
     public final static int MARK_INDEX = 4;
     public final static String KEY_URL = "db.url";
     public final static String FORMAT = "%d.%d";
-    public final static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd.MM.yyyy");
+    public final static SimpleDateFormat OUTPUT_DATE_FORMAT = new SimpleDateFormat("dd.MM.yyyy");
     public final static String SEMICOLON = ";";
     public final static String TITLE_MEAN_MARK = "mean marks of students:";
     public final static String TITLE_MONTH_RESULT = "\nresults of the current month:";
