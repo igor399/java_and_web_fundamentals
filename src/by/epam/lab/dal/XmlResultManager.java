@@ -14,12 +14,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
 
-import static by.epam.lab.services.GlobalConstants.*;
-
 public class XmlResultManager extends ResultManager {
 
-    public XmlResultManager(String propertiesPath, MarkRepresentation markRepresentation) throws IOException {
-        super(propertiesPath, markRepresentation);
+    public XmlResultManager(String propertiesPath, RoundMethod roundMethod) throws IOException {
+        super(propertiesPath, roundMethod);
     }
 
     public void importData(String filePath) throws SqlDbException {
@@ -28,8 +26,8 @@ public class XmlResultManager extends ResultManager {
             SAXParser saxParser = factory.newSAXParser();
             ResultHandler handler = new ResultHandler();
             saxParser.parse(filePath, handler);
-            List<ResultWrapper> results = handler.getResults();
-            for (ResultWrapper result : results) {
+            List<Result> results = handler.getResults();
+            for (Result result : results) {
                 insertResult(cn, result);
             }
         } catch (ParserConfigurationException | SAXException | SQLException e) {

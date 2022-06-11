@@ -1,28 +1,28 @@
 package by.epam.lab.services;
 
-import by.epam.lab.beans.ResultWrapper;
+import by.epam.lab.beans.Result;
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static by.epam.lab.services.GlobalConstants.*;
+
 public class ResultHandler extends DefaultHandler {
     private enum ResultEnum {
         RESULTS, STUDENT, LOGIN, TESTS, TEST;
     }
 
-    private static final int NAME_IND = 0;
-    private static final int DATE_IND = 1;
-    private static final int MARK_IND = 2;
-    private final List<ResultWrapper> results = new ArrayList<>();
+    private final List<Result> results = new ArrayList<>();
     private ResultEnum currentEnum;
     private String login;
 
     public ResultHandler() {
+
     }
 
-    public List<ResultWrapper> getResults() {
+    public List<Result> getResults() {
         return results;
     }
 
@@ -30,10 +30,10 @@ public class ResultHandler extends DefaultHandler {
     public void startElement(String uri, String localName, String qName, Attributes attributes) {
         currentEnum = ResultEnum.valueOf(qName.toUpperCase());
         if (currentEnum == ResultEnum.TEST) {
-            ResultWrapper current = new ResultWrapper(login,
-                    attributes.getValue(NAME_IND),
-                    attributes.getValue(DATE_IND),
-                    attributes.getValue(MARK_IND));
+            Result current = new Result(login,
+                    attributes.getValue(PARAM_LOGIN_IND),
+                    attributes.getValue(PARAM_TEST_IND),
+                    attributes.getValue(PARAM_DATE_IND));
             results.add(current);
         }
     }

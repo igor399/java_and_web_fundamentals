@@ -1,7 +1,7 @@
 package by.epam.lab.dal;
 
-import by.epam.lab.beans.ResultWrapper;
-import by.epam.lab.services.MarkRepresentation;
+import by.epam.lab.beans.Result;
+import by.epam.lab.services.RoundMethod;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -13,38 +13,42 @@ import static by.epam.lab.services.GlobalConstants.*;
 import static by.epam.lab.services.SqlRequestConstants.*;
 import static java.sql.Statement.RETURN_GENERATED_KEYS;
 
-public abstract class ResultManager  {
-    private final LinkedList<ResultWrapper> currentMonthResults = new LinkedList<>();
+public abstract class ResultManager {
+    private final LinkedList<Result> currentMonthResults = new LinkedList<>();
     protected String dbUrl;
     protected Properties properties;
 
-    public ResultManager(String propertiesPath, MarkRepresentation markRepresentation) throws IOException {
+    public ResultManager(String propertiesPath, RoundMethod roundMethod) throws IOException {
         properties = new Properties();
         properties.load(new FileReader(propertiesPath));
-        dbUrl = properties.getProperty(KEY_URL);
-        ResultWrapper.setStringMarkRepresentation(markRepresentation);
+        dbUrl = properties.getProperty(DB_URL);
+        Result.setRoundMethod(roundMethod);
     }
 
-    protected static void insertResult(Connection cn, ResultWrapper result) throws SQLException {
+    protected static void insertResult(Connection cn, Result result) throws SQLException {
         int loginId;
         try {
-            PreparedStatement insertLogin = cn.prepareStatement(INSERT_LOGIN, RETURN_GENERATED_KEYS);
+            PreparedStatement insertLogin = cn.prepareStatement(INSERT_LOGIN,
+                    RETURN_GENERATED_KEYS);
             insertLogin.setString(1, result.getLogin());
             insertLogin.executeUpdate();
             loginId = getInsertedId(insertLogin);
         } catch (SQLIntegrityConstraintViolationException e) {
-            ResultSet resultSet = cn.prepareStatement(SELECT_ID_LOGIN + result.getLogin() + "'").executeQuery();
+            ResultSet resultSet = cn.prepareStatement(SELECT_ID_LOGIN +
+                    result.getLogin() + "'").executeQuery();
             resultSet.next();
             loginId = resultSet.getInt(START_ID);
         }
         int testId;
         try {
-            PreparedStatement insertTest = cn.prepareStatement(INSERT_TEST, RETURN_GENERATED_KEYS);
-            insertTest.setString(1, result.getTest());
+            PreparedStatement insertTest = cn.prepareStatement(INSERT_TEST,
+                    RETURN_GENERATED_KEYS);
+            insertTest.setString(1, result.getTestName());
             insertTest.executeUpdate();
             testId = getInsertedId(insertTest);
         } catch (SQLIntegrityConstraintViolationException e) {
-            ResultSet resultSet = cn.prepareStatement(SELECT_ID_TEST + result.getTest() + "'").executeQuery();
+            ResultSet resultSet = cn.prepareStatement(SELECT_ID_TEST +
+                    result.getTestName() + "'").executeQuery();
             resultSet.next();
             testId = resultSet.getInt(START_ID);
         }
@@ -71,11 +75,12 @@ public abstract class ResultManager  {
     public void printMeanMarks() {
         try (Connection cn = DriverManager.getConnection(dbUrl, properties);
              Statement st = cn.createStatement();
-             ResultSet meanMarksSet = st.executeQuery(MEAN_MARKS)) {
+             ResultSet rs = st.executeQuery(MEAN_MARKS)) {
             System.out.println(TITLE_MEAN_MARK);
-            while (meanMarksSet.next()) {
-                System.out.printf("%s : %.2f\n", meanMarksSet.getString(LOGIN_INDEX),
-                        meanMarksSet.getDouble(MEAN_INDEX));
+            while (rs.next()) {
+                System.out.println(rs.getString(LOGIN_INDEX) + ":" +
+                        String.format(MEAN_MARK_FORMAT,
+                                rs.getDouble(MEAN_INDEX) / CONVECTION_FACTOR));
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
@@ -86,7 +91,7 @@ public abstract class ResultManager  {
         try {
             loadCurrentMonthResult();
             System.out.println(TITLE_MONTH_RESULT);
-            for (ResultWrapper result : currentMonthResults) {
+            for (Result result : currentMonthResults) {
                 System.out.println(result);
             }
         } catch (SQLException e) {
@@ -97,10 +102,10 @@ public abstract class ResultManager  {
     public void printLastOfMonthResult() {
         if (currentMonthResults.size() > 0) {
             System.out.println(TITLE_LAST_DAY_RESULT);
-            LinkedList<ResultWrapper> tmpResults = new LinkedList<>(currentMonthResults);
-            Date date = tmpResults.getLast().getDate();
-            while (tmpResults.getLast().getDate().equals(date)) {
-                System.out.println(tmpResults.pollLast());
+            LinkedList<Result> tmpRes = new LinkedList<>(currentMonthResults);
+            Date date = tmpRes.getLast().getDate();
+            while (tmpRes.getLast().getDate().equals(date)) {
+                System.out.println(tmpRes.pollLast());
             }
         }
     }
@@ -110,7 +115,7 @@ public abstract class ResultManager  {
              Statement st = cn.createStatement();
              ResultSet currentMonthSet = st.executeQuery(CURR_MONTH_RESULTS)) {
             while (currentMonthSet.next()) {
-                currentMonthResults.add(new ResultWrapper(
+                currentMonthResults.add(new Result(
                         currentMonthSet.getString(LOGIN_INDEX),
                         currentMonthSet.getString(TEST_INDEX),
                         currentMonthSet.getDate(DATE_INDEX),

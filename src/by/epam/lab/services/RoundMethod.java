@@ -2,8 +2,7 @@ package by.epam.lab.services;
 
 import static by.epam.lab.services.GlobalConstants.*;
 
-public enum MarkRepresentation {
-
+public enum RoundMethod {
     INTEGER {
         @Override
         String markToString(int mark) {
@@ -13,7 +12,8 @@ public enum MarkRepresentation {
     DECIMAL {
         @Override
         String markToString(int mark) {
-            return String.format(FORMAT, mark / CONVECTION_FACTOR, mark % CONVECTION_FACTOR);
+            return String.format(MARK_FORMAT, mark /
+                    CONVECTION_FACTOR, mark % CONVECTION_FACTOR);
         }
     },
     DECIMAL_HALF {
@@ -23,7 +23,8 @@ public enum MarkRepresentation {
             if (mark % CONVECTION_FACTOR == 0) {
                 result = String.valueOf(mark / CONVECTION_FACTOR);
             } else {
-                result = String.format(FORMAT, mark / CONVECTION_FACTOR, mark % CONVECTION_FACTOR);
+                result = String.format(MARK_FORMAT, mark /
+                        CONVECTION_FACTOR, mark % CONVECTION_FACTOR);
             }
             return result;
         }
@@ -31,7 +32,7 @@ public enum MarkRepresentation {
 
     abstract String markToString(int mark);
 
-    public String getStringMark(int mark) {
+    public String getMarkToString(int mark) {
         return markToString(mark);
     }
 }
