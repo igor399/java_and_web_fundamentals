@@ -35,9 +35,8 @@ public class CsvResultManager extends ResultManager {
         }
     }
 
-    private StudentData getStudentData(String[] params) {
-        return new StudentData(
-                params[0], params[1], Date.valueOf(params[2]),
+    private Result getStudentData(String[] params) {
+        return new Result(params[0], params[1], Date.valueOf(params[2]),
                 (int) Double.parseDouble(params[3]));
     }
 }

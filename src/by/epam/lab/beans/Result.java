@@ -4,16 +4,16 @@ import java.sql.Date;
 
 import static by.epam.lab.services.GlobalConstants.*;
 
-public class StudentData {
+public class Result {
     private String login;
     private String testName;
     private Date date;
-    private double mark;
+    private int mark;
 
-    public StudentData() {
+    public Result() {
     }
 
-    public StudentData(String login, String testName, Date date, double mark) {
+    public Result(String login, String testName, Date date, int mark) {
         this.login = login;
         this.testName = testName;
         this.date = date;
@@ -44,7 +44,7 @@ public class StudentData {
         this.date = date;
     }
 
-    public double getMark() {
+    public int getMark() {
         return mark;
     }
 

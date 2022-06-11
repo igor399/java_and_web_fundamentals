@@ -8,37 +8,37 @@ import static by.epam.lab.services.GlobalConstants.*;
 
 public class ResultWrapper {
     private static MarkRepresentation markRepresentation = MarkRepresentation.INTEGER;
-    private StudentData studentData = new StudentData();
+    private Result result = new Result();
 
     public ResultWrapper(String login, String test, Date date, int mark) {
-        studentData.setLogin(login);
-        studentData.setTestName(test);
-        studentData.setDate(date);
-        studentData.setMark(mark);
+        result.setLogin(login);
+        result.setTestName(test);
+        result.setDate(date);
+        result.setMark(mark);
     }
 
     public ResultWrapper(String login, String test, String date, String mark) {
         this(login, test, Date.valueOf(date), (int) Double.parseDouble(mark));
     }
 
-    public ResultWrapper(StudentData studentData) {
-        this.studentData = studentData;
+    public ResultWrapper(Result result) {
+        this.result = result;
     }
 
     public String getLogin() {
-        return studentData.getLogin();
+        return result.getLogin();
     }
 
     public String getTest() {
-        return studentData.getTestName();
+        return result.getTestName();
     }
 
     public Date getDate() {
-        return studentData.getDate();
+        return result.getDate();
     }
 
     public double getMark() {
-        return studentData.getMark();
+        return  result.getMark();
     }
 
     private static String getStringDate(Date date) {
