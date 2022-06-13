@@ -7,33 +7,31 @@ import java.sql.Date;
 import static by.epam.lab.services.GlobalConstants.*;
 
 public class Result {
-    private static RoundMethod roundMethod = RoundMethod.INTEGER;
     private String login;
-    private String testName;
+    private String test;
     private Date date;
     private int mark;
 
     public Result() {
-
+        this("", "", null, 0);
     }
 
-    public Result(String login, String testName, Date date, int mark) {
+    public Result(String login, String test, Date date, int mark) {
         this.login = login;
-        this.testName = testName;
+        this.test = test;
         this.date = date;
         this.mark = mark;
     }
 
     public Result(String login, String test, String date, String mark) {
-        this(login, test, Date.valueOf(date),
-                (int) (Double.parseDouble(mark) * CONVECTION_FACTOR));
+        this(login, test, Date.valueOf(date), Integer.parseInt(mark));
     }
 
     public Result(String[] param) {
-        this(param[PARAM_LOGIN_IND],
-                param[PARAM_TEST_IND],
-                param[PARAM_DATE_IND],
-                param[PARAM_MARK_IND]);
+        this(param[LOGIN_INDEX],
+                param[TEST_INDEX],
+                param[DATE_INDEX],
+                param[MARK_INDEX]);
     }
 
     public String getLogin() {
@@ -44,12 +42,12 @@ public class Result {
         this.login = login;
     }
 
-    public String getTestName() {
-        return testName;
+    public String getTest() {
+        return test;
     }
 
-    public void setTestName(String testName) {
-        this.testName = testName;
+    public void setTest(String test) {
+        this.test = test;
     }
 
     public Date getDate() {
@@ -65,20 +63,20 @@ public class Result {
     }
 
     public void setMark(String mark) {
-        this.mark = (int) (Double.parseDouble(mark) * CONVECTION_FACTOR);
+        this.mark = Integer.parseInt(mark);
+    }
+
+    protected String markToString() {
+        return String.valueOf(mark);
     }
 
     private static String getStringDate(Date date) {
         return OUTPUT_DATE_FORMAT.format(date);
     }
 
-    public static void setRoundMethod(RoundMethod roundMethod) {
-        Result.roundMethod = roundMethod;
-    }
-
     @Override
     public String toString() {
-        return login + SEMICOLON + testName + SEMICOLON +
-                getStringDate(getDate()) + SEMICOLON + roundMethod.getMarkToString(mark);
+        return getClass().getName() + SEMICOLON + login + SEMICOLON + test +
+                SEMICOLON + getStringDate(getDate()) + SEMICOLON + markToString();
     }
 }

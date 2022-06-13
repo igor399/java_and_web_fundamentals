@@ -31,9 +31,9 @@ public class ResultHandler extends DefaultHandler {
         currentEnum = ResultEnum.valueOf(qName.toUpperCase());
         if (currentEnum == ResultEnum.TEST) {
             Result current = new Result(login,
-                    attributes.getValue(PARAM_LOGIN_IND),
-                    attributes.getValue(PARAM_TEST_IND),
-                    attributes.getValue(PARAM_DATE_IND));
+                    attributes.getValue(LOGIN_INDEX),
+                    attributes.getValue(TEST_INDEX),
+                    attributes.getValue(DATE_INDEX));
             results.add(current);
         }
     }

@@ -1,4 +1,4 @@
-package by.epam.lab.dal;
+package by.epam.lab.log;
 
 import by.epam.lab.beans.Result;
 import by.epam.lab.services.RoundMethod;
@@ -43,12 +43,12 @@ public abstract class ResultManager {
         try {
             PreparedStatement insertTest = cn.prepareStatement(INSERT_TEST,
                     RETURN_GENERATED_KEYS);
-            insertTest.setString(START_ID, result.getTestName());
+            insertTest.setString(START_ID, result.getTest());
             insertTest.executeUpdate();
             testId = getInsertedId(insertTest);
         } catch (SQLIntegrityConstraintViolationException e) {
             ResultSet resultSet = cn.prepareStatement(SELECT_ID_TEST +
-                    result.getTestName() + "'").executeQuery();
+                    result.getTest() + "'").executeQuery();
             resultSet.next();
             testId = resultSet.getInt(START_ID);
         }
