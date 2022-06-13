@@ -56,7 +56,7 @@ public abstract class ResultManager {
         insertResult.setInt(LOGIN_INDEX, loginId);
         insertResult.setInt(TEST_INDEX, testId);
         insertResult.setDate(DATE_INDEX, result.getDate());
-        insertResult.setDouble(MARK_INDEX, result.getMark());
+        insertResult.setInt(MARK_INDEX, result.getMark());
         insertResult.executeUpdate();
     }
 
@@ -78,7 +78,7 @@ public abstract class ResultManager {
              ResultSet rs = st.executeQuery(MEAN_MARKS)) {
             System.out.println(TITLE_MEAN_MARK);
             while (rs.next()) {
-                System.out.println(rs.getString(LOGIN_INDEX) + ":" +
+                System.out.println(rs.getString(LOGIN_INDEX) + COLON +
                         String.format(MEAN_MARK_FORMAT,
                                 rs.getDouble(MEAN_INDEX) / CONVECTION_FACTOR));
             }
