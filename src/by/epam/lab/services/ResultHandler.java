@@ -28,7 +28,8 @@ public class ResultHandler extends DefaultHandler {
     }
 
     @Override
-    public void startElement(String uri, String localName, String qName, Attributes attributes) {
+    public void startElement(String uri, String localName, String qName,
+                             Attributes attributes) {
         currentEnum = ResultEnum.valueOf(qName.toUpperCase());
         if (currentEnum == ResultEnum.TEST) {
             Result current = factory.getResult(login,

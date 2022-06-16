@@ -100,5 +100,6 @@ public enum ResultFactory {
 
     public abstract String getStringMeanMark(double meanMark);
 
-    public abstract ResultDao getResultDao(String filePath) throws ResourceReleaseException;
+    public abstract ResultDao getResultDao(String fileDirectory)
+            throws ResourceReleaseException;
 }

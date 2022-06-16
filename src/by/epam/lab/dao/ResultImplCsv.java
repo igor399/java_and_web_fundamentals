@@ -15,9 +15,10 @@ public class ResultImplCsv implements ResultDao {
     private final ResultFactory resultFactory;
     private final Scanner scanner;
 
-    public ResultImplCsv(String filePath, ResultFactory resultFactory) throws ResourceReleaseException {
+    public ResultImplCsv(String fileDirectory, ResultFactory resultFactory)
+            throws ResourceReleaseException {
         try {
-            this.scanner = new Scanner(new FileReader(filePath));
+            this.scanner = new Scanner(new FileReader(fileDirectory));
             this.resultFactory = resultFactory;
         } catch (FileNotFoundException e) {
             throw new ResourceReleaseException(e.getMessage());

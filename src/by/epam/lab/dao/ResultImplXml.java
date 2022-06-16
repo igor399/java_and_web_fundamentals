@@ -16,7 +16,8 @@ import static by.epam.lab.services.GlobalConstants.*;
 public class ResultImplXml implements ResultDao {
     private Iterator<Result> resultIterator;
 
-    public ResultImplXml(String xmlDirectory, ResultFactory resultFactory) throws ResourceReleaseException {
+    public ResultImplXml(String xmlDirectory, ResultFactory resultFactory)
+            throws ResourceReleaseException {
         try {
             SAXParserFactory factory = SAXParserFactory.newInstance();
             SAXParser saxParser = factory.newSAXParser();

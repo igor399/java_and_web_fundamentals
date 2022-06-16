@@ -13,7 +13,8 @@ import static by.epam.lab.services.GlobalConstants.*;
 import static by.epam.lab.services.SqlRequestConstants.*;
 
 public class LoadManager {
-    public static void insertResult(ResultDao resultDao) throws ConnectionDbException {
+    public static void insertResult(ResultDao resultDao)
+            throws ConnectionDbException {
         Connection cn = ConnectionDbManager.CONNECTION_MANAGER.getConnection();
         try (PreparedStatement selectLogin = cn.prepareStatement(SELECT_ID_LOGIN);
              PreparedStatement selectTest = cn.prepareStatement(SELECT_ID_TEST);
@@ -36,7 +37,8 @@ public class LoadManager {
         }
     }
 
-    private static int getInsertedId(String name, PreparedStatement selectName, PreparedStatement insertName)
+    private static int getInsertedId(String name, PreparedStatement selectName,
+                                     PreparedStatement insertName)
             throws SQLException {
         int id;
         selectName.setString(COLUMN_NAME_IND, name);
