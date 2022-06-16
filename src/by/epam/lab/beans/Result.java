@@ -1,7 +1,5 @@
 package by.epam.lab.beans;
 
-import by.epam.lab.services.RoundMethod;
-
 import java.sql.Date;
 
 import static by.epam.lab.services.GlobalConstants.*;
@@ -28,10 +26,10 @@ public class Result {
     }
 
     public Result(String[] param) {
-        this(param[LOGIN_INDEX],
-                param[TEST_INDEX],
-                param[DATE_INDEX],
-                param[MARK_INDEX]);
+        this(param[PARAM_LOGIN_INDEX],
+                param[PARAM_TEST_INDEX],
+                param[PARAM_DATE_INDEX],
+                param[PARAM_MARK_INDEX]);
     }
 
     public String getLogin() {
@@ -62,21 +60,26 @@ public class Result {
         return mark;
     }
 
-    public void setMark(String mark) {
-        this.mark = Integer.parseInt(mark);
+    public void setMark(int mark) {
+        this.mark = mark;
     }
 
-    protected String markToString() {
-        return String.valueOf(mark);
+    public void setMark(String mark) {
+        this.mark = Integer.parseInt(mark);
     }
 
     private static String getStringDate(Date date) {
         return OUTPUT_DATE_FORMAT.format(date);
     }
 
+    protected String markToString() {
+        return String.valueOf(mark);
+    }
+
     @Override
     public String toString() {
-        return getClass().getName() + SEMICOLON + login + SEMICOLON + test +
-                SEMICOLON + getStringDate(getDate()) + SEMICOLON + markToString();
+        return getClass().getSimpleName() + SEMICOLON +
+                login + SEMICOLON + test + SEMICOLON +
+                getStringDate(date) + SEMICOLON + markToString();
     }
 }

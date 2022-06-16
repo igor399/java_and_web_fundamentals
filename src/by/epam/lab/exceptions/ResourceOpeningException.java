@@ -1,7 +1,8 @@
 package by.epam.lab.exceptions;
 
-public class ResourceOpeningException extends Exception{
+public class ResourceOpeningException extends RuntimeException {
     public ResourceOpeningException() {
+        super();
     }
 
     public ResourceOpeningException(String message) {
@@ -14,9 +15,5 @@ public class ResourceOpeningException extends Exception{
 
     public ResourceOpeningException(Throwable cause) {
         super(cause);
-    }
-
-    public ResourceOpeningException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
     }
 }

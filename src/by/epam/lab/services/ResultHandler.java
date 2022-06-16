@@ -11,15 +11,16 @@ import static by.epam.lab.services.GlobalConstants.*;
 
 public class ResultHandler extends DefaultHandler {
     private enum ResultEnum {
-        RESULTS, STUDENT, LOGIN, TESTS, TEST;
+        RESULTS, STUDENT, LOGIN, TESTS, TEST
     }
 
     private final List<Result> results = new ArrayList<>();
+    private final ResultFactory factory;
     private ResultEnum currentEnum;
     private String login;
 
-    public ResultHandler() {
-
+    public ResultHandler(ResultFactory factory) {
+        this.factory = factory;
     }
 
     public List<Result> getResults() {
@@ -30,10 +31,10 @@ public class ResultHandler extends DefaultHandler {
     public void startElement(String uri, String localName, String qName, Attributes attributes) {
         currentEnum = ResultEnum.valueOf(qName.toUpperCase());
         if (currentEnum == ResultEnum.TEST) {
-            Result current = new Result(login,
-                    attributes.getValue(LOGIN_INDEX),
-                    attributes.getValue(TEST_INDEX),
-                    attributes.getValue(DATE_INDEX));
+            Result current = factory.getResult(login,
+                    attributes.getValue(PARAM_LOGIN_INDEX),
+                    attributes.getValue(PARAM_TEST_INDEX),
+                    attributes.getValue(PARAM_DATE_INDEX));
             results.add(current);
         }
     }

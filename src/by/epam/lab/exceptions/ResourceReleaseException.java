@@ -2,6 +2,7 @@ package by.epam.lab.exceptions;
 
 public class ResourceReleaseException extends Exception {
     public ResourceReleaseException() {
+        super();
     }
 
     public ResourceReleaseException(String message) {
@@ -14,9 +15,5 @@ public class ResourceReleaseException extends Exception {
 
     public ResourceReleaseException(Throwable cause) {
         super(cause);
-    }
-
-    public ResourceReleaseException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
     }
 }

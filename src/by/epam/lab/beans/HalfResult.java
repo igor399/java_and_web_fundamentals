@@ -1,10 +1,11 @@
 package by.epam.lab.beans;
 
-import java.util.Date;
+import java.sql.Date;
 
 import static by.epam.lab.services.GlobalConstants.*;
 
 public class HalfResult extends Result {
+
     public HalfResult() {
         super();
     }
@@ -14,32 +15,31 @@ public class HalfResult extends Result {
     }
 
     public HalfResult(String login, String test, String date, String mark) {
-        super(login, test, java.sql.Date.valueOf(date),
-                (int) (Double.parseDouble(mark) * 2);
+        super(login, test, Date.valueOf(date), castToIntMark(mark));
     }
 
     public HalfResult(String[] param) {
-        this(param[LOGIN_INDEX],
-                param[TEST_INDEX],
-                param[DATE_INDEX],
-                param[MARK_INDEX]);
+        this(param[PARAM_LOGIN_INDEX],
+                param[PARAM_TEST_INDEX],
+                param[PARAM_DATE_INDEX],
+                param[PARAM_MARK_INDEX]);
     }
 
     @Override
     public void setMark(String mark) {
-        super.setMark((int) (Double.parseDouble(mark) * 2));
+        super.setMark(castToIntMark(mark));
+    }
+
+    private static int castToIntMark(String mark) {
+        return (int) (Double.parseDouble(mark) * CONVECTION_HALF_FACTOR);
     }
 
     @Override
     protected String markToString() {
-        String result;
-        int mark = getMark();
-        if (mark % CONVECTION_FACTOR == 0) {
-            result = String.valueOf(mark / CONVECTION_FACTOR);
+        if (getMark() % CONVECTION_HALF_FACTOR == 0) {
+            return String.valueOf(getMark() / CONVECTION_HALF_FACTOR);
         } else {
-            result = String.format(MARK_FORMAT, mark /
-                    CONVECTION_FACTOR, mark % CONVECTION_FACTOR);
+            return getMark() / CONVECTION_HALF_FACTOR + DECIMAL_REMAINDER;
         }
-        return result;
     }
 }

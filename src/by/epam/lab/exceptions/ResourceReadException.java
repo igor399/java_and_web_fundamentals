@@ -2,6 +2,7 @@ package by.epam.lab.exceptions;
 
 public class ResourceReadException extends RuntimeException {
     public ResourceReadException() {
+        super();
     }
 
     public ResourceReadException(String message) {
@@ -14,9 +15,5 @@ public class ResourceReadException extends RuntimeException {
 
     public ResourceReadException(Throwable cause) {
         super(cause);
-    }
-
-    public ResourceReadException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
     }
 }

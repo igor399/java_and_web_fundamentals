@@ -1,6 +1,8 @@
 package by.epam.lab.dao;
 
-import by.epam.lab.beans.*;
+import by.epam.lab.beans.Result;
+import by.epam.lab.exceptions.ResourceReleaseException;
+import by.epam.lab.services.ResultFactory;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -13,19 +15,19 @@ public class ResultImplCsv implements ResultDao {
     private final ResultFactory resultFactory;
     private final Scanner scanner;
 
-    public ResultImplCsv(String propDirectory, ResultFactory resultFactory) throws IOException {
+    public ResultImplCsv(String filePath, ResultFactory resultFactory) throws ResourceReleaseException {
         try {
-            this.scanner = new Scanner(new FileReader(fileDirectory));
+            this.scanner = new Scanner(new FileReader(filePath));
             this.resultFactory = resultFactory;
         } catch (FileNotFoundException e) {
-            throw new FileNotFoundException(e.getMessage());
+            throw new ResourceReleaseException(e.getMessage());
         }
     }
 
     @Override
     public Result nextResult() {
-        String[] param = scanner.nextLine().split(SEMICOLON);
-        return resultFactory.getResult(param);
+        String[] params = scanner.nextLine().split(SEMICOLON);
+        return resultFactory.getResult(params);
     }
 
     @Override

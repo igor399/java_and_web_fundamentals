@@ -2,6 +2,7 @@ package by.epam.lab.exceptions;
 
 public class ConnectionDbException extends Exception {
     public ConnectionDbException() {
+        super();
     }
 
     public ConnectionDbException(String message) {
@@ -14,9 +15,5 @@ public class ConnectionDbException extends Exception {
 
     public ConnectionDbException(Throwable cause) {
         super(cause);
-    }
-
-    public ConnectionDbException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
     }
 }

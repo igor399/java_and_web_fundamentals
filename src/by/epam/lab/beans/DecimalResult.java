@@ -1,12 +1,11 @@
 package by.epam.lab.beans;
 
-import com.mysql.cj.log.Log;
-
-import java.util.Date;
+import java.sql.Date;
 
 import static by.epam.lab.services.GlobalConstants.*;
 
 public class DecimalResult extends Result {
+
     public DecimalResult() {
         super();
     }
@@ -16,20 +15,23 @@ public class DecimalResult extends Result {
     }
 
     public DecimalResult(String login, String test, String date, String mark) {
-        super(login, test, java.sql.Date.valueOf(date),
-                (int) (Double.parseDouble(mark) * CONVECTION_FACTOR);;
+        super(login, test, Date.valueOf(date), castToIntMark(mark));
     }
 
     public DecimalResult(String[] param) {
-        this(param[LOGIN_INDEX],
-                param[TEST_INDEX],
-                param[DATE_INDEX],
-                param[MARK_INDEX]);
+        this(param[PARAM_LOGIN_INDEX],
+                param[PARAM_TEST_INDEX],
+                param[PARAM_DATE_INDEX],
+                param[PARAM_MARK_INDEX]);
     }
 
     @Override
     public void setMark(String mark) {
-        super.setMark((int) (Double.parseDouble(mark) * CONVECTION_FACTOR));
+        super.setMark(castToIntMark(mark));
+    }
+
+    private static int castToIntMark(String mark) {
+        return (int) (Double.parseDouble(mark) * CONVECTION_FACTOR);
     }
 
     @Override
