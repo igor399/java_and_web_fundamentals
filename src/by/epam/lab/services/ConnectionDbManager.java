@@ -1,5 +1,7 @@
 package by.epam.lab.services;
 
+import by.epam.lab.exceptions.RuntimeCustomException;
+
 import java.io.Closeable;
 import java.io.FileReader;
 import java.io.IOException;
@@ -25,9 +27,9 @@ public class ConnectionDbManager implements Closeable {
                 pr.load(fr);
                 cn = DriverManager.getConnection(pr.getProperty(DB_URL), pr);
             } catch (SQLException e) {
-                throw new RuntimeException(NO_CONNECTION_EXCEPTION);
+                throw new RuntimeCustomException(NO_CONNECTION_EXCEPTION);
             } catch (IOException e) {
-                throw new RuntimeException(NO_FILE);
+                throw new RuntimeCustomException(NO_FILE);
             }
         }
         return cn;
