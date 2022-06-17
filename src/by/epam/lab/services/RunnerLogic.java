@@ -20,10 +20,10 @@ public class RunnerLogic {
     private static final List<Result> currentMonthResults = new LinkedList<>();
 
     public static void execute(ResultFactory factory, String fileDirectory) {
-        loadResults(factory, fileDirectory);
-        printMeanMarks(factory);
-        printCurrentResults(factory);
-        printLastOfMathResult();
+            loadResults(factory, fileDirectory);
+            printMeanMarks(factory);
+            printCurrentResults(factory);
+            printLastOfMathResult();
     }
 
     private static void printMeanMarks(ResultFactory resultFactory) {

@@ -29,9 +29,9 @@ public class LoadManager {
                 insertResult.setInt(TEST_INDEX, testId);
                 insertResult.setDate(DATE_INDEX, result.getDate());
                 insertResult.setInt(MARK_INDEX, result.getMark());
-                insertResult.executeUpdate();
+                insertResult.addBatch();
             }
-            insertResult.executeUpdate();
+            insertResult.executeBatch();
         } catch (SQLException e) {
             throw new ConnectionDbException(e.getMessage());
         }
