@@ -1,5 +1,6 @@
 package by.epam.lab.services;
 
+import java.io.Closeable;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
@@ -9,7 +10,7 @@ import java.util.Properties;
 
 import static by.epam.lab.services.GlobalConstants.*;
 
-public class ConnectionDbManager {
+public class ConnectionDbManager implements Closeable {
     public static final ConnectionDbManager CONNECTION_MANAGER = new ConnectionDbManager();
     private Connection cn;
 
@@ -30,5 +31,14 @@ public class ConnectionDbManager {
             }
         }
         return cn;
+    }
+
+    @Override
+    public void close() throws IOException {
+        try {
+            cn.close();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
     }
 }
