@@ -63,8 +63,6 @@ public class RunnerLogic {
                 Result res = it.previous();
                 if (date.equals(res.getDate())) {
                     System.out.println(res);
-                } else {
-                    break;
                 }
             }
         }
