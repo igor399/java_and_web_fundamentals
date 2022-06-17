@@ -42,7 +42,7 @@ public class ResultImplXml implements ResultDao {
     }
 
     @Override
-    public void close() throws IOException {
+    public void close() {
         resultIterator = null;
     }
 }

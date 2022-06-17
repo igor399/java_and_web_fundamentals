@@ -37,6 +37,10 @@ public class RunnerLogic {
             }
         } catch (SQLException e) {
             System.err.println(DATA_EXCEPTION);
+        } catch (ConnectionDbException e) {
+            System.err.println(e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -80,6 +84,8 @@ public class RunnerLogic {
                         rs.getDate(DATE_INDEX),
                         rs.getInt(MARK_INDEX)));
             }
+        } catch (ConnectionDbException | IOException e) {
+            System.err.println(e.getMessage());
         }
     }
 

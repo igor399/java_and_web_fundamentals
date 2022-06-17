@@ -37,7 +37,7 @@ public class ResultImplCsv implements ResultDao {
     }
 
     @Override
-    public void close() throws IOException {
+    public void close() {
         scanner.close();
     }
 }

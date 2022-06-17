@@ -1,8 +1,10 @@
 package by.epam.lab.services;
 
+import by.epam.lab.exceptions.ConnectionDbException;
 import by.epam.lab.exceptions.RuntimeCustomException;
 
 import java.io.Closeable;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
@@ -20,27 +22,28 @@ public class ConnectionDbManager implements Closeable {
 
     }
 
-    public Connection getConnection() {
-        if (cn == null) {
-            try (FileReader fr = new FileReader(PROPERTIES_DIRECTORY)) {
-                Properties pr = new Properties();
-                pr.load(fr);
-                cn = DriverManager.getConnection(pr.getProperty(DB_URL), pr);
-            } catch (SQLException e) {
-                throw new RuntimeCustomException(NO_CONNECTION_EXCEPTION);
-            } catch (IOException e) {
-                throw new RuntimeCustomException(NO_FILE);
-            }
+    public Connection getConnection() throws ConnectionDbException, IOException {
+        if (cn != null) {
+            throw new ConnectionDbException(ERR_TWICE_GET_CONNECTION_EXECUTING);
         }
-        return cn;
+        try {
+            FileReader fr = new FileReader(PROPERTIES_DIRECTORY);
+            Properties pr = new Properties();
+            pr.load(fr);
+            return DriverManager.getConnection(pr.getProperty(DB_URL), pr);
+        } catch (SQLException | FileNotFoundException e) {
+            throw new ConnectionDbException(e.getMessage(), e);
+        }
     }
 
     @Override
-    public void close() throws IOException {
+    public void close() {
         try {
-            cn.close();
+            if (cn != null) {
+                cn.close();
+            }
         } catch (SQLException e) {
-            System.err.println(e.getMessage());
+            System.err.println(ERR_MSG);
         }
     }
 }

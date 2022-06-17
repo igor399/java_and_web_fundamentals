@@ -28,11 +28,11 @@ public class GlobalConstants {
     public final static int TEST_INDEX = 2;
     public final static int DATE_INDEX = 3;
     public final static int MARK_INDEX = 4;
-    public final static String NO_FILE = "No file in directory.";
-    public final static String NO_CONNECTION_EXCEPTION = "No connection to DB.";
+    public final static String ERR_TWICE_GET_CONNECTION_EXECUTING = "Trying get connection more then once.";
     public final static String DATA_EXCEPTION = "Wrong SQL request or something wrong with file.";
     public final static String SOURCE_EXCEPTION = "Can't open resource file.";
     public final static String LOAD_FROM_DB_EXCEPTION = "Data can not be loaded from database.";
+    public final static String ERR_MSG = "An error has occurred while closing connection.";
     public final static String TITLE_MEAN_MARK = "Mean marks of students: ";
     public final static String TITLE_MONTH_RESULT = "Results of the current month: ";
     public final static String TITLE_LAST_DAY_RESULT = "Latest day results of current month: ";

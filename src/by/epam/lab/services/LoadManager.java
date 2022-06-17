@@ -4,6 +4,7 @@ import by.epam.lab.beans.Result;
 import by.epam.lab.dao.ResultDao;
 import by.epam.lab.exceptions.ConnectionDbException;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,7 +15,7 @@ import static by.epam.lab.services.SqlRequestConstants.*;
 
 public class LoadManager {
     public static void insertResult(ResultDao resultDao)
-            throws ConnectionDbException {
+            throws ConnectionDbException, IOException {
         Connection cn = ConnectionDbManager.CONNECTION_MANAGER.getConnection();
         try (PreparedStatement selectLogin = cn.prepareStatement(SELECT_ID_LOGIN);
              PreparedStatement selectTest = cn.prepareStatement(SELECT_ID_TEST);
