@@ -20,10 +20,15 @@ public class RunnerLogic {
     private static final List<Result> currentMonthResults = new LinkedList<>();
 
     public static void execute(ResultFactory factory, String fileDirectory) {
+        try {
             loadResults(factory, fileDirectory);
             printMeanMarks(factory);
             printCurrentResults(factory);
             printLastOfMathResult();
+        }finally {
+            ConnectionDbManager.CONNECTION_MANAGER.close();
+        }
+
     }
 
     private static void printMeanMarks(ResultFactory resultFactory) {

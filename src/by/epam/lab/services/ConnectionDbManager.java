@@ -23,17 +23,16 @@ public class ConnectionDbManager implements Closeable {
     }
 
     public Connection getConnection() throws ConnectionDbException, IOException {
-        if (cn != null) {
-            throw new ConnectionDbException(ERR_TWICE_GET_CONNECTION_EXECUTING);
+        if (cn == null) {
+            try (FileReader fr = new FileReader(PROPERTIES_DIRECTORY)) {
+                Properties properties = new Properties();
+                properties.load(fr);
+                cn = DriverManager.getConnection(properties.getProperty(DB_URL), properties);
+            } catch (SQLException | IOException e) {
+                throw new RuntimeCustomException(e.getMessage());
+            }
         }
-        try {
-            FileReader fr = new FileReader(PROPERTIES_DIRECTORY);
-            Properties pr = new Properties();
-            pr.load(fr);
-            return DriverManager.getConnection(pr.getProperty(DB_URL), pr);
-        } catch (SQLException | FileNotFoundException e) {
-            throw new ConnectionDbException(e.getMessage(), e);
-        }
+        return cn;
     }
 
     @Override
