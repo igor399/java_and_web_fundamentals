@@ -24,7 +24,7 @@ public class ConnectionDbManager {
                 pr.load(fr);
                 cn = DriverManager.getConnection(pr.getProperty(DB_URL), pr);
             } catch (SQLException e) {
-                throw new RuntimeException(NO_CONNECTION);
+                throw new RuntimeException(NO_CONNECTION_EXCEPTION);
             } catch (IOException e) {
                 throw new RuntimeException(NO_FILE);
             }

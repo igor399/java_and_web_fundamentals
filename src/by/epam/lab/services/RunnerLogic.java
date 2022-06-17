@@ -36,7 +36,7 @@ public class RunnerLogic {
                         resultFactory.getStringMeanMark(rs.getDouble(MEAN_INDEX)));
             }
         } catch (SQLException e) {
-            System.err.println(DATA_ERR);
+            System.err.println(DATA_EXCEPTION);
         }
     }
 
@@ -48,7 +48,7 @@ public class RunnerLogic {
                 System.out.println(result);
             }
         } catch (SQLException e) {
-            System.err.println(DATA_ERR);
+            System.err.println(DATA_EXCEPTION);
         }
     }
 
@@ -91,9 +91,9 @@ public class RunnerLogic {
         } catch (IOException e) {
             System.err.println(e.getMessage());
         } catch (ResourceReleaseException e) {
-            System.err.println(SOURCE_ERR);
+            System.err.println(SOURCE_EXCEPTION);
         } catch (ConnectionDbException e) {
-            throw new ResourceOpeningException(LOAD_FROM_DB_ERR);
+            throw new ResourceOpeningException(LOAD_FROM_DB_EXCEPTION);
         }
     }
 }
