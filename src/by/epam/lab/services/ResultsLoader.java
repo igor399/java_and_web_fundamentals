@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import static by.epam.lab.services.GlobalConstants.*;
 import static by.epam.lab.services.SqlRequestConstants.*;
 
-public class LoadManager {
+public class ResultsLoader {
     public static void insertResult(ResultDao resultDao)
             throws ConnectionDbException, IOException {
         Connection cn = ConnectionDbManager.CONNECTION_MANAGER.getConnection();

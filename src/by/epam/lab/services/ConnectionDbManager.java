@@ -1,7 +1,7 @@
 package by.epam.lab.services;
 
 import by.epam.lab.exceptions.ConnectionDbException;
-import by.epam.lab.exceptions.RuntimeCustomException;
+import by.epam.lab.exceptions.InitRuntimeException;
 
 import java.io.Closeable;
 import java.io.FileNotFoundException;
@@ -22,14 +22,16 @@ public class ConnectionDbManager implements Closeable {
 
     }
 
-    public Connection getConnection() throws ConnectionDbException, IOException {
+    public Connection getConnection() {
         if (cn == null) {
             try (FileReader fr = new FileReader(PROPERTIES_DIRECTORY)) {
                 Properties properties = new Properties();
                 properties.load(fr);
                 cn = DriverManager.getConnection(properties.getProperty(DB_URL), properties);
-            } catch (SQLException | IOException e) {
-                throw new RuntimeCustomException(e.getMessage());
+            } catch (SQLException | FileNotFoundException e) {
+                throw new InitRuntimeException(e.getMessage());
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
         return cn;

@@ -36,10 +36,7 @@ public class HalfResult extends Result {
 
     @Override
     protected String markToString() {
-        if (getMark() % CONVECTION_HALF_FACTOR == 0) {
-            return String.valueOf(getMark() / CONVECTION_HALF_FACTOR);
-        } else {
-            return getMark() / CONVECTION_HALF_FACTOR + DECIMAL_REMAINDER;
-        }
+        int mark = getMark();
+        return (mark >> 1) + ((mark & 1) == 0 ? SPACE : DECIMAL_REMAINDER);
     }
 }

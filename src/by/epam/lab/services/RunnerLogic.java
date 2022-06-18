@@ -25,10 +25,9 @@ public class RunnerLogic {
             printMeanMarks(factory);
             printCurrentResults(factory);
             printLastOfMathResult();
-        }finally {
+        } finally {
             ConnectionDbManager.CONNECTION_MANAGER.close();
         }
-
     }
 
     private static void printMeanMarks(ResultFactory resultFactory) {
@@ -42,10 +41,6 @@ public class RunnerLogic {
             }
         } catch (SQLException e) {
             System.err.println(DATA_EXCEPTION);
-        } catch (ConnectionDbException e) {
-            System.err.println(e.getMessage());
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
@@ -89,20 +84,18 @@ public class RunnerLogic {
                         rs.getDate(DATE_INDEX),
                         rs.getInt(MARK_INDEX)));
             }
-        } catch (ConnectionDbException | IOException e) {
-            System.err.println(e.getMessage());
         }
     }
 
-    private static void loadResults(ResultFactory resultFactory, String fileDirectory) {
+    private static void loadResults(ResultFactory resultFactory, String fileDirectory)  {
         try (ResultDao reader = resultFactory.getResultDao(fileDirectory)) {
-            LoadManager.insertResult(reader);
-        } catch (IOException e) {
-            System.err.println(e.getMessage());
-        } catch (ResourceReleaseException e) {
-            System.err.println(SOURCE_EXCEPTION);
+            ResultsLoader.insertResult(reader);
+        } catch (SourceException e) {
+            System.err.println(ERROR_OPEN_SOURCE);
         } catch (ConnectionDbException e) {
-            throw new ResourceOpeningException(LOAD_FROM_DB_EXCEPTION);
+            throw new LoadRuntimeException(ERROR_DB_LOAD);
+        } catch (IOException e) {
+            System.err.println(ERROR_IO);
         }
     }
 }

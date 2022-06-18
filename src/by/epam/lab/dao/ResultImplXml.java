@@ -11,13 +11,11 @@ import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
 import java.util.Iterator;
 
-import static by.epam.lab.services.GlobalConstants.*;
-
 public class ResultImplXml implements ResultDao {
     private Iterator<Result> resultIterator;
 
     public ResultImplXml(String xmlDirectory, ResultFactory resultFactory)
-            throws ResourceReleaseException {
+            throws SourceException {
         try {
             SAXParserFactory factory = SAXParserFactory.newInstance();
             SAXParser saxParser = factory.newSAXParser();
@@ -25,9 +23,9 @@ public class ResultImplXml implements ResultDao {
             saxParser.parse(xmlDirectory, handler);
             resultIterator = handler.getResults().iterator();
         } catch (SAXException | ParserConfigurationException e) {
-            throw new ResourceReadException(e.getMessage());
+            throw new ParseRuntimeException(e.getMessage());
         } catch (IOException e) {
-            throw new ResourceReleaseException(e.getMessage());
+            throw new SourceException(e.getMessage());
         }
     }
 

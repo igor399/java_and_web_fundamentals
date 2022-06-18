@@ -6,7 +6,7 @@ import by.epam.lab.beans.Result;
 import by.epam.lab.dao.ResultDao;
 import by.epam.lab.dao.ResultImplCsv;
 import by.epam.lab.dao.ResultImplXml;
-import by.epam.lab.exceptions.ResourceReleaseException;
+import by.epam.lab.exceptions.SourceException;
 
 import java.sql.Date;
 
@@ -35,7 +35,7 @@ public enum ResultFactory {
         }
 
         @Override
-        public ResultDao getResultDao(String fileDirectory) throws ResourceReleaseException {
+        public ResultDao getResultDao(String fileDirectory) throws SourceException {
             return new ResultImplCsv(fileDirectory, INTEGER);
         }
     },
@@ -61,7 +61,7 @@ public enum ResultFactory {
         }
 
         @Override
-        public ResultDao getResultDao(String fileDirectory) throws ResourceReleaseException {
+        public ResultDao getResultDao(String fileDirectory) throws SourceException {
             return new ResultImplXml(fileDirectory, DECIMAL);
         }
     },
@@ -87,7 +87,7 @@ public enum ResultFactory {
         }
 
         @Override
-        public ResultDao getResultDao(String fileDirectory) throws ResourceReleaseException {
+        public ResultDao getResultDao(String fileDirectory) throws SourceException {
             return new ResultImplCsv(fileDirectory, DECIMAL_HALF);
         }
     };
@@ -101,5 +101,5 @@ public enum ResultFactory {
     public abstract String getStringMeanMark(double meanMark);
 
     public abstract ResultDao getResultDao(String fileDirectory)
-            throws ResourceReleaseException;
+            throws SourceException;
 }

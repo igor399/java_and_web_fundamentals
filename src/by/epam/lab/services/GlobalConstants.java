@@ -15,6 +15,7 @@ public class GlobalConstants {
     public final static String MARK_FORMAT = "%d.%d";
     public final static String MEAN_MARK_FORMAT = "%.2f";
     public final static String DECIMAL_REMAINDER = ".5";
+    public final static String SPACE = "";
     public final static int CONVECTION_FACTOR = 10;
     public final static int CONVECTION_HALF_FACTOR = 2;
     public final static int START_ID = 1;
@@ -29,8 +30,9 @@ public class GlobalConstants {
     public final static int DATE_INDEX = 3;
     public final static int MARK_INDEX = 4;
     public final static String DATA_EXCEPTION = "Wrong SQL request or something wrong with file.";
-    public final static String SOURCE_EXCEPTION = "Can't open resource file.";
-    public final static String LOAD_FROM_DB_EXCEPTION = "Data can not be loaded from database.";
+    public final static String ERROR_OPEN_SOURCE = "Can't open resource file.";
+    public final static String ERROR_DB_LOAD = "Data can not be loaded from database.";
+    public final static String ERROR_IO = "IO error.";
     public final static String ERR_MSG = "An error has occurred while closing connection.";
     public final static String TITLE_MEAN_MARK = "Mean marks of students: ";
     public final static String TITLE_MONTH_RESULT = "Results of the current month: ";

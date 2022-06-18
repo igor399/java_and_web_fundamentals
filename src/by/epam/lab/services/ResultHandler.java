@@ -15,12 +15,12 @@ public class ResultHandler extends DefaultHandler {
     }
 
     private final List<Result> results = new ArrayList<>();
-    private final ResultFactory factory;
+    private final ResultFactory resultFactory;
     private ResultEnum currentEnum;
     private String login;
 
-    public ResultHandler(ResultFactory factory) {
-        this.factory = factory;
+    public ResultHandler(ResultFactory resultFactory) {
+        this.resultFactory = resultFactory;
     }
 
     public List<Result> getResults() {
@@ -32,7 +32,7 @@ public class ResultHandler extends DefaultHandler {
                              Attributes attributes) {
         currentEnum = ResultEnum.valueOf(qName.toUpperCase());
         if (currentEnum == ResultEnum.TEST) {
-            Result current = factory.getResult(login,
+            Result current = resultFactory.getResult(login,
                     attributes.getValue(PARAM_LOGIN_INDEX),
                     attributes.getValue(PARAM_TEST_INDEX),
                     attributes.getValue(PARAM_DATE_INDEX));
