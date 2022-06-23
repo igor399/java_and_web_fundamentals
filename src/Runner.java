@@ -35,7 +35,9 @@ public class Runner {
         trials.sort(Comparator.comparing(t -> (t.getMark1() + t.getMark2())));
 
         System.out.println("Sums of first and second marks from the collection:");
-        trials.forEach(trial -> System.out.println(trial.getMark1() + trial.getMark2()));
+        trials.stream()
+                .mapToInt(t -> (t.getMark1() + t.getMark2()))
+                .forEach(System.out::println);
 
         System.out.println("New collection from unpassed trials:");
         List<Trial> unpassedTrials = trials.stream()
