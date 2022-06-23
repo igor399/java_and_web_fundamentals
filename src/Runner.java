@@ -1,7 +1,4 @@
-import by.epam.lab.ExtraTrial;
-import by.epam.lab.LightTrial;
-import by.epam.lab.StrongTrial;
-import by.epam.lab.Trial;
+import by.epam.lab.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,22 +21,22 @@ public class Runner {
         trials.add(new ExtraTrial("Simpson", 80, 80, 76));
         trials.add(new ExtraTrial("Jackson", 60, 65, 59));
 
-        System.out.println("Collection content:");
+        System.out.println(COLLECTION_CONTENT);
         trials.forEach(System.out::println);
 
-        System.out.print("Number of passed trials: ");
+        System.out.print(NUM_OF_PASS_TRIALS);
         System.out.println(trials.stream()
                 .filter(Trial::isPassed)
                 .count());
 
         trials.sort(Comparator.comparing(t -> (t.getMark1() + t.getMark2())));
 
-        System.out.println("Sums of first and second marks from the collection:");
+        System.out.println(SUM_TWO_MARKS);
         trials.stream()
                 .mapToInt(t -> (t.getMark1() + t.getMark2()))
                 .forEach(System.out::println);
 
-        System.out.println("New collection from unpassed trials:");
+        System.out.println(COLLECTION_UNPASSED_RESET_TRIALS);
         List<Trial> unpassedTrials = trials.stream()
                 .filter(trial -> !trial.isPassed())
                 .map(Trial::copyTrials)
@@ -47,11 +44,11 @@ public class Runner {
                 .peek(System.out::println)
                 .collect(Collectors.toList());
 
-        System.out.print("Check all failed trials: ");
+        System.out.print(ALL_FAILED_TRIALS);
         System.out.println(unpassedTrials.stream()
                 .noneMatch(Trial::isPassed));
 
-        System.out.println("Array from sums of first and second marks:");
+        System.out.println(ARR_OF_TWO_MARKS);
         int[] arrOfSums = trials.stream()
                 .mapToInt(t -> t.getMark1() + t.getMark2())
                 .toArray();
