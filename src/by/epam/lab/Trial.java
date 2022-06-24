@@ -46,12 +46,8 @@ public class Trial {
         this.mark2 = mark2;
     }
 
-    public final int result(){
-        return mark1 + mark2;
-    }
-
     public boolean isPassed() {
-        return result() >= PASS_MARK;
+        return mark1 + mark2 >= PASS_MARK;
     }
 
     public Trial getCopy() {

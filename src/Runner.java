@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Function;
+import java.util.function.ToIntFunction;
 import java.util.stream.Collectors;
 
 import static by.epam.lab.services.GlobalConstants.*;
@@ -30,11 +31,13 @@ public class Runner {
                 .filter(Trial::isPassed)
                 .count());
 
-        trials.sort(Comparator.comparingInt(Trial::result));
+        ToIntFunction<Trial> resultFunction = t -> (t.getMark1() + t.getMark2());
+
+        trials.sort(Comparator.comparingInt(resultFunction));
 
         System.out.println(SUM_TWO_MARKS);
         trials.stream()
-                .mapToInt(Trial::result)
+                .mapToInt(resultFunction)
                 .forEach(System.out::println);
 
         System.out.println(COLLECTION_UNPASSED_RESET_TRIALS);
@@ -51,7 +54,7 @@ public class Runner {
 
         System.out.println(ARR_OF_TWO_MARKS);
         int[] arrOfSums = trials.stream()
-                .mapToInt(Trial::result)
+                .mapToInt(resultFunction)
                 .toArray();
         System.out.println(Arrays.stream(arrOfSums)
                 .mapToObj(String::valueOf)
