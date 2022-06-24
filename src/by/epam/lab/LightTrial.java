@@ -13,7 +13,9 @@ public class LightTrial extends Trial {
     }
 
     public LightTrial(LightTrial lightTrial) {
-        this(lightTrial.getAccount(), lightTrial.getMark1(), lightTrial.getMark2());
+        this(lightTrial.getAccount(),
+                lightTrial.getMark1(),
+                lightTrial.getMark2());
     }
 
     @Override

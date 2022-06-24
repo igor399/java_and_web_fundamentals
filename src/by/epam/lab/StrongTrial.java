@@ -12,7 +12,9 @@ public class StrongTrial extends Trial {
     }
 
     public StrongTrial(StrongTrial strongTrial) {
-        this(strongTrial.getAccount(), strongTrial.getMark1(), strongTrial.getMark2());
+        this(strongTrial.getAccount(),
+                strongTrial.getMark1(),
+                strongTrial.getMark2());
     }
 
     @Override
