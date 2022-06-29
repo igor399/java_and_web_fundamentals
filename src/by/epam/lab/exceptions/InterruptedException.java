@@ -1,4 +1,4 @@
-package exceptions;
+package by.epam.lab.exceptions;
 
 public class InterruptedException extends RuntimeException {
 

@@ -1,4 +1,4 @@
-package services;
+package by.epam.lab.services;
 
 import by.epam.lab.beans.Drop;
 
