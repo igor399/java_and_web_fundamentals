@@ -3,6 +3,7 @@ package by.epam.lab.exceptions;
 public class CustomInterruptedException extends RuntimeException {
 
     public CustomInterruptedException() {
+        super();
     }
 
     public CustomInterruptedException(String message) {

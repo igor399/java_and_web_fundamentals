@@ -21,7 +21,8 @@ public class Runner {
         } catch (FileNotFoundException e) {
             System.err.println(NO_FILE);
         }catch (InterruptedException e ){
-            System.err.println(THREAD_ERROR + Thread.currentThread().getName());
+            throw new CustomInterruptedException(String.format
+                    (THREAD_ERROR, Thread.currentThread().getName()));
         }
     }
 }
