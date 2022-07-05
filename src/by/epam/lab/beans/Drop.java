@@ -1,45 +1,30 @@
 package by.epam.lab.beans;
 
 public class Drop {
-    // Message sent from producer
-    // to consumer.
-    private String message;
-    // True if consumer should wait
-    // for producer to send message,
-    // false if producer should wait for
-    // consumer to retrieve message.
+    private TrialMessage trialMessage;
     private boolean empty = true;
 
-    public synchronized String take() {
-        // Wait until message is
-        // available.
+    public synchronized TrialMessage take() {
         while (empty) {
             try {
                 wait();
-            } catch (InterruptedException e) {}
+            } catch (InterruptedException ignored) {
+            }
         }
-        // Toggle status.
         empty = true;
-        // Notify producer that
-        // status has changed.
         notifyAll();
-        return message;
+        return trialMessage;
     }
 
-    public synchronized void put(String message) {
-        // Wait until message has
-        // been retrieved.
+    public synchronized void put(TrialMessage trialMessage) {
         while (!empty) {
             try {
                 wait();
-            } catch (InterruptedException e) {}
+            } catch (InterruptedException ignored) {
+            }
         }
-        // Toggle status.
         empty = false;
-        // Store message.
-        this.message = message;
-        // Notify consumer that status
-        // has changed.
+        this.trialMessage = trialMessage;
         notifyAll();
     }
 }

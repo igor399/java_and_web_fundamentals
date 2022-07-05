@@ -1,25 +1,29 @@
 package by.epam.lab.services;
 
-import by.epam.lab.beans.Drop;
+import by.epam.lab.beans.*;
 
-import java.util.Random;
+import static by.epam.lab.services.GlobalConstants.*;
 
 public class Consumer implements Runnable {
-    private Drop drop;
+    private final Drop drop;
 
     public Consumer(Drop drop) {
         this.drop = drop;
     }
 
+    @Override
     public void run() {
-        Random random = new Random();
-        for (String message = drop.take();
-             ! message.equals("DONE");
-             message = drop.take()) {
-            System.out.format("MESSAGE RECEIVED: %s%n", message);
-            try {
-                Thread.sleep(random.nextInt(1000));
-            } catch (InterruptedException e) {}
+        while (true) {
+            TrialMessage trialMessage = drop.take();
+            System.out.format(PUT, trialMessage.getTrialInfo());
+//           try {
+//                Thread.sleep(1000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+            if (trialMessage.isDone()) {
+                break;
+            }
         }
     }
 }

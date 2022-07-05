@@ -1,33 +1,35 @@
 package by.epam.lab.services;
 
 import by.epam.lab.beans.Drop;
+import by.epam.lab.beans.TrialMessage;
 
-import java.util.Random;
+import java.util.Scanner;
+
+import static by.epam.lab.services.GlobalConstants.*;
 
 public class Producer implements Runnable {
-    private Drop drop;
+    private final Drop drop;
+    private final Scanner scanner;
 
-    public Producer(Drop drop) {
+    public Producer(Drop drop, Scanner scanner) {
         this.drop = drop;
+        this.scanner = scanner;
     }
 
+    @Override
     public void run() {
-        String importantInfo[] = {
-                "Mares eat oats",
-                "Does eat oats",
-                "Little lambs eat ivy",
-                "A kid will eat ivy too"
-        };
-        Random random = new Random();
-
-        for (int i = 0;
-             i < importantInfo.length;
-             i++) {
-            drop.put(importantInfo[i]);
-            try {
-                Thread.sleep(random.nextInt(1000));
-            } catch (InterruptedException e) {}
+        while (scanner.hasNext()) {
+            TrialMessage trialMessage = new TrialMessage(scanner.nextLine());
+            if (!scanner.hasNext()) {
+                trialMessage.setDone(true);
+            }
+            drop.put(trialMessage);
+            System.out.format(GOT, trialMessage.getTrialInfo());
+//            try {
+//                Thread.sleep(1000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
         }
-        drop.put("DONE");
     }
 }
