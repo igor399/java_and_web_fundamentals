@@ -17,7 +17,6 @@ public class Runner {
             thread1.start();
             thread2.start();
             thread1.join();
-            thread2.join();
         } catch (FileNotFoundException e) {
             System.err.println(NO_FILE);
         }catch (InterruptedException e ){
