@@ -16,11 +16,6 @@ public class Consumer implements Runnable {
         while (true) {
             TrialMessage trialMessage = drop.take();
             System.out.format(PUT, trialMessage.getTrialInfo());
-//           try {
-//                Thread.sleep(1000);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
             if (trialMessage.isDone()) {
                 break;
             }

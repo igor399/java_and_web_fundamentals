@@ -25,11 +25,6 @@ public class Producer implements Runnable {
             }
             drop.put(trialMessage);
             System.out.format(GOT, trialMessage.getTrialInfo());
-//            try {
-//                Thread.sleep(1000);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
         }
     }
 }
