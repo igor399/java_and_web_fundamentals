@@ -1,7 +1,6 @@
 package by.epam.lab.services;
 
-import by.epam.lab.beans.Drop;
-import by.epam.lab.beans.TrialMessage;
+import by.epam.lab.beans.*;
 
 import java.util.Scanner;
 
