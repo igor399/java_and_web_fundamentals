@@ -1,5 +1,4 @@
-import by.epam.lab.beans.Drop;
-import by.epam.lab.exceptions.CustomInterruptedException;
+import by.epam.lab.beans.TrialBuffer;
 import by.epam.lab.services.*;
 
 import java.io.FileNotFoundException;
@@ -11,9 +10,9 @@ import static by.epam.lab.services.GlobalConstants.*;
 public class Runner {
     public static void main(String[] args) {
         try (Scanner scanner = new Scanner(new FileReader(FILE_DIRECTORY))) {
-            Drop drop = new Drop();
-            Thread thread1 = new Thread(new Producer(drop, scanner));
-            Thread thread2 = new Thread(new Consumer(drop));
+            TrialBuffer trialBuffer = new TrialBuffer();
+            Thread thread1 = new Thread(new TrialProducer(trialBuffer, scanner));
+            Thread thread2 = new Thread(new TrialConsumer(trialBuffer));
             thread1.start();
             thread2.start();
             thread1.join();

@@ -6,12 +6,12 @@ import java.util.Scanner;
 
 import static by.epam.lab.services.GlobalConstants.*;
 
-public class Producer implements Runnable {
-    private final Drop drop;
+public class TrialProducer implements Runnable {
+    private final TrialBuffer trialBuffer;
     private final Scanner scanner;
 
-    public Producer(Drop drop, Scanner scanner) {
-        this.drop = drop;
+    public TrialProducer(TrialBuffer trialBuffer, Scanner scanner) {
+        this.trialBuffer = trialBuffer;
         this.scanner = scanner;
     }
 
@@ -22,7 +22,7 @@ public class Producer implements Runnable {
             if (!scanner.hasNext()) {
                 trialMessage.setDone(true);
             }
-            drop.put(trialMessage);
+            trialBuffer.put(trialMessage);
             System.out.format(GOT, trialMessage.getTrialInfo());
         }
     }

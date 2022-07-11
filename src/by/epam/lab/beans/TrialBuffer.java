@@ -1,6 +1,6 @@
 package by.epam.lab.beans;
 
-public class Drop {
+public class TrialBuffer {
     private TrialMessage trialMessage;
     private boolean empty = true;
 
