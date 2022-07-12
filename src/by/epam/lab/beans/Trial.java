@@ -55,11 +55,6 @@ public class Trial {
         return mark1 + mark2 >= PASS_MARK;
     }
 
-    public String fieldToString() {
-        return getClass().getSimpleName() + SEMICOLON
-                + account + SEMICOLON + mark1 + SEMICOLON + mark2;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -70,6 +65,8 @@ public class Trial {
 
     @Override
     public String toString() {
-        return fieldToString() + SEMICOLON + isPassed();
+        return getClass().getSimpleName() + SEMICOLON
+                + account + SEMICOLON + mark1 + SEMICOLON
+                + mark2 + SEMICOLON + isPassed();
     }
 }

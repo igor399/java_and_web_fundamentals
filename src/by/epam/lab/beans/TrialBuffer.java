@@ -12,6 +12,7 @@ public class TrialBuffer {
                 wait();
             } catch (InterruptedException ignored) {
                 System.err.format(THREAD_ERROR, Thread.currentThread().getName());
+                //the declared exception is never thrown
             }
         }
         empty = true;
@@ -25,6 +26,7 @@ public class TrialBuffer {
                 wait();
             } catch (InterruptedException ignored) {
                 System.err.format(THREAD_ERROR, Thread.currentThread().getName());
+                //the declared exception is never thrown
             }
         }
         empty = false;
