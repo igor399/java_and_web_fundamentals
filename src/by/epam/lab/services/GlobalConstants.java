@@ -1,5 +1,7 @@
 package by.epam.lab.services;
 
+import by.epam.lab.beans.Trial;
+
 public class GlobalConstants {
     public final static String SEMICOLON = ";";
     public final static String PUT = "\n  put> %s";
@@ -11,4 +13,5 @@ public class GlobalConstants {
     public final static int ACCOUNT_IND = 0;
     public final static int MARK1_IND = 1;
     public final static int MARK2_IND = 2;
+    public final static Trial FAKE_TRIAL = new Trial();
 }
