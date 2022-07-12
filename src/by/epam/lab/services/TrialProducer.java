@@ -2,28 +2,33 @@ package by.epam.lab.services;
 
 import by.epam.lab.beans.*;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.Scanner;
 
 import static by.epam.lab.services.GlobalConstants.*;
 
 public class TrialProducer implements Runnable {
     private final TrialBuffer trialBuffer;
-    private final Scanner scanner;
+    private final String patch;
 
-    public TrialProducer(TrialBuffer trialBuffer, Scanner scanner) {
+    public TrialProducer(TrialBuffer trialBuffer, String patch) {
         this.trialBuffer = trialBuffer;
-        this.scanner = scanner;
+        this.patch = patch;
     }
 
     @Override
     public void run() {
-        while (scanner.hasNext()) {
-            TrialMessage trialMessage = new TrialMessage(scanner.nextLine());
-            if (!scanner.hasNext()) {
-                trialMessage.setDone(true);
+        try (Scanner sc = new Scanner(new FileReader(patch))) {
+            while (sc.hasNext()) {
+                Trial trial = new Trial(sc.nextLine().split(SEMICOLON));
+                trialBuffer.put(trial);
+                System.out.format(GOT, trial);
             }
-            trialBuffer.put(trialMessage);
-            System.out.format(GOT, trialMessage.getTrialInfo());
+        } catch (FileNotFoundException e) {
+            System.err.println(NO_FILE);
+        } finally {
+            trialBuffer.put(new Trial());
         }
     }
 }

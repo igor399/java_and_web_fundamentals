@@ -14,11 +14,11 @@ public class TrialConsumer implements Runnable {
     @Override
     public void run() {
         while (true) {
-            TrialMessage trialMessage = trialBuffer.take();
-            System.out.format(PUT, trialMessage.getTrialInfo());
-            if (trialMessage.isDone()) {
+            Trial trial = trialBuffer.take();
+            if (trial.equals(new Trial())) {
                 break;
             }
+            System.out.format(PUT, trial);
         }
     }
 }

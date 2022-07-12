@@ -17,6 +17,10 @@ public class Trial {
         this.mark2 = mark2;
     }
 
+    public Trial(Trial trial) {
+        this(trial.account, trial.mark1, trial.mark2);
+    }
+
     public Trial(String[] param) {
         this(param[ACCOUNT_IND],
                 Integer.parseInt(param[MARK1_IND]),
@@ -54,6 +58,14 @@ public class Trial {
     public String fieldToString() {
         return getClass().getSimpleName() + SEMICOLON
                 + account + SEMICOLON + mark1 + SEMICOLON + mark2;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Trial trial = (Trial) o;
+        return mark1 == trial.mark1 && mark2 == trial.mark2 && account.equals(trial.account);
     }
 
     @Override
