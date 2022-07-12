@@ -6,7 +6,7 @@ public class GlobalConstants {
     public final static String SEMICOLON = ";";
     public final static String PUT = "\n  put> %s";
     public final static String GOT = "\nGOT> %s";
-    public final static String FILE_PATCH = "resources/trials.csv";
+    public final static String FILE_PATH = "resources/trials.csv";
     public final static String NO_FILE = "File not found";
     public final static String THREAD_ERROR = "Thread error: %s";
     public final static int PASS_MARK = 120;

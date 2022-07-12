@@ -10,16 +10,16 @@ import static by.epam.lab.services.GlobalConstants.*;
 
 public class TrialProducer implements Runnable {
     private final TrialBuffer trialBuffer;
-    private final String patch;
+    private final String path;
 
-    public TrialProducer(TrialBuffer trialBuffer, String patch) {
+    public TrialProducer(TrialBuffer trialBuffer, String path) {
         this.trialBuffer = trialBuffer;
-        this.patch = patch;
+        this.path = path;
     }
 
     @Override
     public void run() {
-        try (Scanner sc = new Scanner(new FileReader(patch))) {
+        try (Scanner sc = new Scanner(new FileReader(path))) {
             while (sc.hasNext()) {
                 Trial trial = new Trial(sc.nextLine().split(SEMICOLON));
                 trialBuffer.put(trial);
