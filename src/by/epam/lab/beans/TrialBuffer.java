@@ -16,7 +16,7 @@ public class TrialBuffer {
             }
         }
         empty = true;
-        notifyAll();
+        notify();
         return trial;
     }
 
@@ -31,6 +31,6 @@ public class TrialBuffer {
         }
         empty = false;
         this.trial = trial;
-        notifyAll();
+        notify();
     }
 }
