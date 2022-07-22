@@ -13,7 +13,7 @@ public class TrialConsumer implements Runnable {
     private final Deque<Trial> trialBuffer;
     private final AtomicBoolean isDone;
 
-    public TrialConsumer(BlockingQueue<String> stringsBuffer, Deque<Trial>trialBuffer, AtomicBoolean isDone) {
+    public TrialConsumer(BlockingQueue<String> stringsBuffer, Deque<Trial> trialBuffer, AtomicBoolean isDone) {
         this.stringsBuffer = stringsBuffer;
         this.trialBuffer = trialBuffer;
         this.isDone = isDone;
@@ -21,12 +21,24 @@ public class TrialConsumer implements Runnable {
 
     @Override
     public void run() {
-        while (true) {
-            Trial trial = trialBuffer.take();
-            if (trial.equals(FAKE_TRIAL)) {
+        System.out.println("TrialConsumer start " + Thread.currentThread().getName());
+        while (!isDone.get()) {
+
+            String stringTrial = stringsBuffer.poll();
+
+            if (stringTrial == null) {
+                continue;
+            }
+            if (stringTrial.equals("DONE")) {
+                isDone.set(true);
                 break;
             }
-            System.out.format(PUT, trial);
+            Trial trial = new Trial(stringTrial.split(SEMICOLON));
+            if (trial.isPassed()) {
+                trialBuffer.push(trial);
+                System.out.println("Trial pushed ->" + Thread.currentThread().getName());
+            }
         }
+        System.out.println("TrialProducer stop working " + Thread.currentThread().getName());
     }
 }
