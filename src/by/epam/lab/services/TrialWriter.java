@@ -24,11 +24,9 @@ public class TrialWriter implements Runnable {
         System.out.println("TrialWriter start ");
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path))) {
             while (!trialBuffer.isEmpty()) {
-                if (!trialBuffer.isEmpty()) {
-                    Trial trial = trialBuffer.pop();
-                    bufferedWriter.write(String.valueOf(trial));
+                Trial trial = trialBuffer.pop();
+                bufferedWriter.write(String.valueOf(trial));
 
-                }
             }
             bufferedWriter.flush();
         } catch (IOException e) {
