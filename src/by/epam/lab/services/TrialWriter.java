@@ -6,14 +6,15 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Deque;
+import java.util.Queue;
 
 import static by.epam.lab.services.GlobalConstants.*;
 
 public class TrialWriter implements Runnable {
-    private final Deque<Trial> trialBuffer;
+    private final Queue<Trial> trialBuffer;
     private final String path;
 
-    public TrialWriter(Deque<Trial> trialBuffer, String path) {
+    public TrialWriter(Queue<Trial> trialBuffer, String path) {
         this.trialBuffer = trialBuffer;
         this.path = path;
     }
@@ -24,7 +25,7 @@ public class TrialWriter implements Runnable {
         System.out.println("TrialWriter start ");
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path))) {
             while (!trialBuffer.isEmpty()) {
-                Trial trial = trialBuffer.pop();
+                Trial trial = trialBuffer.poll();
                 bufferedWriter.write(String.valueOf(trial));
 
             }

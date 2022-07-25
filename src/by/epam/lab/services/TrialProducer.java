@@ -4,6 +4,7 @@ import by.epam.lab.beans.*;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.Queue;
 import java.util.Scanner;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.CountDownLatch;

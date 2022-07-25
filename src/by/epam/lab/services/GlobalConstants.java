@@ -15,6 +15,8 @@ public class GlobalConstants {
     public final static String MAX_CONS_NUMB = "maxConsumersNumber";
     public final static  String MAX_WRITERS_NUMB = "maxWritersNumber";
     public final static String PROPERTIES_DIRECTORY = "resources/settings.properties";
+    public final static String FOLDER_NAME = "folderName";
+    public final static String RESULT_FILE = "resultName";
 
 
 }
