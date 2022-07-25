@@ -1,10 +1,7 @@
 package by.epam.lab.services;
 
-import by.epam.lab.beans.*;
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.Queue;
 import java.util.Scanner;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.CountDownLatch;
@@ -24,7 +21,7 @@ public class TrialProducer implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("TrialProducer start " + Thread.currentThread().getName());
+        System.out.println(START_PROD_MESSAGE + Thread.currentThread().getName());
         try (Scanner sc = new Scanner(new FileReader(path))) {
             while (sc.hasNext()) {
                 stringsBuffer.put(sc.nextLine());
@@ -34,6 +31,6 @@ public class TrialProducer implements Runnable {
             System.err.println(NO_FILE);
         } catch (InterruptedException ignored) {
         }
-        System.out.println("TrialProducer stop working " + Thread.currentThread().getName());
+        System.out.println(STOP_PROD_MESSAGE + Thread.currentThread().getName());
     }
 }

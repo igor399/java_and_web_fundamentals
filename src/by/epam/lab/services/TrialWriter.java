@@ -22,7 +22,7 @@ public class TrialWriter implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("TrialWriter start ");
+        System.out.println(START_WRITER_MESSAGE);
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path))) {
             while (!trialBuffer.isEmpty()) {
                 Trial trial = trialBuffer.poll();
@@ -33,6 +33,6 @@ public class TrialWriter implements Runnable {
         } catch (IOException e) {
             System.err.println(NO_FILE);
         }
-        System.out.println("TrialWriter stop writing");
+        System.out.println(STOP_WRITER_MESSAGE);
     }
 }
