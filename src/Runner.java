@@ -51,7 +51,7 @@ public class Runner {
             writersPool.submit(trialWriter);
 
             countDownLatch.await();
-            stringsBuffer.put("DONE");
+            stringsBuffer.put(DONE);
             consumersPool.shutdown();
             producersPool.shutdown();
             writersPool.shutdown();
