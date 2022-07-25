@@ -22,22 +22,22 @@ public class TrialConsumer implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("TrialConsumer start " + Thread.currentThread().getName());
+        System.out.println(START_CONSUMER_MESSAGE + Thread.currentThread().getName());
         while (!isDone.get()) {
             String stringTrial = stringsBuffer.poll();
             if (stringTrial == null) {
                 continue;
             }
-            if (stringTrial.equals("DONE")) {
+            if (stringTrial.equals(DONE)) {
                 isDone.set(true);
                 break;
             }
             Trial trial = new Trial(stringTrial.split(SEMICOLON));
             if (trial.isPassed()) {
                 trialsBuffer.offer(trial);
-                System.out.println("Trial pushed by " + Thread.currentThread().getName());
+                System.out.println(PUSH_BY_THREAD_MESSAGE + Thread.currentThread().getName());
             }
         }
-        System.out.println("TrialProducer stop working " + Thread.currentThread().getName());
+        System.out.println(STOP_WORK_CONSUMER_MESSAGE + Thread.currentThread().getName());
     }
 }

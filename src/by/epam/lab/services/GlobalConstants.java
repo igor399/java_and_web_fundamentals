@@ -12,11 +12,14 @@ public class GlobalConstants {
     public final static String BUF_LENGTH = "bufferStrLength";
     public final static String MAX_PROD_NUMB = "maxProducersNumber";
     public final static String MAX_CONS_NUMB = "maxConsumersNumber";
-    public final static  String MAX_WRITERS_NUMB = "maxWritersNumber";
+    public final static String MAX_WRITERS_NUMB = "maxWritersNumber";
     public final static String PROPERTIES_DIRECTORY = "resources/settings.properties";
     public final static String FOLDER_NAME = "folderName";
     public final static String RESULT_FILE = "resultName";
-
-
+    public final static String START_CONSUMER_MESSAGE = "TrialConsumer start ";
+    public final static String DONE = "DONE";
+    public final static String PUSH_BY_THREAD_MESSAGE = "Trial pushed by ";
+    public final static String STOP_WORK_CONSUMER_MESSAGE =   "TrialConsumer stop working ";
+    public final static String STOP_WORK_PRODUCER_MESSAGE = "TrialProducer stop working ";
 
 }
