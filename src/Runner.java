@@ -58,7 +58,7 @@ public class Runner {
 
         } catch (IOException e) {
             System.err.println(NO_FILE);
-        } catch (InterruptedException e) {
+        } catch (InterruptedException ignored) {
         }
     }
 }
