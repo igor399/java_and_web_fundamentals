@@ -18,7 +18,7 @@ import static by.epam.lab.services.GlobalConstants.*;
 public class Runner {
     public static void main(String[] args) {
 
-        try (FileReader fileReader = new FileReader(PROPERTIES_DIRECTORY)) {
+        try (FileReader fileReader = new FileReader(PROP_DIRECTORY)) {
             Properties properties = new Properties();
             properties.load(fileReader);
 

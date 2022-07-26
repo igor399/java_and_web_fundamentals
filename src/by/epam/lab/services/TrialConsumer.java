@@ -4,6 +4,7 @@ import by.epam.lab.beans.*;
 
 import java.util.Queue;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static by.epam.lab.services.GlobalConstants.*;
@@ -22,21 +23,21 @@ public class TrialConsumer implements Runnable {
     @Override
     public void run() {
         System.out.println(START_CONS_MESSAGE + Thread.currentThread().getName());
-        while (!isDone.get()) {
-            String stringTrial = stringsBuffer.poll();
-            if (stringTrial == null) {
-                continue;
+            while (!stringsBuffer.isEmpty() || !isDone.get()) {
+                String stringTrial = stringsBuffer.poll();
+                if (stringTrial == null) {
+                    continue;
+                }
+                if (stringTrial.equals(DONE)) {
+                    isDone.set(true);
+                    break;
+                }
+                Trial trial = new Trial(stringTrial.split(SEMICOLON));
+                if (trial.isPassed()) {
+                    trialsBuffer.offer(trial);
+                    System.out.println(PUSH_BY_THREAD_MESSAGE + Thread.currentThread().getName());
+                }
             }
-            if (stringTrial.equals(DONE)) {
-                isDone.set(true);
-                break;
-            }
-            Trial trial = new Trial(stringTrial.split(SEMICOLON));
-            if (trial.isPassed()) {
-                trialsBuffer.offer(trial);
-                System.out.println(PUSH_BY_THREAD_MESSAGE + Thread.currentThread().getName());
-            }
-        }
         System.out.println(STOP_CONS_MESSAGE + Thread.currentThread().getName());
     }
 }

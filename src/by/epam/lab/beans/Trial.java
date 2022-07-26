@@ -60,7 +60,8 @@ public class Trial {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Trial trial = (Trial) o;
-        return mark1 == trial.mark1 && mark2 == trial.mark2 && account.equals(trial.account);
+        return mark1 == trial.mark1 && mark2 == trial.mark2 &&
+                account.equals(trial.account);
     }
 
     @Override

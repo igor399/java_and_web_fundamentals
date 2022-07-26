@@ -19,7 +19,6 @@ public class TrialWriter implements Runnable {
         this.path = path;
     }
 
-
     @Override
     public void run() {
         System.out.println(START_WRITER_MESSAGE);
