@@ -12,24 +12,29 @@ import static by.epam.lab.services.GlobalConstants.*;
 public class TrialConsumer implements Runnable {
     private final BlockingQueue<String> stringsBuffer;
     private final Queue<Trial> trialsBuffer;
-    private final AtomicBoolean isDone;
+    private final AtomicBoolean isDoneCons;
 
-    public TrialConsumer(BlockingQueue<String> stringsBuffer, Queue<Trial> trialBuffer, AtomicBoolean isDone) {
+    public TrialConsumer(BlockingQueue<String> stringsBuffer, Queue<Trial> trialBuffer, AtomicBoolean isDoneCons) {
         this.stringsBuffer = stringsBuffer;
         this.trialsBuffer = trialBuffer;
-        this.isDone = isDone;
+        this.isDoneCons = isDoneCons;
     }
 
     @Override
     public void run() {
         System.out.println(START_CONS_MESSAGE + Thread.currentThread().getName());
-            while (!stringsBuffer.isEmpty() || !isDone.get()) {
-                String stringTrial = stringsBuffer.poll();
+            while (!stringsBuffer.isEmpty() || !isDoneCons.get()) {
+
+                try {
+                   String stringTrial = stringsBuffer.poll(500, TimeUnit.MILLISECONDS);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 if (stringTrial == null) {
                     continue;
                 }
                 if (stringTrial.equals(DONE)) {
-                    isDone.set(true);
+                    isDoneCons.set(true);
                     break;
                 }
                 Trial trial = new Trial(stringTrial.split(SEMICOLON));
