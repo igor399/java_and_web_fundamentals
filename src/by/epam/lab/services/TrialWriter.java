@@ -5,33 +5,41 @@ import by.epam.lab.beans.Trial;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Deque;
 import java.util.Queue;
 
 import static by.epam.lab.services.GlobalConstants.*;
 
 public class TrialWriter implements Runnable {
-    private final Queue<Trial> trialBuffer;
+    private final Queue<Trial> trialsBuffer;
     private final String path;
+    private volatile boolean isDoneWriter;
 
-    public TrialWriter(Queue<Trial> trialBuffer, String path) {
-        this.trialBuffer = trialBuffer;
+    public TrialWriter(Queue<Trial> trialsBuffer, String path) {
+        this.trialsBuffer = trialsBuffer;
         this.path = path;
+    }
+
+    public void isWriterStop() {
+        isDoneWriter = true;
+        System.out.println(STOP_WRITE);
     }
 
     @Override
     public void run() {
-        System.out.println(START_WRITER_MESSAGE);
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path))) {
-            while (!trialBuffer.isEmpty()) {
-                Trial trial = trialBuffer.poll();
-                bufferedWriter.write(String.valueOf(trial));
-
+        System.out.println(START_WRITER);
+        try (BufferedWriter bufferedWriter =
+                     new BufferedWriter(new FileWriter(path))) {
+            while (!trialsBuffer.isEmpty() || !isDoneWriter) {
+                if (!trialsBuffer.isEmpty()) {
+                    Trial trial = trialsBuffer.poll();
+                    System.out.println(WRITE_TO_FILE + trial);
+                    bufferedWriter.write(trial + NEXT_LINE);
+                }
             }
             bufferedWriter.flush();
         } catch (IOException e) {
             System.err.println(NO_FILE);
         }
-        System.out.println(STOP_WRITER_MESSAGE);
+        System.out.println(STOP_WRITER);
     }
 }

@@ -66,8 +66,8 @@ public class Trial {
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + SEMICOLON
-                + account + SEMICOLON + mark1 + SEMICOLON
-                + mark2 + SEMICOLON + isPassed();
+        return account + SEMICOLON +
+                mark1 + SEMICOLON +
+                mark2 + SEMICOLON + isPassed();
     }
 }

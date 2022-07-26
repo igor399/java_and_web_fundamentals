@@ -13,7 +13,8 @@ public class TrialProducer implements Runnable {
     private final String path;
     private final CountDownLatch countDownLatch;
 
-    public TrialProducer(BlockingQueue<String> stringsBuffer, String path, CountDownLatch countDownLatch) {
+    public TrialProducer(BlockingQueue<String> stringsBuffer,
+                         String path, CountDownLatch countDownLatch) {
         this.stringsBuffer = stringsBuffer;
         this.path = path;
         this.countDownLatch = countDownLatch;
@@ -21,7 +22,7 @@ public class TrialProducer implements Runnable {
 
     @Override
     public void run() {
-        System.out.println(START_PROD_MESSAGE + Thread.currentThread().getName());
+        System.out.println(START_PROD + Thread.currentThread().getName());
         try (Scanner sc = new Scanner(new FileReader(path))) {
             while (sc.hasNext()) {
                 stringsBuffer.put(sc.nextLine());
@@ -29,8 +30,9 @@ public class TrialProducer implements Runnable {
             countDownLatch.countDown();
         } catch (FileNotFoundException e) {
             System.err.println(NO_FILE);
-        } catch (InterruptedException ignored) {
+        } catch (InterruptedException e) {
+            System.err.println(e.getMessage());
         }
-        System.out.println(STOP_PROD_MESSAGE + Thread.currentThread().getName());
+        System.out.println(STOP_PROD + Thread.currentThread().getName());
     }
 }
