@@ -14,9 +14,9 @@ public class TrialConsumer implements Runnable {
     private final Queue<Trial> trialsBuffer;
 
     public TrialConsumer(BlockingQueue<String> stringsBuffer,
-                         Queue<Trial> trialBuffer) {
+                         Queue<Trial> trialsBuffer) {
         this.stringsBuffer = stringsBuffer;
-        this.trialsBuffer = trialBuffer;
+        this.trialsBuffer = trialsBuffer;
     }
 
     @Override
