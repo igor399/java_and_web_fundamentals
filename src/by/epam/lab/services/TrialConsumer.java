@@ -23,25 +23,26 @@ public class TrialConsumer implements Runnable {
     public void run() {
         System.out.println(START_CONS + Thread.currentThread().getName());
         while (true) {
+            String stringTrial;
             try {
-                String stringTrial = stringsBuffer.take();
-                if (stringTrial == null) {
-                    continue;
-                }
-                if (stringTrial.equals(DONE)) {
-                    break;
-                }
-                Trial trial = new Trial(stringTrial.split(SEMICOLON));
-                if (trial.isPassed()) {
-                    trialsBuffer.add(trial);
-                    System.out.println(PUSH_BY_THREAD +
-                            Thread.currentThread().getName());
-                }
+                 stringTrial = stringsBuffer.take();
             } catch (InterruptedException e) {
                 System.err.println(e.getMessage());
                 //In case of an error, the thread should not stop
+                continue;
+            }
+            if (stringTrial == null) {
+                continue;
+            }
+            if (stringTrial.equals(DONE)) {
+                break;
+            }
+            Trial trial = new Trial(stringTrial.split(SEMICOLON));
+            if (trial.isPassed()) {
+                trialsBuffer.add(trial);
+                System.out.println(PUSH_BY_THREAD + Thread.currentThread().getName());
             }
         }
-        System.out.println(STOP_CONS + Thread.currentThread().getName());
+        System.out.println(STOP_CONS +Thread.currentThread().getName());
     }
 }

@@ -40,8 +40,8 @@ public class Runner {
             filesName.forEach(file -> producersPool
                     .submit(new TrialProducer(stringsBuffer, file, countDownLatch)));
 
-            filesName.forEach(file -> consumersPool
-                    .submit(new TrialConsumer(stringsBuffer, trialsBuffer)));
+            IntStream.range(0, consNumb)
+                    .forEach(i -> consumersPool .submit(new TrialConsumer(stringsBuffer, trialsBuffer)));
 
             TrialWriter trialWriter = new TrialWriter(trialsBuffer, properties.getProperty(RESULT));
             writersPool.submit(trialWriter);
@@ -49,7 +49,7 @@ public class Runner {
             try {
                 countDownLatch.await();
             } catch (InterruptedException e) {
-                throw new CountDownException();
+                throw new CountDownException(THREAD_ERROR + e.getMessage());
             }
 
             IntStream.range(0, consNumb).forEach(i -> stringsBuffer.add(DONE));

@@ -47,7 +47,7 @@ public class TrialWriter implements Runnable {
                 }
             }
         } catch (IOException e) {
-            throw new FileException();
+            throw new FileException(FILE_ERROR + e.getMessage());
         }
         System.out.println(STOP_WRITER);
     }
