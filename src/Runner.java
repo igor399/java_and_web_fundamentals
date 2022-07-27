@@ -40,9 +40,8 @@ public class Runner {
             filesName.forEach(file -> producersPool
                     .submit(new TrialProducer(stringsBuffer, file, countDownLatch)));
 
-            for (int i = 0; i < consNumb; i++) {
-                consumersPool.submit(new TrialConsumer(stringsBuffer, trialsBuffer));
-            }
+            filesName.forEach(file -> consumersPool
+                    .submit(new TrialConsumer(stringsBuffer, trialsBuffer)));
 
             TrialWriter trialWriter = new TrialWriter(trialsBuffer, properties.getProperty(RESULT));
             writersPool.submit(trialWriter);
