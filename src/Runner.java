@@ -1,13 +1,14 @@
 import by.epam.lab.beans.Trial;
 import by.epam.lab.services.*;
+import exceptions.CountDownException;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static by.epam.lab.services.GlobalConstants.*;
@@ -39,9 +40,7 @@ public class Runner {
             filesName.forEach(file -> producersPool
                     .submit(new TrialProducer(stringsBuffer, file, countDownLatch)));
 
-            for (int i = 0; i < consNumb; i++) {
-                consumersPool.submit(new TrialConsumer(stringsBuffer, trialsBuffer));
-            }
+            IntStream.range(0, consNumb).forEach(i -> stringsBuffer.add(DONE));
 
             TrialWriter trialWriter = new TrialWriter(trialsBuffer, properties.getProperty(RESULT));
             writersPool.submit(trialWriter);
@@ -49,7 +48,7 @@ public class Runner {
             try {
                 countDownLatch.await();
             } catch (InterruptedException e) {
-                System.err.println(e.getMessage());
+                throw new CountDownException();
             }
 
             stringsBuffer.add(DONE);

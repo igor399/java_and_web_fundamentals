@@ -1,7 +1,8 @@
 package by.epam.lab.services;
 
 import by.epam.lab.beans.Trial;
-import exceptions.CustomRuntimeException;
+import exceptions.CountDownException;
+import exceptions.FileException;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -46,9 +47,7 @@ public class TrialWriter implements Runnable {
                 }
             }
         } catch (IOException e) {
-            System.err.println(NO_FILE);
-        } catch (CustomRuntimeException e) {
-            System.err.println(e.getMessage());
+            throw new FileException();
         }
         System.out.println(STOP_WRITER);
     }
