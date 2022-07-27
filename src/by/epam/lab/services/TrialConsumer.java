@@ -42,7 +42,6 @@ public class TrialConsumer implements Runnable {
                 //In case of an error, the thread should not stop
             }
         }
-
         System.out.println(STOP_CONS + Thread.currentThread().getName());
     }
 }
