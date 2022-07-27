@@ -52,7 +52,7 @@ public class Runner {
                 System.err.println(e.getMessage());
             }
 
-            stringsBuffer.put(DONE);
+            stringsBuffer.add(DONE);
 
             trialWriter.isWriterStop();
 
@@ -61,9 +61,6 @@ public class Runner {
             writersPool.shutdown();
         } catch (IOException e) {
             System.err.println(NO_FILE);
-        } catch (InterruptedException e) {
-            System.err.println(e.getMessage());
-            //In case of an error, the thread should not stop
         }
     }
 }
