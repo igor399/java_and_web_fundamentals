@@ -1,11 +1,13 @@
 package by.epam.lab.services;
 
 import by.epam.lab.beans.Trial;
+import exceptions.CustomRuntimeException;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Queue;
+import java.util.concurrent.TimeUnit;
 
 import static by.epam.lab.services.GlobalConstants.*;
 
@@ -30,15 +32,23 @@ public class TrialWriter implements Runnable {
         try (BufferedWriter bufferedWriter =
                      new BufferedWriter(new FileWriter(path))) {
             while (!trialsBuffer.isEmpty() || !isDoneWriter) {
-                if (!trialsBuffer.isEmpty()) {
-                    Trial trial = trialsBuffer.poll();
+                Trial trial;
+                if (((trial = trialsBuffer.poll()) != null)) {
                     System.out.println(WRITE_TO_FILE + trial);
                     bufferedWriter.write(trial + NEXT_LINE);
+                } else {
+                    try {
+                        TimeUnit.MILLISECONDS.sleep(100);
+                    } catch (InterruptedException e) {
+                        System.err.println(e.getMessage());
+                        //In case of an error, the thread should not stop
+                    }
                 }
             }
-            bufferedWriter.flush();
         } catch (IOException e) {
             System.err.println(NO_FILE);
+        } catch (CustomRuntimeException e) {
+            System.err.println(e.getMessage());
         }
         System.out.println(STOP_WRITER);
     }

@@ -18,19 +18,16 @@ public class Runner {
             Properties properties = new Properties();
             properties.load(fileReader);
 
-            BlockingQueue<String> stringsBuffer = new ArrayBlockingQueue<>
-                    (Integer.parseInt(properties.getProperty(BUF_LENGTH)));
-            Queue<Trial> trialsBuffer = new ConcurrentLinkedDeque<>();
-            AtomicBoolean consDone = new AtomicBoolean(false);
+            int buffLength = Integer.parseInt(properties.getProperty(BUF_LENGTH));
+            int prodNumb = Integer.parseInt(properties.getProperty(MAX_PROD_NUMB));
+            int consNumb = Integer.parseInt(properties.getProperty(MAX_CONS_NUMB));
 
-            ExecutorService producersPool = Executors.newFixedThreadPool
-                    (Integer.parseInt(properties.getProperty(MAX_PROD_NUMB)));
+            BlockingQueue<String> stringsBuffer = new LinkedBlockingQueue<>(buffLength);
+            Queue<Trial> trialsBuffer = new ConcurrentLinkedQueue<>();
 
-            ExecutorService consumersPool = Executors.newFixedThreadPool
-                    (Integer.parseInt(properties.getProperty(MAX_CONS_NUMB)));
-
-            ExecutorService writersPool = Executors.newFixedThreadPool
-                    (Integer.parseInt(properties.getProperty(MAX_WRITERS_NUMB)));
+            ExecutorService producersPool = Executors.newFixedThreadPool(prodNumb);
+            ExecutorService consumersPool = Executors.newFixedThreadPool(consNumb);
+            ExecutorService writersPool = Executors.newSingleThreadExecutor();
 
             List<String> filesName = Stream
                     .of(new File(properties.getProperty(FOLDER_NAME)).listFiles())
@@ -39,18 +36,21 @@ public class Runner {
                     .collect(Collectors.toList());
             CountDownLatch countDownLatch = new CountDownLatch(filesName.size());
 
-            for (int i = 0; i < Integer.parseInt(properties.getProperty(MAX_CONS_NUMB)); i++) {
-                consumersPool.submit(new TrialConsumer(stringsBuffer, trialsBuffer, consDone));
-            }
+            filesName.forEach(file -> producersPool
+                    .submit(new TrialProducer(stringsBuffer, file, countDownLatch)));
 
-            for (String file : filesName) {
-                producersPool.submit(new TrialProducer(stringsBuffer, file, countDownLatch));
+            for (int i = 0; i < consNumb; i++) {
+                consumersPool.submit(new TrialConsumer(stringsBuffer, trialsBuffer));
             }
 
             TrialWriter trialWriter = new TrialWriter(trialsBuffer, properties.getProperty(RESULT));
             writersPool.submit(trialWriter);
 
-            countDownLatch.await();
+            try {
+                countDownLatch.await();
+            } catch (InterruptedException e) {
+                System.err.println(e.getMessage());
+            }
 
             stringsBuffer.put(DONE);
 
@@ -61,7 +61,9 @@ public class Runner {
             writersPool.shutdown();
         } catch (IOException e) {
             System.err.println(NO_FILE);
-        } catch (InterruptedException ignored) {
+        } catch (InterruptedException e) {
+            System.err.println(e.getMessage());
+            //In case of an error, the thread should not stop
         }
     }
 }

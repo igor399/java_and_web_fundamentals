@@ -11,7 +11,6 @@ public class GlobalConstants {
     public final static String BUF_LENGTH = "bufferStrLength";
     public final static String MAX_PROD_NUMB = "maxProducersNumber";
     public final static String MAX_CONS_NUMB = "maxConsumersNumber";
-    public final static String MAX_WRITERS_NUMB = "maxWritersNumber";
     public final static String FOLDER_NAME = "folderName";
     public final static String RESULT = "resultName";
     public final static String NO_FILE = "File not found";

@@ -27,11 +27,13 @@ public class TrialProducer implements Runnable {
             while (sc.hasNext()) {
                 stringsBuffer.put(sc.nextLine());
             }
-            countDownLatch.countDown();
-        } catch (FileNotFoundException e) {
-            System.err.println(NO_FILE);
         } catch (InterruptedException e) {
             System.err.println(e.getMessage());
+            //In case of an error, the thread should not stop
+        } catch (FileNotFoundException e) {
+            System.err.println(NO_FILE);
+        } finally {
+            countDownLatch.countDown();
         }
         System.out.println(STOP_PROD + Thread.currentThread().getName());
     }
