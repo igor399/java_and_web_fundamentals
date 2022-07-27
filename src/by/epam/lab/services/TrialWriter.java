@@ -30,8 +30,7 @@ public class TrialWriter implements Runnable {
     @Override
     public void run() {
         System.out.println(START_WRITER);
-        try (BufferedWriter bufferedWriter =
-                     new BufferedWriter(new FileWriter(path))) {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path))) {
             while (!trialsBuffer.isEmpty() || !isDoneWriter) {
                 Trial trial;
                 if (((trial = trialsBuffer.poll()) != null)) {

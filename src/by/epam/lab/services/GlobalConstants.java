@@ -24,6 +24,6 @@ public class GlobalConstants {
     public final static String STOP_WRITER = "Stop writing to file ";
     public final static String STOP_WRITE = "Stop TrialWriter ";
     public final static String WRITE_TO_FILE = "Writing to resultFile : ";
-    public final static String THREAD_ERROR = "critical error with thread: ";
+    public final static String THREAD_ERROR = "Critical error with thread: ";
     public final static String FILE_ERROR ="File error ";
 }

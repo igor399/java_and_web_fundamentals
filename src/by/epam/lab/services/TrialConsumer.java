@@ -31,9 +31,6 @@ public class TrialConsumer implements Runnable {
                 //In case of an error, the thread should not stop
                 continue;
             }
-            if (stringTrial == null) {
-                continue;
-            }
             if (stringTrial.equals(DONE)) {
                 break;
             }
