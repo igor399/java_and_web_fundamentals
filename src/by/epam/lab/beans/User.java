@@ -34,12 +34,12 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id && Objects.equals(account, user.account);
+        return id == user.id && account.equals(user.account);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, account);
+        return account.hashCode() + 17;
     }
 
     @Override
