@@ -12,11 +12,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserOnId(int id) {
-        return null;
+        return dalUser.getUserOnId(id);
     }
 
     @Override
     public void registerUser(String account) {
-
+        dalUser.registerUser(account);
     }
 }
