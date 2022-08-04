@@ -6,6 +6,4 @@ public interface UserService {
    User getUserOnId(int id);
 
    void registerUser(String account);
-
-
 }

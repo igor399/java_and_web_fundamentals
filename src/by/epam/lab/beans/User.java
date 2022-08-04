@@ -1,8 +1,6 @@
 package by.epam.lab.beans;
 
-import java.util.Objects;
-
-import static by.epam.lab.service.GlobalConstants.*;
+import static by.epam.lab.constants.GlobalConstants.*;
 
 public class User {
     private int id;
