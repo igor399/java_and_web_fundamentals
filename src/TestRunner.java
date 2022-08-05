@@ -13,28 +13,28 @@ import static by.epam.lab.constants.GlobalConstants.*;
 
 
 public class TestRunner {
-    private final List<String> users = List.of(
+    private final List<String> users = new ArrayList<>(Arrays.asList(
             "Alex_777", "1992JackWilson", "CrazyAndrew", "Funny_John", "Jessic@_18",
             "Stack_Overflow_", "TechnoWorld", "Java_Is_Best", "Computer__Science",
             "Easy_acc", "Simple_acc", "Hard_acc", "Normal_acc", "Password1111",
             "StrAcc", "UserFromMoon", "_123", "FridayChill", "MyPass", "Hello_World"
-    );
+    ));
 
-    private final List<String> varUsers = List.of(
+    private final List<String> varUsers = new ArrayList<>(Arrays.asList(
             "Alex_777", "1992JackWilson", "CrazyAndrew", "Funny_John", "Jessic@_18",
             "Stack_Overflow_", "TechnoWorld", "Java_Is_Best", "Computer_Science",
             "Easy_acc"
-    );
+    ));
 
-    private final List<String> sameUsers = List.of(
+    private final List<String> sameUsers = new ArrayList<>(Arrays.asList(
             "Easy_acc", "Easy_acc", "Easy_acc", "Easy_acc", "Easy_acc",
             "Easy_acc", "Easy_acc", "Easy_acc", "Easy_acc", "Easy_acc"
-    );
+    ));
 
-    private final List<String> fiveUniqueUsers = List.of(
+    private final List<String> fiveUniqueUsers = new ArrayList<>(Arrays.asList(
             "Stack_Overflow_", "TechnoWorld", "Java_Is_Best", "Computer__Science",
             "Easy_acc", "Easy_acc", "Easy_acc", "Easy_acc", "Easy_acc", "Easy_acc"
-    );
+    ));
 
     private final List<User> userList = new CopyOnWriteArrayList<>();
     private final Map<Integer, User> userMap = new ConcurrentHashMap<>();
