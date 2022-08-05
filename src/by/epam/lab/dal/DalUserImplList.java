@@ -16,6 +16,11 @@ public class DalUserImplList implements DalUser {
 
     @Override
     public User getUserOnId(int id) {
+        for (User user : userList) {
+            if (user.getId() == id) {
+                return user;
+            }
+        }
         return null;
     }
 
