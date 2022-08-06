@@ -21,7 +21,7 @@ public class DalUserImplMap implements DalUser {
 
     @Override
     public void registerUser(String account) {
-        userMap.put(count.incrementAndGet(),
-                new User(count.incrementAndGet(), account));
+        int key = count.incrementAndGet();
+        userMap.put(key, new User(key, account));
     }
 }
