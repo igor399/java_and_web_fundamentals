@@ -2,8 +2,10 @@ package by.epam.lab.service;
 
 import by.epam.lab.beans.User;
 
+import java.util.Optional;
+
 public interface UserService {
-   User getUserOnId(int id);
+   Optional<User> getUserOnId(int id);
 
    void registerUser(String account);
 }
