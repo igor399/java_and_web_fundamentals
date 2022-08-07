@@ -1,7 +1,6 @@
 import by.epam.lab.beans.User;
 import by.epam.lab.dao.DaoUser;
 import by.epam.lab.dao.DaoUserImplList;
-import by.epam.lab.dao.DaoUserImplMap;
 import by.epam.lab.service.*;
 import org.junit.Assert;
 import org.junit.Test;
@@ -47,7 +46,7 @@ public class TestRunner {
 
     private final Random rand = new Random();
 
-    private void getAndRegisterTenUserList(List<String> users) throws InterruptedException {
+    private void registerTenUserList(List<String> users) throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(users.size());
         users.forEach(user -> executorService.submit(() -> {
             userService.registerUser(user);
@@ -59,85 +58,96 @@ public class TestRunner {
         executorService.shutdown();
     }
 
-    private void getAndRegisterTwoUserList(List<String> users) throws InterruptedException {
+
+
+    private void registerTwoUserList(List<String> users) throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(users.size());
         users.forEach(user -> executorService.submit(() -> {
             userService.registerUser(user);
+            try {
+                TimeUnit.MILLISECONDS.sleep(1000);
+            } catch (InterruptedException ignored) {
+              //The declared exception never thrown
+            }
             latch.countDown();
         }));
-        TimeUnit.MILLISECONDS.sleep(1000);
         latch.await();
         executorService.shutdown();
+    }
+
+    private void registerTwoUserListWithFillModel(List<String> users) throws InterruptedException {
+        varUsers.forEach(userService::registerUser);
+        registerTwoUserList(users);
     }
 
     @Test
     public void getAndRegisterTwoVarUserListEmptyTest() throws InterruptedException {
         int expectedSize = 2;
-        getAndRegisterTwoUserList(twoVarUsers);
+        registerTwoUserList(twoVarUsers);
         Assert.assertEquals(userList.size(), expectedSize);
     }
 
     @Test
     public void getAndRegisterTwoSameUserListEmptyTest() throws InterruptedException {
         int expectedSize = 1;
-        getAndRegisterTwoUserList(twoSameUsers);
+        registerTwoUserList(twoSameUsers);
         Assert.assertEquals(userList.size(), expectedSize);
     }
 
     @Test
     public void getAndRegisterTwoVarUserListTest() throws InterruptedException {
         int expectedSize = 12;
-        getAndRegisterTenUserList(varUsers);
+        registerTenUserList(varUsers);
         TimeUnit.SECONDS.sleep(1);
-        getAndRegisterTwoUserList(twoVarUsers);
+        registerTwoUserListWithFillModel(twoVarUsers);
         Assert.assertEquals(userList.size(), expectedSize);
     }
 
     @Test
     public void getAndRegisterTwoSameUserListTest() throws InterruptedException {
         int expectedSize = 11;
-        getAndRegisterTenUserList(varUsers);
+        registerTenUserList(varUsers);
         TimeUnit.SECONDS.sleep(1);
-        getAndRegisterTwoUserList(twoSameUsers);
+        registerTwoUserList(twoSameUsers);
         Assert.assertEquals(userList.size(), expectedSize);
     }
 
     @Test
     public void getAndRegisterOneInStorageUserListTest() throws InterruptedException {
         int expectedSize = 11;
-        getAndRegisterTenUserList(varUsers);
+        registerTenUserList(varUsers);
         TimeUnit.SECONDS.sleep(1);
-        getAndRegisterTwoUserList(oneInStorage);
+        registerTwoUserList(oneInStorage);
         Assert.assertEquals(userList.size(), expectedSize);
     }
 
     @Test
     public void getAndRegisterTwoInStorageUserListTest() throws InterruptedException {
         int expectedSize = 10;
-        getAndRegisterTenUserList(varUsers);
+        registerTenUserList(varUsers);
         TimeUnit.SECONDS.sleep(1);
-        getAndRegisterTwoUserList(twoInStorage);
+        registerTwoUserList(twoInStorage);
         Assert.assertEquals(userList.size(), expectedSize);
     }
 
     @Test
     public void getTenAndRegisterUserListTest() throws InterruptedException {
         int expectedSize = varUsers.size();
-        getAndRegisterTenUserList(varUsers);
+        registerTenUserList(varUsers);
         Assert.assertEquals(userList.size(), expectedSize);
     }
 
     @Test
     public void getSameTenAndRegisterUserListTest() throws InterruptedException {
         int expectedSize = 1;
-        getAndRegisterTenUserList(sameUsers);
+        registerTenUserList(sameUsers);
         Assert.assertEquals(userList.size(), expectedSize);
     }
 
     @Test
     public void getSameFiveAndRegisterUserListTest() throws InterruptedException {
-        int expectedSize = 6;
-        getAndRegisterTenUserList(fiveUniqueUsers);
+        int expectedSize = 5;
+        registerTenUserList(fiveUniqueUsers);
         Assert.assertEquals(userList.size(), expectedSize);
     }
 }

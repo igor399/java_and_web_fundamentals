@@ -3,9 +3,12 @@ package by.epam.lab.dao;
 import by.epam.lab.beans.User;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class DaoUserImplMap implements DaoUser {
+    private final ReentrantLock lock = new ReentrantLock();
     private final AtomicInteger count;
     private final Map<Integer, User> userMap;
 
@@ -20,8 +23,20 @@ public class DaoUserImplMap implements DaoUser {
     }
 
     @Override
-    public void registerUser(String account) {
-        int key = count.incrementAndGet();
-        userMap.put(key, new User(key, account));
+    public Optional<User> registerUser(String account) {
+        try {
+            lock.lock();
+            if(userMap.values().stream().anyMatch(u -> u.getAccount().equals(account))){
+                return Optional.empty();
+            }else {
+                int id = count.incrementAndGet();
+                User user = new User(id, account);
+                userMap.put(id, user);
+                return Optional.of(user);
+            }
+        }
+        finally {
+            lock.unlock();
+        }
     }
 }

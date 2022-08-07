@@ -2,8 +2,10 @@ package by.epam.lab.dao;
 
 import by.epam.lab.beans.User;
 
+import java.util.Optional;
+
 public interface DaoUser {
     User getUserOnId(int id);
 
-    void registerUser(String account);
+    Optional<User> registerUser(String account);
 }

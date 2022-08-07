@@ -3,6 +3,7 @@ package by.epam.lab.dao;
 import by.epam.lab.beans.User;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -28,17 +29,18 @@ public class DaoUserImplList implements DaoUser {
     }
 
     @Override
-    public void registerUser(String account) {
+    public Optional<User> registerUser(String account) {
         try {
             lock.lock();
-        for (User user : userList) {
-                if (user.getAccount().equals(account)) {
-                    userList.add(new User());
-                }
+            if (userList.stream().anyMatch(u -> u.getAccount().equals(account))) {
+                return Optional.empty();
+            } else {
+                User user = new User(count.incrementAndGet(), account);
+                userList.add(user);
+                return Optional.of(user);
             }
-            }finally {
-                lock.unlock();
+        } finally {
+            lock.unlock();
         }
-            userList.add(new User(count.incrementAndGet(), account));
     }
 }
