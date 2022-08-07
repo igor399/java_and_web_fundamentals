@@ -6,8 +6,7 @@ public class User {
     private int id;
     private String account;
 
-    public User(){
-        this(0, "");
+    public User() {
     }
 
     public User(int id, String account) {
@@ -41,7 +40,7 @@ public class User {
 
     @Override
     public int hashCode() {
-        return account.hashCode() + 17 * id;
+        return 17 * id + account.hashCode();
     }
 
     @Override
