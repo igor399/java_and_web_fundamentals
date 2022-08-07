@@ -2,12 +2,13 @@ package by.epam.lab.dao;
 
 import by.epam.lab.beans.User;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class DaoUserImplList implements DaoUser {
+public class DaoUserImplList extends AbstractDaoUser {
     private final ReentrantLock lock = new ReentrantLock();
     private final AtomicInteger count;
     private final List<User> userList;
@@ -42,5 +43,15 @@ public class DaoUserImplList implements DaoUser {
         } finally {
             lock.unlock();
         }
+    }
+
+    @Override
+    protected void addUser(User user) {
+        userList.add(user);
+    }
+
+    @Override
+    protected Collection<User> getUsers() {
+        return userList;
     }
 }
