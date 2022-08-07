@@ -79,42 +79,42 @@ public class TestRunner {
     }
 
     @Test
-    public void getAndRegisterTwoVarUserListEmptyTest() throws InterruptedException {
+    public void registerTwoVarUserListEmptyTest() throws InterruptedException {
         int expectedSize = 2;
         registerTwoUserList(twoVarUsers);
         Assert.assertEquals(userList.size(), expectedSize);
     }
 
     @Test
-    public void getAndRegisterTwoSameUserListEmptyTest() throws InterruptedException {
+    public void registerTwoSameUserListEmptyTest() throws InterruptedException {
         int expectedSize = 1;
         registerTwoUserList(twoSameUsers);
         Assert.assertEquals(userList.size(), expectedSize);
     }
 
     @Test
-    public void getAndRegisterTwoVarUserListTest() throws InterruptedException {
+    public void registerTwoVarUserListTest() throws InterruptedException {
         int expectedSize = 12;
         registerTwoUserListWithFillModel(twoVarUsers);
         Assert.assertEquals(userList.size(), expectedSize);
     }
 
     @Test
-    public void getAndRegisterTwoSameUserListTest() throws InterruptedException {
+    public void registerTwoSameUserListTest() throws InterruptedException {
         int expectedSize = 11;
         registerTwoUserListWithFillModel(twoSameUsers);
         Assert.assertEquals(userList.size(), expectedSize);
     }
 
     @Test
-    public void getAndRegisterOneInStorageUserListTest() throws InterruptedException {
+    public void registerOneInStorageUserListTest() throws InterruptedException {
         int expectedSize = 11;
         registerTwoUserListWithFillModel(oneInStorage);
         Assert.assertEquals(userList.size(), expectedSize);
     }
 
     @Test
-    public void getAndRegisterTwoInStorageUserListTest() throws InterruptedException {
+    public void registerTwoInStorageUserListTest() throws InterruptedException {
         int expectedSize = 10;
         registerTwoUserListWithFillModel(twoInStorage);
         Assert.assertEquals(userList.size(), expectedSize);

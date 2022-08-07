@@ -9,18 +9,15 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class DaoUserImplMap extends AbstractDaoUser {
-    private final ReentrantLock lock = new ReentrantLock();
-    private final AtomicInteger count;
     private final Map<Integer, User> userMap;
 
     public DaoUserImplMap(Map<Integer, User> userMap) {
         this.userMap = userMap;
-        count = new AtomicInteger(0);
     }
 
     @Override
-    public User getUserOnId(int id) {
-        return userMap.get(id);
+    public Optional<User> getUserOnId(int id) {
+        return Optional.ofNullable(userMap.get(id));
     }
 
     @Override
@@ -30,7 +27,7 @@ public class DaoUserImplMap extends AbstractDaoUser {
             if (userMap.values().stream().anyMatch(u -> u.getAccount().equals(account))) {
                 return Optional.empty();
             } else {
-                int id = count.incrementAndGet();
+                int id = counter.incrementAndGet();
                 User user = new User(id, account);
                 userMap.put(id, user);
                 return Optional.of(user);
@@ -42,7 +39,7 @@ public class DaoUserImplMap extends AbstractDaoUser {
 
     @Override
     protected void addUser(User user) {
-        userMap.put(counter.incrementAndGet(), user);
+        userMap.put(user.getId(), user);
     }
 
     @Override

@@ -3,6 +3,8 @@ package by.epam.lab.service;
 import by.epam.lab.beans.User;
 import by.epam.lab.dao.DaoUser;
 
+import java.util.Optional;
+
 public class UserServiceImpl implements UserService {
     private final DaoUser daoUser;
 
@@ -11,7 +13,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserOnId(int id) {
+    public Optional<User> getUserOnId(int id) {
         return daoUser.getUserOnId(id);
     }
 

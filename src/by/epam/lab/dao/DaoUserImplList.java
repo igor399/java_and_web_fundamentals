@@ -9,24 +9,15 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class DaoUserImplList extends AbstractDaoUser {
-    private final ReentrantLock lock = new ReentrantLock();
-    private final AtomicInteger count;
     private final List<User> userList;
-
 
     public DaoUserImplList(List<User> userList) {
         this.userList = userList;
-        count = new AtomicInteger(0);
     }
 
     @Override
-    public User getUserOnId(int id) {
-        for (User user : userList) {
-            if (user.getId() == id) {
-                return user;
-            }
-        }
-        return new User();
+    public Optional<User> getUserOnId(int id) {
+        return userList.stream().filter(u -> u.getId() == id).findFirst();
     }
 
     @Override
@@ -36,7 +27,7 @@ public class DaoUserImplList extends AbstractDaoUser {
             if (userList.stream().anyMatch(u -> u.getAccount().equals(account))) {
                 return Optional.empty();
             } else {
-                User user = new User(count.incrementAndGet(), account);
+                User user = new User(counter.incrementAndGet(), account);
                 userList.add(user);
                 return Optional.of(user);
             }
