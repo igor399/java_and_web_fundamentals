@@ -5,8 +5,6 @@ import by.epam.lab.beans.User;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class DaoUserImplList extends AbstractDaoUser {
     private final List<User> userList;

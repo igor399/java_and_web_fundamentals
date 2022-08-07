@@ -5,8 +5,6 @@ import by.epam.lab.beans.User;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class DaoUserImplMap extends AbstractDaoUser {
     private final Map<Integer, User> userMap;
