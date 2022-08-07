@@ -21,23 +21,6 @@ public class DaoUserImplMap extends AbstractDaoUser {
     }
 
     @Override
-    public Optional<User> registerUser(String account) {
-        try {
-            lock.lock();
-            if (userMap.values().stream().anyMatch(u -> u.getAccount().equals(account))) {
-                return Optional.empty();
-            } else {
-                int id = counter.incrementAndGet();
-                User user = new User(id, account);
-                userMap.put(id, user);
-                return Optional.of(user);
-            }
-        } finally {
-            lock.unlock();
-        }
-    }
-
-    @Override
     protected void addUser(User user) {
         userMap.put(user.getId(), user);
     }

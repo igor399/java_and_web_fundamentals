@@ -21,22 +21,6 @@ public class DaoUserImplList extends AbstractDaoUser {
     }
 
     @Override
-    public Optional<User> registerUser(String account) {
-        try {
-            lock.lock();
-            if (userList.stream().anyMatch(u -> u.getAccount().equals(account))) {
-                return Optional.empty();
-            } else {
-                User user = new User(counter.incrementAndGet(), account);
-                userList.add(user);
-                return Optional.of(user);
-            }
-        } finally {
-            lock.unlock();
-        }
-    }
-
-    @Override
     protected void addUser(User user) {
         userList.add(user);
     }

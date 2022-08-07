@@ -18,7 +18,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void registerUser(String account) {
-        daoUser.registerUser(account);
+    public Optional<User> registerUser(String account) {
+        return daoUser.registerUser(account);
     }
 }

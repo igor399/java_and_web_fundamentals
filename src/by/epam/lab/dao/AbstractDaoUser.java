@@ -9,8 +9,8 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public abstract class AbstractDaoUser implements DaoUser{
-    protected final AtomicInteger counter;
-    protected final Lock lock;
+    private final AtomicInteger counter;
+    private final Lock lock;
 
     protected AbstractDaoUser() {
         counter = new AtomicInteger(0);
