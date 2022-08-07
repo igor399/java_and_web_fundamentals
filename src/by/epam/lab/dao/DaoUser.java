@@ -1,8 +1,8 @@
-package by.epam.lab.dal;
+package by.epam.lab.dao;
 
 import by.epam.lab.beans.User;
 
-public interface DalUser {
+public interface DaoUser {
     User getUserOnId(int id);
 
     void registerUser(String account);

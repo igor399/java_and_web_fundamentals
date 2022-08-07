@@ -1,15 +1,15 @@
-package by.epam.lab.dal;
+package by.epam.lab.dao;
 
 import by.epam.lab.beans.User;
 
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class DalUserImplMap implements DalUser {
+public class DaoUserImplMap implements DaoUser {
     private final AtomicInteger count;
     private final Map<Integer, User> userMap;
 
-    public DalUserImplMap(Map<Integer, User> userMap) {
+    public DaoUserImplMap(Map<Integer, User> userMap) {
         this.userMap = userMap;
         count = new AtomicInteger(0);
     }

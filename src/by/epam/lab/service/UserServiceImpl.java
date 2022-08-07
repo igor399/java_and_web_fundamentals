@@ -1,22 +1,22 @@
 package by.epam.lab.service;
 
 import by.epam.lab.beans.User;
-import by.epam.lab.dal.DalUser;
+import by.epam.lab.dao.DaoUser;
 
 public class UserServiceImpl implements UserService {
-    private final DalUser dalUser;
+    private final DaoUser daoUser;
 
-    public UserServiceImpl(DalUser dalUser) {
-        this.dalUser = dalUser;
+    public UserServiceImpl(DaoUser daoUser) {
+        this.daoUser = daoUser;
     }
 
     @Override
     public User getUserOnId(int id) {
-        return dalUser.getUserOnId(id);
+        return daoUser.getUserOnId(id);
     }
 
     @Override
     public void registerUser(String account) {
-        dalUser.registerUser(account);
+        daoUser.registerUser(account);
     }
 }

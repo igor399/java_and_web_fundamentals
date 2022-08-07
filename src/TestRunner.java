@@ -1,7 +1,6 @@
 import by.epam.lab.beans.User;
-import by.epam.lab.dal.DalUserImplList;
-import by.epam.lab.dal.DalUserImplMap;
-import by.epam.lab.exceptions.CountDownException;
+import by.epam.lab.dao.DaoUserImplList;
+import by.epam.lab.dao.DaoUserImplMap;
 import by.epam.lab.service.*;
 import org.junit.Assert;
 import org.junit.Test;
@@ -40,9 +39,9 @@ public class TestRunner {
     private final Map<Integer, User> userMap = new ConcurrentHashMap<>();
 
     private final UserService userServiceList = new UserServiceImpl
-            (new DalUserImplList(userList));
+            (new DaoUserImplList(userList));
     private final UserService userServiceMap = new UserServiceImpl
-            (new DalUserImplMap(userMap));
+            (new DaoUserImplMap(userMap));
 
     private final ExecutorService executorService =
             Executors.newFixedThreadPool(THREADS_NUM);
@@ -71,8 +70,7 @@ public class TestRunner {
         userList.forEach(user -> Assert.assertNotEquals(0, user.getId()));
     }
 
-    @Test
-    public void getTenAndRegisterUserListTest() throws InterruptedException {
+    private void getAndRegisterTenUserList(List<String> users) throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(varUsers.size());
         varUsers.forEach(user -> executorService.submit(() -> {
             userServiceList.registerUser(user);
@@ -82,36 +80,25 @@ public class TestRunner {
         }));
         latch.await();
         executorService.shutdown();
+    }
+
+    @Test
+    public void getTenAndRegisterUserListTest() throws InterruptedException {
+        getAndRegisterTenUserList(varUsers);
         Assert.assertEquals(varUsers.size(), userList.size());
         userList.forEach(user -> Assert.assertNotEquals(0, user.getId()));
     }
 
     @Test
     public void getSameTenAndRegisterUserListTest() throws InterruptedException {
-        CountDownLatch latch = new CountDownLatch(sameUsers.size());
-        sameUsers.forEach(user -> executorService.submit(() -> {
-            userServiceList.registerUser(user);
-            int id = rand.nextInt(sameUsers.size());
-            userServiceList.getUserOnId(id);
-            latch.countDown();
-        }));
-        latch.await();
-        executorService.shutdown();
+        getAndRegisterTenUserList(sameUsers);
         Assert.assertEquals(sameUsers.size(), userList.size());
         userList.forEach(user -> Assert.assertNotEquals(0, user.getId()));
     }
 
     @Test
     public void getSameFiveAndRegisterUserListTest() throws InterruptedException {
-        CountDownLatch latch = new CountDownLatch(fiveUniqueUsers.size());
-        fiveUniqueUsers.forEach(user -> executorService.submit(() -> {
-            userServiceList.registerUser(user);
-            int id = rand.nextInt(fiveUniqueUsers.size());
-            userServiceList.getUserOnId(id);
-            latch.countDown();
-        }));
-        latch.await();
-        executorService.shutdown();
+        getAndRegisterTenUserList(fiveUniqueUsers);
         Assert.assertEquals(fiveUniqueUsers.size(), userList.size());
         userList.forEach(user -> Assert.assertNotEquals(0, user.getId()));
     }
@@ -138,8 +125,7 @@ public class TestRunner {
         userMap.forEach((k, v) -> Assert.assertEquals(k.intValue(), v.getId()));
     }
 
-    @Test
-    public void getTenAndRegisterUserMapTest() throws InterruptedException {
+    private void getAndRegisterTenUserMap(List<String> users) throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(varUsers.size());
         varUsers.forEach(user -> executorService.submit(() -> {
             userServiceMap.registerUser(user);
@@ -149,36 +135,25 @@ public class TestRunner {
         }));
         latch.await();
         executorService.shutdown();
+    }
+
+    @Test
+    public void getTenAndRegisterUserMapTest() throws InterruptedException {
+        getAndRegisterTenUserMap(varUsers);
         Assert.assertEquals(varUsers.size(), userMap.size());
         userMap.forEach((k, v) -> Assert.assertEquals(k.intValue(), v.getId()));
     }
 
     @Test
     public void getSameTenAndRegisterUserMapTest() throws InterruptedException {
-        CountDownLatch latch = new CountDownLatch(sameUsers.size());
-        sameUsers.forEach(user -> executorService.submit(() -> {
-            userServiceMap.registerUser(user);
-            int id = rand.nextInt(sameUsers.size());
-            userServiceMap.getUserOnId(id);
-            latch.countDown();
-        }));
-        latch.await();
-        executorService.shutdown();
+        getAndRegisterTenUserMap(sameUsers);
         Assert.assertEquals(sameUsers.size(), userMap.size());
         userMap.forEach((k, v) -> Assert.assertEquals(k.intValue(), v.getId()));
     }
 
     @Test
     public void getSameFiveAndRegisterUserMapTest() throws InterruptedException {
-        CountDownLatch latch = new CountDownLatch(fiveUniqueUsers.size());
-        fiveUniqueUsers.forEach(user -> executorService.submit(() -> {
-            userServiceMap.registerUser(user);
-            int id = rand.nextInt(fiveUniqueUsers.size());
-            userServiceMap.getUserOnId(id);
-            latch.countDown();
-        }));
-        latch.await();
-        executorService.shutdown();
+        getAndRegisterTenUserMap(fiveUniqueUsers);
         Assert.assertEquals(fiveUniqueUsers.size(), userMap.size());
         userMap.forEach((k, v) -> Assert.assertEquals(k.intValue(), v.getId()));
     }
