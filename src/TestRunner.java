@@ -36,7 +36,7 @@ public class TestRunner {
     private final List<User> userList = new CopyOnWriteArrayList<>();
     private final DaoUser daoUser = new DaoUserImplList(userList);
 
-//   Для тестирования Map-имплементации раскомментируйте следующие строки:
+//   To test the Map implementation, uncomment the following lines:
 //   private final Map<Integer, User> userMap = new ConcurrentHashMap<>();
 //   private final DaoUser daoUser = new DaoUserImplList(userMap);
 
@@ -57,8 +57,6 @@ public class TestRunner {
         latch.await();
         executorService.shutdown();
     }
-
-
 
     private void registerTwoUserList(List<String> users) throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(users.size());
@@ -97,8 +95,6 @@ public class TestRunner {
     @Test
     public void getAndRegisterTwoVarUserListTest() throws InterruptedException {
         int expectedSize = 12;
-        registerTenUserList(varUsers);
-        TimeUnit.SECONDS.sleep(1);
         registerTwoUserListWithFillModel(twoVarUsers);
         Assert.assertEquals(userList.size(), expectedSize);
     }
@@ -106,27 +102,21 @@ public class TestRunner {
     @Test
     public void getAndRegisterTwoSameUserListTest() throws InterruptedException {
         int expectedSize = 11;
-        registerTenUserList(varUsers);
-        TimeUnit.SECONDS.sleep(1);
-        registerTwoUserList(twoSameUsers);
+        registerTwoUserListWithFillModel(twoSameUsers);
         Assert.assertEquals(userList.size(), expectedSize);
     }
 
     @Test
     public void getAndRegisterOneInStorageUserListTest() throws InterruptedException {
         int expectedSize = 11;
-        registerTenUserList(varUsers);
-        TimeUnit.SECONDS.sleep(1);
-        registerTwoUserList(oneInStorage);
+        registerTwoUserListWithFillModel(oneInStorage);
         Assert.assertEquals(userList.size(), expectedSize);
     }
 
     @Test
     public void getAndRegisterTwoInStorageUserListTest() throws InterruptedException {
         int expectedSize = 10;
-        registerTenUserList(varUsers);
-        TimeUnit.SECONDS.sleep(1);
-        registerTwoUserList(twoInStorage);
+        registerTwoUserListWithFillModel(twoInStorage);
         Assert.assertEquals(userList.size(), expectedSize);
     }
 
