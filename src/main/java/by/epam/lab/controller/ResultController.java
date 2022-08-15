@@ -1,9 +1,13 @@
 package by.epam.lab.controller;
 
+import by.epam.lab.model.Operation;
+import by.epam.lab.services.ConstantsJSP;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.Arrays;
 
 @WebServlet("/result")
 public class ResultController extends HttpServlet {
@@ -13,19 +17,13 @@ public class ResultController extends HttpServlet {
     protected void doGet(HttpServletRequest request,
                          HttpServletResponse response) throws ServletException, IOException {
 
-
-        String refferer = request.getHeader("referer");
-        if (refferer == null) {
-            response.sendRedirect(request.getContextPath());
-            return;
-        }
-
-        //get strOperation and strNumbers from the corresponding request parameters;
-        //convert strNumbers to double numbers;
-        //convert strOperation to the operation - an item of the enum Operation;
-        double result = operation.getResult(numbers);
-
-        //set attributes for the next page;
-        //forward (or redirect?) the request to the next page;
+        Operation operation = Operation.valueOf(request.getParameter(ConstantsJSP.OPERATION_NAME).toUpperCase());
+        String[] numStr = request.getParameterValues(ConstantsJSP.STAT_NAME);
+        double[] num = Arrays.stream(numStr).mapToDouble(Double::parseDouble).toArray();
+        double res = operation.getResult(num);
+        request.setAttribute(ConstantsJSP.OPERATION_NAME, operation.name().toLowerCase());
+        request.setAttribute(ConstantsJSP.STAT_NAME, num);
+        request.setAttribute(ConstantsJSP.RESULT_NAME, res);
+        getServletContext().getRequestDispatcher(ConstantsJSP.RESULT_PAGE_URL).forward(request, response);
     }
 }

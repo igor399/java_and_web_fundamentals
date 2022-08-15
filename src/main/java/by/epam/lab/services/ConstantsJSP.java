@@ -1,4 +1,4 @@
-package by.epam.lab.controller;
+package by.epam.lab.services;
 
 public class ConstantsJSP {
     public final static String OPERATION_NAME = "operation";
