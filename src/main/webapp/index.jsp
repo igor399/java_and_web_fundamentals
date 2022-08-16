@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-<title>Stat page</title>
+<title>Start page</title>
 <script>
 function checkData() {
 	const MIN_NUM = 2;
@@ -29,7 +29,7 @@ function sendForm() {
 <body>
     <p id="errorText" style="color:red;"></p>
     <p/>
-    <form name="statsNumber" action="<c:url value='/start'/>" onsubmit="return checkData()" method="get">
+    <form name="statsNumber" action="<c:url value='/start'/>" onsubmit="return checkData()">
     	<label for="quantity">stats number (between 2 and 10):</label>
     	<input type="number" id="quantity" name="number" min="2" max="10" step="1" value="3">
     	<br/>

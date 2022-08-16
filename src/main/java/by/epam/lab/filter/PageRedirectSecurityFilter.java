@@ -8,11 +8,9 @@ import java.io.IOException;
 
 @WebFilter(urlPatterns = {"/start", "/result"})
 public class PageRedirectSecurityFilter implements Filter {
-    private String indexPath;
 
     @Override
     public void init(FilterConfig fConfig) throws ServletException {
-        indexPath = fConfig.getInitParameter("INDEX_PATH");
     }
 
     @Override
@@ -25,7 +23,7 @@ public class PageRedirectSecurityFilter implements Filter {
 
         String referer = httpRequest.getHeader("referer");
         if (referer == null) {
-            httpResponse.sendRedirect(httpRequest.getContextPath() + indexPath);
+            httpResponse.sendRedirect(httpRequest.getContextPath());
             return;
         }
         chain.doFilter(request, response);

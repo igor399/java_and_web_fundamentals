@@ -1,7 +1,7 @@
 package by.epam.lab.controller;
 
 import by.epam.lab.model.Operation;
-import by.epam.lab.services.ConstantsJSP;
+import by.epam.lab.utils.ConstantsJSP;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
