@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/start", "/result"})
-public class PageRedirectSecurityFilter implements Filter {
+@WebFilter({"/start", "/result"})
+public class TypedUrlFilter implements Filter {
 
     @Override
     public void init(FilterConfig fConfig) throws ServletException {
@@ -17,10 +17,8 @@ public class PageRedirectSecurityFilter implements Filter {
     public void doFilter(ServletRequest request,
                          ServletResponse response,
                          FilterChain chain) throws IOException, ServletException {
-
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
-
         String referer = httpRequest.getHeader("referer");
         if (referer == null) {
             httpResponse.sendRedirect(httpRequest.getContextPath());

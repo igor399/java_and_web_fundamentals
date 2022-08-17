@@ -17,7 +17,7 @@ public class StartController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String num = request.getParameter(ConstantsJSP.NUMBER_NAME);
+        int num = Integer.parseInt(request.getParameter(ConstantsJSP.NUMBER_NAME));
 
         request.setAttribute(ConstantsJSP.NUMBER_NAME, num);
 

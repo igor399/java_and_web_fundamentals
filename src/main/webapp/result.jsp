@@ -1,18 +1,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-<title>Result page</title>
+    <title>Result page</title>
 </head>
 <body>
-    <p>${operation} (
+<p>${operation} (
     <c:forEach items="${stats}" var="stat" varStatus="status">
-    	${stat}
-    	<c:if test = "${not status.last}">
-    		,
-    	</c:if>
+        ${stat}
+        <c:if test="${not status.last}">
+            ,
+        </c:if>
     </c:forEach>
     ) is ${result}</p>
-	<br/>
-	<a href="<c:url value='/'/>">Main</a>
+<br/>
+<a href="<c:url value='/'/>">Main</a>
 </body>
 </html>
