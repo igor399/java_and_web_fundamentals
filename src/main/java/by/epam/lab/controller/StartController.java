@@ -1,13 +1,13 @@
 package by.epam.lab.controller;
 
-import by.epam.lab.utils.ConstantsJSP;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+
+import static by.epam.lab.utils.ConstantsJSP.*;
 
 @WebServlet("/start")
 public class StartController extends HttpServlet {
@@ -17,11 +17,11 @@ public class StartController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        int num = Integer.parseInt(request.getParameter(ConstantsJSP.NUMBER_NAME));
+        int num = Integer.parseInt(request.getParameter(NUMBER_NAME));
 
-        request.setAttribute(ConstantsJSP.NUMBER_NAME, num);
+        request.setAttribute(NUMBER_NAME, num);
 
-        request.getRequestDispatcher(ConstantsJSP.START_PAGE_URL)
+        request.getRequestDispatcher(START_PAGE_URL)
                 .forward(request, response);
     }
 }
