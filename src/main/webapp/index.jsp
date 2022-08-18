@@ -33,8 +33,7 @@
 <form name="statsNumber" action="<c:url value='/start'/>"
       onsubmit="return checkData()">
     <label for="quantity">stats number (between 2 and 10):</label>
-    <input type="number" id="quantity" name="number" min="2" max="10" step="1"
-           value="3">
+    <input type="number" id="quantity" name="number" min="2" max="10" step="1" value="3">
     <br/>
     <a href="JavaScript:sendForm()">generate stats</a>
 </form>
