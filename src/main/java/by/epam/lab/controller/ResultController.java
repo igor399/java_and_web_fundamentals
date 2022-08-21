@@ -30,8 +30,7 @@ public class ResultController extends HttpServlet {
 
         double res = operation.getResult(num);
 
-        request.setAttribute(OPERATION_NAME, operation.name()
-                .toLowerCase());
+        request.setAttribute(OPERATION_NAME, operation.name().toLowerCase());
         request.setAttribute(STAT_NAME, num);
         request.setAttribute(RESULT_NAME, res);
 

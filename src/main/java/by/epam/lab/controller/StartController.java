@@ -1,5 +1,10 @@
 package by.epam.lab.controller;
 
+import by.epam.lab.controller.dao.NumberDAO;
+import by.epam.lab.controller.dao.NumberFactory;
+import by.epam.lab.exceptions.InitException;
+
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
@@ -7,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 import static by.epam.lab.utils.ConstantsJSP.*;
 
@@ -23,7 +29,7 @@ public class StartController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     @Override
-    public void init() throws ServletException {
+    public void init(ServletConfig sc) throws ServletException {
         super.init(sc);
         try {
 
