@@ -1,4 +1,4 @@
-package by.epam.lab.controller;
+package by.epam.lab.controller.dao;
 
 import java.util.List;
 

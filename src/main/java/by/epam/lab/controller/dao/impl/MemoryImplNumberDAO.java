@@ -1,6 +1,6 @@
-package by.epam.lab.controller.impl;
+package by.epam.lab.controller.dao.impl;
 
-import by.epam.lab.controller.NumberDAO;
+import by.epam.lab.controller.dao.NumberDAO;
 
 import java.util.Arrays;
 import java.util.List;
