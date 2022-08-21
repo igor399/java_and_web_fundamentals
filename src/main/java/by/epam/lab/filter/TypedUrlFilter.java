@@ -19,10 +19,8 @@ public class TypedUrlFilter implements Filter {
     public void doFilter(ServletRequest request,
                          ServletResponse response,
                          FilterChain chain) throws IOException, ServletException {
-
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
-
         String referer = httpRequest.getHeader(REFERER);
         if (referer == null) {
             httpResponse.sendRedirect(httpRequest.getContextPath());
