@@ -27,7 +27,7 @@ public class CsvImplNumberDAO implements NumberDAO {
             return Arrays.stream(line.split(SEMICOLON))
                     .map(Double::parseDouble)
                     .collect(Collectors.toList());
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException | NumberFormatException e) {
             throw new InitException(e);
         }
     }

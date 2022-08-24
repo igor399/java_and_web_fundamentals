@@ -33,13 +33,12 @@
     </script>
 </head>
 <body>
-<p id="errorText" style="color:red;" index must be less than ${maxValue} </p>
+<p id="errorText">input indices (less than ${ maxValue })</p>
 <p></p>
 <form name="result" action="<c:url value='/result'/>" onsubmit="return false">
 
     <c:forEach var="i" begin="0" end="${number - 1}">
-        ${i}: <input name="stats" type="number" value="0" min="0"
-                     max="${maxValue}"/>
+        ${i}: <input name="stats" type="number" value="0" min="0" max="${maxValue -1}"/>
         <br/><br/>
     </c:forEach>
 
