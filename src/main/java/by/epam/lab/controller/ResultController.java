@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
 
 import static by.epam.lab.utils.ConstantsJSP.*;
 
@@ -25,13 +26,21 @@ public class ResultController extends HttpServlet {
 
         String[] numStr = request.getParameterValues(STAT_NAME);
 
-        double[] num = Arrays.stream(numStr).mapToDouble(Double::parseDouble)
+        int[] intInd = Arrays.stream(numStr)
+                .mapToInt(Integer::parseInt)
                 .toArray();
 
-        double res = operation.getResult(num);
+        List<Double> numbers = (List<Double>) getServletContext()
+                .getAttribute(NUMBERS_NAME);
+
+        double[] reqNum = Arrays.stream(intInd)
+                .mapToDouble(numbers::get)
+                .toArray();
+
+        double res = operation.getResult(reqNum);
 
         request.setAttribute(OPERATION_NAME, operation.name().toLowerCase());
-        request.setAttribute(STAT_NAME, num);
+        request.setAttribute(STAT_NAME, reqNum);
         request.setAttribute(RESULT_NAME, res);
 
         getServletContext().getRequestDispatcher(RESULT_PAGE_URL)

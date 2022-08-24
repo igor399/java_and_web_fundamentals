@@ -33,7 +33,7 @@
     </script>
 </head>
 <body>
-<p id="errorText" style="color:red;" index must be no more than ${maxValue} </p>
+<p id="errorText" style="color:red;" index must be less than ${maxValue} </p>
 <p></p>
 <form name="result" action="<c:url value='/result'/>" onsubmit="return false">
 

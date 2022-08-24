@@ -1,15 +1,8 @@
 package by.epam.lab.exceptions;
 
-public class InitException extends RuntimeException {
-    public InitException() {
-    }
-
+public class InitException extends Exception {
     public InitException(String message) {
         super(message);
-    }
-
-    public InitException(String message, Throwable cause) {
-        super(message, cause);
     }
 
     public InitException(Throwable cause) {
