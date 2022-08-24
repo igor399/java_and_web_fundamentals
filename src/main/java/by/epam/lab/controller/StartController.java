@@ -25,7 +25,7 @@ import static by.epam.lab.utils.GlobalConstants.*;
                 @WebInitParam(name = "min.size", value = "12"),
                 @WebInitParam(name = "factory.number", value = "memory")
 //              @WebInitParam(name = "factory.number", value = "csv;D:/java_web_development/src/main/webapp/WEB-INF/resources/numbers.csv")
-//              @WebInitParam(name = "factory.number", value = "db;mvcStat2;root;password")
+//              @WebInitParam(name = "factory.number", value = "db;mvcStat2;epamlab;111")
         }
 )
 public class StartController extends HttpServlet {
