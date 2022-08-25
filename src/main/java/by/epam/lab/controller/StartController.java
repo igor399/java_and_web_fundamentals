@@ -23,9 +23,9 @@ import static by.epam.lab.utils.GlobalConstants.*;
         urlPatterns = {"/start"},
         initParams = {
                 @WebInitParam(name = "min.size", value = "12"),
-                @WebInitParam(name = "factory.number", value = "memory")
-//              @WebInitParam(name = "factory.number", value = "csv;D:/java_web_development/src/main/webapp/WEB-INF/resources/numbers.csv")
-//              @WebInitParam(name = "factory.number", value = "db;mvcStat2;epamlab;111")
+                //@WebInitParam(name = "factory.number", value = "memory")
+              @WebInitParam(name = "factory.number", value = "csv;/resources/numbers.csv")
+//              @WebInitParam(name = "factory.number", value = "db;mvcstat2;root;password")
         }
 )
 public class StartController extends HttpServlet {
@@ -36,7 +36,7 @@ public class StartController extends HttpServlet {
         super.init(sc);
         try {
             final int MIN_SIZE = Integer.parseInt(sc.getInitParameter(ConstantsJSP.MIN_SIZE));
-            NumberFactory.init(sc.getInitParameter(FACTORY_NUM));
+            NumberFactory.init(sc);
             NumberDAO numberDAO = NumberFactory.getClassFromFactory();
             List<Double> numbers = numberDAO.getNumbers().stream()
                     .filter(n -> n >= MIN_VALUE && n <= MAX_VALUE)
