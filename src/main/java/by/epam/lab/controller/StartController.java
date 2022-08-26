@@ -3,6 +3,7 @@ package by.epam.lab.controller;
 import by.epam.lab.controller.dao.NumberDAO;
 import by.epam.lab.controller.dao.NumberFactory;
 import by.epam.lab.exceptions.InitException;
+import by.epam.lab.exceptions.InitRuntimeException;
 import by.epam.lab.utils.ConstantsJSP;
 
 import javax.servlet.ServletConfig;
@@ -47,7 +48,7 @@ public class StartController extends HttpServlet {
             }
             getServletContext().setAttribute(NUMBERS_NAME, numbers);
             getServletContext().setAttribute(MAX_VALUE_NAME, numbers.size());
-        } catch (InitException e) {
+        } catch (InitException | InitRuntimeException e) {
             throw new ServletException(e);
         }
     }
