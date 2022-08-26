@@ -24,16 +24,16 @@ public class ResultController extends HttpServlet {
         Operation operation = Operation.valueOf(request
                 .getParameter(OPERATION_NAME).toUpperCase());
 
-        String[] numStr = request.getParameterValues(STAT_NAME);
+        String[] strNumbers = request.getParameterValues(STAT_NAME);
 
-        int[] intInd = Arrays.stream(numStr)
+        int[] intNumbers = Arrays.stream(strNumbers)
                 .mapToInt(Integer::parseInt)
                 .toArray();
 
         List<Double> numbers = (List<Double>) getServletContext()
                 .getAttribute(NUMBERS_NAME);
 
-        double[] reqNum = Arrays.stream(intInd)
+        double[] reqNum = Arrays.stream(intNumbers)
                 .mapToDouble(numbers::get)
                 .toArray();
 

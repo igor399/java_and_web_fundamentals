@@ -5,6 +5,7 @@ import by.epam.lab.exceptions.InitException;
 import by.epam.lab.exceptions.InitRuntimeException;
 import com.mysql.cj.jdbc.NonRegisteringDriver;
 
+import javax.servlet.ServletConfig;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,8 @@ public class NumberImplDB implements NumberDAO {
     private final String user;
     private final String password;
 
-    public NumberImplDB(String[] param) {
+    public NumberImplDB(String params, ServletConfig sc) {
+        String[] param = params.split(SEMICOLON);
         dbUrl = DB_URL + param[URL_IND];
         user = param[LOGIN_IND];
         password = param[PASS_IND];

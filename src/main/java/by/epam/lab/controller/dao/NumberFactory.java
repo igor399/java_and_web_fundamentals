@@ -5,6 +5,9 @@ import by.epam.lab.exceptions.InitException;
 
 import javax.servlet.ServletConfig;
 
+import java.util.ResourceBundle;
+import java.util.function.BiFunction;
+
 import static by.epam.lab.utils.ConstantsJSP.*;
 import static by.epam.lab.utils.GlobalConstants.*;
 
@@ -14,16 +17,14 @@ public class NumberFactory {
         CSV(NumberImplCSV::new),
         DB(NumberImplDB::new);
 
-//field function interface
+        private final BiFunction<String, ServletConfig, NumberDAO> biFunction;
 
- //constr of function
-        Sources(Object aNew) {
-
+        Sources(BiFunction<String, ServletConfig, NumberDAO> biFunction) {
+            this.biFunction = biFunction;
         }
 
-
         public NumberDAO getImpl(String sourceParams, ServletConfig sc) {
-
+            return biFunction.apply(sourceParams, sc);
         }
     }
 
@@ -35,12 +36,10 @@ public class NumberFactory {
     public static void init(ServletConfig sc) throws InitException {
         String param = sc.getInitParameter(FACTORY_NUM);
         String[] params = param.split(SEMICOLON, INT_LIMIT);
-
-        String sourceType = params[0];
-        String sourceParams = params.length > 1 ? params[1] : "";
+        String sourceParams = params.length > 1 ? params[STR_SRC_IND] : EMPTY;
+        String sourceType = params[SRC_IND];
         Sources source = Sources.valueOf(sourceType.toUpperCase());
         numberImpl = source.getImpl(sourceParams, sc);
-
     }
 
     public static NumberDAO getClassFromFactory() {

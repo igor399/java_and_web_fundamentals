@@ -15,11 +15,10 @@ import static by.epam.lab.utils.ConstantsJSP.*;
 import static by.epam.lab.utils.GlobalConstants.*;
 
 public class NumberImplCSV implements NumberDAO {
-
     private final String path;
 
-    public NumberImplCSV(ServletConfig sc) {
-        path = sc.getServletContext().getRealPath(WEB_INF);
+    public NumberImplCSV(String params, ServletConfig sc) {
+        path = sc.getServletContext().getRealPath(WEB_INF) + params;
     }
 
     @Override

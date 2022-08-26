@@ -23,9 +23,9 @@ import static by.epam.lab.utils.GlobalConstants.*;
         urlPatterns = {"/start"},
         initParams = {
                 @WebInitParam(name = "min.size", value = "12"),
-                //@WebInitParam(name = "factory.number", value = "memory")
-              @WebInitParam(name = "factory.number", value = "csv;/resources/numbers.csv")
-//              @WebInitParam(name = "factory.number", value = "db;mvcstat2;root;password")
+                @WebInitParam(name = "factory.number", value = "memory")
+              //@WebInitParam(name = "factory.number", value = "csv;/resources/numbers.csv")
+              //@WebInitParam(name = "factory.number", value = "db;mvcStat2;epamlab;111")
         }
 )
 public class StartController extends HttpServlet {
@@ -54,11 +54,8 @@ public class StartController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        int num = Integer.parseInt(request.getParameter(NUMBER_NAME));
-
-        request.setAttribute(NUMBER_NAME, num);
-
+        int statsNumber = Integer.parseInt(request.getParameter(NUMBER_NAME));
+        request.setAttribute(NUMBER_NAME, statsNumber);
         request.getRequestDispatcher(START_PAGE_URL).forward(request, response);
     }
 }
