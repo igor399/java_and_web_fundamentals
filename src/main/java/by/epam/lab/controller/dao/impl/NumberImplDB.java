@@ -18,13 +18,6 @@ public class NumberImplDB implements NumberDAO {
     private final String user;
     private final String password;
 
-    public NumberImplDB(String params, ServletConfig sc) {
-        String[] param = params.split(SEMICOLON);
-        dbUrl = DB_URL + param[URL_IND];
-        user = param[LOGIN_IND];
-        password = param[PASS_IND];
-    }
-
     static {
         try {
             DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
@@ -33,18 +26,25 @@ public class NumberImplDB implements NumberDAO {
         }
     }
 
+    public NumberImplDB(String params, ServletConfig sc) {
+        String[] param = params.split(SEMICOLON);
+        dbUrl = DB_URL + param[URL_IND];
+        user = param[LOGIN_IND];
+        password = param[PASS_IND];
+    }
+
     @Override
     public List<Double> getNumbers() throws InitException {
-        List<Double> numbers = new ArrayList<>();
         try (Connection cn = DriverManager.getConnection(dbUrl, user, password);
              Statement st = cn.createStatement();
              ResultSet rs = st.executeQuery(SELECT_NUM)) {
+            List<Double> numbers = new ArrayList<>();
             while (rs.next()) {
                 numbers.add(rs.getDouble(NUM_IND));
             }
+            return numbers;
         } catch (SQLException e) {
             throw new InitException(e);
         }
-        return numbers;
     }
 }
