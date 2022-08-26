@@ -14,8 +14,4 @@ public class GlobalConstants {
     public final static int SRC_IND = 0;
     public final static int STR_SRC_IND = 1;
     public final static int INT_LIMIT = 2;
-
-
-
-
 }
